@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="images/favicon.jpg" />
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <!-- Style -->
+    <link rel="stylesheet" href="css/responsive.css" type="text/css" />
+    <!-- Responsive -->
+    <link rel="stylesheet" href="css/colors.css" type="text/css" />
+    <!-- color -->
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!--Slides-->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <!-- /.preloader -->
+    <div id="preloader"></div>
+    <div class="theme-layout">
+        <!-- Header -->
+        <header class="simple-header for-sticky white">
+            <!-- Top bar -->
+            <div class="top-bar">
+                <div class="container">
+                    <ul class="contact-item">
+                        <li><i class="fa fa-envelope-o"></i>yourcompnay@email.com</li>
+                        <li><i class="fa fa-mobile"></i>+1 333 44 555 / +1 333 44 500</li>
+                    </ul>
+                    <div class="choose-language">
+                        <a href="#" title="">EN</a>
+                        <a href="#" title="">CH</a>
+                    </div>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="container">
+                    <!-- LOGO -->
+                    <div class="logo">
+                        <span><%= title %></span>
+                        <strong>CITY CARPOOL</strong>
+                    </div>
+                    <span class="menu-toggle"><i class="fa fa-bars"></i></span>
+                    <nav>
+                        <h1 class="nocontent outline">--- Main Navigation ---</h1>
+                        <ul>
+                            <li class="menu-item-has-children">
+                                <a href="#" title="">HOME</a>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a href="#" title="">ABOUT</a>
+                                <ul>
+                                    <li><a href="#" title="">Overview</a></li>
+                                    <li><a href="#" title="">Q&A</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" title="">CONTACT</a></li>
+                            <li>
+                                <a href="/login" title="">
+                                    <span><i class="fa fa-user"></i> Login</span></a>
+                            </li>
+                            <li>
+                                <a href="/register" title="">
+                                    <span><i class="fa fa-sign-in"></i> Register</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <section class="box-slider-search">
+            <div class="container">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Carousel Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+                    <!-- Carousel Wrapper -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img src="/images/full-slider/home1.jpg" alt="First slide">
+                        </div>
+                        <div class="item">
+                            <img src="/images/full-slider/home2.jpg" alt="Second slide">
+                        </div>
+                        <div class="item">
+                            <img src="/images/full-slider/home3.jpg" alt="Third slide">
+                        </div>
+                    </div>
+                    <!-- Carousel Controls-->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Script -->
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <!-- Modernizer -->
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <!-- Jquery -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="js/html5lightbox.js"></script>
+    <!-- HTML -->
+    <script type="text/javascript" src="js/scrolly.js"></script>
+    <!-- Parallax -->
+    <script type="text/javascript" src="js/price-range.js"></script>
+    <!-- Parallax -->
+    <script type="text/javascript" src="js/script.js"></script>
+    <!-- Script -->
+    <script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+    <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        "use strict";
+        jQuery('.tp-banner').show().revolution({
+            dottedOverlay: "none",
+            delay: 16000, //revolution
+            startwidth: 1170,
+            startheight: 700,
+            hideThumbs: 200,
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview1",
+            touchenabled: "on",
+            onHoverStop: "on",
+            swipe_velocity: 0.7,
+            swipe_min_touches: 1,
+            swipe_max_touches: 1,
+            drag_block_vertical: false,
+            parallax: "mouse",
+            parallaxBgFreeze: "on",
+            parallaxLevels: [7, 4, 3, 2, 5, 4, 3, 2, 1, 0],
+            keyboardNavigation: "off",
+            navigationHAlign: "center",
+            navigationVAlign: "bottom",
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+            shadow: 0,
+            fullWidth: "on",
+            fullScreen: "off",
+            spinner: "spinner4",
+            stopLoop: "off",
+            stopAfterLoops: -1,
+            stopAtSlide: -1,
+            shuffle: "off",
+            autoHeight: "off",
+            forceFullWidth: "off",
+            hideThumbsOnMobile: "off",
+            hideNavDelayOnMobile: 1500,
+            hideBulletsOnMobile: "off",
+            hideArrowsOnMobile: "off",
+            hideThumbsUnderResolution: 0,
+            hideSliderAtLimit: 0,
+            hideCaptionAtLimit: 0,
+            hideAllCaptionAtLilmit: 0,
+            startWithSlide: 0,
+            videoJsPath: "rs-plugin/videojs/",
+            fullScreenOffsetContainer: ""
+        });
+    });
+    </script>
+</body>
+
+</html>
