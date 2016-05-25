@@ -89,7 +89,56 @@
             </div>
         </header>
         <section>
-            <a href="/createRoute" class="btn btn-link" role="button">Driver</a>
+            <form>
+                <div class="container">
+                    <div class="well">
+                        <label for="DriverDeptDate">Departure Date</label>
+                        <input class="datepicker" type="text" name="DriverDeptDate" id="DriverDeptDate">
+                    </div>
+                    <script>
+                    $(function() {
+                        $('#DriverDeptDate').datepicker();
+                    });
+                    </script>
+                    <div class="well">
+                        <label for="DriverDeptTime">Departure Time</label>
+                        <input class="timepicker" type="text" name="DriverDeptTime" id="DriverDeptTime">
+                        <script>
+                        $(function() {
+                            $('#DriverDeptTime').timepicker({
+                                showMeridian: false,
+                                template: 'dropdown',
+                                showWidgetOnAddonClick: true,
+                                icons: {
+                                    up: 'glyphicon glyphicon-chevron-up',
+                                    down: 'glyphicon glyphicon-chevron-down'
+                                },
+                                maxHours: 24
+                            });
+                        });
+                        </script>>
+                        <span class="plus-minus-label" id="TimeTolerance">&plusmn;</span>
+                        <select name="TimeTolerance">
+                            <option value="15" SELECTED>15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                        </select>
+                        <span> mins</span>
+                    </div>
+                    <div class="well">
+                        <label for="PostalCode">PostCode</label>
+                        <input class="PostalCode" id="PostalCode" name="PostalCode" type="text" placeholder="A0AA0A">
+                        <span class="plus-minus-label" id="AreaTolerance">&plusmn;</span>
+                        <select name="AreaTolerance">
+                            <option value="1" SELECTED>1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                        <span> km</span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block" id="driversubmit">Submit</button>
+                </div>
+            </form>
         </section>
         <!--End of form_row div-->
     </div>
@@ -115,6 +164,37 @@
     <script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
     <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     <script type="text/javascript">
+    $(function() {
+        $("#driversubmit").click(function() {
+            // var DriverDeptDate = $("#DriverDeptDate").val();
+            // var DriverDeptTime = $("#DriverDeptTime").val();
+            // var TimeTolerance = $("#TimeTolerance").val();
+            // var PostalCode = $("#PostalCode").val();
+            // var AreaTolerance = $("#AreaTolerance").val();
+            // var data = {
+            //     "deptdate": DriverDeptDate,
+            //     "depttime": DriverDeptTime,
+            //     "timetol": TimeTolerance,
+            //     "postcode": PostalCode,
+            //     "areatol": AreaTolerance
+            // }
+            $.ajax({
+                url: '/createRoute',
+                type: 'post',
+                data: data,
+                success: function(data, status) {
+                    if (status == 'success') {
+                        location.href = 'home';
+                    }
+                },
+                error: function(data, status) {
+                    if (status == 'error') {
+                        location.href = 'createRoute';
+                    }
+                }
+            });
+        });
+    });
     $(document).ready(function() {
         "use strict";
         jQuery('.tp-banner').show().revolution({
