@@ -15,7 +15,8 @@ var users = require('./routes/users');
 var createRoute = require('./routes/createRoute');
 
 global.dbHandel = require('./database/dbHandel');
-global.db = mongoose.connect("mongodb://localhost:27017/nodedb");
+//global.db = mongoose.connect("mongodb://localhost:27017/nodedb");
+mongoose.connect('mongodb://localhost:27017/nodedb');
 
 // 创建项目实例
 var app = express();

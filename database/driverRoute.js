@@ -8,12 +8,17 @@ var routeSchema = new Schema({
 	TimeTolerance : Number,
 	PostalCode: String,
     AreaTolerance:Number,
-    // user_Id : Schema.Types.ObjectId,
+    // driver: Schema.Types.ObjectId,
 	})
 
-var Route = mongoose.model('Route', routeSchema);
+console.log(prepare to model);
+routeSchema.methods.createRoute = function(){
+	this.model('route').save();
+}
 
-module.exports = Route;
+var route = mongoose.model('route', routeSchema);
+
+module.exports = route;
 // eventSchema.statics.getAllRoutes = function(user_Id, callback){
 // 	this.model('route').find({eventOwner:user_Id}, callback);
 // }

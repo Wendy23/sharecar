@@ -15,11 +15,11 @@
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="images/favicon.jpg" />
     <!-- Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" type="text/css" />
     <!-- Bootstrap -->
     <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css" type="text/css" />
     <!-- Style -->
-    <link rel="stylesheet" href="css/responsive.css" type="text/css" />
+    <!-- <link rel="stylesheet" href="css/responsive.css" type="text/css" /> -->
     <!-- Responsive -->
     <link rel="stylesheet" href="css/colors.css" type="text/css" />
     <!-- color -->
@@ -89,7 +89,7 @@
             </div>
         </header>
         <section>
-            <form>
+            <form id="new-route" class="newroute" role="form" method="post" action="">
                 <div class="container">
                     <div class="well">
                         <label for="DriverDeptDate">Departure Date</label>
@@ -136,7 +136,7 @@
                         </select>
                         <span> km</span>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block" id="driversubmit">Submit</button>
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
                 </div>
             </form>
         </section>
@@ -165,22 +165,23 @@
     <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     <script type="text/javascript">
     $(function() {
-        $("#driversubmit").click(function() {
-            // var DriverDeptDate = $("#DriverDeptDate").val();
-            // var DriverDeptTime = $("#DriverDeptTime").val();
-            // var TimeTolerance = $("#TimeTolerance").val();
-            // var PostalCode = $("#PostalCode").val();
-            // var AreaTolerance = $("#AreaTolerance").val();
-            // var data = {
-            //     "deptdate": DriverDeptDate,
-            //     "depttime": DriverDeptTime,
-            //     "timetol": TimeTolerance,
-            //     "postcode": PostalCode,
-            //     "areatol": AreaTolerance
-            // }
+        $("#new-route").submit(function() {
+            var DriverDeptDate = $("#DriverDeptDate").val();
+            var DriverDeptTime = $("#DriverDeptTime").val();
+            var TimeTolerance = $("#TimeTolerance").val();
+            var PostalCode = $("#PostalCode").val();
+            var AreaTolerance = $("#AreaTolerance").val();
+            var data = {
+                "DriverDeptDate": DriverDeptDate,
+                "DriverDeptTime": DriverDeptTime,
+                "TimeTolerance": TimeTolerance,
+                "PostalCode": PostalCode,
+                "AreaTolerance": AreaTolerance
+            }
             $.ajax({
                 url: '/createRoute',
-                type: 'post',
+                // data: $("form").serialize(),
+                type: "post",
                 data: data,
                 success: function(data, status) {
                     if (status == 'success') {

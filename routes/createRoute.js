@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var driRoute = require('../controller/driverRoute');
+var driRoute = require('../controller/createRoute');
 
 /* GET createRoute page. */
 router.get("/", function(req, res) { // 到达 /logout 路径则登出， session中user,error对象置空，并重定向到根路径
@@ -28,6 +28,6 @@ router.get("/", function(req, res) { // 到达 /logout 路径则登出， sessio
 //             //  res.redirect("/home");
 //         }
 //     });
-router.post('/createRoute',driRoute.createRoute());
+router.post('/',driRoute.createRoute());
 // router.get('/getAllRoutes',driRoute.getAllRoutes());
 module.exports = router;
