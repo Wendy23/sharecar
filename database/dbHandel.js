@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var models = require("./models");
+var driverroutes = require("./driverroutes");
  
 /*models for user*/
 for(var m in models){ 
@@ -18,19 +19,18 @@ var _getModel = function(type){
 };
 
 
-// /*driverRoute for driver route*/
-// var driverRouter = require("./driverRouter");
+/*driverRoute for driver route*/
 
-// for(var m in driverRouter){ 
-// 	mongoose.driverRouter(m,new Schema(driverRouter[m]));
-// }
+for(var m in driverroutes){ 
+	mongoose.model(m,new Schema(driverroutes[m]));
+}
 
-// module.exports = { 
-// 	getModel: function(type){ 
-// 		return _getModel(type);
-// 	}
-// };
+module.exports = { 
+	getModel: function(type){ 
+		return _getModel(type);
+	}
+};
 
-// var _getModel = function(type){ 
-// 	return mongoose.model(type);
-// };
+var _getModel = function(type){ 
+	return mongoose.model(type);
+};

@@ -18,6 +18,10 @@ global.dbHandel = require('./database/dbHandel');
 //global.db = mongoose.connect("mongodb://localhost:27017/nodedb");
 mongoose.connect('mongodb://localhost:27017/nodedb');
 
+mongoose.connection.on('error',function(err){
+  console.log(err);
+});
+
 // 创建项目实例
 var app = express();
 app.use(session({ 
@@ -63,7 +67,7 @@ app.use('/users', users); // 即为为路径 /users 设置路由
 app.use('/login',routes); // 即为为路径 /login 设置路由
 app.use('/register',routes); // 即为为路径 /register 设置路由
 app.use('/home',routes); // 即为为路径 /home 设置路由
-app.use("/logout",routes); // 即为为路径 /logout 设置路由
+app.use('/logout',routes); // 即为为路径 /logout 设置路由
 app.use('/createRoute',createRoute); // 即为为路径 /createRoute 设置路由
 
 

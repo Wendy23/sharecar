@@ -89,11 +89,11 @@
             </div>
         </header>
         <section>
-            <form id="new-route" class="newroute" role="form" method="post" action="">
+            <form id="new-route" class="newroute" role="form" method="post" action="/createRoute">
                 <div class="container">
                     <div class="well">
                         <label for="DriverDeptDate">Departure Date</label>
-                        <input class="datepicker" type="text" name="DriverDeptDate" id="DriverDeptDate">
+                        <input type="text" class="datepicker" id="DriverDeptDate" name="DriverDeptDate" >
                     </div>
                     <script>
                     $(function() {
@@ -102,41 +102,49 @@
                     </script>
                     <div class="well">
                         <label for="DriverDeptTime">Departure Time</label>
-                        <input class="timepicker" type="text" name="DriverDeptTime" id="DriverDeptTime">
+                        <input type="number" min="0" max="23" size="15" class="DriverDeptHour" id="DriverDeptHour" name="DriverDeptHour" >
+                        &#58;
+                        <span type="number" class="DriverDeptMin" id="DriverDeptMin" name="DriverDeptMin" >
+                        </span>
+                        <select name="DriverDeptMin">
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                        </select>
                         <script>
-                        $(function() {
-                            $('#DriverDeptTime').timepicker({
-                                showMeridian: false,
-                                template: 'dropdown',
-                                showWidgetOnAddonClick: true,
-                                icons: {
-                                    up: 'glyphicon glyphicon-chevron-up',
-                                    down: 'glyphicon glyphicon-chevron-down'
-                                },
-                                maxHours: 24
-                            });
-                        });
-                        </script>>
-                        <span class="plus-minus-label" id="TimeTolerance">&plusmn;</span>
+                        // $(function() {
+                        //     $('#DriverDeptTime').timepicker({
+                        //         showMeridian: false,
+                        //         template: 'dropdown',
+                        //         showWidgetOnAddonClick: true,
+                        //         icons: {
+                        //             up: 'glyphicon glyphicon-chevron-up',
+                        //             down: 'glyphicon glyphicon-chevron-down'
+                        //         },
+                        //         maxHours: 24
+                        //     });
+                        // });
+                        </script>
+               <!--          <span type="number" class="plus-minus-label" id="TimeTolerance" name="TimeTolerance">&plusmn;</span>
                         <select name="TimeTolerance">
                             <option value="15" SELECTED>15</option>
                             <option value="30">30</option>
                             <option value="45">45</option>
                         </select>
-                        <span> mins</span>
+                        <span> mins</span> -->
                     </div>
                     <div class="well">
                         <label for="PostalCode">PostCode</label>
-                        <input class="PostalCode" id="PostalCode" name="PostalCode" type="text" placeholder="A0AA0A">
-                        <span class="plus-minus-label" id="AreaTolerance">&plusmn;</span>
+                        <input type="text" class="PostalCode" id="PostalCode" name="PostalCode"  placeholder="A0AA0A">
+                       <!--  <span type="number" class="plus-minus-label" id="AreaTolerance" name="">&plusmn;</span>
                         <select name="AreaTolerance">
                             <option value="1" SELECTED>1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                         </select>
-                        <span> km</span>
+                        <span> km</span> -->
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                    <button type="submit" class="btn btn-primary btn-block" id="driverroute">Submit</button>
                 </div>
             </form>
         </section>
@@ -165,23 +173,25 @@
     <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     <script type="text/javascript">
     $(function() {
-        $("#new-route").submit(function() {
+        $("#driverroute").click(function() {
             var DriverDeptDate = $("#DriverDeptDate").val();
-            var DriverDeptTime = $("#DriverDeptTime").val();
-            var TimeTolerance = $("#TimeTolerance").val();
+            var DriverDeptHour = $("#DriverDeptHour").val();
+            var DriverDeptMin = $("#DriverDeptMin").val();
+            // var TimeTolerance = $("#TimeTolerance").val();
             var PostalCode = $("#PostalCode").val();
-            var AreaTolerance = $("#AreaTolerance").val();
+            // var AreaTolerance = $("#AreaTolerance").val();
             var data = {
-                "DriverDeptDate": DriverDeptDate,
-                "DriverDeptTime": DriverDeptTime,
-                "TimeTolerance": TimeTolerance,
-                "PostalCode": PostalCode,
-                "AreaTolerance": AreaTolerance
-            }
+                "drideptdate": DriverDeptDate,
+                "dridepthour": DriverDeptHour,
+                "drideptmin": DriverDeptMin,
+                // "TimeTolerance": TimeTolerance,
+                "postcode": PostalCode
+                // "AreaTolerance": AreaTolerance
+            };
             $.ajax({
                 url: '/createRoute',
                 // data: $("form").serialize(),
-                type: "post",
+                type: 'post',
                 data: data,
                 success: function(data, status) {
                     if (status == 'success') {
