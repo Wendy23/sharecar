@@ -1,0 +1,22 @@
+22:49 2016/5/25
+D:\lab\sharecar
+\views\register.html
+\routes\index.js
+	.post(
+\database\models.js
+	module.exports = { user: {
+	else if (doc)  // record exist already
+	
+	
+*database:
+select = findOne
+insert = create
+	
+Schema = 表结构
+Model  = ORM
+Entity = 单条记录
+mongoose = 数据库连接，相当于ado对象或者jdbc对象
+
+
+
+Robomongo download and install

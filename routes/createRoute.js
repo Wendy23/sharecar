@@ -9,7 +9,10 @@ router.get("/", function(req, res) { // 到达 /logout 路径则登出， sessio
         res.redirect("/login"); //未登录则重定向到 /login 路径
     }
      res.render("createRoute", { title: 'ShareCar' }); //已登录则渲染home页面
+<<<<<<< HEAD
      console.log("render createRoute");
+=======
+>>>>>>> 7ec15829d425d2a86f0291d413386b33ceac4552
 })
 // }).post(function(req, res) {
 //     var DriverRoute = global.dbHandel.getModel('driverRoute');
@@ -30,5 +33,14 @@ router.get("/", function(req, res) { // 到达 /logout 路径则登出， sessio
 //         }
 //     });
 .post('/',driRoute.createRoute());
+<<<<<<< HEAD
+=======
+/*
+.post('/',function(req, res)
+{
+	res.redirect("/home");
+});
+*/
+>>>>>>> 7ec15829d425d2a86f0291d413386b33ceac4552
 // router.get('/getAllRoutes',driRoute.getAllRoutes());
 module.exports = router;
