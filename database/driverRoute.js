@@ -9,12 +9,12 @@ var routeSchema = new Schema({
 	PostalCode: String,
     AreaTolerance:Number,
     // driver: Schema.Types.ObjectId,
-	})
+	});
 
-console.log(prepare to model);
+console.log("prepare to model");
 routeSchema.methods.createRoute = function(){
 	this.model('route').save();
-}
+};
 
 var route = mongoose.model('route', routeSchema);
 

@@ -9,7 +9,7 @@ router.get("/", function(req, res) { // 到达 /logout 路径则登出， sessio
         res.redirect("/login"); //未登录则重定向到 /login 路径
     }
      res.render("createRoute", { title: 'ShareCar' }); //已登录则渲染home页面
-});
+})
 // }).post(function(req, res) {
 //     var DriverRoute = global.dbHandel.getModel('driverRoute');
 //     var deptdate = req.body.deptdate;
@@ -28,6 +28,12 @@ router.get("/", function(req, res) { // 到达 /logout 路径则登出， sessio
 //             //  res.redirect("/home");
 //         }
 //     });
-router.post('/',driRoute.createRoute());
+.post('/',driRoute.createRoute());
+/*
+.post('/',function(req, res)
+{
+	res.redirect("/home");
+});
+*/
 // router.get('/getAllRoutes',driRoute.getAllRoutes());
 module.exports = router;
