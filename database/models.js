@@ -3,8 +3,6 @@ module.exports = {
         name: { type: String, required: true },
         password: { type: String, required: true }
     }
-<<<<<<< HEAD
-=======
 /*  TODO: how to add a new Schema into MongoDB???
 	driverRoute: {
 		DriverDeptDate: { type: Date, required: true },
@@ -14,5 +12,4 @@ module.exports = {
 		AreaTolerance: { type: String, required: true },
     }
 	*/
->>>>>>> 7ec15829d425d2a86f0291d413386b33ceac4552
 };
