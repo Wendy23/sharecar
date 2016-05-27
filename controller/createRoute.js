@@ -14,19 +14,19 @@ exports.createRoute = function() {
         // newRoute.save();
         // console.log("SAVE");
         // res.send(200);
+        var name = req.session.user;
         var Route = global.dbHandel.getModel('driverroute');
         var DriverDeptDate = req.body.DriverDeptDate;
         var DriverDeptHour = req.body.DriverDeptHour;
         var DriverDeptMin = req.body.DriverDeptMin;
         var PostalCode = req.body.PostalCode;
-        var name = req.session.user;
         Route.create({ // 创建一组route对象置入model
+            name: name,
             drideptdate: DriverDeptDate,
             dridepthour: DriverDeptHour,
             drideptmin: DriverDeptMin,
-            postcode: PostalCode,
-            name: name
-        }, function (err) {
+            postcode: PostalCode
+        }, function(err) {
             if (err) {
                 res.send(500);
                 console.log(err);

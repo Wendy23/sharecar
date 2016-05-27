@@ -13,6 +13,8 @@ var session = require('express-session');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var createRoute = require('./routes/createRoute');
+var driverRoutes = require('./routes/driverRoutes');
+var searchRoute = require('./routes/searchRoute');
 
 global.dbHandel = require('./database/dbHandel');
 //global.db = mongoose.connect("mongodb://localhost:27017/nodedb");
@@ -69,6 +71,8 @@ app.use('/register',routes); // 即为为路径 /register 设置路由
 app.use('/home',routes); // 即为为路径 /home 设置路由
 app.use('/logout',routes); // 即为为路径 /logout 设置路由
 app.use('/createRoute',createRoute); // 即为为路径 /createRoute 设置路由
+app.use('/driverRoutes',driverRoutes); // 即为为路径 /driverRoutes 设置路由
+app.use('/searchRoute',searchRoute); // 即为为路径 /searchRoute 设置路由
 
 
 // catch 404 and forward to error handler

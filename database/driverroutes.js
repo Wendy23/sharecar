@@ -1,5 +1,6 @@
 module.exports = {
     driverroute: {
+        name : String,
         drideptdate: String,
         dridepthour: Number,
         drideptmin: Number,
@@ -7,6 +8,5 @@ module.exports = {
         postcode: String,
         // AreaTolerance: { type: String, required: true },
         //name: { type: String, required: true }
-        name : String,
     }
 };
