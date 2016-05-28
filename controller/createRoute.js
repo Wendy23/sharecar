@@ -31,7 +31,7 @@ exports.createRoute = function() {
                 res.send(500);
                 console.log(err);
             } else {
-                req.session.error = '用户名创建成功！';
+                // req.session.error = '用户名创建成功！';
                 res.send(200);
             }
         });
