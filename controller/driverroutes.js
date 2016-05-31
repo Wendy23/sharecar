@@ -9,14 +9,36 @@ exports.driverroutes = function() {
             // Route.statics.getModel(req.session.user, function(userId, callback) {
             //     this.model('driverroute').find({ name: userId }, callback);
             // })
-            Route.find({name: req.session.user}, function(err, doc) {
-                    req.session.user = doc;
-                    console.log(doc);
-                    res.render("driverRoutes", { driverroutes: doc });
-                }
-
-
-            );
+            //Route.find({ name: req.session.user }, function(err, doc) {
+            Route.find({ name: req.session.user }, function(err, doc) {
+                //req.session.user = doc;
+                console.log(doc);
+                res.render("driverRoutes", { driverroutes: doc });
+            });
         }
     }
-};
+}
+
+exports.routeList = function(db) {
+    return function(req, res) {
+        var Route = global.dbHandel.getModel('driverroute');
+        if (!req.session.user) { //到达/home路径首先判断是否已经登录
+            req.session.error = "请先登录"
+            res.redirect("/login"); //未登录则重定向到 /login 路径
+        } else {
+            // var collection = db.get('events');
+            // collection.find({
+            //     "eventOwner": req.session.userId
+            // }, function(err, doc) {
+            //     res.render("myEvents", {
+            //         myEvents: doc
+            //     });
+            // });
+            Route.find({name: req.session.user}, function(err, doc) {
+               // req.session.user = doc;
+                console.log(doc);
+                res.send({ routeList: doc });
+            });
+        }
+    }
+}

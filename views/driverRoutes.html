@@ -92,6 +92,13 @@
             <h1>Show my created routes</h1>
             <a href="/createRoute" class="btn btn-link" role="button">Add more</a>
         </section>
+        <section>
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6" >
+            <div class="list-group" id="list-group">
+            </div>
+        </div>
+         </section> 
         <!--End of form_row div-->
     </div>
     <!-- Script -->
@@ -117,14 +124,20 @@
     <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-
+        $("li").hover(function() {
+            $(this).css("background-color", "#f8f8f8");
+        }, function() {
+            $(this).css("background-color", "white")
+        });
         $.ajax({
-                url: "/driverRoutes/driverroutes",
+                url: "/driverRoutes/routeList",
                 type: "get"
             })
             .done(function(data) {
+                console.log("get into ajax");
+                console.log(data);
                 var num = 0;
-                for (; num < data.driverroutes.length; num++) {
+                for (; num < data.routeList.length; num++) {
                     var listItem = document.createElement("li");
                     var listItemClass = document.createAttribute("class");
                     listItemClass.value = "list-group-item";
@@ -136,19 +149,19 @@
                     listItemHeading.setAttributeNode(listItemHeadingClass);
 
                     var listDate = document.createElement("h5");
-                    var dateContent = document.createTextNode(data.driverroutes[num].drideptdate);
+                    var dateContent = document.createTextNode(data.routeList[num].drideptdate);
                     listDate.appendChild(dateContent);
 
                     var listHour = document.createElement("h5");
-                    var hourContent = document.createTextNode(data.driverroutes[num].dridepthour);
+                    var hourContent = document.createTextNode(data.routeList[num].dridepthour);
                     listHour.appendChild(hourContent);
 
                     var listMin = document.createElement("h5");
-                    var minContent = document.createTextNode(data.driverroutes[num].drideptmin);
+                    var minContent = document.createTextNode(data.routeList[num].drideptmin);
                     listMin.appendChild(minContent);
 
                     var listPostcode = document.createElement("h5");
-                    var postContent = document.createTextNode(data.driverroutes[num].postcode);
+                    var postContent = document.createTextNode(data.routeList[num].postcode);
                     listPostcode.appendChild(postContent);
 
                     listItem.appendChild(listItemHeading);
@@ -160,11 +173,6 @@
                     var listgroup = document.getElementById("list-group");
                     listgroup.appendChild(listItem);
                 }
-                $("li").hover(function() {
-                    $(this).css("background-color", "#f8f8f8");
-                }, function() {
-                    $(this).css("background-color", "white")
-                });
             })
             .fail(function(data) {
 
@@ -172,69 +180,63 @@
             .always(function(data) {
                 console.log("always");
             })
-        $("li").hover(function() {
-            $(this).css("background-color", "#f8f8f8");
-        }, function() {
-            $(this).css("background-color", "white")
-        });
     })
     "use strict";
     jQuery('.tp-banner').show().revolution({
-    dottedOverlay: "none",
-    delay: 16000, //revolution
-    startwidth: 1170,
-    startheight: 700,
-    hideThumbs: 200,
-    thumbWidth: 100,
-    thumbHeight: 50,
-    thumbAmount: 5,
-    navigationType: "bullet",
-    navigationArrows: "solo",
-    navigationStyle: "preview1",
-    touchenabled: "on",
-    onHoverStop: "on",
-    swipe_velocity: 0.7,
-    swipe_min_touches: 1,
-    swipe_max_touches: 1,
-    drag_block_vertical: false,
-    parallax: "mouse",
-    parallaxBgFreeze: "on",
-    parallaxLevels: [7, 4, 3, 2, 5, 4, 3, 2, 1, 0],
-    keyboardNavigation: "off",
-    navigationHAlign: "center",
-    navigationVAlign: "bottom",
-    navigationHOffset: 0,
-    navigationVOffset: 20,
-    soloArrowLeftHalign: "left",
-    soloArrowLeftValign: "center",
-    soloArrowLeftHOffset: 20,
-    soloArrowLeftVOffset: 0,
-    soloArrowRightHalign: "right",
-    soloArrowRightValign: "center",
-    soloArrowRightHOffset: 20,
-    soloArrowRightVOffset: 0,
-    shadow: 0,
-    fullWidth: "on",
-    fullScreen: "off",
-    spinner: "spinner4",
-    stopLoop: "off",
-    stopAfterLoops: -1,
-    stopAtSlide: -1,
-    shuffle: "off",
-    autoHeight: "off",
-    forceFullWidth: "off",
-    hideThumbsOnMobile: "off",
-    hideNavDelayOnMobile: 1500,
-    hideBulletsOnMobile: "off",
-    hideArrowsOnMobile: "off",
-    hideThumbsUnderResolution: 0,
-    hideSliderAtLimit: 0,
-    hideCaptionAtLimit: 0,
-    hideAllCaptionAtLilmit: 0,
-    startWithSlide: 0,
-    videoJsPath: "rs-plugin/videojs/",
-    fullScreenOffsetContainer: ""
-    });
+        dottedOverlay: "none",
+        delay: 16000, //revolution
+        startwidth: 1170,
+        startheight: 700,
+        hideThumbs: 200,
+        thumbWidth: 100,
+        thumbHeight: 50,
+        thumbAmount: 5,
+        navigationType: "bullet",
+        navigationArrows: "solo",
+        navigationStyle: "preview1",
+        touchenabled: "on",
+        onHoverStop: "on",
+        swipe_velocity: 0.7,
+        swipe_min_touches: 1,
+        swipe_max_touches: 1,
+        drag_block_vertical: false,
+        parallax: "mouse",
+        parallaxBgFreeze: "on",
+        parallaxLevels: [7, 4, 3, 2, 5, 4, 3, 2, 1, 0],
+        keyboardNavigation: "off",
+        navigationHAlign: "center",
+        navigationVAlign: "bottom",
+        navigationHOffset: 0,
+        navigationVOffset: 20,
+        soloArrowLeftHalign: "left",
+        soloArrowLeftValign: "center",
+        soloArrowLeftHOffset: 20,
+        soloArrowLeftVOffset: 0,
+        soloArrowRightHalign: "right",
+        soloArrowRightValign: "center",
+        soloArrowRightHOffset: 20,
+        soloArrowRightVOffset: 0,
+        shadow: 0,
+        fullWidth: "on",
+        fullScreen: "off",
+        spinner: "spinner4",
+        stopLoop: "off",
+        stopAfterLoops: -1,
+        stopAtSlide: -1,
+        shuffle: "off",
+        autoHeight: "off",
+        forceFullWidth: "off",
+        hideThumbsOnMobile: "off",
+        hideNavDelayOnMobile: 1500,
+        hideBulletsOnMobile: "off",
+        hideArrowsOnMobile: "off",
+        hideThumbsUnderResolution: 0,
+        hideSliderAtLimit: 0,
+        hideCaptionAtLimit: 0,
+        hideAllCaptionAtLilmit: 0,
+        startWithSlide: 0,
+        videoJsPath: "rs-plugin/videojs/",
+        fullScreenOffsetContainer: ""
     });
     </script>
 </body>
