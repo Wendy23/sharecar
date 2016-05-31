@@ -19,7 +19,7 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css" type="text/css" />
     <!-- Style -->
-   <!--  <link rel="stylesheet" href="css/responsive.css" type="text/css" /> -->
+    <!--  <link rel="stylesheet" href="css/responsive.css" type="text/css" /> -->
     <!-- Responsive -->
     <link rel="stylesheet" href="/stylesheets/colors.css" type="text/css" />
     <!-- color -->
@@ -90,6 +90,7 @@
         </header>
         <section>
             <h1>Show my created routes</h1>
+            <a href="/createRoute" class="btn btn-link" role="button">Add more</a>
         </section>
         <!--End of form_row div-->
     </div>
@@ -116,63 +117,126 @@
     <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-        "use strict";
-        jQuery('.tp-banner').show().revolution({
-            dottedOverlay: "none",
-            delay: 16000, //revolution
-            startwidth: 1170,
-            startheight: 700,
-            hideThumbs: 200,
-            thumbWidth: 100,
-            thumbHeight: 50,
-            thumbAmount: 5,
-            navigationType: "bullet",
-            navigationArrows: "solo",
-            navigationStyle: "preview1",
-            touchenabled: "on",
-            onHoverStop: "on",
-            swipe_velocity: 0.7,
-            swipe_min_touches: 1,
-            swipe_max_touches: 1,
-            drag_block_vertical: false,
-            parallax: "mouse",
-            parallaxBgFreeze: "on",
-            parallaxLevels: [7, 4, 3, 2, 5, 4, 3, 2, 1, 0],
-            keyboardNavigation: "off",
-            navigationHAlign: "center",
-            navigationVAlign: "bottom",
-            navigationHOffset: 0,
-            navigationVOffset: 20,
-            soloArrowLeftHalign: "left",
-            soloArrowLeftValign: "center",
-            soloArrowLeftHOffset: 20,
-            soloArrowLeftVOffset: 0,
-            soloArrowRightHalign: "right",
-            soloArrowRightValign: "center",
-            soloArrowRightHOffset: 20,
-            soloArrowRightVOffset: 0,
-            shadow: 0,
-            fullWidth: "on",
-            fullScreen: "off",
-            spinner: "spinner4",
-            stopLoop: "off",
-            stopAfterLoops: -1,
-            stopAtSlide: -1,
-            shuffle: "off",
-            autoHeight: "off",
-            forceFullWidth: "off",
-            hideThumbsOnMobile: "off",
-            hideNavDelayOnMobile: 1500,
-            hideBulletsOnMobile: "off",
-            hideArrowsOnMobile: "off",
-            hideThumbsUnderResolution: 0,
-            hideSliderAtLimit: 0,
-            hideCaptionAtLimit: 0,
-            hideAllCaptionAtLilmit: 0,
-            startWithSlide: 0,
-            videoJsPath: "rs-plugin/videojs/",
-            fullScreenOffsetContainer: ""
+
+        $.ajax({
+                url: "/driverRoutes/driverroutes",
+                type: "get"
+            })
+            .done(function(data) {
+                var num = 0;
+                for (; num < data.driverroutes.length; num++) {
+                    var listItem = document.createElement("li");
+                    var listItemClass = document.createAttribute("class");
+                    listItemClass.value = "list-group-item";
+                    listItem.setAttributeNode(listItemClass);
+
+                    var listItemHeading = document.createElement("h4");
+                    var listItemHeadingClass = document.createAttribute("class");
+                    listItemHeadingClass.value = "list-group-item-heading";
+                    listItemHeading.setAttributeNode(listItemHeadingClass);
+
+                    var listDate = document.createElement("h5");
+                    var dateContent = document.createTextNode(data.driverroutes[num].drideptdate);
+                    listDate.appendChild(dateContent);
+
+                    var listHour = document.createElement("h5");
+                    var hourContent = document.createTextNode(data.driverroutes[num].dridepthour);
+                    listHour.appendChild(hourContent);
+
+                    var listMin = document.createElement("h5");
+                    var minContent = document.createTextNode(data.driverroutes[num].drideptmin);
+                    listMin.appendChild(minContent);
+
+                    var listPostcode = document.createElement("h5");
+                    var postContent = document.createTextNode(data.driverroutes[num].postcode);
+                    listPostcode.appendChild(postContent);
+
+                    listItem.appendChild(listItemHeading);
+                    listItem.appendChild(listDate);
+                    listItem.appendChild(listHour);
+                    listItem.appendChild(listMin);
+                    listItem.appendChild(listPostcode);
+
+                    var listgroup = document.getElementById("list-group");
+                    listgroup.appendChild(listItem);
+                }
+                $("li").hover(function() {
+                    $(this).css("background-color", "#f8f8f8");
+                    // $("#test2").val("<%=myEvents[0].eventDescription%>");
+                }, function() {
+                    $(this).css("background-color", "white")
+                });
+            })
+            .fail(function(data) {
+
+            })
+            .always(function(data) {
+                console.log("always");
+            })
+        $("li").hover(function() {
+            $(this).css("background-color", "#f8f8f8");
+            // $("#test2").val("<%=myEvents[0].eventDescription%>");
+        }, function() {
+            $(this).css("background-color", "white")
         });
+    })
+    "use strict";
+    jQuery('.tp-banner').show().revolution({
+    dottedOverlay: "none",
+    delay: 16000, //revolution
+    startwidth: 1170,
+    startheight: 700,
+    hideThumbs: 200,
+    thumbWidth: 100,
+    thumbHeight: 50,
+    thumbAmount: 5,
+    navigationType: "bullet",
+    navigationArrows: "solo",
+    navigationStyle: "preview1",
+    touchenabled: "on",
+    onHoverStop: "on",
+    swipe_velocity: 0.7,
+    swipe_min_touches: 1,
+    swipe_max_touches: 1,
+    drag_block_vertical: false,
+    parallax: "mouse",
+    parallaxBgFreeze: "on",
+    parallaxLevels: [7, 4, 3, 2, 5, 4, 3, 2, 1, 0],
+    keyboardNavigation: "off",
+    navigationHAlign: "center",
+    navigationVAlign: "bottom",
+    navigationHOffset: 0,
+    navigationVOffset: 20,
+    soloArrowLeftHalign: "left",
+    soloArrowLeftValign: "center",
+    soloArrowLeftHOffset: 20,
+    soloArrowLeftVOffset: 0,
+    soloArrowRightHalign: "right",
+    soloArrowRightValign: "center",
+    soloArrowRightHOffset: 20,
+    soloArrowRightVOffset: 0,
+    shadow: 0,
+    fullWidth: "on",
+    fullScreen: "off",
+    spinner: "spinner4",
+    stopLoop: "off",
+    stopAfterLoops: -1,
+    stopAtSlide: -1,
+    shuffle: "off",
+    autoHeight: "off",
+    forceFullWidth: "off",
+    hideThumbsOnMobile: "off",
+    hideNavDelayOnMobile: 1500,
+    hideBulletsOnMobile: "off",
+    hideArrowsOnMobile: "off",
+    hideThumbsUnderResolution: 0,
+    hideSliderAtLimit: 0,
+    hideCaptionAtLimit: 0,
+    hideAllCaptionAtLilmit: 0,
+    startWithSlide: 0,
+    videoJsPath: "rs-plugin/videojs/",
+    fullScreenOffsetContainer: ""
+    });
     });
     </script>
 </body>

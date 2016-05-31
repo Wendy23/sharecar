@@ -1,6 +1,6 @@
 module.exports = {
     driverroute: {
-        name : String,
+        name: String,
         drideptdate: String,
         dridepthour: Number,
         drideptmin: Number,
