@@ -91,12 +91,4 @@ router.get("/logout", function(req, res) { // 到达 /logout 路径则登出， 
     res.redirect("/");
 });
 
-router.get("/test", function(req, res) {	// only for testing
-//	res.render("testweb");
-	console.log(req.params);
-	console.log(req.query);
-	console.log(req.body);
-//	res.send('id: ' + req.query.id);
-	res.send(req.query.key);
-});
 module.exports = router;
