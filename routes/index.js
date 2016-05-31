@@ -31,6 +31,7 @@ router.route("/login")
                 //  res.redirect("/login");
             } else { //信息匹配成功，则将此对象（匹配到的user) 赋给session.user  并返回成功
                 req.session.user = doc;
+                //console.log(doc);
                 res.send(200);
                 //  res.redirect("/home");
             }
