@@ -93,7 +93,6 @@ router.get("/logout", function(req, res) { // 到达 /logout 路径则登出， 
 });
 
 router.get("/test", function(req, res) {	// only for testing
-
 	{
 		var Route = global.dbHandel.getModel('driverroute');
 		// name as '57226903bb3cdd801fb60132'
@@ -102,7 +101,7 @@ router.get("/test", function(req, res) {	// only for testing
 			res.json(doc);
 		});
 	}
-	
+
 	/*
 	res.render("testweb", function(req, res) {
         console.log("get into my routes router");
@@ -116,4 +115,14 @@ router.get("/test", function(req, res) {	// only for testing
 	res.send(req.query.key);
 */	
 });
+
+router.get("/getroute", function(req, res) {	// only for testing
+	var Route = global.dbHandel.getModel('driverroute');
+	// _id as '574de95cdc830b24e3df1720', use URL http://localhost:3000/getroute?routeid=574de95cdc830b24e3df1720
+	Route.find({ _id : req.query.routeid }, function(err, doc) {
+		console.log(doc);
+		res.json(doc);
+	});
+});
+
 module.exports = router;
