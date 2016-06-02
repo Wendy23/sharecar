@@ -93,12 +93,19 @@
             <a href="/createRoute" class="btn btn-link" role="button">Add more</a>
         </section>
         <section>
-        <div class="col-sm-3"></div>
-        <div class="col-sm-6" >
-            <div class="list-group" id="list-group">
+            <!-- <div class="col-sm-3"></div> -->
+            <div class="col-sm-6">
+                <div class="list-group" id="list-group">
+                </div>
+                <!-- <li class="list-group-item">
+                       <h4 class="list-group-item-heading">
+                          <a href="/driveroutes?routeId=<%=driverroutes[0]._id%>"><%=driverroutes[0].drideptdate%></a>
+                       </h4>
+                       <h5>Hour:<%=driverroutes[0].dridepthour%></h5>
+                       <h5>Postal Code:<%=driverroutes[0].postcode%></h5>
+                    </li> -->
             </div>
-        </div>
-         </section> 
+        </section>
         <!--End of form_row div-->
     </div>
     <!-- Script -->
@@ -124,11 +131,11 @@
     <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-        $("li").hover(function() {
-            $(this).css("background-color", "#f8f8f8");
-        }, function() {
-            $(this).css("background-color", "white")
-        });
+        // $("li").hover(function() {
+        //     $(this).css("background-color", "#f8f8f8");
+        // }, function() {
+        //     $(this).css("background-color", "yellow")
+        // });
         $.ajax({
                 url: "/driverRoutes/routeList",
                 type: "get"
@@ -138,6 +145,8 @@
                 console.log(data);
                 var num = 0;
                 for (; num < data.routeList.length; num++) {
+                    console.log("lenghth" + data.routeList.length);
+
                     var listItem = document.createElement("li");
                     var listItemClass = document.createAttribute("class");
                     listItemClass.value = "list-group-item";
@@ -148,31 +157,47 @@
                     listItemHeadingClass.value = "list-group-item-heading";
                     listItemHeading.setAttributeNode(listItemHeadingClass);
 
-                    var listDate = document.createElement("h5");
-                    var dateContent = document.createTextNode(data.routeList[num].drideptdate);
-                    listDate.appendChild(dateContent);
+                    var routeLink = document.createElement("a");
+                    var routeHref = document.createAttribute("href");
+                    routeHref.value = "/driveroute?routeId=" + data.routeList[num]._id;
+                    console.log("id是：" + data.routeList[num]._id);
+                    routeLink.setAttributeNode(routeHref);
+                    var drideptdate = document.createTextNode(data.routeList[num].dridate);
+                    routeLink.appendChild(drideptdate);
+
+                    // var listDate = document.createElement("h5");
+                    // var dateContent = document.createTextNode(data.routeList[num].drideptdate);
+                    // listDate.appendChild(dateContent);
 
                     var listHour = document.createElement("h5");
-                    var hourContent = document.createTextNode(data.routeList[num].dridepthour);
+                    var hourContent = document.createTextNode(data.routeList[num].drihour);
                     listHour.appendChild(hourContent);
 
-                    var listMin = document.createElement("h5");
-                    var minContent = document.createTextNode(data.routeList[num].drideptmin);
-                    listMin.appendChild(minContent);
+                    // var listMin = document.createElement("h5");
+                    // var minContent = document.createTextNode(data.routeList[num].drideptmin);
+                    // listMin.appendChild(minContent);
 
                     var listPostcode = document.createElement("h5");
-                    var postContent = document.createTextNode(data.routeList[num].postcode);
+                    var postContent = document.createTextNode(data.routeList[num].pcode);
                     listPostcode.appendChild(postContent);
 
+                    listItemHeading.appendChild(routeLink);
                     listItem.appendChild(listItemHeading);
-                    listItem.appendChild(listDate);
+                    //listItem.appendChild(listName);
+                    // listItem.appendChild(listDate);
                     listItem.appendChild(listHour);
-                    listItem.appendChild(listMin);
+                    //listItem.appendChild(listMin);
                     listItem.appendChild(listPostcode);
 
                     var listgroup = document.getElementById("list-group");
+                    //var listgroup = document.getElementById("card-text");
                     listgroup.appendChild(listItem);
                 }
+                $("li").hover(function() {
+                    $(this).css("background-color", "#f8f8f8");
+                }, function() {
+                    $(this).css("background-color", "white")
+                });
             })
             .fail(function(data) {
 
@@ -180,6 +205,11 @@
             .always(function(data) {
                 console.log("always");
             })
+        $("li").hover(function() {
+            $(this).css("background-color", "#f8f8f8");
+        }, function() {
+            $(this).css("background-color", "white")
+        });
     })
     "use strict";
     jQuery('.tp-banner').show().revolution({

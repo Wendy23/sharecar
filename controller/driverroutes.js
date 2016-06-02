@@ -10,7 +10,7 @@ exports.driverroutes = function() {
             //     this.model('driverroute').find({ name: userId }, callback);
             // })
             //Route.find({ name: req.session.user }, function(err, doc) {
-            Route.find({ name: req.session.user }, function(err, doc) {
+            Route.find({}, function(err, doc) {
                 //req.session.user = doc;
                 console.log(doc);
                 res.render("driverRoutes", { driverroutes: doc });

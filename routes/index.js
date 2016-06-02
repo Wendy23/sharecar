@@ -92,6 +92,8 @@ router.get("/logout", function(req, res) { // 到达 /logout 路径则登出， 
     res.redirect("/");
 });
 
+
+/* GET test page. */
 router.get("/test", function(req, res) {	// only for testing
 	{
 		var Route = global.dbHandel.getModel('driverroute');
@@ -116,6 +118,7 @@ router.get("/test", function(req, res) {	// only for testing
 */	
 });
 
+<<<<<<< Updated upstream
 router.get("/getroute", function(req, res) {	// only for testing
 	var Route = global.dbHandel.getModel('driverroute');
 	// _id as '574de95cdc830b24e3df1720', use URL http://localhost:3000/getroute?routeid=574de95cdc830b24e3df1720
@@ -125,4 +128,18 @@ router.get("/getroute", function(req, res) {	// only for testing
 	});
 });
 
+=======
+/* GET routeId page. */
+router.get("/driveroute", function(req, res) {    // only for testing
+
+    {
+        var Route = global.dbHandel.getModel('driverroute');
+        // name as '57226903bb3cdd801fb60132'
+        Route.find({ _id : req.query.routeId }, function(err, doc) {
+            console.log(doc);
+            res.json(doc);
+        });
+    }
+});
+>>>>>>> Stashed changes
 module.exports = router;
