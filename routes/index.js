@@ -118,7 +118,6 @@ router.get("/test", function(req, res) {	// only for testing
 */	
 });
 
-<<<<<<< Updated upstream
 router.get("/getroute", function(req, res) {	// only for testing
 	var Route = global.dbHandel.getModel('driverroute');
 	// _id as '574de95cdc830b24e3df1720', use URL http://localhost:3000/getroute?routeid=574de95cdc830b24e3df1720
@@ -128,7 +127,6 @@ router.get("/getroute", function(req, res) {	// only for testing
 	});
 });
 
-=======
 /* GET routeId page. */
 router.get("/driveroute", function(req, res) {    // only for testing
 
@@ -141,5 +139,4 @@ router.get("/driveroute", function(req, res) {    // only for testing
         });
     }
 });
->>>>>>> Stashed changes
 module.exports = router;
