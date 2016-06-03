@@ -13,7 +13,8 @@ module.exports = {
         name: { type: String, required: true },
         dridate: { type: String, required: true },
         drihour: { type: Number, required: true },
-        //drimin: { type: Number, required: true },
+        //drimin: { type: [Number] },
+        //drimin: { option: [Number] },
         pcode: { type: String, required: true }
 
     }

@@ -93,7 +93,7 @@ router.get("/logout", function(req, res) { // 到达 /logout 路径则登出， 
 });
 
 
-/* GET test page. */
+/* GET test page. localhost:3000/test?user=57226903bb3cdd801fb60132*/
 router.get("/test", function(req, res) {	// only for testing
 	{
 		var Route = global.dbHandel.getModel('driverroute');
@@ -127,16 +127,16 @@ router.get("/getroute", function(req, res) {	// only for testing
 	});
 });
 
-/* GET routeId page. */
-router.get("/driveroute", function(req, res) {    // only for testing
+/* GET routeId page. http://localhost:3000/driveroute?routeId=574de95cdc830b24e3df1720*/
+// router.get("/driveroute", function(req, res) {    
 
-    {
-        var Route = global.dbHandel.getModel('driverroute');
-        // name as '57226903bb3cdd801fb60132'
-        Route.find({ _id : req.query.routeId }, function(err, doc) {
-            console.log(doc);
-            res.json(doc);
-        });
-    }
-});
+//     {
+//         var Route = global.dbHandel.getModel('driverroute');
+//         // name as '57226903bb3cdd801fb60132'
+//         Route.find({ _id : req.query.routeId }, function(err, doc) {
+//             console.log(doc);
+//             res.json(doc);
+//         });
+//     }
+// }); 转移到controller/driverroutes中的driveroute
 module.exports = router;

@@ -104,13 +104,13 @@
                         <label for="DriverDeptTime">Departure Time</label>
                         <input type="number" min="0" max="23" size="15" id="DriverDeptHour" name="DriverDeptHour" >
                         &#58;
-                       <!--  <span type="number"  id="DriverDeptMin" name="DriverDeptMin" >
+                        <span type="number"  id="DriverDeptMin" name="DriverDeptMin" >
                         </span>
                         <select name="DriverDeptMin">
                             <option value="15">15</option>
                             <option value="30">30</option>
                             <option value="45">45</option>
-                        </select> -->
+                        </select>
                         <script>
                         // $(function() {
                         //     $('#DriverDeptTime').timepicker({
@@ -176,14 +176,14 @@
         $("#driverroute").click(function() {
             var DriverDeptDate = $("#DriverDeptDate").val();
             var DriverDeptHour = $("#DriverDeptHour").val();
-            //var DriverDeptMin = $("#DriverDeptMin").val();
+            var DriverDeptMin = $("#DriverDeptMin").val();
             // var TimeTolerance = $("#TimeTolerance").val();
             var PostalCode = $("#PostalCode").val();
             // var AreaTolerance = $("#AreaTolerance").val();
             var data = {
                 "drideptdate": DriverDeptDate,
                 "dridepthour": DriverDeptHour,
-                //"drideptmin": DriverDeptMin,
+                "drideptmin": DriverDeptMin,
                 // "TimeTolerance": TimeTolerance,
                 "postcode": PostalCode
                 // "AreaTolerance": AreaTolerance

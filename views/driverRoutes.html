@@ -152,24 +152,46 @@
                     listItemClass.value = "list-group-item";
                     listItem.setAttributeNode(listItemClass);
 
-                    var listItemHeading = document.createElement("h4");
+                    var listItemHeading = document.createElement("h5");
                     var listItemHeadingClass = document.createAttribute("class");
                     listItemHeadingClass.value = "list-group-item-heading";
                     listItemHeading.setAttributeNode(listItemHeadingClass);
 
                     var routeLink = document.createElement("a");
                     var routeHref = document.createAttribute("href");
-                    routeHref.value = "/driveroute?routeId=" + data.routeList[num]._id;
-                    console.log("id是：" + data.routeList[num]._id);
+                    routeHref.value = "driverRoutes/driveroute?routeId=" + data.routeList[num]._id;
+                    //console.log("id是：" + data.routeList[num]._id);
                     routeLink.setAttributeNode(routeHref);
-                    var drideptdate = document.createTextNode(data.routeList[num].dridate);
-                    routeLink.appendChild(drideptdate);
+                    var update = document.createTextNode("Update");
+                    routeLink.appendChild(update);
+
+                    $(document).on("click","a",function() {
+                        console.log("start to update");
+                        $.ajax({
+                            url: '/driverroutes/driveroute',
+                            type: 'get',
+                            success: function(result) {
+                                $("btnHref").html(result);
+                            }
+                        });
+                    });
 
                     // var listDate = document.createElement("h5");
                     // var dateContent = document.createTextNode(data.routeList[num].drideptdate);
                     // listDate.appendChild(dateContent);
 
-                    var listHour = document.createElement("h5");
+
+                    // var btnLink = document.createElement("button");
+                    // //var btnHref = document.createAttribute("href");
+                    // //btnHref.value = "/driveroute?routeId=" + data.routeList[num]._id;
+                    // var update = document.createTextNode("Update");
+                    // btnLink.appendChild(update);
+
+                    var listDate = document.createElement("h4");
+                    var dateContent = document.createTextNode(data.routeList[num].dridate);
+                    listDate.appendChild(dateContent);
+
+                    var listHour = document.createElement("h4");
                     var hourContent = document.createTextNode(data.routeList[num].drihour);
                     listHour.appendChild(hourContent);
 
@@ -177,22 +199,24 @@
                     // var minContent = document.createTextNode(data.routeList[num].drideptmin);
                     // listMin.appendChild(minContent);
 
-                    var listPostcode = document.createElement("h5");
+                    var listPostcode = document.createElement("h4");
                     var postContent = document.createTextNode(data.routeList[num].pcode);
                     listPostcode.appendChild(postContent);
 
                     listItemHeading.appendChild(routeLink);
-                    listItem.appendChild(listItemHeading);
                     //listItem.appendChild(listName);
-                    // listItem.appendChild(listDate);
+                    listItem.appendChild(listDate);
                     listItem.appendChild(listHour);
                     //listItem.appendChild(listMin);
                     listItem.appendChild(listPostcode);
+                    //listItemHeading.appendChild(btnLink);
+                    listItem.appendChild(listItemHeading);
 
                     var listgroup = document.getElementById("list-group");
                     //var listgroup = document.getElementById("card-text");
                     listgroup.appendChild(listItem);
                 }
+
                 $("li").hover(function() {
                     $(this).css("background-color", "#f8f8f8");
                 }, function() {
