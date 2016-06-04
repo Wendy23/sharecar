@@ -159,7 +159,7 @@
 
                     var routeLink = document.createElement("a");
                     var routeHref = document.createAttribute("href");
-                    routeHref.value = "driverRoutes/driveroute?routeId=" + data.routeList[num]._id;
+                    //routeHref.value = "driverRoutes/driveroute?routeId=" + data.routeList[num]._id;
                     //console.log("id是：" + data.routeList[num]._id);
                     routeLink.setAttributeNode(routeHref);
                     var update = document.createTextNode("Update");
@@ -170,8 +170,13 @@
                         $.ajax({
                             url: '/driverroutes/driveroute',
                             type: 'get',
-                            success: function(result) {
-                                $("btnHref").html(result);
+                              success: function(data, status) {
+                                if (status == 'success') {
+                                    //location.href = 'home';
+                                    location.href = 'updateRoute';
+                                    //$('#new-route').html($(data).find('#new-route').html());
+                                    //$( "#new-route" ).load( "views/createRoute.html div#new-route" );
+                                }
                             }
                         });
                     });
