@@ -92,6 +92,8 @@ router.get("/logout", function(req, res) { // 到达 /logout 路径则登出， 
     res.redirect("/");
 });
 
+
+/* GET test page. localhost:3000/test?user=57226903bb3cdd801fb60132*/
 router.get("/test", function(req, res) {	// only for testing
 	{
 		var Route = global.dbHandel.getModel('driverroute');
@@ -116,31 +118,25 @@ router.get("/test", function(req, res) {	// only for testing
 */	
 });
 
-// router.get("/getroute", function(req, res) {	// only for testing
-// 	var Route = global.dbHandel.getModel('driverroute');
-// 	// _id as '574de95cdc830b24e3df1720', use URL http://localhost:3000/getroute?routeid=574de95cdc830b24e3df1720
-// 	Route.find({ _id : req.query.routeid }, function(err, doc) {
-// 		console.log(doc);
-// 		res.json(doc);
-// 	});
-// });
+router.get("/getroute", function(req, res) {	// only for testing
+	var Route = global.dbHandel.getModel('driverroute');
+	// _id as '574de95cdc830b24e3df1720', use URL http://localhost:3000/getroute?routeid=574de95cdc830b24e3df1720
+	Route.find({ _id : req.query.routeid }, function(err, doc) {
+		console.log(doc);
+		res.json(doc);
+	});
+});
 
-// router.get("/getroutedate", function(req, res) {	// only for testing
-// 	var Route = global.dbHandel.getModel('driverroute');
-// 	// _id as '574de95cdc830b24e3df1720', use URL http://localhost:3000/getroutedate?routeid=574de95cdc830b24e3df1720
-// 	Route.findOne({ _id : req.query.routeid }, function(err, doc) {
-// 		console.log(doc);
-// 		console.log(doc.drideptdate);
-// 		res.json(doc.drideptdate);
-// 	});
-	
-// 	// if you wish to use .find() rather than .findOne(), you may follow this:
-// //	Route.find({ _id : req.query.routeid }, function(err, doc) {
-// //		console.log(doc[0].drideptdate);
-// //		console.log(doc[0]["drideptdate"]);
-// //		res.json(doc[0].drideptdate);
-// //	});
+/* GET routeId page. http://localhost:3000/driveroute?routeId=574de95cdc830b24e3df1720*/
+// router.get("/driveroute", function(req, res) {    
 
-// });
-
+//     {
+//         var Route = global.dbHandel.getModel('driverroute');
+//         // name as '57226903bb3cdd801fb60132'
+//         Route.find({ _id : req.query.routeId }, function(err, doc) {
+//             console.log(doc);
+//             res.json(doc);
+//         });
+//     }
+// }); 转移到controller/driverroutes中的driveroute
 module.exports = router;

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var driverRoutes=require('../controller/updateRoute');
+var updatedriroute=require('../controller/updateroute');
 //var driRoute = require('../controller/searchRoute');
 
 /* GET createRoute page. */
@@ -13,6 +13,8 @@ var driverRoutes=require('../controller/updateRoute');
 //      console.log("render driverRoutes");
 // });
 
-router.get('/',driverRoutes.updriroute());
-router.get('/getroute',driverRoutes.getroute());
+router.get('/',updatedriroute.getroute());
+router.post('/updateroute',updatedriroute.updateroute());
+router.post('/deleteroute',updatedriroute.deleteroute());
+router.get('/getroutedate',updatedriroute.getroutedate());
 module.exports = router;
