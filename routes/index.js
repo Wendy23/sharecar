@@ -125,4 +125,22 @@ router.get("/getroute", function(req, res) {	// only for testing
 	});
 });
 
+router.get("/getroutedate", function(req, res) {	// only for testing
+	var Route = global.dbHandel.getModel('driverroute');
+	// _id as '574de95cdc830b24e3df1720', use URL http://localhost:3000/getroutedate?routeid=574de95cdc830b24e3df1720
+	Route.findOne({ _id : req.query.routeid }, function(err, doc) {
+		console.log(doc);
+		console.log(doc.drideptdate);
+		res.json(doc.drideptdate);
+	});
+	
+	// if you wish to use .find() rather than .findOne(), you may follow this:
+//	Route.find({ _id : req.query.routeid }, function(err, doc) {
+//		console.log(doc[0].drideptdate);
+//		console.log(doc[0]["drideptdate"]);
+//		res.json(doc[0].drideptdate);
+//	});
+
+});
+
 module.exports = router;
