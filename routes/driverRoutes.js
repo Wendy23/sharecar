@@ -15,5 +15,4 @@ var driverRoutes=require('../controller/driverroutes');
 
 router.get('/',driverRoutes.driverroutes());
 router.get('/routeList',driverRoutes.routeList());
-router.get('/driveroute',driverRoutes.driveroute());
 module.exports = router;
