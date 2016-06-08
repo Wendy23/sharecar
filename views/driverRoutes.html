@@ -93,12 +93,12 @@
             <a href="/createRoute" class="btn btn-link" role="button">Add more</a>
         </section>
         <section>
-        <div class="col-sm-3"></div>
-        <div class="col-sm-6" >
-            <div class="list-group" id="list-group">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <div class="list-group" id="list-group">
+                </div>
             </div>
-        </div>
-         </section> 
+        </section>
         <!--End of form_row div-->
     </div>
     <!-- Script -->
@@ -164,11 +164,35 @@
                     var postContent = document.createTextNode(data.routeList[num].postcode);
                     listPostcode.appendChild(postContent);
 
-                    listItem.appendChild(listItemHeading);
+                    var routeLink = document.createElement("a");
+                    var routeHref = document.createAttribute("href");
+                    //routeHref.value = "driverRoutes/driveroute?routeId=" + data.routeList[num]._id;
+                    //console.log("id是：" + data.routeList[num]._id);
+                    routeLink.setAttributeNode(routeHref);
+                    var update = document.createTextNode("Update");
+                    routeLink.appendChild(update);
+                    $(document).on("click", "a", function() {
+                        console.log("start to update");
+                        $.ajax({
+                            url: '/updateRoute/getroute',
+                            type: "get",
+                            success: function(data, status) {
+                                if (status == 'success') {
+                                    //console.log(data.drideptdate);
+                                    location.href = 'updateRoute';
+                                    //$('#new-route').html($(data).find('#new-route').html());
+                                    //$( "#new-route" ).load( "views/createRoute.html div#new-route" );
+                                }
+                            }
+                        });
+                    });
+
+                    listItemHeading.appendChild(routeLink);
                     listItem.appendChild(listDate);
                     listItem.appendChild(listHour);
                     listItem.appendChild(listMin);
                     listItem.appendChild(listPostcode);
+                    listItem.appendChild(listItemHeading);
 
                     var listgroup = document.getElementById("list-group");
                     listgroup.appendChild(listItem);
