@@ -14,7 +14,8 @@ var updatedriroute=require('../controller/updateroute');
 // });
 
 router.get('/',updatedriroute.getroute());
-router.post('/updateroute',updatedriroute.updateroute());
+//router.put('/updateroute/:id',updatedriroute.updateroute());
+router.post('/updateroute/',updatedriroute.updateroute());
 router.post('/deleteroute',updatedriroute.deleteroute());
 router.get('/getroutedate',updatedriroute.getroutedate());
 module.exports = router;

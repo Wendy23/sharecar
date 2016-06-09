@@ -1,6 +1,6 @@
 exports.driverroutes = function() {
     return function(req, res) {
-        console.log("get into my routes router");
+        console.log("get into driverrouters");
         if (!req.session.user) { //到达/home路径首先判断是否已经登录
             req.session.error = "请先登录"
             res.redirect("/login"); //未登录则重定向到 /login 路径
@@ -12,7 +12,7 @@ exports.driverroutes = function() {
             //Route.find({ name: req.session.user }, function(err, doc) {
             Route.find({}, function(err, doc) {
                 //req.session.user = doc;
-                console.log(doc);
+                //console.log(doc);
                 res.render("driverRoutes", { driverroutes: doc });
             });
         }
@@ -36,7 +36,7 @@ exports.routeList = function(db) {
             // });
             Route.find({ name: req.session.user }, function(err, doc) {
                 // req.session.user = doc;
-                console.log(doc);
+                //console.log(doc);
                 res.send({ routeList: doc });
             });
         }
@@ -57,7 +57,7 @@ exports.driveroute = function(db) {
             // })
             //Route.find({ name: req.session.user }, function(err, doc) {
             Route.find({ _id: req.query.routeId }, function(err, doc) {
-                console.log(doc);
+                //console.log(doc);
                 res.json(doc);
             });
         }

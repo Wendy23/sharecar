@@ -173,15 +173,23 @@
     <script type="text/javascript">
     $("#updateroute").click(function() {
         $.ajax({
-                url: '/updateRoute/updateroute',
-                type: "post"
-            })
-            .done(function(data) {
-                console.log("get into ajax");
-                // console.log(req.body.drideptdate);
-                //var dateText = document.createTextNode(data);
-                //$('.well').append(dateText);s
-            })
+            url: '/updateRoute/updateroute',
+            // data: $("form").serialize(),
+            type: 'post',
+        })
+    });
+    // $.ajax({
+    //         url: '/updateRoute/updateroute',
+    //         type: "post"
+    //     })
+    //     .done(function(data) {
+    //         console.log("get into ajax");
+    //         location.href = 'driverRoutes';
+    //         // console.log(req.body.drideptdate);
+    //         //var dateText = document.createTextNode(data);
+    //         //$('.well').append(dateText);s
+    //     })
+    $(document).ready(function() {
         "use strict";
         jQuery('.tp-banner').show().revolution({
             dottedOverlay: "none",
