@@ -143,4 +143,12 @@ router.get("/getroutedate", function(req, res) {	// only for testing
 
 });
 
+router.get("/testupdate", function(req, res) {
+	res.render("testpost"); //测试Update的页面
+});
+router.post("/updateroute", function(req, res) {
+	console.log(req.body);
+	res.redirect("/testupdate");
+});
+
 module.exports = router;
