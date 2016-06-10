@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var updatedriroute=require('../controller/updateroute');
+var updatedriroute = require('../controller/updateroute');
 //var driRoute = require('../controller/searchRoute');
 
 /* GET createRoute page. */
@@ -13,9 +13,24 @@ var updatedriroute=require('../controller/updateroute');
 //      console.log("render driverRoutes");
 // });
 
-router.get('/',updatedriroute.getroute());
+router.get('/', updatedriroute.getroute());
 //router.put('/updateroute/:id',updatedriroute.updateroute());
-router.post('/updateroute/',updatedriroute.updateroute());
-router.post('/deleteroute',updatedriroute.deleteroute());
-router.get('/getroutedate',updatedriroute.getroutedate());
+// router.get('/updateroute/:id', function(req, res) {
+//   console.log(req.params._id);
+// });
+//router.get('/getrouteid/:_id',updatedriroute.getrouteid());
+router.get('/getrouteid/:_id', function(req, res) {
+    var Route = global.dbHandel.getModel('driverroute');
+    Route.get(req.params._id, function(err, doc) {
+    	console.log(req.params._id);
+        if (err) {
+            res.redirect('/home');
+        }
+        console.log(doc);
+        res.send(doc);
+    })
+});
+router.post('/updateroute', updatedriroute.updateroute());
+router.post('/deleteroute', updatedriroute.deleteroute());
+router.get('/getroutedate', updatedriroute.getroutedate());
 module.exports = router;

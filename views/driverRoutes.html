@@ -159,27 +159,19 @@
 
                     var routeLink = document.createElement("a");
                     var routeHref = document.createAttribute("href");
-                    routeHref.value = 'updateRoute';
+                    //routeHref.value = 'updateRoute';
+                    routeHref.value = "http://localhost:3000/updateRoute/getroutedate?routeId=" + data.routeList[num]._id;
                     //routeHref.value = "driverRoutes/driveroute?routeId=" + data.routeList[num]._id;
-                    //console.log("id是：" + data.routeList[num]._id);
+                    console.log("id是：" + data.routeList[num]._id);
                     routeLink.setAttributeNode(routeHref);
                     var update = document.createTextNode("Update");
                     routeLink.appendChild(update);
 
                     // $(document).on("click","a",function() {
-                    //     console.log("start to update");
                     //     $.ajax({
-                    //         url: '/driverroutes/driveroute',
-                    //         type: 'get',
-                    //           success: function(data, status) {
-                    //             if (status == 'success') {
-                    //                 //location.href = 'home';
-                    //                 location.href = 'updateRoute';
-                    //                 //$('#new-route').html($(data).find('#new-route').html());
-                    //                 //$( "#new-route" ).load( "views/createRoute.html div#new-route" );
-                    //             }
-                    //         }
-                    //     });
+                    //         url: "/updateRoute/getrouteid?" + data.routeList[num]._id,
+                    //         type: "get"
+                    //     })
                     // });
 
                     // var routedelLink = document.createElement("a");

@@ -23,13 +23,24 @@ exports.findById = function(db) {
 exports.getroute = function() {
     return function(req, res) {
         var Route = global.dbHandel.getModel('driverroute');
-        if (!req.session.user) { //到达/home路径首先判断是否已经登录
-            req.session.error = "请先登录"
-            res.redirect("/login"); //未登录则重定向到 /login 路径
-        } else {
-            console.log("render updateRoute");
+        Route.find({}, function(err, doc) {
+            console.log(req.body);
             res.render('updateRoute', { title: 'ShareCar' });
-        }
+        })
+
+    }
+}
+
+exports.getrouteid = function() {
+    return function(req, res) {
+        res.send('getrouteid' + req.params.id);
+        var Route = global.dbHandel.getModel('driverroute');
+        Route.findOne(id, function(err, doc) {
+            console.log("render updateRoute2");
+            console.log(id);
+            //console.log(doc._id);
+            res.render('updateRoute', { title: 'ShareCar' });
+        })
     }
 }
 
@@ -55,8 +66,8 @@ exports.updateroute = function(db) {
             var options = { upsert: true };
             Route.update(conditions, update, options, function(err) {
                 if (err) {
-                   res.redirect('home');
-                   console.log(err);
+                    res.redirect('home');
+                    console.log(err);
                 } else {
                     console.log('update ok!');
                     res.redirect('driverRoutes');
@@ -128,16 +139,17 @@ exports.deleteroute = function() {
             })
         }
     }
-    /*test*/
+
 exports.getroutedate = function() {
     return function(req, res) {
         var Route = global.dbHandel.getModel('driverroute');
         // _id as '574de95cdc830b24e3df1720', use URL
-        //http://localhost:3000/updateRoute/getroutedate?routeid=57587caa394a494818f3741c
-        Route.findOne({ _id: req.query.routeid }, function(err, doc) {
+        //http://localhost:3000/updateRoute/getroutedate?routeId=57587caa394a494818f3741c
+        Route.findOne({ _id: req.query.routeId }, function(err, doc) {
             console.log(doc);
-            console.log(doc.dridate);
-            res.json(doc.dridate);
+            console.log(doc._id);
+            res.json(doc._id);
+            //res.render('updateRoute', { title: 'ShareCar' });
         })
 
         // if you wish to use .find() rather than .findOne(), you may follow this:
