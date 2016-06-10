@@ -145,11 +145,11 @@ exports.getroutedate = function() {
         var Route = global.dbHandel.getModel('driverroute');
         // _id as '574de95cdc830b24e3df1720', use URL
         //http://localhost:3000/updateRoute/getroutedate?routeId=57587caa394a494818f3741c
-        Route.findOne({ _id: req.query.routeId }, function(err, doc) {
-            console.log(doc);
-            console.log(doc._id);
-            res.json(doc._id);
-            //res.render('updateRoute', { title: 'ShareCar' });
+        Route.find({ name: req.session.user }, function(err, doc) {
+            //console.log(doc);
+            //console.log(doc._id);
+            //res.json(doc._id);
+             res.render('updateRoute', { getroutedate: doc });
         })
 
         // if you wish to use .find() rather than .findOne(), you may follow this:

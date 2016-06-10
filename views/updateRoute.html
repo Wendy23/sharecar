@@ -21,7 +21,7 @@
     <!-- Style -->
     <!-- <link rel="stylesheet" href="css/responsive.css" type="text/css" /> -->
     <!-- Responsive -->
-    <link rel="stylesheet" href="stylesheets/colors.css" type="text/css" />
+    <link rel="stylesheet" href="css/colors.css" type="text/css" />
     <!-- color -->
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <!--Slides-->
@@ -36,7 +36,7 @@
 
 <body>
     <!-- /.preloader -->
-    <div id="preloader"></div>
+   
     <div class="theme-layout">
         <!-- Header -->
         <header class="simple-header for-sticky white">
@@ -78,7 +78,7 @@
                                 <a href="#" title="">SEARCH</a>
                             </li>
                             <li><a href="#" title="">CONTACT</a></li>
-                            <li><a href="#" title=""><strong>Welcome, <%- user.name %></strong></a></li>
+                            <li><a href="#" title=""><strong>Welcome, <%- user. name %></strong></a></li>
                             <li>
                                 <a href="/logout" title="">
                                     <span><i class="fa fa-sign-out "></i> logout</span></a>
@@ -89,11 +89,11 @@
             </div>
         </header>
         <section>
-            <form id="new-route" class="newroute" role="form" method="post">
+            <form id="new-route" class="newroute" role="form" method="post" action="/updateroute">
                 <div class="container">
                     <div class="well">
                         <label for="DriverDeptDate">Departure Date</label>
-                        <input type="text" class="datepicker" id="DriverDeptDate" name="DriverDeptDate">
+                        <input type="text" class="datepicker" id="DriverDeptDate" name="DriverDeptDate" >
                     </div>
                     <script>
                     $(function() {
@@ -102,7 +102,8 @@
                     </script>
                     <div class="well">
                         <label for="DriverDeptTime">Departure Time</label>
-                        <input type="number" min="0" max="23" size="15" id="DriverDeptHour" name="DriverDeptHour"> &#58;
+                        <input type="number" min="0" max="23" size="15" id="DriverDeptHour" name="DriverDeptHour" >
+                        &#58;
                         <!-- <span type="number"  id="DriverDeptMin" name="DriverDeptMin" >
                         </span>
                         <select name="DriverDeptMin">
@@ -124,7 +125,7 @@
                         //     });
                         // });
                         </script>
-                        <!--          <span type="number" class="plus-minus-label" id="TimeTolerance" name="TimeTolerance">&plusmn;</span>
+               <!--          <span type="number" class="plus-minus-label" id="TimeTolerance" name="TimeTolerance">&plusmn;</span>
                         <select name="TimeTolerance">
                             <option value="15" SELECTED>15</option>
                             <option value="30">30</option>
@@ -134,8 +135,8 @@
                     </div>
                     <div class="well">
                         <label for="PostalCode">PostCode</label>
-                        <input type="text" id="PostalCode" name="PostalCode" placeholder="A0AA0A">
-                        <!--  <span type="number" class="plus-minus-label" id="AreaTolerance" name="">&plusmn;</span>
+                        <input type="text" id="PostalCode" name="PostalCode"  placeholder="A0AA0A">
+                       <!--  <span type="number" class="plus-minus-label" id="AreaTolerance" name="">&plusmn;</span>
                         <select name="AreaTolerance">
                             <option value="1" SELECTED>1</option>
                             <option value="2">2</option>
@@ -143,7 +144,7 @@
                         </select>
                         <span> km</span> -->
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block" id="updateroute">Submit</button>
+                    <button type="submit" class="btn btn-primary btn-block" id="confirm">Submit</button>
                 </div>
             </form>
         </section>
@@ -171,24 +172,27 @@
     <script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
     <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     <script type="text/javascript">
-    $("#updateroute").click(function() {
-        $.ajax({
-            url: '/updateRoute/updateroute',
-            // data: $("form").serialize(),
-            type: 'post',
-        })
+    $(function() {
+        $("#confirm").click(function() {
+            $.ajax({
+                url: '/updateRoute/updateroute',
+                // data: $("form").serialize(),
+                type: 'post',
+                data: data,
+                success: function(data, status) {
+                    if (status == 'success') {
+                        //location.href = 'home';
+                        location.href = 'driverRoutes';
+                    }
+                },
+                error: function(data, status) {
+                    if (status == 'error') {
+                        location.href = 'createRoute';
+                    }
+                }
+            });
+        });
     });
-    // $.ajax({
-    //         url: '/updateRoute/updateroute',
-    //         type: "post"
-    //     })
-    //     .done(function(data) {
-    //         console.log("get into ajax");
-    //         location.href = 'driverRoutes';
-    //         // console.log(req.body.drideptdate);
-    //         //var dateText = document.createTextNode(data);
-    //         //$('.well').append(dateText);s
-    //     })
     $(document).ready(function() {
         "use strict";
         jQuery('.tp-banner').show().revolution({
