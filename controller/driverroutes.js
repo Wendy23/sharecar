@@ -63,3 +63,18 @@ exports.driveroute = function(db) {
         }
     }
 }
+
+exports.updateRoute = function(){
+    return function(req,res){
+    console.log(req.body);
+    var Route = global.dbHandel.getModel('driverroute');
+    var condition = {};
+    condition[req.body.field] = req.body.value;
+ 
+    console.log(condition, req.query.routeId);
+
+    Route.update({_id: req.query.routeId}, condition, {} ,function(err, raw){
+        console.log("update message" + err + raw);
+    });
+    }
+}
