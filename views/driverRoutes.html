@@ -115,13 +115,14 @@
                                 <%=driverroutes[i].pcode%>
                             </td>
                             <td type="submit" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editdialog" data-id="<%= driverroutes[i]._id%>">Edit</td>
-                            <td type="delete" style="width: 70px;" class="btn btn-primary btn-sm" id="btndelete" routeId="<%= driverroutes[i]._id%>">Delete</td>
+                            <td type="delete" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#confirm-delete" data-id="<%= driverroutes[i]._id%>">Delete</td>
                             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editdialog">Test</button> -->
                     </tr>
                     <%}%>
                 </tbody>
             </table>
         </section>
+        <section>
         <div class="modal fade" id="editdialog" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -152,6 +153,29 @@
                 </div>
             </div>
         </div>
+    </section>
+    <section>
+        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <<div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="ModalLabel">Delete Info</h4>
+                </div>
+            
+                <div class="modal-body">
+                    <p>You are about to delete one track, this procedure is irreversible.</p>
+                    <p>Do you want to proceed?</p>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-danger btn-ok" id="delete">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
         <!-- <div class="col-sm-3"></div> -->
         <!--End of form_row div-->
     </div>
@@ -178,40 +202,6 @@
     <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-        // $("li").hover(function() {
-        //     $(this).css("background-color", "#f8f8f8");
-        // }, function() {
-        //     $(this).css("background-color", "white")
-        // });
-
-        // $('#DriverDeptDate').datepicker();
-        // $("li").hover(function() {
-        //     $(this).css("background-color", "#f8f8f8");
-        // }, function() {
-        //     $(this).css("background-color", "yellow")
-        // });
-        // $("a").click(function() {
-        //     console.log("this is a route");
-        //     console.log("this route id is" + $(this).attr("routeId"));
-        //     $('#DriverDeptHour').hide();
-        // })
-
-        // $("#btnSubmit").click(function() {
-        //     $.post("/driverroutes/updateRoute", {
-        //             field: 'DriverDeptDate',
-        //             value: $('#DriverDeptDate').val(),
-        //             field: 'DriverDeptHour',
-        //             value: $('#DriverDeptHour').val(),
-        //             field: 'PostalCode',
-        //             value: $('#PostalCode').val()
-        //         })
-        //         .done(function(res) {
-        //             alert(res);
-        //         });
-        //     $('#DriverDeptDate').html($('#DriverDeptDate').val());
-        //     $('#DriverDeptHour').html($('#DriverDeptHour').val());
-        //     $('#PostalCode').html($('#PostalCode').val());
-        // });
         
         var currentRoute;
 
@@ -245,10 +235,28 @@
 
         })
 
+        $('#confirm-delete').on('show.bs.modal', function(event) {
+            //$(this).removeClass('modal-backdrop');
+            //Now set z-index of modal greater than backdrop
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            //ajax here
+            var modal = $(this)
+            modal.find('.modal-title').text('Delete Info');
+            setTimeout(function(){
+                modal.find('.modal-backdrop').remove();
+            }, 200);
+            currentRoute = button.attr("data-id");
+            console.log(currentRoute);
+        })
 
-        // $("#confirm").click(function() {
-        //         console.log("dd");
-        //     })
+        $('#delete').on('click', function(event) {
+
+             $.post("/driverroutes/deleteRoute?routeId=" + currentRoute, {
+                })
+                .done(function(res) {
+                    location.reload();
+                });
+        })
     })
     "use strict";
     jQuery('.tp-banner').show().revolution({
