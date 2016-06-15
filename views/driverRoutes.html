@@ -114,7 +114,7 @@
                             <td class="drivepcode">
                                 <%=driverroutes[i].pcode%>
                             </td>
-                            <td type="submit" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editdialog" routeId="<%= driverroutes[i]._id%>">Edit</td>
+                            <td type="submit" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editdialog" data-id="<%= driverroutes[i]._id%>">Edit</td>
                             <td type="delete" style="width: 70px;" class="btn btn-primary btn-sm" id="btndelete" routeId="<%= driverroutes[i]._id%>">Delete</td>
                             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editdialog">Test</button> -->
                     </tr>
@@ -147,7 +147,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Confirm</button>
+                        <button type="submit" id="confirm" class="btn btn-primary">Confirm</button>
                     </div>
                 </div>
             </div>
@@ -212,16 +212,43 @@
         //     $('#DriverDeptHour').html($('#DriverDeptHour').val());
         //     $('#PostalCode').html($('#PostalCode').val());
         // });
+        
+        var currentRoute;
 
         $('#editdialog').on('show.bs.modal', function(event) {
-            $(this).$('.modal-backdrop');
+            //$(this).removeClass('modal-backdrop');
             //Now set z-index of modal greater than backdrop
             var button = $(event.relatedTarget) // Button that triggered the modal
             //ajax here
-
             var modal = $(this)
-            modal.find('.modal-title').text('Edit Info')
+            modal.find('.modal-title').text('Edit Info');
+            setTimeout(function(){
+                modal.find('.modal-backdrop').remove();
+            }, 200);
+            currentRoute = button.attr("data-id");
+            console.log(currentRoute);
         })
+
+        $('#confirm').on('click', function(event) {
+
+             $.post("/driverroutes/updateRoute?routeId=" + currentRoute, {
+                    dridate: $('#dridate').val(),
+                    drihour: $('#drihour').val(),
+                    pcode: $('#pcode').val()
+                })
+                .done(function(res) {
+                    location.reload();
+                });
+            $('#dridate').html($('#dridate').val());
+            $('#drihour').html($('#drihour').val());
+            $('#pcode').html($('#pcode').val());
+
+        })
+
+
+        // $("#confirm").click(function() {
+        //         console.log("dd");
+        //     })
     })
     "use strict";
     jQuery('.tp-banner').show().revolution({
