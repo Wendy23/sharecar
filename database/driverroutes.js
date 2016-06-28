@@ -13,9 +13,12 @@ module.exports = {
         name: { type: String, required: true },
         dridate: { type: String, required: true },
         drihour: { type: Number, required: true },
-        //drimin: { type: [Number] },
-        //drimin: { option: [Number] },
+        drimin: { type: Number, required: true },
+        timetlr: { type: Number, required: true },
+        occopancy: { type: Number, required: true },
+        cost: { type: Number, required: true },
+        mintime: { type: Number, required: true },
+        maxtime: { type: Number, required: true },
         pcode: { type: String, required: true }
-
     }
 };

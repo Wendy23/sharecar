@@ -18,14 +18,26 @@ exports.createRoute = function() {
         var name = req.session.user;
         var drideptdate = req.body.drideptdate;
         var dridepthour = req.body.dridepthour;
-        //var drideptmin = req.body.drideptmin;
+        var drideptmin = req.body.drideptmin;
+        var timetol = req.body.timetol;
+        var occo = req.body.occo;
+        var cost = req.body.cost;
+        var mintime = req.body.mintime;
+        var maxtime = req.body.maxtime;
         var postcode = req.body.postcode;
+
+        console.log(req.body);
         Route.create({ // 创建一组route对象置入model
             name: name,
             dridate: drideptdate,
             drihour: dridepthour,
-            //drimin: drideptmin,
-            pcode: postcode
+            drimin: drideptmin,
+            timetlr:timetol,
+            pcode: postcode,
+            occopancy: occo,
+            cost: cost,
+            mintime: mintime,
+            maxtime: maxtime
         }, function(err) {
             if (err) {
                 res.send(500);

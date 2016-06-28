@@ -76,7 +76,7 @@ p {
     letter-spacing: 0.4px;
 }
 
-input[type="checkbox"] {
+/*input[type="checkbox"] {
     border: 1px solid #bbb;
     background: #fff;
     color: #555;
@@ -96,7 +96,7 @@ input[type="checkbox"] {
     transition: .05s border-color ease-in-out;
     background: #fbfbfb;
     position: relative;
-}
+}*/
 
 .form-control {
     height: 40px;

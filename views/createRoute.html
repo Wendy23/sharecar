@@ -24,14 +24,11 @@
     <link rel="stylesheet" href="css/colors.css" type="text/css" />
     <!-- color -->
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <!--Slides-->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!--Date-->
     <link rel='stylesheet' href='/stylesheets/datepicker.css' />
     <!--Time-->
     <link rel='stylesheet' href='/stylesheets/bootstrap-timepicker.min.css' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -89,28 +86,37 @@
             </div>
         </header>
         <section>
-            <form id="new-route" class="newroute" role="form" method="post" action="/createRoute">
+            <form id="new-route" class="form-group" role="form" method="post" action="/createRoute">
                 <div class="container">
                     <div class="well">
                         <label for="DriverDeptDate">Departure Date</label>
-                        <input type="text" class="datepicker" id="DriverDeptDate" name="DriverDeptDate" >
+                        <input type="text" class="datepicker" id="DriverDeptDate" name="DriverDeptDate">
+                        <script>
+                        $(function() {
+                            $('#DriverDeptDate').datepicker();
+                        });
+                        </script>
+                        <div class="has-success">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="weekdays" value="option1"> Weekdays
+                                </label>
+                                <label>
+                                    <input type="checkbox" id="weekends" value="option2"> Weekends
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                    <script>
-                    $(function() {
-                        $('#DriverDeptDate').datepicker();
-                    });
-                    </script>
                     <div class="well">
                         <label for="DriverDeptTime">Departure Time</label>
-                        <input type="number" min="0" max="23" size="15" id="DriverDeptHour" name="DriverDeptHour" >
-                        &#58;
-                        <!-- <span type="number"  id="DriverDeptMin" name="DriverDeptMin" >
+                        <input type="number" min="0" max="23" size="15" id="DriverDeptHour" name="DriverDeptHour"> &#58;
+                        <span>
                         </span>
-                        <select name="DriverDeptMin">
+                        <select id="DriverDeptMin" name="DriverDeptMin">
                             <option value="15">15</option>
                             <option value="30">30</option>
                             <option value="45">45</option>
-                        </select> -->
+                        </select>
                         <script>
                         // $(function() {
                         //     $('#DriverDeptTime').timepicker({
@@ -125,24 +131,25 @@
                         //     });
                         // });
                         </script>
-               <!--          <span type="number" class="plus-minus-label" id="TimeTolerance" name="TimeTolerance">&plusmn;</span>
-                        <select name="TimeTolerance">
+                        <span type="number" class="plus-minus-label">&plusmn;</span>
+                        <select id="TimeTolerance" name="TimeTolerance">
                             <option value="15" SELECTED>15</option>
                             <option value="30">30</option>
                             <option value="45">45</option>
                         </select>
-                        <span> mins</span> -->
+                        <span> mins</span>
                     </div>
                     <div class="well">
                         <label for="PostalCode">PostCode</label>
-                        <input type="text" id="PostalCode" name="PostalCode"  placeholder="A0AA0A">
-                       <!--  <span type="number" class="plus-minus-label" id="AreaTolerance" name="">&plusmn;</span>
-                        <select name="AreaTolerance">
-                            <option value="1" SELECTED>1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
-                        <span> km</span> -->
+                        <input type="text" id="PostalCode" name="PostalCode" placeholder="A0AA0A">
+                    </div>
+                    <div class="well">
+                        <label for="Occupancy">Occupancy</label>
+                        <input type="number" min="1" max="10" size="15" id="Occupancy" name="Occupancy">
+                    </div>
+                    <div class="well">
+                        <label for="Cost">Cost</label>
+                        <input type="number" min="0" max="100" size="15" id="Cost" name="Cost">
                     </div>
                     <button type="submit" class="btn btn-primary btn-block" id="driverroute">Submit</button>
                 </div>
@@ -155,8 +162,6 @@
     <!-- Modernizer -->
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <!-- Jquery -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <!-- Bootstrap -->
     <script type="text/javascript" src="js/html5lightbox.js"></script>
     <!-- HTML -->
     <script type="text/javascript" src="js/scrolly.js"></script>
@@ -173,20 +178,27 @@
     <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     <script type="text/javascript">
     $(function() {
-        $("#driverroute").click(function() {
+        $("#new-route").submit(function(e) {
+
             var DriverDeptDate = $("#DriverDeptDate").val();
             var DriverDeptHour = $("#DriverDeptHour").val();
-            //var DriverDeptMin = $("#DriverDeptMin").val();
-            // var TimeTolerance = $("#TimeTolerance").val();
+            var DriverDeptMin = $("#DriverDeptMin").val();
+            var TimeTolerance = $("#TimeTolerance").val();
             var PostalCode = $("#PostalCode").val();
+            var Occupancy = $("#Occupancy").val();
+            var Cost = $("#Cost").val();
             // var AreaTolerance = $("#AreaTolerance").val();
             var data = {
                 "drideptdate": DriverDeptDate,
                 "dridepthour": DriverDeptHour,
-                //"drideptmin": DriverDeptMin,
-                // "TimeTolerance": TimeTolerance,
-                "postcode": PostalCode
-                // "AreaTolerance": AreaTolerance
+                "drideptmin": DriverDeptMin,
+                "timetol": TimeTolerance,
+                "postcode": PostalCode,
+                "occo": Occupancy,
+                "cost": Cost,
+                    // "AreaTolerance": AreaTolerance
+                "mintime": Number(DriverDeptHour) * 3600 + Number(DriverDeptMin) * 60 - Number(TimeTolerance) * 60,
+                "maxtime": Number(DriverDeptHour) * 3600 + Number(DriverDeptMin) * 60 + Number(TimeTolerance) * 60
             };
             $.ajax({
                 url: '/createRoute',
@@ -205,6 +217,8 @@
                     }
                 }
             });
+
+            e.preventDefault();
         });
     });
     $(document).ready(function() {
