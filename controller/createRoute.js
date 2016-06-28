@@ -20,7 +20,7 @@ exports.createRoute = function() {
         var dridepthour = req.body.dridepthour;
         var drideptmin = req.body.drideptmin;
         var timetol = req.body.timetol;
-        var occo = req.body.occo;
+        var occu = req.body.occu;
         var cost = req.body.cost;
         var mintime = req.body.mintime;
         var maxtime = req.body.maxtime;
@@ -34,7 +34,7 @@ exports.createRoute = function() {
             drimin: drideptmin,
             timetlr:timetol,
             pcode: postcode,
-            occopancy: occo,
+            occupancy: occu,
             cost: cost,
             mintime: mintime,
             maxtime: maxtime

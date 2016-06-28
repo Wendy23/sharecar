@@ -32,6 +32,12 @@
     <link rel='stylesheet' href='/stylesheets/bootstrap-timepicker.min.css' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
+    <style type="text/css" media="screen">
+        .datepicker{
+            z-index: 10001 !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -99,7 +105,11 @@
                     <tr>
                         <th>Dept Time</th>
                         <th>Dept Hour</th>
+                        <th>Dept Min</th>
+                        <th>Tollerance</th>
                         <th>PostalCode</th>
+                        <th>Occupancy</th>
+                        <th>Cost</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -111,8 +121,20 @@
                             <td class="drivehour">
                                 <%=driverroutes[i].drihour %>
                             </td>
+                            <td class="drivemin">
+                                <%=driverroutes[i].drimin%>
+                            </td>
+                            <td class="timetlr">
+                                <%=driverroutes[i].timetlr%>
+                            </td>
                             <td class="drivepcode">
                                 <%=driverroutes[i].pcode%>
+                            </td>
+                            <td class="occupancy">
+                                <%=driverroutes[i].occupancy%>
+                            </td>
+                            <td class="cost">
+                                <%=driverroutes[i].cost%>
                             </td>
                             <td type="submit" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editdialog" data-id="<%= driverroutes[i]._id%>">Edit</td>
                             <td type="delete" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#confirm-delete" data-id="<%= driverroutes[i]._id%>">Delete</td>
@@ -123,61 +145,84 @@
             </table>
         </section>
         <section>
-        <div class="modal fade" id="editdialog" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="ModalLabel">Edit Info</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="dridate" class="control-label">Dept Date:</label>
-                                <input type="text" class="form-control" id="dridate">
-                            </div>
-                            <div class="form-group">
-                                <label for="drihour" class="control-label">Dept Hour:</label>
-                                <input type="text" class="form-control" id="drihour">
-                            </div>
-                            <div class="form-group">
-                                <label for="pcode" class="control-label">Postal Code:</label>
-                                <input type="text" class="form-control" id="pcode">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="submit" id="confirm" class="btn btn-primary">Confirm</button>
+            <div class="modal fade" id="editdialog" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="ModalLabel">Edit Info</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="dridate" class="control-label">Dept Date:</label>
+                                    <input type="text" class="datepicker" id="dridate">
+                                    <script>
+                                    $(function() {
+                                        $('#dridate').datepicker();
+                                         $('#dridate').on('focus', function(e){
+                                            console.log(e);
+                                            e.preventDefault();
+                                         });
+                                    });
+                                    </script>
+                                </div>
+                                <div class="form-group">
+                                    <label for="drihour" class="control-label">Dept Hour:</label>
+                                    <input type="number" class="form-control" id="drihour">
+                                </div>
+                                <div class="form-group">
+                                    <label for="drimin" class="control-label">Dept Min:</label>
+                                    <input type="number" class="form-control" id="drimin">
+                                </div>
+                                <div class="form-group">
+                                    <label for="timetlr" class="control-label">Tollerance:</label>
+                                    <input type="number" class="form-control" id="timetlr">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pcode" class="control-label">Postal Code:</label>
+                                    <input type="text" class="form-control" id="pcode">
+                                </div>
+                                <div class="form-group">
+                                    <label for="occupancy" class="control-label">Occupancy:</label>
+                                    <input type="number" class="form-control" id="occupancy">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cost" class="control-label">Cost:</label>
+                                    <input type="number" class="form-control" id="cost">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="submit" id="confirm" class="btn btn-primary">Confirm</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section>
-        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <<div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="ModalLabel">Delete Info</h4>
-                </div>
-            
-                <div class="modal-body">
-                    <p>You are about to delete one track, this procedure is irreversible.</p>
-                    <p>Do you want to proceed?</p>
-                </div>
-                
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-danger btn-ok" id="delete">Delete</a>
-                </div>
+        </section>
+        <section>
+            <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <<div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="ModalLabel">Delete Info</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>You are about to delete one track, this procedure is irreversible.</p>
+                            <p>Do you want to proceed?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-danger btn-ok" id="delete">Delete</a>
+                        </div>
+                    </div>
             </div>
-        </div>
     </div>
-</section>
-        <!-- <div class="col-sm-3"></div> -->
-        <!--End of form_row div-->
+    </section>
+    <!-- <div class="col-sm-3"></div> -->
+    <!--End of form_row div-->
     </div>
     <!-- Script -->
     <script type="text/javascript" src="js/modernizr.js"></script>
@@ -202,36 +247,54 @@
     <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-        
+
         var currentRoute;
 
+        function bindShowEvent() {
         $('#editdialog').on('show.bs.modal', function(event) {
             //$(this).removeClass('modal-backdrop');
             //Now set z-index of modal greater than backdrop
             var button = $(event.relatedTarget) // Button that triggered the modal
-            //ajax here
+                //ajax here
             var modal = $(this)
             modal.find('.modal-title').text('Edit Info');
-            setTimeout(function(){
+            setTimeout(function() {
                 modal.find('.modal-backdrop').remove();
             }, 200);
             currentRoute = button.attr("data-id");
-            console.log(currentRoute);
+            $(this).off('show.bs.modal');
+        });
+        }
+
+        bindShowEvent();
+
+        $('#editdialog').on('hide.bs.modal', function(event) {
+            bindShowEvent();
         })
 
         $('#confirm').on('click', function(event) {
 
-             $.post("/driverroutes/updateRoute?routeId=" + currentRoute, {
+            $.post("/driverroutes/updateRoute?routeId=" + currentRoute, {
                     dridate: $('#dridate').val(),
                     drihour: $('#drihour').val(),
-                    pcode: $('#pcode').val()
+                    drimin: $('#drimin').val(),
+                    timetlr: $('#timetlr').val(),
+                    pcode: $('#pcode').val(),
+                    occupancy: $('#occupancy').val(),
+                    cost: $('#cost').val()
+
                 })
                 .done(function(res) {
                     location.reload();
                 });
             $('#dridate').html($('#dridate').val());
             $('#drihour').html($('#drihour').val());
+            $('#drimin').html($('#drimin').val());
+            $('#timetlr').html($('#timetlr').val());
             $('#pcode').html($('#pcode').val());
+            $('#occupancy').html($('#occupancy').val());
+            $('#cost').html($('#cost').val());
+
 
         })
 
@@ -239,20 +302,19 @@
             //$(this).removeClass('modal-backdrop');
             //Now set z-index of modal greater than backdrop
             var button = $(event.relatedTarget) // Button that triggered the modal
-            //ajax here
+                //ajax here
             var modal = $(this)
             modal.find('.modal-title').text('Delete Info');
-            setTimeout(function(){
+            setTimeout(function() {
                 modal.find('.modal-backdrop').remove();
             }, 200);
             currentRoute = button.attr("data-id");
-            console.log(currentRoute);
+            console.log("zenmmehui?" + currentRoute);
         })
 
         $('#delete').on('click', function(event) {
 
-             $.post("/driverroutes/deleteRoute?routeId=" + currentRoute, {
-                })
+            $.post("/driverroutes/deleteRoute?routeId=" + currentRoute, {})
                 .done(function(res) {
                     location.reload();
                 });

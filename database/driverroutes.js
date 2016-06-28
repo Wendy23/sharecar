@@ -15,10 +15,10 @@ module.exports = {
         drihour: { type: Number, required: true },
         drimin: { type: Number, required: true },
         timetlr: { type: Number, required: true },
-        occopancy: { type: Number, required: true },
+        occupancy: { type: Number, required: true },
         cost: { type: Number, required: true },
-        mintime: { type: Number, required: true },
-        maxtime: { type: Number, required: true },
+        mintime: { type: Number },
+        maxtime: { type: Number },
         pcode: { type: String, required: true }
     }
 };
