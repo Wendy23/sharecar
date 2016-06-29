@@ -106,7 +106,7 @@
                         <th>Dept Time</th>
                         <th>Dept Hour</th>
                         <th>Dept Min</th>
-                        <th>Tollerance</th>
+                        <th>Tolerance</th>
                         <th>PostalCode</th>
                         <th>Occupancy</th>
                         <th>Cost</th>
@@ -144,6 +144,28 @@
                 </tbody>
             </table>
         </section>
+
+
+         <section>
+            <!-- <div class="col-sm-3"></div> -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Dept Hour</th>
+                        <th>Dept Min</th>
+                        <th>Tolerance</th>
+                        <th>PostalCode</th>
+                        <th>Occupancy</th>
+                        <th>Cost</th>
+                    </tr>
+                </thead>
+            </table>
+        </section>
+
+
+
+
         <section>
             <div class="modal fade" id="editdialog" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
                 <div class="modal-dialog" role="document">
@@ -309,7 +331,7 @@
                 modal.find('.modal-backdrop').remove();
             }, 200);
             currentRoute = button.attr("data-id");
-            console.log("zenmmehui?" + currentRoute);
+            console.log(currentRoute);
         })
 
         $('#delete').on('click', function(event) {
