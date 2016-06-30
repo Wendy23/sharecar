@@ -129,7 +129,6 @@
                             </select>
                             <span> mins</span>
                         </div>
-
                         <div class="daytimeselector-container">
                             <input type="checkbox" class="daytimecheck" id="day-Mon" checked="checked" />
                             <span class="daytime-label"><label for="day-Mon">Monday</label></span>
@@ -148,9 +147,7 @@
                             </select>
                             <span> mins</span>
                         </div>
-
-                        
-                       <!--  <div class="daytimeselector-container">
+                        <!--  <div class="daytimeselector-container">
                             <input type="checkbox" class="daytimecheck" id="day-Sat" />
                             <span class="daytime-label disabled"><label for="day-Sat">Saturday</label></span>
                             <span class="daytime-label">I leave at:</span>
@@ -212,17 +209,20 @@
     <script type="text/javascript">
     $(function() {
         $('input[name=timeModeSelector]').change(function() {
-            if ($(this).val() == 'flexibleTimeRadio') {
+            if ($(this).val() == 'flexibleTimeRadio') { //flexible time
                 $('#flexibleTimeSelectorContainer').show();
                 $('#fixedTimeSelectorContainer').children('select').attr('disabled', 'disabled');
                 $('#fixedTimeSelectorContainer').children('span').addClass('disabled');
-            } else if ($(this).val() == 'fixedTimeRadio') {
+            } else if ($(this).val() == 'fixedTimeRadio') { //fixed time
                 $('#flexibleTimeSelectorContainer').hide();
                 $('#fixedTimeSelectorContainer').children('select').removeAttr('disabled');
                 $('#fixedTimeSelectorContainer').children('span').removeClass('disabled');
             }
         });
     });
+
+    
+
     $(document).ready(function() {
         "use strict";
         jQuery('.tp-banner').show().revolution({

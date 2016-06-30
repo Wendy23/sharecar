@@ -9,7 +9,9 @@ module.exports = {
         cost: { type: Number, required: true },
         mintime: Number,
         maxtime: Number,
-        pcode: { type: String, required: true }
-
+        pcode: { type: String, required: true },
+        pcoderange: { type: Number, required: true },
+        pcode2: { type: String, required: true },
+        pcoderange2: { type: Number, required: true }
     }
 };

@@ -25,6 +25,9 @@ exports.createRoute = function() {
         var mintime = req.body.mintime;
         var maxtime = req.body.maxtime;
         var postcode = req.body.postcode;
+        var deptpcoderange = req.body.deptpcoderange;
+        var postcode2 = req.body.postcode2;
+        var arripcoderange = req.body.arripcoderange;
 
         console.log(req.body);
         Route.create({ // 创建一组route对象置入model
@@ -34,6 +37,9 @@ exports.createRoute = function() {
             drimin: drideptmin,
             timetlr:timetol,
             pcode: postcode,
+            pcoderange: deptpcoderange,
+            pcode2: postcode2,
+            pcoderange2: arripcoderange,
             occupancy: occu,
             cost: cost,
             mintime: mintime,

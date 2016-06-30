@@ -32,11 +32,10 @@
     <link rel='stylesheet' href='/stylesheets/bootstrap-timepicker.min.css' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    
     <style type="text/css" media="screen">
-        .datepicker{
-            z-index: 10001 !important;
-        }
+    .datepicker {
+        z-index: 10001 !important;
+    }
     </style>
 </head>
 
@@ -108,6 +107,9 @@
                         <th>Dept Min</th>
                         <th>Tolerance</th>
                         <th>PostalCode</th>
+                        <th>PostalCodeRange</th>
+                        <th>PostalCode2</th>
+                        <th>PostalCodeRange2</th>
                         <th>Occupancy</th>
                         <th>Cost</th>
                     </tr>
@@ -130,6 +132,15 @@
                             <td class="drivepcode">
                                 <%=driverroutes[i].pcode%>
                             </td>
+                            <td class="drivepcode">
+                                <%=driverroutes[i].pcoderange%>
+                            </td>
+                            <td class="drivepcode">
+                                <%=driverroutes[i].pcode2%>
+                            </td>
+                            <td class="drivepcode">
+                                <%=driverroutes[i].pcoderange2%>
+                            </td>
                             <td class="occupancy">
                                 <%=driverroutes[i].occupancy%>
                             </td>
@@ -144,28 +155,6 @@
                 </tbody>
             </table>
         </section>
-
-
-         <section>
-            <!-- <div class="col-sm-3"></div> -->
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Day</th>
-                        <th>Dept Hour</th>
-                        <th>Dept Min</th>
-                        <th>Tolerance</th>
-                        <th>PostalCode</th>
-                        <th>Occupancy</th>
-                        <th>Cost</th>
-                    </tr>
-                </thead>
-            </table>
-        </section>
-
-
-
-
         <section>
             <div class="modal fade" id="editdialog" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
                 <div class="modal-dialog" role="document">
@@ -182,28 +171,47 @@
                                     <script>
                                     $(function() {
                                         $('#dridate').datepicker();
-                                         $('#dridate').on('focus', function(e){
+                                        $('#dridate').on('focus', function(e) {
                                             console.log(e);
                                             e.preventDefault();
-                                         });
+                                        });
                                     });
                                     </script>
                                 </div>
                                 <div class="form-group">
                                     <label for="drihour" class="control-label">Dept Hour:</label>
-                                    <input type="number" class="form-control" id="drihour">
-                                </div>
-                                <div class="form-group">
+                                    <!-- <input type="number" class="form-control" id="drihour"> -->
+                                    <input type="number" min="0" max="23" size="15" id="drihour" name="DriverDeptHour"> &#58;
                                     <label for="drimin" class="control-label">Dept Min:</label>
-                                    <input type="number" class="form-control" id="drimin">
-                                </div>
-                                <div class="form-group">
+                                    <!--  <input type="number" class="form-control" id="drimin"> -->
+                                    <select id="drimin" name="DriverDeptMin">
+                                        <option value="15">15</option>
+                                        <option value="30">30</option>
+                                        <option value="45">45</option>
+                                    </select>
                                     <label for="timetlr" class="control-label">Tollerance:</label>
-                                    <input type="number" class="form-control" id="timetlr">
+                                    <!-- <input type="number" class="form-control" id="timetlr"> -->
+                                    <select id="timetlr" name="timetlr">
+                                        <option value="15" SELECTED>15</option>
+                                        <option value="30">30</option>
+                                        <option value="45">45</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="pcode" class="control-label">Postal Code:</label>
-                                    <input type="text" class="form-control" id="pcode">
+                                    <input type="text" class="form-control" id="pcode" placeholder="A0AA0A">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pcoderange" class="control-label">Postal Code Range:</label>
+                                    <input type="number" class="form-control" min="1" max="5" id="pcoderange">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pcode2" class="control-label">Postal Code2:</label>
+                                    <input type="text" class="form-control" id="pcode2" placeholder="A0AA0A">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pcoderange2" class="control-label">Postal Code Range2:</label>
+                                    <input type="number" class="form-control" min="1" max="5" id="pcoderange2">
                                 </div>
                                 <div class="form-group">
                                     <label for="occupancy" class="control-label">Occupancy:</label>
@@ -225,7 +233,7 @@
         </section>
         <section>
             <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <<div class="modal-dialog" role="document">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -240,11 +248,53 @@
                             <a class="btn btn-danger btn-ok" id="delete">Delete</a>
                         </div>
                     </div>
+                </div>
             </div>
-    </div>
-    </section>
-    <!-- <div class="col-sm-3"></div> -->
-    <!--End of form_row div-->
+        </section>
+        <section>
+            <h2>Here is my routine</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>From Home</th>
+                        <th>Sunday</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednsday</th>
+                        <th>Thurday</th>
+                        <th>Friday</th>
+                        <th>Saturday</th>
+                        <th>Postcode</th>
+                        <th>Postcode Range</th>
+                        <th>Occupancy</th>
+                        <th>Cost</th>
+                    </tr>
+                </thead>
+            </table>
+            <td type="submit" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#" data-id="edit">Edit</td>
+        </section>
+        <section>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>From Work</th>
+                        <th>Sunday</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednsday</th>
+                        <th>Thurday</th>
+                        <th>Friday</th>
+                        <th>Saturday</th>
+                        <th>Postcode</th>
+                        <th>Postcode Range</th>
+                        <th>Occupancy</th>
+                        <th>Cost</th>
+                    </tr>
+                </thead>
+            </table>
+        </section>
+        <!-- <div class="col-sm-3"></div> -->
+        <!--End of form_row div-->
     </div>
     <!-- Script -->
     <script type="text/javascript" src="js/modernizr.js"></script>
@@ -273,19 +323,19 @@
         var currentRoute;
 
         function bindShowEvent() {
-        $('#editdialog').on('show.bs.modal', function(event) {
-            //$(this).removeClass('modal-backdrop');
-            //Now set z-index of modal greater than backdrop
-            var button = $(event.relatedTarget) // Button that triggered the modal
-                //ajax here
-            var modal = $(this)
-            modal.find('.modal-title').text('Edit Info');
-            setTimeout(function() {
-                modal.find('.modal-backdrop').remove();
-            }, 200);
-            currentRoute = button.attr("data-id");
-            $(this).off('show.bs.modal');
-        });
+            $('#editdialog').on('show.bs.modal', function(event) {
+                //$(this).removeClass('modal-backdrop');
+                //Now set z-index of modal greater than backdrop
+                var button = $(event.relatedTarget) // Button that triggered the modal
+                    //ajax here
+                var modal = $(this)
+                modal.find('.modal-title').text('Edit Info');
+                setTimeout(function() {
+                    modal.find('.modal-backdrop').remove();
+                }, 200);
+                currentRoute = button.attr("data-id");
+                $(this).off('show.bs.modal');
+            });
         }
 
         bindShowEvent();
@@ -302,6 +352,9 @@
                     drimin: $('#drimin').val(),
                     timetlr: $('#timetlr').val(),
                     pcode: $('#pcode').val(),
+                    pcoderange: $('#pcoderange').val(),
+                    pcode2: $('#pcode2').val(),
+                    pcoderange2: $('#pcoderange2').val(),
                     occupancy: $('#occupancy').val(),
                     cost: $('#cost').val()
 
@@ -314,6 +367,9 @@
             $('#drimin').html($('#drimin').val());
             $('#timetlr').html($('#timetlr').val());
             $('#pcode').html($('#pcode').val());
+            $('#pcoderange').html($('#pcoderange').val());
+            $('#pcode2').html($('#pcode2').val());
+            $('#pcoderange2').html($('#pcoderange2').val());
             $('#occupancy').html($('#occupancy').val());
             $('#cost').html($('#cost').val());
 

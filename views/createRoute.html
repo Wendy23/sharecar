@@ -128,8 +128,20 @@
                         <span> mins</span>
                     </div>
                     <div class="well">
-                        <label for="PostalCode">PostCode</label>
+                        <label for="PostalCode">Departure PostCode</label>
                         <input type="text" id="PostalCode" name="PostalCode" placeholder="A0AA0A">
+                    </div>
+                    <div class="well">
+                        <label for="deptpcoderange">Departure PostCode Range(km)</label>
+                        <input type="number" min="1" max="5" size="15" id="deptpcoderange" name="deptpcoderange">
+                    </div>
+                    <div class="well">
+                        <label for="PostalCode2">Arrival PostCode</label>
+                        <input type="text" id="PostalCode2" name="PostalCode2" placeholder="A0AA0A">
+                    </div>
+                    <div class="well">
+                        <label for="arripcoderange">Arrival PostCode Range(km)</label>
+                        <input type="number" min="1" max="5" size="15" id="arripcoderange" name="arripcoderange">
                     </div>
                     <div class="well">
                         <label for="Occupancy">Occupancy</label>
@@ -173,6 +185,9 @@
             var DriverDeptMin = $("#DriverDeptMin").val();
             var TimeTolerance = $("#TimeTolerance").val();
             var PostalCode = $("#PostalCode").val();
+            var DeptPcodeRange = $("#deptpcoderange").val();
+            var PostalCode2 = $("#PostalCode2").val();
+            var Arripcoderange = $("#arripcoderange").val();
             var Occupancy = $("#Occupancy").val();
             var Cost = $("#Cost").val();
             // var AreaTolerance = $("#AreaTolerance").val();
@@ -182,6 +197,9 @@
                 "drideptmin": DriverDeptMin,
                 "timetol": TimeTolerance,
                 "postcode": PostalCode,
+                "deptpcoderange": DeptPcodeRange,
+                "postcode2": PostalCode2,
+                "arripcoderange": Arripcoderange,
                 "occu": Occupancy,
                 "cost": Cost,
                 // "AreaTolerance": AreaTolerance
