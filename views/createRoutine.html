@@ -28,7 +28,8 @@
     <link rel='stylesheet' href='/stylesheets/datepicker.css' />
     <!--Time-->
     <link rel='stylesheet' href='/stylesheets/bootstrap-timepicker.min.css' />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -87,18 +88,20 @@
         </header>
         <section>
             <form id="new-route" class="form-group" role="form" method="post" action="/createRoutine">
+                <input type="text" id="radioFlag" value="" />
+                <input type="hidden" id="result" value='<%= routine %>' />
                 <!-- Fixed time -->
                 <div class="formRow" id="fixedTimeSelectorContainer">
                     <input type="radio" name="timeModeSelector" value="fixedTimeRadio" id="fixedTimeRadio" checked="checked" />
                     <label for="fixedTimeRadio"><span>From Monday to Friday I leave at:</span></label>
-                    <input type="number" min="0" max="23" size="15" id="DriverDeptHour" name="DriverDeptHour"> &#58;
-                    <select id="DriverDeptMin" name="DriverDeptMin">
+                    <input type="number" min="0" max="23" size="15" id="DriverDeptHourSame" name="DriverDeptHour"> &#58;
+                    <select id="DriverDeptMinSame" name="DriverDeptMin">
                         <option value="15">15</option>
                         <option value="30">30</option>
                         <option value="45">45</option>
                     </select>
                     <span type="number" class="plus-minus-label">&plusmn;</span>
-                    <select id="daytimetolerance" name="TimeTolerance">
+                    <select id="daytimetoleranceSame" name="TimeTolerance">
                         <option value="15" SELECTED>15</option>
                         <option value="30">30</option>
                         <option value="45">45</option>
@@ -112,17 +115,17 @@
                     <label for="flexibleTimeRadio"><span>My schedule is flexible:</span></label>
                     <div class="flexibleTimeSelectorContainer" id="flexibleTimeSelectorContainer" style="display: none;">
                         <div class="daytimeselector-container">
-                            <input type="checkbox" class="daytimecheck" id="day-Sun" />
+                            <input type="checkbox" class="daytimecheck" id="day-Sun" name="day-checkbox"/>
                             <span class="daytime-label disabled"><label for="day-Sun">Sunday</label></span>
                             <span class="daytime-label">I leave at:</span>
-                            <input type="number" min="0" max="23" size="15" id="DriverDeptHour" name="DriverDeptHour"> &#58;
-                            <select id="DriverDeptMin" name="DriverDeptMin">
+                            <input type="number" min="0" max="23" size="15" id="DriverDeptHourSun" name="DriverDeptHour"> &#58;
+                            <select id="DriverDeptMinSun" name="DriverDeptMin">
                                 <option value="15">15</option>
                                 <option value="30">30</option>
                                 <option value="45">45</option>
                             </select>
                             <span type="number" class="plus-minus-label">&plusmn;</span>
-                            <select id="daytimetolerance" name="DriverDeptMin">
+                            <select id="daytimetoleranceSun" name="DriverDeptMin">
                                 <option value="15">15</option>
                                 <option value="30">30</option>
                                 <option value="45">45</option>
@@ -130,17 +133,17 @@
                             <span> mins</span>
                         </div>
                         <div class="daytimeselector-container">
-                            <input type="checkbox" class="daytimecheck" id="day-Mon" checked="checked" />
+                            <input type="checkbox" class="daytimecheck" id="day-Mon" checked="checked" name="day-checkbox"/>
                             <span class="daytime-label"><label for="day-Mon">Monday</label></span>
                             <span class="daytime-label">I leave at:</span>
-                            <input type="number" min="0" max="23" size="15" id="DriverDeptHour" name="DriverDeptHour"> &#58;
-                            <select id="DriverDeptMin" name="DriverDeptMin">
+                            <input type="number" min="0" max="23" size="15" id="DriverDeptHourMon" name="DriverDeptHour"> &#58;
+                            <select id="DriverDeptMinMon" name="DriverDeptMin">
                                 <option value="15">15</option>
                                 <option value="30">30</option>
                                 <option value="45">45</option>
                             </select>
                             <span type="number" class="plus-minus-label">&plusmn;</span>
-                            <select id="daytimetolerance" name="DriverDeptMin">
+                            <select id="daytimetoleranceMon" name="DriverDeptMin">
                                 <option value="15">15</option>
                                 <option value="30">30</option>
                                 <option value="45">45</option>
@@ -175,7 +178,7 @@
                 <input name="latitude" type="hidden" id="lat" size="15" value="43.851163679844014" />
                 <input name="longitude" type="hidden" id="lng" size="15" value="-79.41123962402344" />
                 <input name="chosenCityName" id="chosenCityName" type="hidden" />
-                <button type="submit" class="specialButton bottomButton bType1" name="Submit" id="submitButton">
+                <button type="submit" class="specialButton bottomButton bType1" name="Submit" id="submitButton" onclick="submitData()">
                     <span class="l">->      Submit this form      -></span><span class="r">&nbsp;</span>
                 </button>
             </p>
@@ -207,81 +210,152 @@
     <script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
     <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     <script type="text/javascript">
-    $(function() {
-        $('input[name=timeModeSelector]').change(function() {
-            if ($(this).val() == 'flexibleTimeRadio') { //flexible time
-                $('#flexibleTimeSelectorContainer').show();
-                $('#fixedTimeSelectorContainer').children('select').attr('disabled', 'disabled');
-                $('#fixedTimeSelectorContainer').children('span').addClass('disabled');
-            } else if ($(this).val() == 'fixedTimeRadio') { //fixed time
-                $('#flexibleTimeSelectorContainer').hide();
-                $('#fixedTimeSelectorContainer').children('select').removeAttr('disabled');
-                $('#fixedTimeSelectorContainer').children('span').removeClass('disabled');
+        $(function() {
+            $('input[name=timeModeSelector]').change(function() {
+                if ($(this).val() == 'flexibleTimeRadio') { //flexible time
+                    $('#radioFlag').val(2);
+                    $('#flexibleTimeSelectorContainer').show();
+                    $('#fixedTimeSelectorContainer').children('select').attr('disabled', 'disabled');
+                    $('#fixedTimeSelectorContainer').children('span').addClass('disabled');
+                } else if ($(this).val() == 'fixedTimeRadio') { //fixed time
+                    $('#radioFlag').val(1);
+                    $('#flexibleTimeSelectorContainer').hide();
+                    $('#fixedTimeSelectorContainer').children('select').removeAttr('disabled');
+                    $('#fixedTimeSelectorContainer').children('span').removeClass('disabled');
+                }
+            });
+        });
+
+        submitData = function(){
+            //如果是固定时间取3个值
+            if($('#radioFlag').val()==1){
+                var data = {
+                    "flag": $('#radioFlag').val(),
+                    "dayhour": $('#DriverDeptHourSame').val(),
+                    "daymin": $("#DriverDeptMinSame").val(),
+                    "daytimetlr": $("#daytimetoleranceSame").val()
+                };
+                $.ajax({
+                    url: '/createRoutine',
+                    // data: $("form").serialize(),
+                    type: 'post',
+                    data: data,
+                    success: function(data, status) {
+                        if (status == 'success') {
+                            //location.href = 'home';
+//                            location.href = 'driverRoutes';
+                            alert("success");
+                        }
+                    },
+                    error: function(data, status) {
+                        if (status == 'error') {
+//                            location.href = 'createRoute';
+                            alert("error");
+                        }
+                    }
+                });
+            }else {
+                //如果是自定义时间，取得勾选行的值
+                var data = {
+                    "flag": $('#radioFlag').val()
+                };
+                $("#flexibleTimeSelectorContainer").find("input:checked").each(function(){
+                    var currday = $(this)[0].id.substr(4);
+                    var currdayhour = currday+"dayhour";
+                    var currdaymin = currday+"daymin";
+                    var currdaytimetlr = currday+"daytimetlr";
+                    data[currdayhour]=$("#DriverDeptHour"+currday).val(),
+                    data[currdaymin]= $("#DriverDeptMin"+currday).val(),
+                    data[currdaytimetlr]= $("#daytimetolerance"+currday).val()
+                });
+                $.ajax({
+                    url: '/createRoutine',
+                    // data: $("form").serialize(),
+                    type: 'post',
+                    data: data,
+                    success: function(data, status) {
+                        if (status == 'success') {
+                            //location.href = 'home';
+//                            location.href = 'driverRoutes';
+                            alert("success");
+                        }
+                    },
+                    error: function(data, status) {
+                        if (status == 'error') {
+//                            location.href = 'createRoute';
+                            alert("error");
+                        }
+                    }
+                });
+            }
+        }
+
+        $(document).ready(function() {
+            "use strict";
+            jQuery('.tp-banner').show().revolution({
+                dottedOverlay: "none",
+                delay: 16000, //revolution
+                startwidth: 1170,
+                startheight: 700,
+                hideThumbs: 200,
+                thumbWidth: 100,
+                thumbHeight: 50,
+                thumbAmount: 5,
+                navigationType: "bullet",
+                navigationArrows: "solo",
+                navigationStyle: "preview1",
+                touchenabled: "on",
+                onHoverStop: "on",
+                swipe_velocity: 0.7,
+                swipe_min_touches: 1,
+                swipe_max_touches: 1,
+                drag_block_vertical: false,
+                parallax: "mouse",
+                parallaxBgFreeze: "on",
+                parallaxLevels: [7, 4, 3, 2, 5, 4, 3, 2, 1, 0],
+                keyboardNavigation: "off",
+                navigationHAlign: "center",
+                navigationVAlign: "bottom",
+                navigationHOffset: 0,
+                navigationVOffset: 20,
+                soloArrowLeftHalign: "left",
+                soloArrowLeftValign: "center",
+                soloArrowLeftHOffset: 20,
+                soloArrowLeftVOffset: 0,
+                soloArrowRightHalign: "right",
+                soloArrowRightValign: "center",
+                soloArrowRightHOffset: 20,
+                soloArrowRightVOffset: 0,
+                shadow: 0,
+                fullWidth: "on",
+                fullScreen: "off",
+                spinner: "spinner4",
+                stopLoop: "off",
+                stopAfterLoops: -1,
+                stopAtSlide: -1,
+                shuffle: "off",
+                autoHeight: "off",
+                forceFullWidth: "off",
+                hideThumbsOnMobile: "off",
+                hideNavDelayOnMobile: 1500,
+                hideBulletsOnMobile: "off",
+                hideArrowsOnMobile: "off",
+                hideThumbsUnderResolution: 0,
+                hideSliderAtLimit: 0,
+                hideCaptionAtLimit: 0,
+                hideAllCaptionAtLilmit: 0,
+                startWithSlide: 0,
+                videoJsPath: "rs-plugin/videojs/",
+                fullScreenOffsetContainer: ""
+            });
+            var res = $("#result").val();
+            var result = eval("("+res+")");
+            if(result !=null && result!=undefined && result.length>0){
+                $("#radioFlag").val(result[0].flag);
+                //根据flag让radio  checked
+                //全部赋值
             }
         });
-    });
-
-    
-
-    $(document).ready(function() {
-        "use strict";
-        jQuery('.tp-banner').show().revolution({
-            dottedOverlay: "none",
-            delay: 16000, //revolution
-            startwidth: 1170,
-            startheight: 700,
-            hideThumbs: 200,
-            thumbWidth: 100,
-            thumbHeight: 50,
-            thumbAmount: 5,
-            navigationType: "bullet",
-            navigationArrows: "solo",
-            navigationStyle: "preview1",
-            touchenabled: "on",
-            onHoverStop: "on",
-            swipe_velocity: 0.7,
-            swipe_min_touches: 1,
-            swipe_max_touches: 1,
-            drag_block_vertical: false,
-            parallax: "mouse",
-            parallaxBgFreeze: "on",
-            parallaxLevels: [7, 4, 3, 2, 5, 4, 3, 2, 1, 0],
-            keyboardNavigation: "off",
-            navigationHAlign: "center",
-            navigationVAlign: "bottom",
-            navigationHOffset: 0,
-            navigationVOffset: 20,
-            soloArrowLeftHalign: "left",
-            soloArrowLeftValign: "center",
-            soloArrowLeftHOffset: 20,
-            soloArrowLeftVOffset: 0,
-            soloArrowRightHalign: "right",
-            soloArrowRightValign: "center",
-            soloArrowRightHOffset: 20,
-            soloArrowRightVOffset: 0,
-            shadow: 0,
-            fullWidth: "on",
-            fullScreen: "off",
-            spinner: "spinner4",
-            stopLoop: "off",
-            stopAfterLoops: -1,
-            stopAtSlide: -1,
-            shuffle: "off",
-            autoHeight: "off",
-            forceFullWidth: "off",
-            hideThumbsOnMobile: "off",
-            hideNavDelayOnMobile: 1500,
-            hideBulletsOnMobile: "off",
-            hideArrowsOnMobile: "off",
-            hideThumbsUnderResolution: 0,
-            hideSliderAtLimit: 0,
-            hideCaptionAtLimit: 0,
-            hideAllCaptionAtLilmit: 0,
-            startWithSlide: 0,
-            videoJsPath: "rs-plugin/videojs/",
-            fullScreenOffsetContainer: ""
-        });
-    });
     </script>
 </body>
 

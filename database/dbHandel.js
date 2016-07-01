@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var models = require("./models");
 var driverroutes = require("./driverroutes");
+var routine = require("./routine");
 
 /*models for user*/
 for (var m in models) {
@@ -23,6 +24,10 @@ var _getModel = function(type) {
 
 for (var m in driverroutes) {
     mongoose.model(m, new Schema(driverroutes[m]));
+}
+
+for (var m in routine) {
+    mongoose.model(m, new Schema(routine[m]));
 }
 
 module.exports = {

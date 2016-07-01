@@ -1,14 +1,16 @@
  module.exports = {
      routine: {
          name: { type: String, required: true },
+         flag: { type: Number, required: true },
          mon: {
+             weekday:{ type: String, required: true },
              dayhour: { type: Number },
              daymin: { type: Number },
              daytimetlr: { type: Number },
-             dayoccupancy: { type: Number },
+         /*    dayoccupancy: { type: Number },
              daycost: { type: Number },
              daymintime: { type: Number },
-             daymaxtime: { type: Number }
+             daymaxtime: { type: Number }*/
          },
          // tues: {
          //     dayhour: { type: Number },
@@ -56,13 +58,14 @@
          //     daymaxtime: { type: Number }
          // },
          sund: {
+             weekday:{ type: String, required: true },
              dayhour: { type: Number },
              daymin: { type: Number },
              daytimetlr: { type: Number },
-             dayoccupancy: { type: Number },
+          /*   dayoccupancy: { type: Number },
              daycost: { type: Number },
              daymintime: { type: Number },
-             daymaxtime: { type: Number }
+             daymaxtime: { type: Number }*/
          }
      }
  }
