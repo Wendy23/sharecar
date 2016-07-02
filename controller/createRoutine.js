@@ -15,7 +15,9 @@ exports.createRoutine = function() {
         // console.log("SAVE");
         // res.send(200);
         var Routine = global.dbHandel.getModel('routine');
-        var name = "lk";//req.session.user;这个session取不到，看一下
+        // var name = "lk";//req.session.user;这个session取不到，看一下
+        var name = req.session.user;
+        console.log(name);
         var flag = req.body.flag;
         //先删除再新增
         Routine.remove({name: name}, function(err, raw){
@@ -105,7 +107,7 @@ exports.queryRoutine = function() {
             res.redirect("/login"); //未登录则重定向到 /login 路径
         } else {
             var Routine = global.dbHandel.getModel('routine');
-            var name = "lk";//req.session.user;这个session取不到，看一下
+            var name = req.session.user;//req.session.user;这个session取不到，看一下
             Routine.find({name: name}, function(err, doc) {
                 //req.session.user = doc;
                 console.log(doc);
