@@ -371,22 +371,25 @@
                 $("#flexibleTimeRadio").attr('checked', true);
                 $('#flexibleTimeSelectorContainer').show();
                 if (result[0].sund.weekday == "sun") {
-                      // $("day-Sun").attr('checked', true);
-                      // $("#day-Sun").checked = true;
-                      $("#daytimecheck").attr("input:checked");
-                      $("#DriverDeptHourSun").val(result[0].sund.dayhour);
-                      $("#DriverDeptMinSun").val(result[0].sund.daymin);
-                      $("#daytimetoleranceSun").val(result[0].sund.daytimetlr);
+                    $("#day-Sun").attr('checked', 'checked');
+
+                    $("#day-Sun").siblings('select').removeAttr('disabled', 'disabled');
+                    $("#day-Sun").siblings('span').removeClass('disabled');
+                    $("#day-Sun").siblings('input').removeAttr('disabled');
+
+                    $("#DriverDeptHourSun").val(result[0].sund.dayhour);
+                    $("#DriverDeptMinSun").val(result[0].sund.daymin);
+                    $("#daytimetoleranceSun").val(result[0].sund.daytimetlr);
 
                 }
-                if (result[0].mon.weekday == "mon") {
-                      $("day-Mon").attr('checked', true);
-                      // $("#DriverDeptHourSun").val() == result[0].mon.dayhour;
-                      $("#DriverDeptHourMon").val(result[0].mon.dayhour);
-                      $("#DriverDeptMinMon").val(result[0].mon.daymin);
-                      $("#daytimetoleranceMon").val(result[0].mon.daytimetlr);
 
-                }
+                if (result[0].sund.weekday == "") {
+                    $("#day-Sun").attr('checked', false);
+                    $("#day-Sun").siblings('select').attr('disabled', 'disabled');
+                    $("#day-Sun").siblings('span').addClass('disabled');
+                    $("#day-Sun").siblings('input').prop('disabled', true);
+
+                } 
 
             }
         }
