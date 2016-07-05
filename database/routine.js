@@ -3,7 +3,7 @@
          name: { type: String, required: true },
          flag: { type: Number, required: true },
          mon: {
-             weekday:{ type: String, required: true },
+             weekday:{ type: String },
              dayhour: { type: Number },
              daymin: { type: Number },
              daytimetlr: { type: Number },
@@ -58,7 +58,7 @@
          //     daymaxtime: { type: Number }
          // },
          sund: {
-             weekday:{ type: String, required: true },
+             weekday:{ type: String },
              dayhour: { type: Number },
              daymin: { type: Number },
              daytimetlr: { type: Number },
