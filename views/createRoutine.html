@@ -370,6 +370,7 @@
             if (result[0].flag == 2) {
                 $("#flexibleTimeRadio").attr('checked', true);
                 $('#flexibleTimeSelectorContainer').show();
+                var days = ["mond","sund"]//想用数组然后比较if (result[0].days.weekday == days)的方法来写，失败了。。 
                 if (result[0].sund.weekday == "sun") {
                     $("#day-Sun").attr('checked', 'checked');
 
