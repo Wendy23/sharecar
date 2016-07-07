@@ -14,7 +14,7 @@ var driverRoutes=require('../controller/driverroutes');
 // });
 
 router.get('/',driverRoutes.driverroutes());
-router.get('/queryRoutine',driverRoutes.queryRoutine());
+// router.get('/queryRoutine',driverRoutes.queryRoutine());
 router.post('/updateRoute',driverRoutes.updateRoute());
 router.post('/deleteRoute',driverRoutes.deleteRoute());
 module.exports = router;

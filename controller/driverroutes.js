@@ -6,33 +6,21 @@ exports.driverroutes = function() {
             res.redirect("/login"); //未登录则重定向到 /login 路径
         } else {
             var Route = global.dbHandel.getModel('driverroute');
+            var Routine = global.dbHandel.getModel('routine');
             // Route.statics.getModel(req.session.user, function(userId, callback) {
             //     this.model('driverroute').find({ name: userId }, callback);
             // })
             //Route.find({ name: req.session.user }, function(err, doc) {
             Route.find({ name: req.session.user }, function(err, doc) {
-                //req.session.user = doc;
-                //console.log(doc);
-                res.render("driverRoutes", { driverroutes: doc });
-            });
+                Routine.find({ name: req.session.user }, function(err, docs) {
+                    res.render("driverRoutes", { driverroutes: doc, routine: JSON.stringify(docs) });
+                    console.log(doc);
+                    console.log(docs);
+                });
+            })
         }
     }
 }
-
-exports.queryRoutine = function() {
-    console.log("get into routine");
-    return function(req, res) {
-        console.log("get into routine");
-        var Routine = global.dbHandel.getModel('routine');
-        var name = req.session.user;
-        Routine.find({ name: name }, function(err, doc) {
-            //req.session.user = doc;
-            console.log(doc);
-            res.render("driverRoutes", { routine: JSON.stringify(doc) });
-        });
-
-    }
-};
 
 exports.updateRoute = function() {
     return function(req, res) {
