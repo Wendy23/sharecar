@@ -225,7 +225,7 @@
 
     $('.daytimecheck').change(function() {
         if ($('.daytimecheck:checked').length == 0) {
-            $(this).attr('checked', true);
+            $(this).prop('checked', true);
             return;
         }
         if ($(this).is(':checked')) {
