@@ -112,6 +112,7 @@
                         <th>PostalCodeRange2</th>
                         <th>Occupancy</th>
                         <th>Cost</th>
+                        <th>Occupied</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -146,6 +147,9 @@
                             </td>
                             <td class="cost">
                                 <%=driverroutes[i].cost%>
+                            </td>
+                            <td class="occupied">
+                                <%=driverroutes[i].occupied%>
                             </td>
                             <td type="submit" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editdialog" data-id="<%= driverroutes[i]._id%>">Edit</td>
                             <td type="delete" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#confirm-delete" data-id="<%= driverroutes[i]._id%>">Delete</td>
@@ -253,23 +257,23 @@
         </section>
         <section>
             <h2>Here is my routine</h2>
-            <table class="table" id="data" value='<%= routine %>' />
-                <thead>
-                    <tr>
-                        <th>From Home</th>
-                        <th>Sunday</th>
-                        <th>Monday</th>
-                        <th>Tuesday</th>
-                        <th>Wednsday</th>
-                        <th>Thurday</th>
-                        <th>Friday</th>
-                        <th>Saturday</th>
-                        <th>Postcode</th>
-                        <th>Postcode Range</th>
-                        <th>Occupancy</th>
-                        <th>Cost</th>
-                    </tr>
-                </thead>
+            <table class="table" id="result" value='<%= routine %>' />
+            <thead>
+                <tr>
+                    <th>Sunday</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background-color:white">
+                    <% for (var i =0; i<routine.sund.length;i++){%>
+                        <td class="DriverDeptHourSun">
+                                <%=routine[i].sund%>
+                            </td>
+                        <td style="width: 70px;" class="btn btn-primary btn-sm" name="editdia" id="editdia">Edit</td>
+                        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editdialog">Test</button> -->
+                </tr>
+                <%}%>
+            </tbody>
             </table>
             <td type="submit" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#" data-id="edit">Edit</td>
         </section>
@@ -277,7 +281,6 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>From Work</th>
                         <th>Sunday</th>
                         <th>Monday</th>
                         <th>Tuesday</th>
@@ -396,6 +399,10 @@
                 .done(function(res) {
                     location.reload();
                 });
+        })
+
+        $('#editdia').on('click', function(event) {
+            console.log("ss");
         })
     })
     "use strict";
