@@ -265,14 +265,16 @@
             </thead>
             <tbody>
                 <tr style="background-color:white">
-                    <% for (var i =0; i<routine.sund.length;i++){%>
-                        <td class="DriverDeptHourSun">
-                                <%=routine[i].sund%>
-                            </td>
-                        <td style="width: 70px;" class="btn btn-primary btn-sm" name="editdia" id="editdia">Edit</td>
-                        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editdialog">Test</button> -->
+                    <% if(routine){%>
+                        <% for (var i =0; i< routine.length;i++){%>
+                            <td class="DriverDeptHourSun">
+                                    <%=routine[i].sund.dayhour%>
+                                </td>
+                            <td style="width: 70px;" class="btn btn-primary btn-sm" name="editdia" id="editdia">Edit</td>
+                            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editdialog">Test</button> -->
+                        <%}%>
+                    <%}%>
                 </tr>
-                <%}%>
             </tbody>
             </table>
             <td type="submit" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#" data-id="edit">Edit</td>

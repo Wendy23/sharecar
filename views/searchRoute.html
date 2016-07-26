@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <%= title %>
+        ShareCar
     </title>
     <!-- Mobile Specific Metas
     ================================================== -->
@@ -19,7 +19,7 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css" type="text/css" />
     <!-- Style -->
-   <!--  <link rel="stylesheet" href="css/responsive.css" type="text/css" /> -->
+    <!--  <link rel="stylesheet" href="css/responsive.css" type="text/css" /> -->
     <!-- Responsive -->
     <link rel="stylesheet" href="/stylesheets/colors.css" type="text/css" />
     <!-- color -->
@@ -57,7 +57,7 @@
                 <div class="container">
                     <!-- LOGO -->
                     <div class="logo">
-                        <span><%= title %></span>
+                        <span>ShareCar</span>
                         <strong>CITY CARPOOL</strong>
                     </div>
                     <span class="menu-toggle"><i class="fa fa-bars"></i></span>
@@ -88,8 +88,92 @@
                 </div>
             </div>
         </header>
+        <form style="background:#fbf9f9;border:1px solid #c3c2c2;margin:0 0 20px;padding:15px 20px;" name="RouteAdvancedSearch">
+            <div style="margin:0 auto;position:relative;width:400px;z-index:300;">
+                <div style="padding:0;margin:35px 0 10px;">
+                    <label for="DriverDeptDate" style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Search Date: </label>
+                    <input id="DriverDeptDate" type="text" style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:200px;" value="" class="datepicker">
+                    <script>
+                    $(function() {
+                        $('#DriverDeptDate').datepicker({});
+                    });
+                    </script>
+                </div>
+                <div style="padding:0;margin:35px 0 10px;">
+                    <div style="float:left;margin:0 10px 0 0;position:relative;z-index:300;">
+                        <label for="PostalCode" style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">From: </label>
+                        <input id="PostalCode" type="text" style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:100px;" value="">
+                        <div class="hint"><em style="color:#666666;font-size:11px;font-style:italic;">zip (ex:A0AB0B)</em></div>
+                    </div>
+                </div>
+                <div style="padding:0;margin:35px 0 10px;">
+                    <label for="PostalCode2" style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">To: </label>
+                    <input id="PostalCode2" type="text" style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:100px;" value="">
+                    <div class="hint"><em style="color:#666666;font-size:11px;font-style:italic;">zip (ex:A0AB0B)</em></div>
+                </div>
+                <div style="padding:0;margin:35px 0 10px;">
+                    <div style="float:left;margin:0 10px 0 0;position:relative;z-index:300;">
+                        <label for="DriverDeptTime" style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Hour: </label>
+                        <input id="DriverDeptTime" type="number" style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:100px;" value="" min="0" max="23"> &#58;
+                    </div>
+                </div>
+                <div style="padding:0;margin:35px 0 10px;">
+                    <label for="DriverDeptMin" style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Min: </label>
+                    <select id="DriverDeptMin" type="number" style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:100px;" value="">
+                        <option value="15">15</option>
+                        <option value="30">30</option>
+                        <option value="45">45</option>
+                    </select>
+                </div>
+                <button type="submit" style="width: 100px;" class="btn btn-primary btn-block" id="search">SEARCH</button>
+            </div>
+        </form>
         <section>
             <h1>Rider side</h1>
+        </section>
+        <section>
+            <div class="container">
+                <table class="table table-hover" id="rideTable" width="70%">
+                    <tr>
+                        <td colspan="6" class="dateRow">
+                            <div class="searchdate">Monday August 1</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="searchtime">
+                            <img src="http://www.kangaride.com/img/rideIcons/blueArrow.png">
+                            <br> 5:00
+                        </td>
+                        <td>
+                            <div class="searchdeparture">
+                                <strong>London</strong>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="searchdestination"><span class="itineraryArrowInt3"></span>
+                                <strong>Chicago</strong>
+                            </div>
+                        </td>
+                        <td class="seatsAvailability">
+                            <div class="itineraryPrice">
+                                <p><a class="titleBubble" href="#" title="Prix du conducteur">33 $</a>
+                                    <br>
+                                    <img src="http://www.kangaride.com/img/rideIcons/whiteMan.png" alt="White Man" class="blueMan">
+                                    <img src="http://www.kangaride.com/img/rideIcons/whiteMan.png" alt="White Man" class="blueMan"></p>
+                            </div>
+                        </td>
+                        <td class="stars">
+                            <div class="rideIcons">
+                                <p>
+                                    <a class="titleBubble" title="">
+                                        <span class='nbReviews'>(No evaluation)</span> </a>
+                                </p>
+                            </div>
+                            <p class="nbReviews">(0)</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </section>
         <!--End of form_row div-->
     </div>
@@ -115,6 +199,33 @@
     <script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
     <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     <script type="text/javascript">
+    $(function() {
+        $("#search").click(function() {
+            console.log("get into search ajax");
+            var data = {
+                "routedate": $('#DriverDeptDate').val()
+                    // "routedeparture": $('#PostalCode').val(),
+                    // "routedestination": $('#PostalCode2').val(),
+                    // "routehour": $('#DriverDeptTime').val(),
+                    // "routemin": $('#DriverDeptMin').val()
+            };
+            $.ajax({
+                url: '/searchRoute',
+                type: 'post',
+                data:data
+                success: function(data, status) {
+                    if (status == 'success') {
+                        alert("success");
+                    }
+                },
+                error: function(data, status) {
+                    if (status == 'error') {
+                        alert("error");
+                    }
+                }
+            });
+        });
+    });
     $(document).ready(function() {
         "use strict";
         jQuery('.tp-banner').show().revolution({

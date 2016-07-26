@@ -13,9 +13,9 @@ exports.driverroutes = function() {
             //Route.find({ name: req.session.user }, function(err, doc) {
             Route.find({ name: req.session.user }, function(err, doc) {
                 Routine.find({ name: req.session.user }, function(err, docs) {
-                    res.render("driverRoutes", { driverroutes: doc, routine: JSON.stringify(docs) });
-                    console.log(doc);
-                    console.log(docs);
+                    res.render("driverRoutes", { driverroutes: doc, routine: docs });
+                    console.log("doc:"+doc);
+                    console.log("docs:"+docs);
                 });
             })
         }
