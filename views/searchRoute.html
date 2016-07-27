@@ -125,7 +125,7 @@
                         <option value="45">45</option>
                     </select>
                 </div>
-                <button type="submit" style="width: 100px;" class="btn btn-primary btn-block" id="search">SEARCH</button>
+                <button type="button" style="width: 100px;" class="btn btn-primary btn-block" id="search">SEARCH</button>
             </div>
         </form>
         <section>
@@ -175,6 +175,11 @@
                 </table>
             </div>
         </section>
+        <section>
+            <div id="ss" hidden="hidden">
+                Body 1
+            </div>
+        </section>
         <!--End of form_row div-->
     </div>
     <!-- Script -->
@@ -210,17 +215,18 @@
                     // "routemin": $('#DriverDeptMin').val()
             };
             $.ajax({
-                url: '/searchRoute',
+                url: '/searchRoute/searchRoute',
                 type: 'post',
-                data:data
+                data: data,
                 success: function(data, status) {
                     if (status == 'success') {
                         alert("success");
+                        $('#ss').hide();
                     }
                 },
                 error: function(data, status) {
                     if (status == 'error') {
-                        alert("error");
+                        $('#ss').show();
                     }
                 }
             });
