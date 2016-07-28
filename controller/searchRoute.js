@@ -34,22 +34,24 @@ exports.searchRoute = function() {
             var routedep = req.body.routedeparture;
             var routearr = req.body.routedestination;
             var time = Number(routehour) * 3600 + Number(routemin) * 60;
-            routeModel.find({ dridate: routedate}, function(err, doc) {
-            //routeModel.find(dridate:routedate).toArray(function(err, doc) {
-                console.log("doc" + doc);
+            routeModel.find({ dridate: routedate }, function(err, docs) {
+                //routeModel.find(dridate:routedate).toArray(function(err, doc) {
+                console.log("docs" + docs);
                 console.log("time" + time);
-                console.log(doc.mintime);
-                if (doc.mintime < time < doc.maxtime) {
-                    if (err) {
-                        res.send(500);
-                        console.log(err);
-                    } else if (!doc) {
-                        res.send(404);
-                    } else {
-                        console.log(doc);
-                        res.send(200);
-                    }
-                }
+                docs.forEach(function(err, doc) {
+                    doc.find({ mintime: { $lte: time } }, function(err, docs) {
+                        if (err) {
+                            res.send(500);
+                            console.log(err);
+                        } else if (!doc) {
+                            res.send(404);
+                        } else {
+                            console.log(doc);
+                            res.send(200);
+                        }
+                    })
+                })
+
             });
         }
     }
