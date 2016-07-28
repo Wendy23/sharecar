@@ -29,15 +29,26 @@ exports.searchRoute = function() {
         } else {
             var routeModel = global.dbHandel.getModel('driverroute');
             var routedate = req.body.routedate;
-            routeModel.findOne({ dridate: routedate }, function(err, doc) {
-                if (err) { 
-                    res.send(500);
-                    console.log(err);
-                } else if (!doc) { 
-                    res.send(404); 
-                } else { 
-                    console.log(doc);
-                    res.send(200);
+            var routehour = req.body.routehour;
+            var routemin = req.body.routemin;
+            var routedep = req.body.routedeparture;
+            var routearr = req.body.routedestination;
+            var time = Number(routehour) * 3600 + Number(routemin) * 60;
+            routeModel.find({ dridate: routedate}, function(err, doc) {
+            //routeModel.find(dridate:routedate).toArray(function(err, doc) {
+                console.log("doc" + doc);
+                console.log("time" + time);
+                console.log(doc.mintime);
+                if (doc.mintime < time < doc.maxtime) {
+                    if (err) {
+                        res.send(500);
+                        console.log(err);
+                    } else if (!doc) {
+                        res.send(404);
+                    } else {
+                        console.log(doc);
+                        res.send(200);
+                    }
                 }
             });
         }

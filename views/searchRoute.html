@@ -208,11 +208,11 @@
         $("#search").click(function() {
             console.log("get into search ajax");
             var data = {
-                "routedate": $('#DriverDeptDate').val()
-                    // "routedeparture": $('#PostalCode').val(),
-                    // "routedestination": $('#PostalCode2').val(),
-                    // "routehour": $('#DriverDeptTime').val(),
-                    // "routemin": $('#DriverDeptMin').val()
+                "routedate": $('#DriverDeptDate').val(),
+                "routedeparture": $('#PostalCode').val(),
+                "routedestination": $('#PostalCode2').val(),
+                "routehour": $('#DriverDeptTime').val(),
+                "routemin": $('#DriverDeptMin').val()
             };
             $.ajax({
                 url: '/searchRoute/searchRoute',
