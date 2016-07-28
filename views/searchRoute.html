@@ -121,6 +121,7 @@
                     <label for="DriverDeptMin" style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Min: </label>
                     <select id="DriverDeptMin" type="number" style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;" value="">
                         <option selected disabled>Choose here</option>
+                        <option value="00">00</option>
                         <option value="15">15</option>
                         <option value="30">30</option>
                         <option value="45">45</option>
@@ -134,7 +135,7 @@
         </section>
         <section>
             <div class="container">
-                <table class="table table-hover" id="rideTable" width="70%">
+                <table class="table table-hover" id="rideTable" width="70%" hidden ="hidden">
                     <tr>
                         <td colspan="6" class="dateRow">
                             <div class="searchdate">Monday August 1</div>
@@ -223,6 +224,7 @@
                     if (status == 'success') {
                         alert("success");
                         $('#ss').hide();
+                        $('#rideTable').show();
                     }
                 },
                 error: function(data, status) {

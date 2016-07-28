@@ -27,6 +27,7 @@ exports.searchRoute = function() {
             req.session.error = "请先登录"
             res.redirect("/login"); //未登录则重定向到 /login 路径
         } else {
+            console.log("get into searchRR");
             var routeModel = global.dbHandel.getModel('driverroute');
             var routedate = req.body.routedate;
             var routehour = req.body.routehour;
@@ -34,23 +35,34 @@ exports.searchRoute = function() {
             var routedep = req.body.routedeparture;
             var routearr = req.body.routedestination;
             var time = Number(routehour) * 3600 + Number(routemin) * 60;
-            routeModel.find({ dridate: routedate }, function(err, docs) {
-                //routeModel.find(dridate:routedate).toArray(function(err, doc) {
-                console.log("docs" + docs);
-                console.log("time" + time);
-                docs.forEach(function(err, doc) {
-                    doc.find({ mintime: { $lte: time } }, function(err, docs) {
-                        if (err) {
-                            res.send(500);
-                            console.log(err);
-                        } else if (!doc) {
-                            res.send(404);
-                        } else {
-                            console.log(doc);
-                            res.send(200);
-                        }
-                    })
-                })
+            var query = {};
+            // console.log("routedate" + routedate);
+            // console.log("time" + time);
+            if (routedate != null) {
+                query['dridate'] = routedate;
+            };
+            if (time != null && time != "0") {
+                query['mintime'] = { $lte: time };
+                query['maxtime'] = { $gte: time };
+            };
+            if(routedep != null){
+                 query['pcode'] = routedep;
+            }
+            if(routearr != null){
+                 query['pcode2'] = routearr;
+            }
+            console.log("query", query);
+
+            routeModel.find(query, function(err, docs) {
+                if (err) {
+                    res.send(500);
+                    console.log(err);
+                } else if (docs.length == 0) {
+                    res.send(404);
+                } else {
+                    console.log(docs);
+                    res.send(200);
+                }
 
             });
         }
