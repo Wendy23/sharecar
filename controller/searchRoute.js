@@ -38,17 +38,17 @@ exports.searchRoute = function() {
             var query = {};
             // console.log("routedate" + routedate);
             // console.log("time" + time);
-            if (routedate != null) {
+            if (routedate != null && routedate.length != 0) {
                 query['dridate'] = routedate;
             };
             if (time != null && time != "0") {
                 query['mintime'] = { $lte: time };
                 query['maxtime'] = { $gte: time };
             };
-            if(routedep != null){
+            if(routedep != null && routedep != 0){
                  query['pcode'] = routedep;
             }
-            if(routearr != null){
+            if(routearr != null && routearr != 0){
                  query['pcode2'] = routearr;
             }
             console.log("query", query);
@@ -61,6 +61,7 @@ exports.searchRoute = function() {
                     res.send(404);
                 } else {
                     console.log(docs);
+                    //res.render("searchRoute", { driverroute: docs });
                     res.send(200);
                 }
 
