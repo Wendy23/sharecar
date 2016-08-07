@@ -253,6 +253,7 @@
             var routehour = $('#DriverDeptTime').val();
             var routemin = $('#DriverDeptMin').val();
             var searchLink = "/searchRoute/searchRoute?";
+            var time = Number(routehour) * 3600 + Number(routemin) * 60;
 
             if (routedate != "") {
                 console.log(routedate);
@@ -267,12 +268,9 @@
                 searchLink = searchLink + "&pcode2=" + routedestination;
                 console.log(searchLink)
             }
-            if (routehour != "") {
-                searchLink = searchLink + "&drihour=" + routehour;
-                console.log(searchLink)
-            }
-            if (routemin != "") {
-                searchLink = searchLink + "&drimin=" + routemin;
+            if (time != "" && time != 0) {
+                searchLink = searchLink + "&mintime=<="+time;
+                searchLink = searchLink + "&maxtime=>="+time;
                 console.log(searchLink)
             }
             window.location.href = searchLink;

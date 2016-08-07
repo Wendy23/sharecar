@@ -28,10 +28,9 @@ exports.searchRoute = function() {
             var routedep = req.body.routedeparture;
             var routearr = req.body.routedestination;
             var time = Number(routehour) * 3600 + Number(routemin) * 60;
-            if (routedate == null && routedep == null && routearr == null && routehour == null && routemin == null) {
+            if (routedate == null && routedep == null && routearr == null && routehour == null && routemin == null ) {
                 Route.find(function(err, docs) {
                     console.log("doc:" + docs);
-                    res.render("searchRoute", { 'driverroute': docs });
                 });
             }
             var query = {};
@@ -49,7 +48,7 @@ exports.searchRoute = function() {
                 query['pcode2'] = routearr;
             }
             Route.find(query, function(err, docs) {
-                   return docs;
+                    res.render("searchRoute", { 'driverroute': docs });
             });
         }
     }
