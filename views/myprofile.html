@@ -80,7 +80,7 @@
                             <li><a href="#" title="">CONTACT</a></li>
                             <li><a href="#" title=""><strong>Welcome, <%- user.name %></strong></a></li>
                             <li class="menu-item-has-children">
-                                <a href="/profile" title="">My profile</a>
+                                <a href="/myProfile" title="">My profile</a>
                             </li>
                             <li>
                                 <a href="/logout" title="">
@@ -142,7 +142,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div>
-                                                        <button type="submit" class="btn flat-btn" name="Submit" id="submitButton" >
+                                                        <button type="submit" class="btn flat-btn" name="Submit" id="submitButton">
                                                             <span>Update</span><span>&nbsp;</span>
                                                         </button>
                                                     </div>
@@ -212,24 +212,24 @@
     <script type="text/javascript">
     (function() {
         $("#profile_form").submit(function(e) {
-        var data = {
+            var data = {
                 "nametitle": $('#nametitle').val(),
                 "gender": $('#gender').val(),
                 "email": $("#email").val(),
                 "mobile": $("#mobile").val()
             };
             $.ajax({
-               url: '/myProfile/createProfile',
+                url: '/myProfile/createProfile',
                 type: 'post',
                 data: data,
                 success: function(data, status) {
                     if (status == 'success') {
-                        alert("success");
+                        location.href = 'home';
                     }
                 },
                 error: function(data, status) {
                     if (status == 'error') {
-                        alert("error");
+                        location.href = 'myProfile';
                     }
                 }
             });

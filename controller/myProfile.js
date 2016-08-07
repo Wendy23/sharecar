@@ -1,11 +1,11 @@
-exports.myprofile = function() {
+exports.myProfile = function() {
     return function(req, res) {
         console.log("get into profile");
         if (!req.session.user) { //到达/home路径首先判断是否已经登录
             req.session.error = "请先登录"
             res.redirect("/login"); //未登录则重定向到 /login 路径
         } else {
-            res.render('myprofile', { title: 'ShareCar' });
+            res.render('myProfile', { title: 'ShareCar' });
 
         };
     }
@@ -34,6 +34,7 @@ exports.createProfile = function() {
                 console.log(err);
             } else {
                 res.send(200);
+                // res.render('myProfile', { title: 'ShareCar' });
             }
         });
     };
