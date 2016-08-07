@@ -16,6 +16,7 @@ var createRoute = require('./routes/createRoute');
 var createRoutine = require('./routes/createRoutine');
 var driverRoutes = require('./routes/driverRoutes');
 var searchRoute = require('./routes/searchRoute');
+var myProfile = require('./routes/myProfile');
 
 global.dbHandel = require('./database/dbHandel');
 //global.db = mongoose.connect("mongodb://localhost:27017/nodedb");
@@ -75,6 +76,7 @@ app.use('/createRoute',createRoute); // 即为为路径 /createRoute 设置路�
 app.use('/createRoutine',createRoutine); // 即为为路径 /createRoute 设置路由
 app.use('/driverRoutes',driverRoutes); // 即为为路径 /driverRoutes 设置路由
 app.use('/searchRoute',searchRoute); // 即为为路径 /searchRoute 设置路由
+app.use('/myProfile',myProfile); // 即为为路径 /profile 设置路由
 
 
 // catch 404 and forward to error handler

@@ -135,14 +135,13 @@
         </section>
         <section>
             <div class="container">
-                <table class="table table-hover" id="rideTable" width="70%">
+                <table class="table table-hover" id="rideTable" width="70%" hidden="hidden">
                     <% if(driverroute){%>
                         <% for (var i =0; i< driverroute.length;i++){%>
                             <tr>
                                 <td class="searchtime">
                                     <img src="http://www.kangaride.com/img/rideIcons/blueArrow.png">
-                                    <br>
-                                    <%=driverroute[i].dridate%>
+                                    <br> <%=driverroute[i].dridate%>
                                 </td>
                                 <td>
                                     <div class="searchdeparture">
@@ -171,15 +170,15 @@
                                     </div>
                                     <p class="nbReviews">(0)</p>
                                 </td>
-                                <!--   <td colspan="6" class="dateRow">
+                             <!--   <td colspan="6" class="dateRow">
                                     <div class="searchdate">
                                         <%=driverroute[i].dridate%>
                                     </div>
                                 </td>-->
                             </tr>
-                            <%}%>
-                                <%}%>
-                                    <!--   <tr>
+                        <%}%>
+                    <%}%>
+                 <!--   <tr>
                         <td class="searchtime">
                             <img src="http://www.kangaride.com/img/rideIcons/blueArrow.png">
                             <br> 5:00
@@ -247,35 +246,30 @@
     $(function() {
         $("#search").click(function() {
             console.log("get into search ajax");
-            var routedate = $('#DriverDeptDate').val();
-            var routedeparture = $('#PostalCode').val();
-            var routedestination = $('#PostalCode2').val();
-            var routehour = $('#DriverDeptTime').val();
-            var routemin = $('#DriverDeptMin').val();
-            var searchLink = "/searchRoute/searchRoute?";
-
-            if (routedate != "") {
-                console.log(routedate);
-                searchLink = searchLink + "&dridate=" + routedate;
-                console.log(searchLink)
-            }
-            if (routedeparture != "") {
-                searchLink = searchLink + "&pcode=" + routedeparture;
-                console.log(searchLink)
-            }
-            if (routedestination != "") {
-                searchLink = searchLink + "&pcode2=" + routedestination;
-                console.log(searchLink)
-            }
-            if (routehour != "") {
-                searchLink = searchLink + "&drihour=" + routehour;
-                console.log(searchLink)
-            }
-            if (routemin != "") {
-                searchLink = searchLink + "&drimin=" + routemin;
-                console.log(searchLink)
-            }
-            window.location.href = searchLink;
+            var data = {
+                "routedate": $('#DriverDeptDate').val(),
+                "routedeparture": $('#PostalCode').val(),
+                "routedestination": $('#PostalCode2').val(),
+                "routehour": $('#DriverDeptTime').val(),
+                "routemin": $('#DriverDeptMin').val()
+            };
+            $.ajax({
+                url: '/searchRoute/searchRoute',
+                type: 'post',
+                data: data,
+                success: function(data, status) {
+                    if (status == 'success') {
+                        alert("success");
+                        $('#ss').hide();
+                        $('#rideTable').show();
+                    }
+                },
+                error: function(data, status) {
+                    if (status == 'error') {
+                        $('#ss').show();
+                    }
+                }
+            });
         });
     });
     $(document).ready(function() {
