@@ -109,7 +109,7 @@
                             <h2>MY PROFILE</h2>
                         </div>
                         <div class="submit-content">
-                            <form id="profile_form" name="profile_form" class="form profile-form" method="post" action="/createProfile">
+                            <form id="profile_form" name="profile_form" class="form profile-form" method="post">
                                 <div class="control-group">
                                     <div class="group-title">Welcome back,
                                         <%- user.name %>
@@ -142,7 +142,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div>
-                                                        <button type="submit" class="btn flat-btn" name="Submit" id="submitButton">
+                                                        <button type="submit" class="btn flat-btn" name="submitButton" id="submitButton">
                                                             <span>Update</span><span>&nbsp;</span>
                                                         </button>
                                                     </div>
@@ -211,30 +211,33 @@
     <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     <script type="text/javascript">
     (function() {
-        $("#profile_form").submit(function(e) {
+        $('#submitButton').on('click', function(event) {
+            var ntle = $('#nametitle').val();
+            var gder = $('#gender').val();
+            var eml = $("#email").val();
+            var phone = $("#mobile").val();
             var data = {
-                "nametitle": $('#nametitle').val(),
-                "gender": $('#gender').val(),
-                "email": $("#email").val(),
-                "mobile": $("#mobile").val()
+                "nametitle": ntle,
+                "gender": gder,
+                "email": eml,
+                "mobile": phone,
             };
             $.ajax({
                 url: '/myProfile/createProfile',
                 type: 'post',
                 data: data,
                 success: function(data, status) {
+                    console.log("sssssssssss");
                     if (status == 'success') {
+                        alert("error");
                         location.href = 'home';
                     }
                 },
-                error: function(data, status) {
-                    if (status == 'error') {
-                        location.href = 'myProfile';
-                    }
+                error: function(data, err) {
+                    alert("error");
+                    location.href = 'myProfile';
                 }
             });
-
-            e.preventDefault();
         });
     });
     $(document).ready(function() {
