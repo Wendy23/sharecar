@@ -34,8 +34,7 @@ exports.createProfile = function() {
                             console.log("success1");
                             req.session.user = doc;
                             //res.json({ "status": "success" });
-
-                            res.send({"status":"success"});
+                            res.send({status:"success"});
                             // res.render('myProfile', { title: 'ShareCar' });
                         }
                     });
