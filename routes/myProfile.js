@@ -11,5 +11,5 @@ router.get("/", function(req, res) { // 到达 /logout 路径则登出， sessio
      res.render("myProfile", { title: 'ShareCar' }); //已登录则渲染home页面
      console.log("render myProfile");
 })
-.post('/',myprofile.createProfile());
+.post('/createProfile',myprofile.createProfile());
 module.exports = router;

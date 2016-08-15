@@ -109,7 +109,7 @@
                             <h2>MY PROFILE</h2>
                         </div>
                         <div class="submit-content">
-                            <form id="profile_form" name="profile_form" class="form profile-form" method="post">
+                            <form id="profile_form" name="profile_form" class="form profile-form" action="" onsubmit="return onSubmit123()">
                                 <div class="control-group">
                                     <div class="group-title">Welcome back,
                                         <%- user.name %>
@@ -142,7 +142,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div>
-                                                        <button type="submit" class="btn flat-btn" name="submitButton" id="submitButton">
+                                                        <button class="btn flat-btn" name="submitButton" id="submitButton">
                                                             <span>Update</span><span>&nbsp;</span>
                                                         </button>
                                                     </div>
@@ -210,8 +210,7 @@
     <script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
     <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     <script type="text/javascript">
-    (function() {
-        $('#submitButton').on('click', function(event) {
+        function onSubmit123(){
             var ntle = $('#nametitle').val();
             var gder = $('#gender').val();
             var eml = $("#email").val();
@@ -226,20 +225,17 @@
                 url: '/myProfile/createProfile',
                 type: 'post',
                 data: data,
-                success: function(data, status) {
-                    console.log("sssssssssss");
-                    if (status == 'success') {
-                        alert("error");
+                success: function(data) {
+                    if (data.status == 'success') {
                         location.href = 'home';
                     }
                 },
                 error: function(data, err) {
                     alert("error");
-                    location.href = 'myProfile';
+//                    location.href = 'myProfile';
                 }
             });
-        });
-    });
+        };
     $(document).ready(function() {
         "use strict";
         jQuery('.tp-banner').show().revolution({
