@@ -12,27 +12,36 @@ exports.createProfile = function() {
         console.log(req.body);
         Route.findOne({ name: name1 }, function(err, doc) {
             Route.remove({ name: name1, password: password }, function(err, doc) {
-                console.log("deleted");
-            });
-            Route.create({ // 创建一组route对象置入model
-                name: name1,
-                password: password,
-                nametitle: nametitle,
-                gender: gender,
-                email: email,
-                mobile: mobile
-            }, function(err, doc) {
                 if (err) {
                     res.send(500);
+                    console.log("error1");
                     console.log(err);
                 } else {
-                    req.session.user = doc;
-                    res.json({ "status": "success" });
-                    // res.render('myProfile', { title: 'ShareCar' });
+                    console.log("deleted");
+                    Route.create({ // 创建一组route对象置入model
+                        name: name1,
+                        password: password,
+                        nametitle: nametitle,
+                        gender: gender,
+                        email: email,
+                        mobile: mobile
+                    }, function(err, doc) {
+                        if (err) {
+                            res.send(500);
+                            console.log("error2");
+                            console.log(err);
+                        } else {
+                            console.log("success1");
+                            req.session.user = doc;
+                            //res.json({ "status": "success" });
+
+                            res.send({"status":"success"});
+                            // res.render('myProfile', { title: 'ShareCar' });
+                        }
+                    });
                 }
+
             });
-
-
         });
 
     };
