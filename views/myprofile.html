@@ -108,83 +108,89 @@
                         <div class="heading4">
                             <h2>MY PROFILE</h2>
                         </div>
-                        <div class="submit-content">
-                            <form id="profile_form" name="profile_form" class="form profile-form" action="" onsubmit="return onSubmit123()">
-                                <div class="control-group">
-                                    <div class="group-title">Welcome back,
-                                        <%- user.name %>
-                                    </div>
-                                    <div class="group-container row">
-                                        <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group s-profile-title">
-                                                        <label for="nametitle">Name&nbsp;*</label>
-                                                        <input id="nametitle" class="form-control" name="nametitle" required="" type="text">
+                        <%- message %>
+                            <div class="submit-content">
+                                <form id="profile_form" name="profile_form" class="form profile-form" action="" onsubmit="return onSubmit123()">
+                                    <input type="hidden" id="result" value='<%= user %>' />
+                                    <div class="control-group">
+                                        <div class="group-title">Welcome back,
+                                            <%- user.name %>
+                                        </div>
+                                        <div class="group-container row">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group s-profile-title">
+                                                            <label for="nametitle">Name&nbsp;*</label>
+                                                            <input id="nametitle" class="form-control" name="nametitle" required="" type="text">
+                                                        </div>
+                                                        <div class="form-group s-profile-email">
+                                                            <label for="email">Email&nbsp;*</label>
+                                                            <input id="email" class="form-control" name="email" required="" type="text">
+                                                        </div>
                                                     </div>
-                                                    <div class="form-group s-profile-email">
-                                                        <label for="email">Email&nbsp;*</label>
-                                                        <input id="email" class="form-control" name="email" required="" type="text">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group s-profile-phone">
+                                                            <label for="gender">Gender</label>
+                                                            <select id="gender" class="form-control" name="gender" type="text">
+                                                                <option value="Male" SELECTED>Male</option>
+                                                                <option value="Female">Famale</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group s-profile-mobile">
+                                                            <label for="mobile">Mobile</label>
+                                                            <input id="mobile" class="form-control" name="mobile" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div>
+                                                            <button class="btn flat-btn" name="submitButton" id="submitButton">
+                                                                <span>Update</span><span>&nbsp;</span>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group s-profile-phone">
-                                                        <label for="gender">Gender</label>
-                                                        <select id="gender" class="form-control" name="gender" type="text">
-                                                            <option value="Male" SELECTED>Male</option>
-                                                            <option value="Female">Famale</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group s-profile-mobile">
-                                                        <label for="mobile">Mobile</label>
-                                                        <input id="mobile" class="form-control" name="mobile" type="text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div>
-                                                        <button class="btn flat-btn" name="submitButton" id="submitButton">
-                                                            <span>Update</span><span>&nbsp;</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                            <form id="password_form" name="password_form" class="form profile-form">
-                                <div class="control-group">
-                                    <div class="group-title">
-                                        Change Password</div>
-                                    <div class="group-container row">
-                                        <div class="form-message">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group s-profile-old_pass">
-                                                <label for="old_pass">Old Password</label>
-                                                <input id="old_pass" class="form-control" value="" name="old_pass" type="password">
-                                            </div>
-                                            <div class="form-group s-profile-new_pass">
-                                                <label for="new_pass">New Password</label>
-                                                <input id="new_pass" class="form-control" value="" name="new_pass" type="password">
-                                            </div>
-                                            <div class="form-group s-profile-new_pass_confirm">
-                                                <label for="new_pass_confirm">Confirm New Password</label>
-                                                <input id="new_pass_confirm" class="form-control" value="" name="new_pass_confirm" type="password">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="submit">
-                                                <input class="btn flat-btn" id="password_submit" value="Change Password" type="submit">
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
-                        </div>
+                                </form>
+                                <form id="password_form" name="password_form" class="form profile-form">
+                                    <div class="control-group">
+                                        <div class="group-title">
+                                            Change Password</div>
+                                        <div class="group-container row">
+                                            <div class="form-message">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group s-profile-old_pass">
+                                                    <label for="old_pass">Old Password</label>
+                                                    <input id="old_pass" class="form-control" value="" name="old_pass" type="password">
+                                                </div>
+                                                <div class="form-group s-profile-new_pass">
+                                                    <label for="new_pass">New Password</label>
+                                                    <input id="new_pass" class="form-control" value="" name="new_pass" type="password">
+                                                </div>
+                                                <div class="form-group s-profile-new_pass_confirm">
+                                                    <label for="new_pass_confirm">Confirm New Password</label>
+                                                    <input id="new_pass_confirm" class="form-control" value="" name="new_pass_confirm" type="password">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="submit">
+                                                    <input class="btn flat-btn" name="submitPassword" id="submitPassword" value="Change Password" type="submit">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                     </div>
                 </div>
             </div>
+        </section>
+        <section>
+            <!-- <a href="#" data-toggle="popover" title="Example popover">请悬停在我的上面</a> -->
+            <>
         </section>
         <!--End of form_row div-->
     </div>
@@ -210,32 +216,71 @@
     <script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
     <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     <script type="text/javascript">
-        function onSubmit123(){
-            var ntle = $('#nametitle').val();
-            var gder = $('#gender').val();
-            var eml = $("#email").val();
-            var phone = $("#mobile").val();
-            var data = {
-                "nametitle": ntle,
-                "gender": gder,
-                "email": eml,
-                "mobile": phone,
-            };
-            $.ajax({
-                url: '/myProfile/createProfile',
-                type: 'post',
-                data: data,
-                success: function(data) {
-                    if (data.status == 'success') {
-                        location.href = 'home';
-                    }
-                },
-                error: function(data, err) {
-                    alert("error");
-//                    location.href = 'myProfile';
-                }
-            });
+    function onSubmit123() {
+        var ntle = $('#nametitle').val();
+        var gder = $('#gender').val();
+        var eml = $("#email").val();
+        var phone = $("#mobile").val();
+        var data = {
+            "nametitle": ntle,
+            "gender": gder,
+            "email": eml,
+            "mobile": phone,
         };
+        $.ajax({
+            url: '/myProfile/createProfile',
+            type: 'post',
+            data: data,
+            success: function(data) {
+                if (data.status == 'success') {
+                    // window.location.reload();
+                    location.href = 'myProfile';
+                }
+            },
+            error: function(data, err) {
+                alert("error");
+                // location.href = 'myProfile';
+            }
+        });
+    };
+
+    $(function() {
+        $("#submitPassword").click(function() {
+            console.log("get into change password");
+            var oldpassword = $('#old_pass').val();
+            var newpassword = $('#new_pass').val();
+            var confirmpass = $('#new_pass_confirm').val();
+            console.log("newpassword" + newpassword);
+            console.log("confirmpass" + confirmpass);
+            if (newpassword !== confirmpass) {
+                alert("The passwords you entered do not match")
+            } else if (newpassword === confirmpass) {
+                var data = {
+                    "oldpassword": oldpassword,
+                    "newpassword": newpassword
+                };
+                $.ajax({
+                    url: '/myProfile/updatePassword',
+                    type: 'post',
+                    data: data,
+                    success: function(data) {
+                        if (data.status == 'success') {
+                            console.log("chenggg");
+                            location.href = 'home';
+                        }
+                    },
+                    error: function(data, err) {
+                        if (data.status == 'error') {
+                            console.log("shibbba");
+                            location.href = 'myProfile';
+                        }
+                    }
+                });
+            };
+        });
+    })
+
+
     $(document).ready(function() {
         "use strict";
         jQuery('.tp-banner').show().revolution({
@@ -294,6 +339,13 @@
             videoJsPath: "rs-plugin/videojs/",
             fullScreenOffsetContainer: ""
         });
+        var res = $("#result").val();
+        var result = eval("(" + res + ")");
+        //console.log("res" + res);
+        $("#nametitle").val(result[0].nametitle);
+        $("#gender").val(result[0].gender);
+        $("#email").val(result[0].email);
+        $("#mobile").val(result[0].mobile);
     });
     </script>
 </body>

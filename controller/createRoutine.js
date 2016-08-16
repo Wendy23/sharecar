@@ -61,10 +61,10 @@ exports.createRoutine = function() {
             var Mondaymin = req.body.Mondaymin?req.body.Mondaymin:0;
             var Mondaytimetlr = req.body.Mondaytimetlr?req.body.Mondaytimetlr:0;
 
-            var Sunweekday = req.body.Sundayhour?"sund":"";//从sun改成了sund
-            var Sundayhour = req.body.Sundayhour?req.body.Sundayhour:0;
-            var Sundaymin = req.body.Sundaymin?req.body.Sundaymin:0;
-            var Sundaytimetlr = req.body.Sundaytimetlr?req.body.Sundaytimetlr:0;
+            var Sunweekday = req.body.sunddayhour?"sund":"";//从sun改成了sund
+            var Sundayhour = req.body.sunddayhour?req.body.sunddayhour:0;
+            var Sundaymin = req.body.sunddaymin?req.body.sunddaymin:0;
+            var Sundaytimetlr = req.body.sunddaytimetlr?req.body.sunddaytimetlr:0;
 
             console.log(req.body);
             Routine.create({ // 创建一组route对象置入model

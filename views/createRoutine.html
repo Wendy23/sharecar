@@ -115,17 +115,17 @@
                     <label for="flexibleTimeRadio"><span>My schedule is flexible:</span></label>
                     <div class="flexibleTimeSelectorContainer" id="flexibleTimeSelectorContainer" style="display: none;">
                         <div class="daytimeselector-container">
-                            <input type="checkbox" class="daytimecheck" id="day-Sun" />
-                            <span class="daytime-label disabled"><label for="day-Sun">Sunday</label></span>
+                            <input type="checkbox" class="daytimecheck" id="day-sund" />
+                            <span class="daytime-label disabled"><label for="day-sund">Sunday</label></span>
                             <span class="daytime-label">I leave at:</span>
-                            <input class="daytime-label disabled" type="number" min="0" max="23" size="15" id="DriverDeptHourSun" name="DriverDeptHour" disabled="disabled"> &#58;
-                            <select id="DriverDeptMinSun" name="DriverDeptMin" disabled="disabled">
+                            <input class="daytime-label disabled" type="number" min="0" max="23" size="15" id="DriverDeptHoursund" name="DriverDeptHour" disabled="disabled"> &#58;
+                            <select id="DriverDeptMinsund" name="DriverDeptMin" disabled="disabled">
                                 <option value="15">15</option>
                                 <option value="30">30</option>
                                 <option value="45">45</option>
                             </select>
                             <span type="number" class="plus-minus-label">&plusmn;</span>
-                            <select id="daytimetoleranceSun" name="daytimetoleranceSun" disabled="disabled">
+                            <select id="daytimetolerancesund" name="daytimetolerancesund" disabled="disabled">
                                 <option value="15">15</option>
                                 <option value="30">30</option>
                                 <option value="45">45</option>
@@ -133,7 +133,7 @@
                             <span> mins</span>
                         </div>
                         <div class="daytimeselector-container">
-                            <input type="checkbox" class="daytimecheck" id="day-Mon" checked="checked" />
+                            <input type="checkbox" class="daytimecheck" id="day-Mon" />
                             <span class="daytime-label disabled"><label for="day-Mon">Monday</label></span>
                             <span class="daytime-label">I leave at:</span>
                             <input class="daytime-label disabled" type="number" min="0" max="23" size="15" id="DriverDeptHourMon" name="DriverDeptHour"> &#58;
@@ -278,8 +278,8 @@
                 var currdaymin = currday + "daymin";
                 var currdaytimetlr = currday + "daytimetlr";
                 data[currdayhour] = $("#DriverDeptHour" + currday).val(),
-                    data[currdaymin] = $("#DriverDeptMin" + currday).val(),
-                    data[currdaytimetlr] = $("#daytimetolerance" + currday).val()
+                data[currdaymin] = $("#DriverDeptMin" + currday).val(),
+                data[currdaytimetlr] = $("#daytimetolerance" + currday).val()
             });
             $.ajax({
                 url: '/createRoutine',
@@ -363,35 +363,39 @@
         });
         var res = $("#result").val();
         var result = eval("(" + res + ")");
+        console.log("res" + res);
+        console.log("result" + result);
         if (result != null && result != undefined && result.length > 0) {
             $("#radioFlag").val(result[0].flag);
             //根据flag让radio  checked
             //全部赋值
+            //------------------------------flag=1d的赋值加一下
+
+            //flag=2的赋值
+            //$("#flexibleTimeRadio").attr('checked', true);没填的不能打钩，只有填了的才能打钩，现在写的是全打钩的
             if (result[0].flag == 2) {
-                $("#flexibleTimeRadio").attr('checked', true);
                 $('#flexibleTimeSelectorContainer').show();
-                var days = ["mond","sund"]//想用数组然后比较if (result[0].days.weekday == days)的方法来写，失败了。。 
-                if (result[0].sund.weekday == "sun") {
-                    $("#day-Sun").attr('checked', 'checked');
+                var days = ["mon","sund"];
+                for(var i=0;i<days.length;i++){
+                    var day = days[i];
+                    if (result[0][day].weekday != "") {
+                        $("#day-"+day).attr('checked', 'checked');
 
-                    $("#day-Sun").siblings('select').removeAttr('disabled', 'disabled');
-                    $("#day-Sun").siblings('span').removeClass('disabled');
-                    $("#day-Sun").siblings('input').removeAttr('disabled');
+                        $("#day-"+day).siblings('select').removeAttr('disabled', 'disabled');
+                        $("#day-"+day).siblings('span').removeClass('disabled');
+                        $("#day-"+day).siblings('input').removeAttr('disabled');
 
-                    $("#DriverDeptHourSun").val(result[0].sund.dayhour);
-                    $("#DriverDeptMinSun").val(result[0].sund.daymin);
-                    $("#daytimetoleranceSun").val(result[0].sund.daytimetlr);
-
+                        $("#DriverDeptHour"+day).val(result[0][day].dayhour);
+                        $("#DriverDeptMin"+day).val(result[0][day].daymin);
+                        $("#daytimetolerance"+day).val(result[0][day].daytimetlr);
+                    }
+                    if (result[0][day].weekday == "") {
+                        $("#day-"+day).attr('checked', false);
+                        $("#day-"+day).siblings('select').attr('disabled', 'disabled');
+                        $("#day-"+day).siblings('span').addClass('disabled');
+                        $("#day-"+day).siblings('input').prop('disabled', true);
+                    }
                 }
-
-                if (result[0].sund.weekday == "") {
-                    $("#day-Sun").attr('checked', false);
-                    $("#day-Sun").siblings('select').attr('disabled', 'disabled');
-                    $("#day-Sun").siblings('span').addClass('disabled');
-                    $("#day-Sun").siblings('input').prop('disabled', true);
-
-                } 
-
             }
         }
     });
