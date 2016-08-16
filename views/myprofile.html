@@ -251,8 +251,10 @@
             var confirmpass = $('#new_pass_confirm').val();
             console.log("newpassword" + newpassword);
             console.log("confirmpass" + confirmpass);
-            if (newpassword !== confirmpass) {
-                alert("The passwords you entered do not match")
+            if(oldpassword.length == 0){
+                alert("The original password cannot be empty");
+            } else if (newpassword !== confirmpass) {
+                alert("The passwords you entered do not match");
             } else if (newpassword === confirmpass) {
                 var data = {
                     "oldpassword": oldpassword,
@@ -263,13 +265,13 @@
                     type: 'post',
                     data: data,
                     success: function(data) {
-                        if (data.status == 'success') {
-                            console.log("chenggg");
+                        if (status == 'success') {
+                            alert("success");
                             location.href = 'home';
                         }
                     },
                     error: function(data, err) {
-                        if (data.status == 'error') {
+                        if (status == 'error') {
                             console.log("shibbba");
                             location.href = 'myProfile';
                         }
