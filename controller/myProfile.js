@@ -66,24 +66,19 @@ exports.updatePassword = function() {
             var newpassword = req.body.newpassword;
             console.log("data: " + name.password);
             console.log("old: " + oldpassword);
-            var query = {};
-            if (name.password == oldpassword) {
-                query['password'] = oldpassword;
-                Profile.update({ password: oldpassword }, { $set: { password: newpassword } }, function(err, doc) {
-                    if (err) {
-                        res.send(500);
-                        console.log(err);
-                    } else {
-                        //req.session.user = doc;
-                        res.send(200);
-                    }
-                })
-            } else {
-                console.log("meiyou");
-                req.session.error = 'meiyou';
-                res.send(404); // 
+            Profile.update({ name: name1 }, { $set: { password: newpassword } }, function(err, doc) {
+                if (err) {
+                    res.send(500);
+                    console.log(err);
+                } else if (!doc) {
+                    req.session.error = 'meiyou';
+                    res.send(404)
+                } else {
+                    res.send(200);
 
-            }
+                }
+
+            })
 
         }
     };

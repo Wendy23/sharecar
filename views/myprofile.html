@@ -78,7 +78,10 @@
                                 <a href="#" title="">SEARCH</a>
                             </li>
                             <li><a href="#" title="">CONTACT</a></li>
-                            <li><a href="#" title=""><strong>Welcome, <%- user.name %></strong></a></li>
+                            <li>
+                                <a href="#" title=""><strong>Welcome,</strong>
+                                    <h8 id="name" name="name" required="" type="text"></h8></a>
+                            </li>
                             <li class="menu-item-has-children">
                                 <a href="/myProfile" title="">My profile</a>
                             </li>
@@ -113,9 +116,8 @@
                                 <form id="profile_form" name="profile_form" class="form profile-form" action="" onsubmit="return onSubmit123()">
                                     <input type="hidden" id="result" value='<%= user %>' />
                                     <div class="control-group">
-                                        <div class="group-title">Welcome back,
-                                            <%- user.name %>
-                                        </div>
+                                        <div class="group-title">
+                                            Change Profile</div>
                                         <div class="group-container row">
                                             <div class="col-md-12">
                                                 <div class="row">
@@ -162,13 +164,9 @@
                                             <div class="form-message">
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group s-profile-old_pass">
-                                                    <label for="old_pass">Old Password</label>
-                                                    <input id="old_pass" class="form-control" value="" name="old_pass" type="password">
-                                                </div>
                                                 <div class="form-group s-profile-new_pass">
                                                     <label for="new_pass">New Password</label>
-                                                    <input id="new_pass" class="form-control" value="" name="new_pass" type="password">
+                                                    <input id="new_pass" class="form-control" value="" name="new_pass" type="text">
                                                 </div>
                                                 <div class="form-group s-profile-new_pass_confirm">
                                                     <label for="new_pass_confirm">Confirm New Password</label>
@@ -246,18 +244,14 @@
     $(function() {
         $("#submitPassword").click(function() {
             console.log("get into change password");
-            var oldpassword = $('#old_pass').val();
             var newpassword = $('#new_pass').val();
             var confirmpass = $('#new_pass_confirm').val();
             console.log("newpassword" + newpassword);
             console.log("confirmpass" + confirmpass);
-            if(oldpassword.length == 0){
-                alert("The original password cannot be empty");
-            } else if (newpassword !== confirmpass) {
+            if (newpassword !== confirmpass) {
                 alert("The passwords you entered do not match");
             } else if (newpassword === confirmpass) {
                 var data = {
-                    "oldpassword": oldpassword,
                     "newpassword": newpassword
                 };
                 $.ajax({
@@ -342,7 +336,8 @@
         });
         var res = $("#result").val();
         var result = eval("(" + res + ")");
-        //console.log("res" + res);
+        console.log("res" + res);
+        $("#name").text(result[0].name);
         $("#nametitle").val(result[0].nametitle);
         $("#gender").val(result[0].gender);
         $("#email").val(result[0].email);
