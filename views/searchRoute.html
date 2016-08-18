@@ -92,7 +92,7 @@
             <div style="margin:0 auto;position:relative;width:400px;z-index:300;">
                 <div style="padding:0;margin:35px 0 10px;">
                     <label for="DriverDeptDate" style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Search Date: </label>
-                    <input id="DriverDeptDate" type="text" style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;" value="" class="datepicker">
+                    <input id="DriverDeptDate" type="text" style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;" value="<%=routedate%>" class="datepicker">
                     <script>
                     $(function() {
                         $('#DriverDeptDate').datepicker({});
@@ -220,6 +220,51 @@
                 Body 1
             </div>
         </section>
+    </div>
+    <div class="container">
+        <nav>
+            <ul class="pagination">
+                <%
+                if(pageNum!=1){
+                %>
+                <li>
+                    <a href="/searchRoute?pageNum=<%=(pageNum-1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <%
+                }
+                %>
+                <%
+                for(var i=0;i< totalPage;i++){
+                %>
+                <%
+                if((i+1)==pageNum){
+                %>
+                <li class="active"><a href="/searchRoute?pageNum=<%=(i+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>"><%=(i+1)%></a></li>
+                <%
+                }else{
+                %>
+                <li><a href="/searchRoute?pageNum=<%=(i+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>"><%=(i+1)%></a></li>
+                <%
+                }
+                %>
+                <%
+                }
+                %>
+                <%
+                if(pageNum!=totalPage){
+                %>
+                <li>
+                    <a href="/searchRoute?pageNum=<%=(pageNum+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <%
+                }
+                %>
+            </ul>
+        </nav>
         <!--End of form_row div-->
     </div>
     <!-- Script -->
@@ -244,35 +289,35 @@
     <script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
     <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     <script type="text/javascript">
-//        $(function() {
-//            $("#search").click(function() {
-//                console.log("get into search ajax");
-//                var data = {
-//                    "routedate": $('#DriverDeptDate').val(),
-//                    "routedeparture": $('#PostalCode').val(),
-//                    "routedestination": $('#PostalCode2').val(),
-//                    "routehour": $('#DriverDeptTime').val(),
-//                    "routemin": $('#DriverDeptMin').val()
-//                };
-//                $.ajax({
-//                    url: '/searchRoute/searchRoute',
-//                    type: 'post',
-//                    data: data,
-//                    success: function(data, status) {
-//                        if (status == 'success') {
-//                            alert(data);
-//                            $('#ss').hide();
-//                            $('#rideTable').show();
-//                        }
-//                    },
-//                    error: function(data, status) {
-//                        if (status == 'error') {
-//                            $('#ss').show();
-//                        }
-//                    }
-//                });
-//            });
-//        });
+    //        $(function() {
+    //            $("#search").click(function() {
+    //                console.log("get into search ajax");
+    //                var data = {
+    //                    "routedate": $('#DriverDeptDate').val(),
+    //                    "routedeparture": $('#PostalCode').val(),
+    //                    "routedestination": $('#PostalCode2').val(),
+    //                    "routehour": $('#DriverDeptTime').val(),
+    //                    "routemin": $('#DriverDeptMin').val()
+    //                };
+    //                $.ajax({
+    //                    url: '/searchRoute/searchRoute',
+    //                    type: 'post',
+    //                    data: data,
+    //                    success: function(data, status) {
+    //                        if (status == 'success') {
+    //                            alert(data);
+    //                            $('#ss').hide();
+    //                            $('#rideTable').show();
+    //                        }
+    //                    },
+    //                    error: function(data, status) {
+    //                        if (status == 'error') {
+    //                            $('#ss').show();
+    //                        }
+    //                    }
+    //                });
+    //            });
+    //        });
     $(function() {
         $("#search").click(function() {
             console.log("get into search ajax");
@@ -298,8 +343,8 @@
                 console.log(searchLink)
             }
             if (time != "" && time != 0) {
-                searchLink = searchLink + "&mintime=<="+time;
-                searchLink = searchLink + "&maxtime=>="+time;
+                searchLink = searchLink + "&mintime=<=" + time;
+                searchLink = searchLink + "&maxtime=>=" + time;
                 console.log(searchLink)
             }
             window.location.href = searchLink;

@@ -13,6 +13,7 @@ var Routes = require('../controller/searchRoute');
 // });
 
 router.get('/',Routes.driverroutes());
+//router.get('/:pageNum/:pageSize',Routes.searchPage());
 //router.all('/searchRoute',Routes.searchRouteaa());
 
 // router.get('/queryRoutine',driverRoutes.queryRoutine());
