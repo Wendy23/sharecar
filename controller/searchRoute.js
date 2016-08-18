@@ -1,5 +1,5 @@
-exports.driverroutes = function() {
-    return function(req, res) {
+exports.driverroutes = function () {
+    return function (req, res) {
         console.log("get into allRouters");
         if (!req.session.user) { //到达/home路径首先判断是否已经登录
             req.session.error = "请先登录"
@@ -10,8 +10,8 @@ exports.driverroutes = function() {
             //    console.log("doc:" + docs);
             //    res.render("searchRoute", { 'driverroute': docs });
             //});
-            var pageNum = parseInt(req.query.pageNum)?parseInt(req.query.pageNum):1;
-            var pageSize =parseInt(req.query.pageSize)?parseInt(req.query.pageSize):2;
+            var pageNum = parseInt(req.query.pageNum) ? parseInt(req.query.pageNum) : 1;
+            var pageSize = parseInt(req.query.pageSize) ? parseInt(req.query.pageSize) : 2;
             var Route = global.dbHandel.getModel('driverroute');
             console.log(req.query);
             var condition = req.query;
@@ -41,28 +41,29 @@ exports.driverroutes = function() {
                 query['pcode2'] = routearr;
             }
             console.log(query);
-            Route.count(query,function(err,count){
-                Route.find(query).skip((pageNum-1)*pageSize).limit(pageSize).sort({dridate:-1}).exec(function(err,docs){
-                        res.render("searchRoute", {
-                            'driverroute': docs,
-                            'pageNum':pageNum,
-                            'routedate':routedate,
-                            'routehour': routehour,
-                            'routemin': routemin,
-                            'routedep': routedep,
-                            'routearr': routearr,
-                            'time':time,
-                            'pageSize':pageSize,
-                            'totalPage':Math.ceil(count/pageSize)})
+            Route.count(query, function (err, count) {
+                Route.find(query).skip((pageNum - 1) * pageSize).limit(pageSize).sort({dridate: -1}).exec(function (err, docs) {
+                    res.render("searchRoute", {
+                        'driverroute': docs,
+                        'pageNum': pageNum,
+                        'routedate': routedate,
+                        'routehour': routehour,
+                        'routemin': routemin,
+                        'routedep': routedep,
+                        'routearr': routearr,
+                        'time': time,
+                        'pageSize': pageSize,
+                        'totalPage': Math.ceil(count / pageSize)
+                    })
 
-                    });
+                });
             });
         }
     }
 }
 
-exports.searchPage = function() {
-    return function(req, res) {
+exports.searchPage = function () {
+    return function (req, res) {
         console.log("get into searchPage");
         if (!req.session.user) { //到达/home路径首先判断是否已经登录
             req.session.error = "请先登录"
@@ -73,8 +74,8 @@ exports.searchPage = function() {
             //    console.log("doc:" + docs);
             //    res.render("searchRoute", { 'driverroute': docs });
             //});
-            var pageNum = parseInt(req.params.pageNum)?parseInt(req.params.pageNum):1;
-            var pageSize =parseInt(req.params.pageSize)?parseInt(req.params.pageSize):2;
+            var pageNum = parseInt(req.params.pageNum) ? parseInt(req.params.pageNum) : 1;
+            var pageSize = parseInt(req.params.pageSize) ? parseInt(req.params.pageSize) : 2;
             var Route = global.dbHandel.getModel('driverroute');
             console.log(req.query);
             var condition = req.query;
@@ -104,16 +105,17 @@ exports.searchPage = function() {
                 query['pcode2'] = routearr;
             }
             console.log(query);
-            Route.count(query,function(err,count){
-                Route.find(query).skip((pageNum-1)*pageSize).limit(pageSize)
+            Route.count(query, function (err, count) {
+                Route.find(query).skip((pageNum - 1) * pageSize).limit(pageSize)
                     //.sort({createAt:-1})
-                    .exec(function(err,docs){
-                    res.render("searchRoute", {
-                        'driverroute': docs,
-                        'pageNum':pageNum,
-                        'pageSize':pageSize,
-                        'totalPage':Math.ceil(count/pageSize)});
-                });
+                    .exec(function (err, docs) {
+                        res.render("searchRoute", {
+                            'driverroute': docs,
+                            'pageNum': pageNum,
+                            'pageSize': pageSize,
+                            'totalPage': Math.ceil(count / pageSize)
+                        });
+                    });
             });
         }
     }
@@ -158,7 +160,6 @@ exports.searchPage = function() {
 //        }
 //    }
 //}
-
 
 
 //exports.searchRouteaa = function() {

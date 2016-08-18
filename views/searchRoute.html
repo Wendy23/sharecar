@@ -4,7 +4,7 @@
 <head>
     <!-- Basic Page Needs
     ================================================== -->
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         ShareCar
@@ -13,282 +13,345 @@
     ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/png" href="images/favicon.jpg" />
+    <link rel="shortcut icon" type="image/png" href="images/favicon.jpg"/>
     <!-- Styles -->
-    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" type="text/css"/>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css" type="text/css"/>
     <!-- Style -->
     <!--  <link rel="stylesheet" href="css/responsive.css" type="text/css" /> -->
     <!-- Responsive -->
-    <link rel="stylesheet" href="/stylesheets/colors.css" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/colors.css" type="text/css"/>
     <!-- color -->
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
     <!--Slides-->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!--Date-->
-    <link rel='stylesheet' href='/stylesheets/datepicker.css' />
+    <link rel='stylesheet' href='/stylesheets/datepicker.css'/>
     <!--Time-->
-    <link rel='stylesheet' href='/stylesheets/bootstrap-timepicker.min.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap-timepicker.min.css'/>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <!-- /.preloader -->
-    <div id="preloader"></div>
-    <div class="theme-layout">
-        <!-- Header -->
-        <header class="simple-header for-sticky white">
-            <!-- Top bar -->
-            <div class="top-bar">
-                <div class="container">
-                    <ul class="contact-item">
-                        <li><i class="fa fa-envelope-o"></i>yourcompnay@email.com</li>
-                        <li><i class="fa fa-mobile"></i>+1 333 44 555 / +1 333 44 500</li>
+<!-- /.preloader -->
+<div id="preloader"></div>
+<div class="theme-layout">
+    <!-- Header -->
+    <header class="simple-header for-sticky white">
+        <!-- Top bar -->
+        <div class="top-bar">
+            <div class="container">
+                <ul class="contact-item">
+                    <li><i class="fa fa-envelope-o"></i>yourcompnay@email.com</li>
+                    <li><i class="fa fa-mobile"></i>+1 333 44 555 / +1 333 44 500</li>
+                </ul>
+                <div class="choose-language">
+                    <a href="#" title="">EN</a>
+                    <a href="#" title="">CH</a>
+                </div>
+            </div>
+        </div>
+        <div class="menu">
+            <div class="container">
+                <!-- LOGO -->
+                <div class="logo">
+                    <span>ShareCar</span>
+                    <strong>CITY CARPOOL</strong>
+                </div>
+                <span class="menu-toggle"><i class="fa fa-bars"></i></span>
+                <nav>
+                    <h1 class="nocontent outline">--- Main Navigation ---</h1>
+                    <ul>
+                        <li class="menu-item-has-children">
+                            <a href="#" title="">HOME</a>
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href="#" title="">ABOUT</a>
+                            <ul>
+                                <li><a href="#" title="">Overview</a></li>
+                                <li><a href="#" title="">Q&A</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href="#" title="">SEARCH</a>
+                        </li>
+                        <li><a href="#" title="">CONTACT</a></li>
+                        <li><a href="#" title=""><strong>Welcome, <%- user.name %></strong></a></li>
+                        <li>
+                            <a href="/logout" title="">
+                                <span><i class="fa fa-sign-out "></i> logout</span></a>
+                        </li>
                     </ul>
-                    <div class="choose-language">
-                        <a href="#" title="">EN</a>
-                        <a href="#" title="">CH</a>
-                    </div>
-                </div>
+                </nav>
             </div>
-            <div class="menu">
-                <div class="container">
-                    <!-- LOGO -->
-                    <div class="logo">
-                        <span>ShareCar</span>
-                        <strong>CITY CARPOOL</strong>
-                    </div>
-                    <span class="menu-toggle"><i class="fa fa-bars"></i></span>
-                    <nav>
-                        <h1 class="nocontent outline">--- Main Navigation ---</h1>
-                        <ul>
-                            <li class="menu-item-has-children">
-                                <a href="#" title="">HOME</a>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#" title="">ABOUT</a>
-                                <ul>
-                                    <li><a href="#" title="">Overview</a></li>
-                                    <li><a href="#" title="">Q&A</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#" title="">SEARCH</a>
-                            </li>
-                            <li><a href="#" title="">CONTACT</a></li>
-                            <li><a href="#" title=""><strong>Welcome, <%- user.name %></strong></a></li>
-                            <li>
-                                <a href="/logout" title="">
-                                    <span><i class="fa fa-sign-out "></i> logout</span></a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <form style="background:#fbf9f9;border:1px solid #c3c2c2;margin:0 0 20px;padding:15px 20px;" name="RouteAdvancedSearch">
-            <div style="margin:0 auto;position:relative;width:400px;z-index:300;">
-                <div style="padding:0;margin:35px 0 10px;">
-                    <label for="DriverDeptDate" style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Search Date: </label>
-                    <input id="DriverDeptDate" type="text" style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;" value="<%=routedate%>" class="datepicker">
-                    <script>
-                    $(function() {
+        </div>
+    </header>
+    <form style="background:#fbf9f9;border:1px solid #c3c2c2;margin:0 0 20px;padding:15px 20px;"
+          name="RouteAdvancedSearch">
+        <div style="margin:0 auto;position:relative;width:400px;z-index:300;">
+            <div style="padding:0;margin:35px 0 10px;">
+                <label for="DriverDeptDate"
+                       style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Search
+                    Date: </label>
+                <input id="DriverDeptDate" type="text"
+                       style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
+                       value="<%=routedate%>" class="datepicker">
+                <script>
+                    $(function () {
                         $('#DriverDeptDate').datepicker({});
                     });
-                    </script>
-                </div>
-                <div style="padding:0;margin:35px 0 10px;">
-                    <div style="float:left;margin:0 10px 0 0;position:relative;z-index:300;">
-                        <label for="PostalCode" style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">From: </label>
-                        <input id="PostalCode" type="text" style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;" value="">
-                        <div class="hint"><em style="color:#666666;font-size:11px;font-style:italic;">zip (ex:A0AB0B)</em></div>
-                    </div>
-                </div>
-                <div style="padding:0;margin:35px 0 10px;">
-                    <label for="PostalCode2" style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">To: </label>
-                    <input id="PostalCode2" type="text" style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;" value="">
-                    <div class="hint"><em style="color:#666666;font-size:11px;font-style:italic;">zip (ex:A0AB0B)</em></div>
-                </div>
-                <div style="padding:0;margin:35px 0 10px;">
-                    <div style="float:left;margin:0 10px 0 0;position:relative;z-index:300;">
-                        <label for="DriverDeptTime" style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Hour: </label>
-                        <input id="DriverDeptTime" type="number" style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;" value="" min="0" max="23"> &#58;
-                    </div>
-                </div>
-                <div style="padding:0;margin:35px 0 10px;">
-                    <label for="DriverDeptMin" style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Min: </label>
-                    <select id="DriverDeptMin" type="number" style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;" value="">
-                        <option selected disabled>Choose here</option>
-                        <option value="00">00</option>
-                        <option value="15">15</option>
-                        <option value="30">30</option>
-                        <option value="45">45</option>
-                    </select>
-                </div>
-                <button type="button" style="width: 100px;" class="btn btn-primary btn-block" id="search">SEARCH</button>
+                </script>
             </div>
-        </form>
-        <section>
-            <h1>Rider side</h1>
-        </section>
-        <section>
-            <div class="container">
-                <table class="table table-hover" id="rideTable" width="70%">
-                    <% if(driverroute){%>
-                        <% for (var i =0; i< driverroute.length;i++){%>
-                            <tr>
-                                <td class="searchtime">
-                                    <img src="http://www.kangaride.com/img/rideIcons/blueArrow.png">
-                                    <br>
-                                    <%=driverroute[i].dridate%>
-                                </td>
-                                <td>
-                                    <div class="searchdeparture">
-                                        <strong><%=driverroute[i].pcode%></strong>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="searchdestination"><span class="itineraryArrowInt3"></span>
-                                        <strong><%=driverroute[i].drimin%></strong>
-                                    </div>
-                                </td>
-                                <td class="seatsAvailability">
-                                    <div class="itineraryPrice">
-                                        <p><a class="titleBubble" href="#" title="Prix du conducteur">33 $</a>
-                                            <br>
-                                            <img src="http://www.kangaride.com/img/rideIcons/whiteMan.png" alt="White Man" class="blueMan">
-                                            <img src="http://www.kangaride.com/img/rideIcons/whiteMan.png" alt="White Man" class="blueMan"></p>
-                                    </div>
-                                </td>
-                                <td class="stars">
-                                    <div class="rideIcons">
-                                        <p>
-                                            <a class="titleBubble" title="">
-                                                <span class='nbReviews'>(No evaluation)</span> </a>
-                                        </p>
-                                    </div>
-                                    <p class="nbReviews">(0)</p>
-                                </td>
-                                <!--   <td colspan="6" class="dateRow">
-                                    <div class="searchdate">
-                                        <%=driverroute[i].dridate%>
-                                    </div>
-                                </td>-->
-                            </tr>
-                            <%}%>
+            <div style="padding:0;margin:35px 0 10px;">
+                <div style="float:left;margin:0 10px 0 0;position:relative;z-index:300;">
+                    <label for="PostalCode"
+                           style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">From: </label>
+                    <input id="PostalCode" type="text"
+                           style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
+                           value="">
+                    <div class="hint"><em style="color:#666666;font-size:11px;font-style:italic;">zip (ex:A0AB0B)</em>
+                    </div>
+                </div>
+            </div>
+            <div style="padding:0;margin:35px 0 10px;">
+                <label for="PostalCode2"
+                       style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">To: </label>
+                <input id="PostalCode2" type="text"
+                       style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
+                       value="">
+                <div class="hint"><em style="color:#666666;font-size:11px;font-style:italic;">zip (ex:A0AB0B)</em></div>
+            </div>
+            <div style="padding:0;margin:35px 0 10px;">
+                <div style="float:left;margin:0 10px 0 0;position:relative;z-index:300;">
+                    <label for="DriverDeptTime"
+                           style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Hour: </label>
+                    <input id="DriverDeptTime" type="number"
+                           style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
+                           value="" min="0" max="23"> &#58;
+                </div>
+            </div>
+            <div style="padding:0;margin:35px 0 10px;">
+                <label for="DriverDeptMin"
+                       style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Min: </label>
+                <select id="DriverDeptMin" type="number"
+                        style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
+                        value="">
+                    <option selected disabled>Choose here</option>
+                    <option value="00">00</option>
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                    <option value="45">45</option>
+                </select>
+            </div>
+            <button type="button" style="width: 100px;" class="btn btn-primary btn-block" id="search">SEARCH</button>
+        </div>
+    </form>
+    <section>
+        <h1>Rider side</h1>
+    </section>
+    <section>
+        <div class="container">
+            <table class="table table-hover" id="rideTable" width="70%">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="routeInfoBody">
+                <% if(driverroute){%>
+                <% for (var i =0; i< driverroute.length;i++){%>
+                <tr>
+                    <td class="searchtime">
+                        <img src="images/blueArrow.jpg">
+                        <br>
+                        <%=driverroute[i].dridate%>
+                    </td>
+                    <td>
+                        <div class="searchdeparture">
+                            <strong><%=driverroute[i].pcode%></strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="searchdestination"><span class="itineraryArrowInt3"></span>
+                            <strong><%=driverroute[i].drimin%></strong>
+                        </div>
+                    </td>
+                    <td class="seatsAvailability">
+                        <div class="itineraryPrice">
+                            <p><a class="titleBubble" href="#" title="Prix du conducteur"><%=driverroute[i].cost%></a>
+                                <br>
+                                <% for (var j =0; j< driverroute[i].occupied;j++){%>
+                                <img src="images/whiteMan.jpg" alt="White Man" class="whiteMan">
                                 <%}%>
-                                    <!--   <tr>
-                        <td class="searchtime">
-                            <img src="http://www.kangaride.com/img/rideIcons/blueArrow.png">
-                            <br> 5:00
-                        </td>
-                        <td>
-                            <div class="searchdeparture">
-                                <strong>London</strong>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="searchdestination"><span class="itineraryArrowInt3"></span>
-                                <strong>Chicago</strong>
-                            </div>
-                        </td>
-                        <td class="seatsAvailability">
-                            <div class="itineraryPrice">
-                                <p><a class="titleBubble" href="#" title="Prix du conducteur">33 $</a>
-                                    <br>
-                                    <img src="http://www.kangaride.com/img/rideIcons/whiteMan.png" alt="White Man" class="blueMan">
-                                    <img src="http://www.kangaride.com/img/rideIcons/whiteMan.png" alt="White Man" class="blueMan"></p>
-                            </div>
-                        </td>
-                        <td class="stars">
-                            <div class="rideIcons">
-                                <p>
-                                    <a class="titleBubble" title="">
-                                        <span class='nbReviews'>(No evaluation)</span> </a>
-                                </p>
-                            </div>
-                            <p class="nbReviews">(0)</p>
-                        </td>
-                    </tr>-->
-                </table>
+                                <% for (var j =0; j< driverroute[i].occupancy;j++){%>
+                                <img src="images/whiteMan.jpg" alt="white Man" class="whiteMan">
+                                <%}%>
+                            </p>
+                        </div>
+                    </td>
+                    <td class="stars">
+                        <div class="rideIcons">
+                            <p>
+                                <a class="titleBubble" title="">
+                                    <span class='nbReviews'>(No evaluation)</span> </a>
+                            </p>
+                        </div>
+                        <p class="nbReviews">(0)</p>
+                    </td>
+                    <td>
+                    <button type="button" class="btn btn-primary btn-lg" data-info="<%=driverroute[i].dridate%>" data-toggle="modal" name="checkRoute" data-target="#checkRoute" data-id="<%= driverroute[i]._id%>">
+                        Check
+                    </button>
+                    </td>
+                    <!--   <td colspan="6" class="dateRow">
+                        <div class="searchdate">
+                            <%=driverroute[i].dridate%>
+                        </div>
+                    </td>-->
+                </tr>>
+                <%}%>
+                <%}%>
+                <!--   <tr>
+    <td class="searchtime">
+        <img src="http://www.kangaride.com/img/rideIcons/blueArrow.png">
+        <br> 5:00
+    </td>
+    <td>
+        <div class="searchdeparture">
+            <strong>London</strong>
+        </div>
+    </td>
+    <td>
+        <div class="searchdestination"><span class="itineraryArrowInt3"></span>
+            <strong>Chicago</strong>
+        </div>
+    </td>
+    <td class="seatsAvailability">
+        <div class="itineraryPrice">
+            <p><a class="titleBubble" href="#" title="Prix du conducteur">33 $</a>
+                <br>
+                <img src="http://www.kangaride.com/img/rideIcons/whiteMan.png" alt="White Man" class="blueMan">
+                <img src="http://www.kangaride.com/img/rideIcons/whiteMan.png" alt="White Man" class="blueMan"></p>
+        </div>
+    </td>
+    <td class="stars">
+        <div class="rideIcons">
+            <p>
+                <a class="titleBubble" title="">
+                    <span class='nbReviews'>(No evaluation)</span> </a>
+            </p>
+        </div>
+        <p class="nbReviews">(0)</p>
+    </td>
+</tr>-->    </tbody>
+            </table>
+        </div>
+    </section>
+        <!-- Modal -->
+        <div class="modal fade" id="checkRoute" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Route Info</h4>
+                    </div>
+                    <div class="modal-body">
+                        <span id="checkRoute_date"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
             </div>
-        </section>
-        <section>
-            <div id="ss" hidden="hidden">
-                Body 1
-            </div>
-        </section>
-    </div>
-    <div class="container">
-        <nav>
-            <ul class="pagination">
-                <%
-                if(pageNum!=1){
-                %>
-                <li>
-                    <a href="/searchRoute?pageNum=<%=(pageNum-1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <%
-                }
-                %>
-                <%
-                for(var i=0;i< totalPage;i++){
-                %>
-                <%
-                if((i+1)==pageNum){
-                %>
-                <li class="active"><a href="/searchRoute?pageNum=<%=(i+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>"><%=(i+1)%></a></li>
-                <%
-                }else{
-                %>
-                <li><a href="/searchRoute?pageNum=<%=(i+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>"><%=(i+1)%></a></li>
-                <%
-                }
-                %>
-                <%
-                }
-                %>
-                <%
-                if(pageNum!=totalPage){
-                %>
-                <li>
-                    <a href="/searchRoute?pageNum=<%=(pageNum+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-                <%
-                }
-                %>
-            </ul>
-        </nav>
-        <!--End of form_row div-->
-    </div>
-    <!-- Script -->
-    <script type="text/javascript" src="js/modernizr.js"></script>
-    <!-- Modernizer -->
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <!-- Jquery -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <!-- Bootstrap -->
-    <script type="text/javascript" src="js/html5lightbox.js"></script>
-    <!-- HTML -->
-    <script type="text/javascript" src="js/scrolly.js"></script>
-    <!-- Parallax -->
-    <script type="text/javascript" src="js/price-range.js"></script>
-    <!-- Parallax -->
-    <script type="text/javascript" src="js/script.js"></script>
-    <!-- Script -->
-    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
-    <!-- Date -->
-    <script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
-    <!-- Time -->
-    <script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-    <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-    <script type="text/javascript">
+        </div>
+
+    <section>
+        <div id="ss" hidden="hidden">
+            Body 1
+        </div>
+    </section>
+</div>
+<div class="container">
+    <nav>
+        <ul class="pagination">
+            <%
+            if(pageNum!=1){
+            %>
+            <li>
+                <a href="/searchRoute?pageNum=<%=(pageNum-1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>"
+                   aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <%
+            }
+            %>
+            <%
+            for(var i=0;i< totalPage;i++){
+            %>
+            <%
+            if((i+1)==pageNum){
+            %>
+            <li class="active"><a
+                    href="/searchRoute?pageNum=<%=(i+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>"><%=(i+1)%></a>
+            </li>
+            <%
+            }else{
+            %>
+            <li><a href="/searchRoute?pageNum=<%=(i+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>"><%=(i+1)%></a>
+            </li>
+            <%
+            }
+            %>
+            <%
+            }
+            %>
+            <%
+            if(pageNum!=totalPage){
+            %>
+            <li>
+                <a href="/searchRoute?pageNum=<%=(pageNum+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>"
+                   aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            <%
+            }
+            %>
+        </ul>
+    </nav>
+    <!--End of form_row div-->
+</div>
+<!-- Script -->
+<script type="text/javascript" src="js/modernizr.js"></script>
+<!-- Modernizer -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<!-- Jquery -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<!-- Bootstrap -->
+<script type="text/javascript" src="js/html5lightbox.js"></script>
+<!-- HTML -->
+<script type="text/javascript" src="js/scrolly.js"></script>
+<!-- Parallax -->
+<script type="text/javascript" src="js/price-range.js"></script>
+<!-- Parallax -->
+<script type="text/javascript" src="js/script.js"></script>
+<!-- Script -->
+<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+<!-- Date -->
+<script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
+<!-- Time -->
+<script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script type="text/javascript">
     //        $(function() {
     //            $("#search").click(function() {
     //                console.log("get into search ajax");
@@ -318,8 +381,8 @@
     //                });
     //            });
     //        });
-    $(function() {
-        $("#search").click(function() {
+    $(function () {
+        $("#search").click(function () {
             console.log("get into search ajax");
             var routedate = $('#DriverDeptDate').val();
             var routedeparture = $('#PostalCode').val();
@@ -350,7 +413,33 @@
             window.location.href = searchLink;
         });
     });
-    $(document).ready(function() {
+    $(document).ready(function () {
+        $('#checkRoute').on('show.bs.modal', function(event) {
+            //$(this).removeClass('modal-backdrop');
+            //Now set z-index of modal greater than backdrop
+            //ajax here
+            var modal = $(this)
+            setTimeout(function() {
+                modal.find('.modal-backdrop').remove();
+            }, 200);
+        });
+
+        $("#routeInfoBody").click(function(event){
+            var ev= event || window.event;
+            var target = ev.target || ev.srcElement;
+            console.log(target);
+            if(target.nodeName.toLowerCase()=="button") {
+                var at=$(target).attr("name");
+                if(at=="checkRoute"){
+                    var info=$(target).data("info");
+                    $("#checkRoute_date").html(info);
+                }
+
+            }
+            });
+
+
+
         "use strict";
         jQuery('.tp-banner').show().revolution({
             dottedOverlay: "none",
@@ -409,7 +498,7 @@
             fullScreenOffsetContainer: ""
         });
     });
-    </script>
+</script>
 </body>
 
 </html>
