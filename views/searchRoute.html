@@ -110,7 +110,7 @@
                            style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">From: </label>
                     <input id="PostalCode" type="text"
                            style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
-                           value="">
+                           value="<%=routedep%>">
                     <div class="hint"><em style="color:#666666;font-size:11px;font-style:italic;">zip (ex:A0AB0B)</em>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                        style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">To: </label>
                 <input id="PostalCode2" type="text"
                        style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
-                       value="">
+                       value="<%=routearr%>">
                 <div class="hint"><em style="color:#666666;font-size:11px;font-style:italic;">zip (ex:A0AB0B)</em></div>
             </div>
             <div style="padding:0;margin:35px 0 10px;">
@@ -155,14 +155,14 @@
         <div class="container">
             <table class="table table-hover" id="rideTable" width="70%">
                 <thead>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
+                <tr>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                </tr>
                 </thead>
                 <tbody id="routeInfoBody">
                 <% if(driverroute){%>
@@ -206,72 +206,42 @@
                         <p class="nbReviews">(0)</p>
                     </td>
                     <td>
-                    <button type="button" class="btn btn-primary btn-lg" data-info="<%=driverroute[i].dridate%>" data-toggle="modal" name="checkRoute" data-target="#checkRoute" data-id="<%= driverroute[i]._id%>">
-                        Check
-                    </button>
+                        <button type="button" class="btn btn-primary btn-lg" data-dridate="<%=driverroute[i].dridate%>"
+                                data-pcode="<%=driverroute[i].pcode%>" data-pcode2="<%=driverroute[i].pcode2%>"
+                                data-drihour="<%=driverroute[i].drihour%>" data-drimin="<%=driverroute[i].drimin%>"
+                                data-toggle="modal" name="checkRoute" data-target="#checkRoute"
+                                data-id="<%= driverroute[i]._id%>">
+                            Check
+                        </button>
                     </td>
-                    <!--   <td colspan="6" class="dateRow">
-                        <div class="searchdate">
-                            <%=driverroute[i].dridate%>
-                        </div>
-                    </td>-->
-                </tr>>
+                </tr>
+                >
                 <%}%>
                 <%}%>
-                <!--   <tr>
-    <td class="searchtime">
-        <img src="http://www.kangaride.com/img/rideIcons/blueArrow.png">
-        <br> 5:00
-    </td>
-    <td>
-        <div class="searchdeparture">
-            <strong>London</strong>
-        </div>
-    </td>
-    <td>
-        <div class="searchdestination"><span class="itineraryArrowInt3"></span>
-            <strong>Chicago</strong>
-        </div>
-    </td>
-    <td class="seatsAvailability">
-        <div class="itineraryPrice">
-            <p><a class="titleBubble" href="#" title="Prix du conducteur">33 $</a>
-                <br>
-                <img src="http://www.kangaride.com/img/rideIcons/whiteMan.png" alt="White Man" class="blueMan">
-                <img src="http://www.kangaride.com/img/rideIcons/whiteMan.png" alt="White Man" class="blueMan"></p>
-        </div>
-    </td>
-    <td class="stars">
-        <div class="rideIcons">
-            <p>
-                <a class="titleBubble" title="">
-                    <span class='nbReviews'>(No evaluation)</span> </a>
-            </p>
-        </div>
-        <p class="nbReviews">(0)</p>
-    </td>
-</tr>-->    </tbody>
+
+                </tbody>
             </table>
         </div>
     </section>
-        <!-- Modal -->
-        <div class="modal fade" id="checkRoute" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Route Info</h4>
-                    </div>
-                    <div class="modal-body">
-                        <span id="checkRoute_date"></span>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="checkRoute" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Route Info</h4>
+                </div>
+                <div class="modal-body">
+                    <span id="checkRoute_date"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
+    </div>
 
     <section>
         <div id="ss" hidden="hidden">
@@ -286,46 +256,35 @@
             if(pageNum!=1){
             %>
             <li>
-                <a href="/searchRoute?pageNum=<%=(pageNum-1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>"
+                <a href="/searchRoute?pageNum=<%=(pageNum-1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>&routearr=<%=routearr%>&routedep=<%=routedep%>"
                    aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            <%
-            }
-            %>
+            <%}%>
             <%
             for(var i=0;i< totalPage;i++){
-            %>
-            <%
+            %><%
             if((i+1)==pageNum){
             %>
             <li class="active"><a
-                    href="/searchRoute?pageNum=<%=(i+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>"><%=(i+1)%></a>
+                    href="/searchRoute?pageNum=<%=(i+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>&routearr=<%=routearr%>&routedep=<%=routedep%>"><%=(i+1)%></a>
             </li>
-            <%
-            }else{
-            %>
-            <li><a href="/searchRoute?pageNum=<%=(i+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>"><%=(i+1)%></a>
+            <%}else{%>
+            <li><a href="/searchRoute?pageNum=<%=(i+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>&routearr=<%=routearr%>&routedep=<%=routedep%>"><%=(i+1)%></a>
             </li>
-            <%
-            }
-            %>
-            <%
-            }
-            %>
+            <%}%>
+            <%}%>
             <%
             if(pageNum!=totalPage){
             %>
             <li>
-                <a href="/searchRoute?pageNum=<%=(pageNum+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>"
+                <a href="/searchRoute?pageNum=<%=(pageNum+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>&routearr=<%=routearr%>&routedep=<%=routedep%>"
                    aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
-            <%
-            }
-            %>
+            <%}%>
         </ul>
     </nav>
     <!--End of form_row div-->
@@ -352,35 +311,6 @@
 <script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
 <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 <script type="text/javascript">
-    //        $(function() {
-    //            $("#search").click(function() {
-    //                console.log("get into search ajax");
-    //                var data = {
-    //                    "routedate": $('#DriverDeptDate').val(),
-    //                    "routedeparture": $('#PostalCode').val(),
-    //                    "routedestination": $('#PostalCode2').val(),
-    //                    "routehour": $('#DriverDeptTime').val(),
-    //                    "routemin": $('#DriverDeptMin').val()
-    //                };
-    //                $.ajax({
-    //                    url: '/searchRoute/searchRoute',
-    //                    type: 'post',
-    //                    data: data,
-    //                    success: function(data, status) {
-    //                        if (status == 'success') {
-    //                            alert(data);
-    //                            $('#ss').hide();
-    //                            $('#rideTable').show();
-    //                        }
-    //                    },
-    //                    error: function(data, status) {
-    //                        if (status == 'error') {
-    //                            $('#ss').show();
-    //                        }
-    //                    }
-    //                });
-    //            });
-    //        });
     $(function () {
         $("#search").click(function () {
             console.log("get into search ajax");
@@ -414,30 +344,34 @@
         });
     });
     $(document).ready(function () {
-        $('#checkRoute').on('show.bs.modal', function(event) {
+        $('#checkRoute').on('show.bs.modal', function (event) {
             //$(this).removeClass('modal-backdrop');
             //Now set z-index of modal greater than backdrop
             //ajax here
             var modal = $(this)
-            setTimeout(function() {
+            setTimeout(function () {
                 modal.find('.modal-backdrop').remove();
             }, 200);
         });
 
-        $("#routeInfoBody").click(function(event){
-            var ev= event || window.event;
+        $("#routeInfoBody").click(function (event) {
+            var ev = event || window.event;
             var target = ev.target || ev.srcElement;
             console.log(target);
-            if(target.nodeName.toLowerCase()=="button") {
-                var at=$(target).attr("name");
-                if(at=="checkRoute"){
-                    var info=$(target).data("info");
-                    $("#checkRoute_date").html(info);
+            if (target.nodeName.toLowerCase() == "button") {
+                var at = $(target).attr("name");
+                if (at == "checkRoute") {
+                    var dridate = $(target).data("dridate");
+                    $("#checkRoute_date").append("<strong>"+"Date"+"<br>"+"</strong>"+dridate+"<br>");
+                    var pcode = $(target).data("pcode");
+                    $("#checkRoute_date").append("<br>"+"<strong>"+"Departure Place"+"</strong>"+"<br>"+pcode+"<br>");
+
+
+
                 }
 
             }
-            });
-
+        });
 
 
         "use strict";

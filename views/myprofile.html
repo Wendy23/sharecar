@@ -4,7 +4,7 @@
 <head>
     <!-- Basic Page Needs
     ================================================== -->
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         <%= title %>
@@ -13,206 +13,216 @@
     ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/png" href="images/favicon.jpg" />
+    <link rel="shortcut icon" type="image/png" href="images/favicon.jpg"/>
     <!-- Styles -->
-    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" type="text/css"/>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css" type="text/css"/>
     <!-- Style -->
     <!--  <link rel="stylesheet" href="css/responsive.css" type="text/css" /> -->
     <!-- Responsive -->
-    <link rel="stylesheet" href="/stylesheets/colors.css" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/colors.css" type="text/css"/>
     <!-- color -->
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
     <!--Slides-->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!--Date-->
-    <link rel='stylesheet' href='/stylesheets/datepicker.css' />
+    <link rel='stylesheet' href='/stylesheets/datepicker.css'/>
     <!--Time-->
-    <link rel='stylesheet' href='/stylesheets/bootstrap-timepicker.min.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap-timepicker.min.css'/>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <!-- /.preloader -->
-    <div id="preloader"></div>
-    <div class="theme-layout">
-        <!-- Header -->
-        <header class="simple-header for-sticky white">
-            <!-- Top bar -->
-            <div class="top-bar">
-                <div class="container">
-                    <ul class="contact-item">
-                        <li><i class="fa fa-envelope-o"></i>yourcompnay@email.com</li>
-                        <li><i class="fa fa-mobile"></i>+1 333 44 555 / +1 333 44 500</li>
-                    </ul>
-                    <div class="choose-language">
-                        <a href="#" title="">EN</a>
-                        <a href="#" title="">CH</a>
-                    </div>
-                </div>
-            </div>
-            <div class="menu">
-                <div class="container">
-                    <!-- LOGO -->
-                    <div class="logo">
-                        <span><%= title %></span>
-                        <strong>CITY CARPOOL</strong>
-                    </div>
-                    <span class="menu-toggle"><i class="fa fa-bars"></i></span>
-                    <nav>
-                        <h1 class="nocontent outline">--- Main Navigation ---</h1>
-                        <ul>
-                            <li class="menu-item-has-children">
-                                <a href="#" title="">HOME</a>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#" title="">ABOUT</a>
-                                <ul>
-                                    <li><a href="#" title="">Overview</a></li>
-                                    <li><a href="#" title="">Q&A</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#" title="">SEARCH</a>
-                            </li>
-                            <li><a href="#" title="">CONTACT</a></li>
-                            <li>
-                                <a href="#" title=""><strong>Welcome,</strong>
-                                    <h8 id="name" name="name" required="" type="text"></h8></a>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="/myProfile" title="">My profile</a>
-                            </li>
-                            <li>
-                                <a href="/logout" title="">
-                                    <span><i class="fa fa-sign-out "></i> logout</span></a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <div class="inner-head overlap">
-            <div style="background: url(/images/profile.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div>
-            <!-- PARALLAX BACKGROUND IMAGE -->
+<!-- /.preloader -->
+<div id="preloader"></div>
+<div class="theme-layout">
+    <!-- Header -->
+    <header class="simple-header for-sticky white">
+        <!-- Top bar -->
+        <div class="top-bar">
             <div class="container">
-                <div class="inner-content">
-                    <span><i class="fa fa-home"></i></span>
-                    <h2>MY PROFILE  </h2>
+                <ul class="contact-item">
+                    <li><i class="fa fa-envelope-o"></i>yourcompnay@email.com</li>
+                    <li><i class="fa fa-mobile"></i>+1 333 44 555 / +1 333 44 500</li>
+                </ul>
+                <div class="choose-language">
+                    <a href="#" title="">EN</a>
+                    <a href="#" title="">CH</a>
                 </div>
             </div>
         </div>
-        <section class="block">
-            <div class="container agnet-prop">
-                <div class="row">
-                    <div class="col-md-offset-2">
-                        <div class="heading4">
-                            <h2>MY PROFILE</h2>
-                        </div>
-                        <%- message %>
-                            <div class="submit-content">
-                                <form id="profile_form" name="profile_form" class="form profile-form" action="" onsubmit="return onSubmit123()">
-                                    <input type="hidden" id="result" value='<%= user %>' />
-                                    <div class="control-group">
-                                        <div class="group-title">
-                                            Change Profile</div>
-                                        <div class="group-container row">
-                                            <div class="col-md-12">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group s-profile-title">
-                                                            <label for="nametitle">Name&nbsp;*</label>
-                                                            <input id="nametitle" class="form-control" name="nametitle" required="" type="text">
-                                                        </div>
-                                                        <div class="form-group s-profile-email">
-                                                            <label for="email">Email&nbsp;*</label>
-                                                            <input id="email" class="form-control" name="email" required="" type="text">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group s-profile-phone">
-                                                            <label for="gender">Gender</label>
-                                                            <select id="gender" class="form-control" name="gender" type="text">
-                                                                <option value="Male" SELECTED>Male</option>
-                                                                <option value="Female">Famale</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group s-profile-mobile">
-                                                            <label for="mobile">Mobile</label>
-                                                            <input id="mobile" class="form-control" name="mobile" type="text">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div>
-                                                            <button class="btn flat-btn" name="submitButton" id="submitButton">
-                                                                <span>Update</span><span>&nbsp;</span>
-                                                            </button>
-                                                        </div>
-                                                    </div>
+        <div class="menu">
+            <div class="container">
+                <!-- LOGO -->
+                <div class="logo">
+                    <span><%= title %></span>
+                    <strong>CITY CARPOOL</strong>
+                </div>
+                <span class="menu-toggle"><i class="fa fa-bars"></i></span>
+                <nav>
+                    <h1 class="nocontent outline">--- Main Navigation ---</h1>
+                    <ul>
+                        <li class="menu-item-has-children">
+                            <a href="#" title="">HOME</a>
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href="#" title="">ABOUT</a>
+                            <ul>
+                                <li><a href="#" title="">Overview</a></li>
+                                <li><a href="#" title="">Q&A</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href="#" title="">SEARCH</a>
+                        </li>
+                        <li><a href="#" title="">CONTACT</a></li>
+                        <li>
+                            <a href="#" title=""><strong>Welcome,</strong>
+                                <h8 id="name" name="name" required="" type="text"></h8>
+                            </a>
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href="/myProfile" title="">My profile</a>
+                        </li>
+                        <li>
+                            <a href="/logout" title="">
+                                <span><i class="fa fa-sign-out "></i> logout</span></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="inner-head overlap">
+        <div style="background: url(/images/profile.jpg) repeat scroll 50% 422.28px transparent;"
+             class="parallax scrolly-invisible no-parallax"></div>
+        <!-- PARALLAX BACKGROUND IMAGE -->
+        <div class="container">
+            <div class="inner-content">
+                <span><i class="fa fa-home"></i></span>
+                <h2>MY PROFILE </h2>
+            </div>
+        </div>
+    </div>
+    <section class="block">
+        <div class="container agnet-prop">
+            <div class="row">
+                <div class="col-md-offset-2">
+                    <div class="heading4">
+                        <h2>MY PROFILE</h2>
+                    </div>
+                    <%- message %>
+                    <div class="submit-content">
+                        <form id="profile_form" name="profile_form" class="form profile-form" action=""
+                              onsubmit="return onSubmit123()">
+                            <input type="hidden" id="result" value='<%= user %>'/>
+                            <div class="control-group">
+                                <div class="group-title">
+                                    Change Profile
+                                </div>
+                                <div class="group-container row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group s-profile-title">
+                                                    <label for="nametitle">Name&nbsp;*</label>
+                                                    <input id="nametitle" class="form-control" name="nametitle"
+                                                           required="" type="text">
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                                <form id="password_form" name="password_form" class="form profile-form">
-                                    <div class="control-group">
-                                        <div class="group-title">
-                                            Change Password</div>
-                                        <div class="group-container row">
-                                            <div class="form-message">
+                                                <div class="form-group s-profile-email">
+                                                    <label for="email">Email&nbsp;*</label>
+                                                    <input id="email" class="form-control" name="email" required=""
+                                                           type="text">
+                                                </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group s-profile-new_pass">
-                                                    <label for="new_pass">New Password</label>
-                                                    <input id="new_pass" class="form-control" value="" name="new_pass" type="text">
+                                                <div class="form-group s-profile-phone">
+                                                    <label for="gender">Gender</label>
+                                                    <select id="gender" class="form-control" name="gender" type="text">
+                                                        <option value="Male" SELECTED>Male</option>
+                                                        <option value="Female">Famale</option>
+                                                    </select>
                                                 </div>
-                                                <div class="form-group s-profile-new_pass_confirm">
-                                                    <label for="new_pass_confirm">Confirm New Password</label>
-                                                    <input id="new_pass_confirm" class="form-control" value="" name="new_pass_confirm" type="password">
+                                                <div class="form-group s-profile-mobile">
+                                                    <label for="mobile">Mobile</label>
+                                                    <input id="mobile" class="form-control" name="mobile" type="text">
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
-                                                <div class="submit">
-                                                    <input class="btn flat-btn" name="submitPassword" id="submitPassword" value="Change Password" type="submit">
+                                            <div class="col-md-6">
+                                                <div>
+                                                    <button class="btn flat-btn" name="submitButton" id="submitButton">
+                                                        <span>Update</span><span>&nbsp;</span>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
                             </div>
+                        </form>
+                        <form id="password_form" name="password_form" class="form profile-form">
+                            <div class="control-group">
+                                <div class="group-title">
+                                    Change Password
+                                </div>
+                                <div class="group-container row">
+                                    <div class="form-message">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group s-profile-new_pass">
+                                            <label for="new_pass">New Password</label>
+                                            <input id="new_pass" class="form-control" value="" name="new_pass"
+                                                   type="text">
+                                        </div>
+                                        <div class="form-group s-profile-new_pass_confirm">
+                                            <label for="new_pass_confirm">Confirm New Password</label>
+                                            <input id="new_pass_confirm" class="form-control" value=""
+                                                   name="new_pass_confirm" type="password">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="submit">
+                                            <input class="btn flat-btn" name="submitPassword" id="submitPassword"
+                                                   value="Change Password" type="submit">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </section>
-        <section>
-            <!-- <a href="#" data-toggle="popover" title="Example popover">请悬停在我的上面</a> -->
-        </section>
-        <!--End of form_row div-->
-    </div>
-    <!-- Script -->
-    <script type="text/javascript" src="js/modernizr.js"></script>
-    <!-- Modernizer -->
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <!-- Jquery -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <!-- Bootstrap -->
-    <script type="text/javascript" src="js/html5lightbox.js"></script>
-    <!-- HTML -->
-    <script type="text/javascript" src="js/scrolly.js"></script>
-    <!-- Parallax -->
-    <script type="text/javascript" src="js/price-range.js"></script>
-    <!-- Parallax -->
-    <script type="text/javascript" src="js/script.js"></script>
-    <!-- Script -->
-    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
-    <!-- Date -->
-    <script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
-    <!-- Time -->
-    <script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-    <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-    <script type="text/javascript">
+        </div>
+    </section>
+    <section>
+        <!-- <a href="#" data-toggle="popover" title="Example popover">请悬停在我的上面</a> -->
+    </section>
+    <!--End of form_row div-->
+</div>
+<!-- Script -->
+<script type="text/javascript" src="js/modernizr.js"></script>
+<!-- Modernizer -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<!-- Jquery -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<!-- Bootstrap -->
+<script type="text/javascript" src="js/html5lightbox.js"></script>
+<!-- HTML -->
+<script type="text/javascript" src="js/scrolly.js"></script>
+<!-- Parallax -->
+<script type="text/javascript" src="js/price-range.js"></script>
+<!-- Parallax -->
+<script type="text/javascript" src="js/script.js"></script>
+<!-- Script -->
+<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+<!-- Date -->
+<script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
+<!-- Time -->
+<script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script type="text/javascript">
     function onSubmit123() {
         var ntle = $('#nametitle').val();
         var gder = $('#gender').val();
@@ -228,21 +238,22 @@
             url: '/myProfile/createProfile',
             type: 'post',
             data: data,
-            success: function(data) {
+            success: function (data) {
                 if (data.status == 'success') {
                     // window.location.reload();
                     location.href = 'myProfile';
                 }
             },
-            error: function(data, err) {
+            error: function (data, err) {
                 alert("error");
                 // location.href = 'myProfile';
             }
         });
-    };
+    }
+    ;
 
-    $(function() {
-        $("#submitPassword").click(function() {
+    $(function () {
+        $("#submitPassword").click(function () {
             console.log("get into change password");
             var newpassword = $('#new_pass').val();
             var confirmpass = $('#new_pass_confirm').val();
@@ -258,25 +269,24 @@
                     url: '/myProfile/updatePassword',
                     type: 'post',
                     data: data,
-                    success: function(data) {
+                    success: function (data, status) {
                         if (status == 'success') {
-                            alert("success");
                             location.href = 'home';
                         }
                     },
-                    error: function(data, err) {
+                    error: function (data, status) {
                         if (status == 'error') {
-                            console.log("shibbba");
                             location.href = 'myProfile';
                         }
                     }
                 });
-            };
+            }
+            ;
         });
     })
 
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         "use strict";
         jQuery('.tp-banner').show().revolution({
             dottedOverlay: "none",
@@ -343,7 +353,7 @@
         $("#email").val(result[0].email);
         $("#mobile").val(result[0].mobile);
     });
-    </script>
+</script>
 </body>
 
 </html>
