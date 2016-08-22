@@ -236,8 +236,8 @@
                     <span id="checkRoute_date"></span>
                 </div>
                 <div class="modal-footer">
+                    <button type="submit" id="sendmessage" class="btn btn-primary">Send my message</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
@@ -344,16 +344,31 @@
             window.location.href = searchLink;
         });
     });
+
     $(document).ready(function () {
-        $('#checkRoute').on('show.bs.modal', function (event) {
-            //$(this).removeClass('modal-backdrop');
-            //Now set z-index of modal greater than backdrop
-            //ajax here
-            var modal = $(this)
-            setTimeout(function () {
-                modal.find('.modal-backdrop').remove();
-            }, 200);
-        });
+        var currentMessage;
+        function bindShowEvent() {
+            $('#checkRoute').on('show.bs.modal', function (event) {
+                //$(this).removeClass('modal-backdrop');
+                //Now set z-index of modal greater than backdrop
+                //ajax here
+                var button = $(event.relatedTarget)
+                var modal = $(this)
+                modal.find('.modal-title').text('Route Info');
+                setTimeout(function () {
+                    modal.find('.modal-backdrop').remove();
+                }, 200);
+               // currentMessage = button.attr("data-id");
+                currentMessage = button.attr("data-id");
+                console.log(currentMessage);
+                $(this).off('show.bs.modal');
+            });
+        }
+        bindShowEvent();
+
+        $('#checkRoute').on('hide.bs.modal', function(event) {
+            bindShowEvent();
+        })
 
         $("#routeInfoBody").click(function (event) {
             var ev = event || window.event;
@@ -363,11 +378,8 @@
                 var at = $(target).attr("name");
                 if (at == "checkRoute") {
                     var dridate = $(target).data("dridate");
-                    $("#checkRoute_date").append("<strong>"+"Date"+"<br>"+"</strong>"+dridate+"<br>");
                     var pcode = $(target).data("pcode");
-                    $("#checkRoute_date").append("<br>"+"<strong>"+"Departure Place"+"</strong>"+"<br>"+pcode+"<br>");
-
-
+                    $("#checkRoute_date").html("<strong>"+"Date"+"<br>"+"</strong>"+dridate+"<br>"+"<br>"+"<strong>"+"Departure Place"+"</strong>"+"<br>"+pcode+"<br>");
 
                 }
 
