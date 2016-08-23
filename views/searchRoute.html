@@ -129,21 +129,15 @@
                            style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Hour: </label>
                     <input id="DriverDeptTime" type="number"
                            style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
-                           value="" min="0" max="23"> &#58;
+                           value="<%=routehour%>"> &#58;
                 </div>
             </div>
             <div style="padding:0;margin:35px 0 10px;">
                 <label for="DriverDeptMin"
                        style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Min: </label>
-                <select id="DriverDeptMin" type="number"
-                        style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
-                        value="">
-                    <option selected disabled>Choose here</option>
-                    <option value="00">00</option>
-                    <option value="15">15</option>
-                    <option value="30">30</option>
-                    <option value="45">45</option>
-                </select>
+                <input id="DriverDeptMin" type="number"
+                       style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
+                       value="<%=routemin%>">
             </div>
             <button type="button" style="width: 100px;" class="btn btn-primary btn-block" id="search">SEARCH</button>
         </div>
@@ -168,7 +162,7 @@
                 <% if(driverroute){%>
                 <% for (var i =0; i< driverroute.length;i++){%>
                 <tr>
-                    <td class="searchtime">
+                    < class="searchtime">
                         <img src="images/blueArrow.jpg">
                         <br>
                         <%=driverroute[i].dridate%>
@@ -256,7 +250,7 @@
             if(pageNum!=1){
             %>
             <li>
-                <a href="/searchRoute?pageNum=<%=(pageNum-1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>&routearr=<%=routearr%>&routedep=<%=routedep%>"
+                <a href="/searchRoute?pageNum=<%=(pageNum-1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>&routearr=<%=routearr%>&routedep=<%=routedep%>&routehour=<%=routehour%>&routemin=<%=routemin%>"
                    aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
@@ -268,10 +262,11 @@
             if((i+1)==pageNum){
             %>
             <li class="active"><a
-                    href="/searchRoute?pageNum=<%=(i+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>&routearr=<%=routearr%>&routedep=<%=routedep%>"><%=(i+1)%></a>
+                    href="/searchRoute?pageNum=<%=(i+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>&routearr=<%=routearr%>&routedep=<%=routedep%>&routehour=<%=routehour%>&routemin=<%=routemin%>"><%=(i+1)%></a>
             </li>
             <%}else{%>
-            <li><a href="/searchRoute?pageNum=<%=(i+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>&routearr=<%=routearr%>&routedep=<%=routedep%>"><%=(i+1)%></a>
+            <li>
+                <a href="/searchRoute?pageNum=<%=(i+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>&routearr=<%=routearr%>&routedep=<%=routedep%>&routehour=<%=routehour%>&routemin=<%=routemin%>"><%=(i+1)%></a>
             </li>
             <%}%>
             <%}%>
@@ -279,7 +274,7 @@
             if(pageNum!=totalPage){
             %>
             <li>
-                <a href="/searchRoute?pageNum=<%=(pageNum+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>&routearr=<%=routearr%>&routedep=<%=routedep%>"
+                <a href="/searchRoute?pageNum=<%=(pageNum+1)%>&pageSize=<%=pageSize%>&routedate=<%=routedate%>&routearr=<%=routearr%>&routedep=<%=routedep%>&routehour=<%=routehour%>&routemin=<%=routemin%>"
                    aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
@@ -320,31 +315,31 @@
             var routedestination = $('#PostalCode2').val();
             var routehour = $('#DriverDeptTime').val();
             var routemin = $('#DriverDeptMin').val();
-            var searchLink = "/searchRoute?";
-            var time = Number(routehour) * 3600 + Number(routemin) * 60;
-            if (routedate != "") {
-                console.log(routedate);
-                searchLink = searchLink + "&routedate=" + routedate;
-                console.log(searchLink)
-            }
-            if (routedeparture != "") {
-                searchLink = searchLink + "&pcode=" + routedeparture;
-                console.log(searchLink)
-            }
-            if (routedestination != "") {
-                searchLink = searchLink + "&pcode2=" + routedestination;
-                console.log(searchLink)
-            }
-            if (time != "" && time != 0) {
-                searchLink = searchLink + "&mintime=<=" + time;
-                searchLink = searchLink + "&maxtime=>=" + time;
-                console.log(searchLink)
-            }
-            window.location.href = searchLink;
+            var data = {
+                "routedate": routedate,
+                "routedeparture": routedeparture,
+                "routedestination": routedestination,
+                "routehour": routehour,
+                "routemin": routemin,
+            };
+            $.ajax({
+                url: '/searchRoute/searchPage',
+                type: 'get',
+                data: data,
+                success: function (data) {
+                    alert("success");
+                }
+            });
         });
+        $('#DriverDeptDate').html($('#DriverDeptDate').val());
+        $('#PostalCode').html($('#PostalCode').val());
+        $('#PostalCode2').html($('#PostalCode2').val());
+        $('#DriverDeptTime').html($('#DriverDeptTime').val());
+        $('#DriverDeptMin').html($('#DriverDeptMin').val());
     });
     $(document).ready(function () {
         var currentRoute;
+
         function bindShowEvent() {
             $('#checkRoute').on('show.bs.modal', function (event) {
                 //$(this).removeClass('modal-backdrop');
@@ -368,7 +363,7 @@
             //var session_value ='<%- user.name %>';
             //console.log("info:" + session_value);
             $.post("/searchRoute/updateRoute?routeId=" + currentRoute, {
-               //         ridername: session_value,
+                        //         ridername: session_value,
                     })
                     .done(function (res) {
                         location.reload();
@@ -376,7 +371,7 @@
         })
 
         bindShowEvent();
-        $('#checkRoute').on('hide.bs.modal', function(event) {
+        $('#checkRoute').on('hide.bs.modal', function (event) {
             bindShowEvent();
         })
         $("#routeInfoBody").click(function (event) {
@@ -388,7 +383,7 @@
                 if (at == "checkRoute") {
                     var dridate = $(target).data("dridate");
                     var pcode = $(target).data("pcode");
-                    $("#checkRoute_date").html("<strong>"+"Date"+"<br>"+"</strong>"+dridate+"<br>"+"<br>"+"<strong>"+"Departure Place"+"</strong>"+"<br>"+pcode+"<br>");
+                    $("#checkRoute_date").html("<strong>" + "Date" + "<br>" + "</strong>" + dridate + "<br>" + "<br>" + "<strong>" + "Departure Place" + "</strong>" + "<br>" + pcode + "<br>");
                 }
             }
         });

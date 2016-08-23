@@ -33,7 +33,7 @@ app.use(session({
   secret: 'secret',
   cookie:{ 
     maxAge: 1000*60*30
-  }
+  }, resave: true, saveUninitialized: true
 }));
 
 // view engine setup

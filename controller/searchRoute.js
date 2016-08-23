@@ -69,11 +69,6 @@ exports.searchPage = function () {
             req.session.error = "请先登录"
             res.redirect("/login"); //未登录则重定向到 /login 路径
         } else {
-            //var Route = global.dbHandel.getModel('driverroute');
-            //Route.find(function(err, docs) {
-            //    console.log("doc:" + docs);
-            //    res.render("searchRoute", { 'driverroute': docs });
-            //});
             var pageNum = parseInt(req.params.pageNum) ? parseInt(req.params.pageNum) : 1;
             var pageSize = parseInt(req.params.pageSize) ? parseInt(req.params.pageSize) : 2;
             var Route = global.dbHandel.getModel('driverroute');
@@ -94,10 +89,10 @@ exports.searchPage = function () {
             if (routedate != null && routedate.length != 0) {
                 query['dridate'] = routedate;
             }
-            //if (time != null && time != "0") {
-            //    query['mintime'] = { $lte: time };
-            //    query['maxtime'] = { $gte: time };
-            //}
+            if (time != null && time != "0") {
+                query['mintime'] = { $lte: time };
+                query['maxtime'] = { $gte: time };
+            }
             if (routedep != null && routedep != 0) {
                 query['pcode'] = routedep;
             }
@@ -115,6 +110,7 @@ exports.searchPage = function () {
                             'pageSize': pageSize,
                             'totalPage': Math.ceil(count / pageSize)
                         });
+                        console.log("docs:"+docs);
                     });
             });
         }
@@ -122,24 +118,22 @@ exports.searchPage = function () {
 }
 
 exports.updateRoute = function () {
-    console.log("get into updateridername");
     return function (req, res) {
-        console.log(req.body, req.query);
-        var Route = global.dbHandel.getModel('driverroute');
+        console.log("get into update ridername");
+        if (!req.session.user) { //到达/home路径首先判断是否已经登录
+            req.session.error = "请先登录"
+            res.redirect("/login"); //未登录则重定向到 /login 路径
+        } else {
+            console.log(req.body, req.query);
+            var Route = global.dbHandel.getModel('driverroute');
 
-        Route.update({_id: req.query.routeId},
-            {
-                $addToSet: {
-                    "riderId": req.session.user._id
-                },
-                $inc:{
-                    occupied:1
-                }
-            },
-            {}, function (err, raw) {
-                console.log("update ridername", err, raw);
-                if (err) res.status(500);
-                res.send(raw);
+            Route.update({_id: req.query.routeId}, {$addToSet: {"riderId": req.session.user._id}}, {}, function (err, raw) {
+                Route.update({riderId: req.session.user._id}, {$inc: {occupied: 1}}, {}, function (err, raw) {
+                    console.log("update ridername", err, raw);
+                    if (err) res.status(500);
+                    res.send(raw);
+                });
             });
+        }
     }
 }
