@@ -13,6 +13,9 @@ module.exports = {
         pcoderange: { type: Number, required: true },
         pcode2: { type: String, required: true },
         pcoderange2: { type: Number, required: true },
-        occupied: {type: Number, default:0}
+        occupied: {type: Number, default:0},
+        riderId: [{
+            type: String,
+            ref: 'models' }]
     }
 };

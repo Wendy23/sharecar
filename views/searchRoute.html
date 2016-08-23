@@ -188,9 +188,9 @@
                             <p><a class="titleBubble" href="#" title="Prix du conducteur"><%=driverroute[i].cost%></a>
                                 <br>
                                 <% for (var j =0; j< driverroute[i].occupied;j++){%>
-                                <img src="images/whiteMan.jpg" alt="White Man" class="whiteMan">
+                                <img src="images/blueMan.jpg" alt="Blue Man" class="blueMan">
                                 <%}%>
-                                <% for (var j =0; j< driverroute[i].occupancy;j++){%>
+                                <% for (var j =0; j< driverroute[i].occupancy-driverroute[i].occupied;j++){%>
                                 <img src="images/whiteMan.jpg" alt="white Man" class="whiteMan">
                                 <%}%>
                             </p>
@@ -322,7 +322,6 @@
             var routemin = $('#DriverDeptMin').val();
             var searchLink = "/searchRoute?";
             var time = Number(routehour) * 3600 + Number(routemin) * 60;
-
             if (routedate != "") {
                 console.log(routedate);
                 searchLink = searchLink + "&routedate=" + routedate;
@@ -344,9 +343,8 @@
             window.location.href = searchLink;
         });
     });
-
     $(document).ready(function () {
-        var currentMessage;
+        var currentRoute;
         function bindShowEvent() {
             $('#checkRoute').on('show.bs.modal', function (event) {
                 //$(this).removeClass('modal-backdrop');
@@ -358,18 +356,29 @@
                 setTimeout(function () {
                     modal.find('.modal-backdrop').remove();
                 }, 200);
-               // currentMessage = button.attr("data-id");
-                currentMessage = button.attr("data-id");
-                console.log(currentMessage);
+                // currentMessage = button.attr("data-id");
+                currentRoute = button.attr("data-id");
+                console.log(currentRoute);
                 $(this).off('show.bs.modal');
             });
         }
-        bindShowEvent();
 
+        $("#sendmessage").click(function () {
+            console.log("get into send messages");
+            //var session_value ='<%- user.name %>';
+            //console.log("info:" + session_value);
+            $.post("/searchRoute/updateRoute?routeId=" + currentRoute, {
+               //         ridername: session_value,
+                    })
+                    .done(function (res) {
+                        location.reload();
+                    });
+        })
+
+        bindShowEvent();
         $('#checkRoute').on('hide.bs.modal', function(event) {
             bindShowEvent();
         })
-
         $("#routeInfoBody").click(function (event) {
             var ev = event || window.event;
             var target = ev.target || ev.srcElement;
@@ -380,13 +389,9 @@
                     var dridate = $(target).data("dridate");
                     var pcode = $(target).data("pcode");
                     $("#checkRoute_date").html("<strong>"+"Date"+"<br>"+"</strong>"+dridate+"<br>"+"<br>"+"<strong>"+"Departure Place"+"</strong>"+"<br>"+pcode+"<br>");
-
                 }
-
             }
         });
-
-
         "use strict";
         jQuery('.tp-banner').show().revolution({
             dottedOverlay: "none",

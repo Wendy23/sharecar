@@ -120,3 +120,26 @@ exports.searchPage = function () {
         }
     }
 }
+
+exports.updateRoute = function () {
+    console.log("get into updateridername");
+    return function (req, res) {
+        console.log(req.body, req.query);
+        var Route = global.dbHandel.getModel('driverroute');
+
+        Route.update({_id: req.query.routeId},
+            {
+                $addToSet: {
+                    "riderId": req.session.user._id
+                },
+                $inc:{
+                    occupied:1
+                }
+            },
+            {}, function (err, raw) {
+                console.log("update ridername", err, raw);
+                if (err) res.status(500);
+                res.send(raw);
+            });
+    }
+}
