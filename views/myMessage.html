@@ -64,18 +64,18 @@
                 <nav>
                     <h1 class="nocontent outline">--- Main Navigation ---</h1>
                     <ul>
-                        <li class="menu-item-has-children">
-                            <a href="#" title="">HOME</a>
+                        <li>
+                            <a href="/home" title="">HOME</a>
                         </li>
-                        <li class="menu-item-has-children">
+                        <li>
                             <a href="#" title="">ABOUT</a>
-                            <ul>
-                                <li><a href="#" title="">Overview</a></li>
-                                <li><a href="#" title="">Q&A</a></li>
-                            </ul>
                         </li>
                         <li class="menu-item-has-children">
                             <a href="#" title="">SEARCH</a>
+                            <ul>
+                                <li><a href="/searchRoute" title="">Route</a></li>
+                                <li><a href="#" title="">Home v2</a></li>
+                            </ul>
                         </li>
                         <li><a href="#" title="">CONTACT</a></li>
                         <li><a href="#" title=""><strong>Welcome, <%- user.name %></strong></a></li>
@@ -85,7 +85,6 @@
                         <li>
                             <a href="/myMessage" class="btn btn-default btn-lg btn-link " style="font-size:24px;">
                                 <span class="glyphicon glyphicon-envelope" style="top:-15px;font-size:20px;">
-                                <span class="rw-number-notification">7</span>
                             </span>
                             </a>
                         </li>
@@ -100,6 +99,51 @@
     </header>
     <section>
         <h3>Messages I sent</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Dept Date</th>
+                <th>Dept Hour</th>
+                <th>Dept Min</th>
+                <th>PostalCode</th>
+                <th>PostalCode2</th>
+                <th>Cost</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr style="background-color:white">
+                <% for (var i =0; i
+                <driverroutes.length
+                ; i++){%>
+                <td class="drivedate">
+                    <%=driverroutes[i].dridate%>
+                </td>
+                <td class="drivehour">
+                    <%=driverroutes[i].drihour %>
+                </td>
+                <td class="drivemin">
+                    <%=driverroutes[i].drimin%>
+                </td>
+                <td class="drivepcode">
+                    <%=driverroutes[i].pcode%>
+                </td>
+                <td class="drivepcode">
+                    <%=driverroutes[i].pcode2%>
+                </td>
+                <td class="cost">
+                    <%=driverroutes[i].cost%>
+                </td>
+                <td type="delete" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
+                    data-target="#confirm-delete" data-id="<%= driverroutes[i].riderId%>">Cancel
+                </td>
+                <td type="submit" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
+                    data-target="#feedback" data-id="<%= driverroutes[i]._id%>">Comment
+                </td>
+                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editdialog">Test</button> -->
+            </tr>
+            <%}%>
+            </tbody>
+        </table>
     </section>
     <section>
         <h3>Messages I received</h3>

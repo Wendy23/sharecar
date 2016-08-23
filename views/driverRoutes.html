@@ -4,7 +4,7 @@
 <head>
     <!-- Basic Page Needs
     ================================================== -->
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         ShareCar
@@ -13,329 +13,341 @@
     ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/png" href="images/favicon.jpg" />
+    <link rel="shortcut icon" type="image/png" href="images/favicon.jpg"/>
     <!-- Styles -->
-    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" type="text/css"/>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css" type="text/css"/>
     <!-- Style -->
     <!--  <link rel="stylesheet" href="css/responsive.css" type="text/css" /> -->
     <!-- Responsive -->
-    <link rel="stylesheet" href="/stylesheets/colors.css" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/colors.css" type="text/css"/>
     <!-- color -->
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
     <!--Slides-->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!--Date-->
-    <link rel='stylesheet' href='/stylesheets/datepicker.css' />
+    <link rel='stylesheet' href='/stylesheets/datepicker.css'/>
     <!--Time-->
-    <link rel='stylesheet' href='/stylesheets/bootstrap-timepicker.min.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap-timepicker.min.css'/>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <style type="text/css" media="screen">
-    .datepicker {
-        z-index: 10001 !important;
-    }
+        .datepicker {
+            z-index: 10001 !important;
+        }
     </style>
 </head>
 
 <body>
-    <!-- /.preloader -->
-    <div id="preloader"></div>
-    <div class="theme-layout">
-        <!-- Header -->
-        <header class="simple-header for-sticky white">
-            <!-- Top bar -->
-            <div class="top-bar">
-                <div class="container">
-                    <ul class="contact-item">
-                        <li><i class="fa fa-envelope-o"></i>yourcompnay@email.com</li>
-                        <li><i class="fa fa-mobile"></i>+1 333 44 555 / +1 333 44 500</li>
+<!-- /.preloader -->
+<div id="preloader"></div>
+<div class="theme-layout">
+    <!-- Header -->
+    <header class="simple-header for-sticky white">
+        <!-- Top bar -->
+        <div class="top-bar">
+            <div class="container">
+                <ul class="contact-item">
+                    <li><i class="fa fa-envelope-o"></i>yourcompnay@email.com</li>
+                    <li><i class="fa fa-mobile"></i>+1 333 44 555 / +1 333 44 500</li>
+                </ul>
+                <div class="choose-language">
+                    <a href="#" title="">EN</a>
+                    <a href="#" title="">CH</a>
+                </div>
+            </div>
+        </div>
+        <div class="menu">
+            <div class="container">
+                <!-- LOGO -->
+                <div class="logo">
+                    <span>ShareCar</span>
+                    <strong>CITY CARPOOL</strong>
+                </div>
+                <span class="menu-toggle"><i class="fa fa-bars"></i></span>
+                <nav>
+                    <h1 class="nocontent outline">--- Main Navigation ---</h1>
+                    <ul>
+                        <li>
+                            <a href="/home" title="">HOME</a>
+                        </li>
+                        <li>
+                            <a href="#" title="">ABOUT</a>
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href="#" title="">SEARCH</a>
+                            <ul>
+                                <li><a href="/searchRoute" title="">Route</a></li>
+                                <li><a href="#" title="">Home v2</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#" title="">CONTACT</a></li>
+                        <li><a href="#" title=""><strong>Welcome, <%- user.name %></strong></a></li>
+                        <li>
+                            <a href="/logout" title="">
+                                <span><i class="fa fa-sign-out "></i> logout</span></a>
+                        </li>
                     </ul>
-                    <div class="choose-language">
-                        <a href="#" title="">EN</a>
-                        <a href="#" title="">CH</a>
-                    </div>
-                </div>
+                </nav>
             </div>
-            <div class="menu">
-                <div class="container">
-                    <!-- LOGO -->
-                    <div class="logo">
-                        <span>ShareCar</span>
-                        <strong>CITY CARPOOL</strong>
+        </div>
+    </header>
+    <section>
+        <h1>Show my created routes</h1>
+        <a href="/createRoute" class="btn btn-link" role="button">Add more</a>
+    </section>
+    <section>
+        <!-- <div class="col-sm-3"></div> -->
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Dept Time</th>
+                <th>Dept Hour</th>
+                <th>Dept Min</th>
+                <th>Tolerance</th>
+                <th>PostalCode</th>
+                <th>PostalCodeRange</th>
+                <th>PostalCode2</th>
+                <th>PostalCodeRange2</th>
+                <th>Occupancy</th>
+                <th>Cost</th>
+                <th>Occupied</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr style="background-color:white">
+                <% for (var i =0; i
+                <driverroutes.length
+                ; i++){%>
+                <td class="drivedate">
+                    <%=driverroutes[i].dridate%>
+                </td>
+                <td class="drivehour">
+                    <%=driverroutes[i].drihour %>
+                </td>
+                <td class="drivemin">
+                    <%=driverroutes[i].drimin%>
+                </td>
+                <td class="timetlr">
+                    <%=driverroutes[i].timetlr%>
+                </td>
+                <td class="drivepcode">
+                    <%=driverroutes[i].pcode%>
+                </td>
+                <td class="drivepcode">
+                    <%=driverroutes[i].pcoderange%>
+                </td>
+                <td class="drivepcode">
+                    <%=driverroutes[i].pcode2%>
+                </td>
+                <td class="drivepcode">
+                    <%=driverroutes[i].pcoderange2%>
+                </td>
+                <td class="occupancy">
+                    <%=driverroutes[i].occupancy%>
+                </td>
+                <td class="cost">
+                    <%=driverroutes[i].cost%>
+                </td>
+                <td class="occupied">
+                    <%=driverroutes[i].occupied%>
+                </td>
+                <td type="submit" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
+                    data-target="#editdialog" data-id="<%= driverroutes[i]._id%>">Edit
+                </td>
+                <td type="delete" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
+                    data-target="#confirm-delete" data-id="<%= driverroutes[i]._id%>">Delete
+                </td>
+                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editdialog">Test</button> -->
+            </tr>
+            <%}%>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <div class="modal fade" id="editdialog" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="ModalLabel">Edit Info</h4>
                     </div>
-                    <span class="menu-toggle"><i class="fa fa-bars"></i></span>
-                    <nav>
-                        <h1 class="nocontent outline">--- Main Navigation ---</h1>
-                        <ul>
-                            <li class="menu-item-has-children">
-                                <a href="#" title="">HOME</a>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#" title="">ABOUT</a>
-                                <ul>
-                                    <li><a href="#" title="">Overview</a></li>
-                                    <li><a href="#" title="">Q&A</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#" title="">SEARCH</a>
-                            </li>
-                            <li><a href="#" title="">CONTACT</a></li>
-                            <li><a href="#" title=""><strong>Welcome, <%- user.name %></strong></a></li>
-                            <li>
-                                <a href="/logout" title="">
-                                    <span><i class="fa fa-sign-out "></i> logout</span></a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <section>
-            <h1>Show my created routes</h1>
-            <a href="/createRoute" class="btn btn-link" role="button">Add more</a>
-        </section>
-        <section>
-            <!-- <div class="col-sm-3"></div> -->
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Dept Time</th>
-                        <th>Dept Hour</th>
-                        <th>Dept Min</th>
-                        <th>Tolerance</th>
-                        <th>PostalCode</th>
-                        <th>PostalCodeRange</th>
-                        <th>PostalCode2</th>
-                        <th>PostalCodeRange2</th>
-                        <th>Occupancy</th>
-                        <th>Cost</th>
-                        <th>Occupied</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style="background-color:white">
-                        <% for (var i =0; i<driverroutes.length; i++){%>
-                            <td class="drivedate">
-                                <%=driverroutes[i].dridate%>
-                            </td>
-                            <td class="drivehour">
-                                <%=driverroutes[i].drihour %>
-                            </td>
-                            <td class="drivemin">
-                                <%=driverroutes[i].drimin%>
-                            </td>
-                            <td class="timetlr">
-                                <%=driverroutes[i].timetlr%>
-                            </td>
-                            <td class="drivepcode">
-                                <%=driverroutes[i].pcode%>
-                            </td>
-                            <td class="drivepcode">
-                                <%=driverroutes[i].pcoderange%>
-                            </td>
-                            <td class="drivepcode">
-                                <%=driverroutes[i].pcode2%>
-                            </td>
-                            <td class="drivepcode">
-                                <%=driverroutes[i].pcoderange2%>
-                            </td>
-                            <td class="occupancy">
-                                <%=driverroutes[i].occupancy%>
-                            </td>
-                            <td class="cost">
-                                <%=driverroutes[i].cost%>
-                            </td>
-                            <td class="occupied">
-                                <%=driverroutes[i].occupied%>
-                            </td>
-                            <td type="submit" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editdialog" data-id="<%= driverroutes[i]._id%>">Edit</td>
-                            <td type="delete" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#confirm-delete" data-id="<%= driverroutes[i]._id%>">Delete</td>
-                            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editdialog">Test</button> -->
-                    </tr>
-                    <%}%>
-                </tbody>
-            </table>
-        </section>
-        <section>
-            <div class="modal fade" id="editdialog" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="ModalLabel">Edit Info</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="dridate" class="control-label">Dept Date:</label>
-                                    <input type="text" class="datepicker" id="dridate">
-                                    <script>
-                                    $(function() {
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="dridate" class="control-label">Dept Date:</label>
+                                <input type="text" class="datepicker" id="dridate">
+                                <script>
+                                    $(function () {
                                         $('#dridate').datepicker();
-                                        $('#dridate').on('focus', function(e) {
+                                        $('#dridate').on('focus', function (e) {
                                             console.log(e);
                                             e.preventDefault();
                                         });
                                     });
-                                    </script>
-                                </div>
-                                <div class="form-group">
-                                    <label for="drihour" class="control-label">Dept Hour:</label>
-                                    <!-- <input type="number" class="form-control" id="drihour"> -->
-                                    <input type="number" min="0" max="23" size="15" id="drihour" name="DriverDeptHour"> &#58;
-                                    <label for="drimin" class="control-label">Dept Min:</label>
-                                    <!--  <input type="number" class="form-control" id="drimin"> -->
-                                    <select id="drimin" name="DriverDeptMin">
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                    </select>
-                                    <label for="timetlr" class="control-label">Tollerance:</label>
-                                    <!-- <input type="number" class="form-control" id="timetlr"> -->
-                                    <select id="timetlr" name="timetlr">
-                                        <option value="15" SELECTED>15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="pcode" class="control-label">Postal Code:</label>
-                                    <input type="text" class="form-control" id="pcode" placeholder="A0AA0A">
-                                </div>
-                                <div class="form-group">
-                                    <label for="pcoderange" class="control-label">Postal Code Range:</label>
-                                    <input type="number" class="form-control" min="1" max="5" id="pcoderange">
-                                </div>
-                                <div class="form-group">
-                                    <label for="pcode2" class="control-label">Postal Code2:</label>
-                                    <input type="text" class="form-control" id="pcode2" placeholder="A0AA0A">
-                                </div>
-                                <div class="form-group">
-                                    <label for="pcoderange2" class="control-label">Postal Code Range2:</label>
-                                    <input type="number" class="form-control" min="1" max="5" id="pcoderange2">
-                                </div>
-                                <div class="form-group">
-                                    <label for="occupancy" class="control-label">Occupancy:</label>
-                                    <input type="number" class="form-control" id="occupancy">
-                                </div>
-                                <div class="form-group">
-                                    <label for="cost" class="control-label">Cost:</label>
-                                    <input type="number" class="form-control" id="cost">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <button type="submit" id="confirm" class="btn btn-primary">Confirm</button>
-                        </div>
+                                </script>
+                            </div>
+                            <div class="form-group">
+                                <label for="drihour" class="control-label">Dept Hour:</label>
+                                <!-- <input type="number" class="form-control" id="drihour"> -->
+                                <input type="number" min="0" max="23" size="15" id="drihour" name="DriverDeptHour">
+                                &#58;
+                                <label for="drimin" class="control-label">Dept Min:</label>
+                                <!--  <input type="number" class="form-control" id="drimin"> -->
+                                <select id="drimin" name="DriverDeptMin">
+                                    <option value="15">15</option>
+                                    <option value="30">30</option>
+                                    <option value="45">45</option>
+                                </select>
+                                <label for="timetlr" class="control-label">Tollerance:</label>
+                                <!-- <input type="number" class="form-control" id="timetlr"> -->
+                                <select id="timetlr" name="timetlr">
+                                    <option value="15" SELECTED>15</option>
+                                    <option value="30">30</option>
+                                    <option value="45">45</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="pcode" class="control-label">Postal Code:</label>
+                                <input type="text" class="form-control" id="pcode" placeholder="A0AA0A">
+                            </div>
+                            <div class="form-group">
+                                <label for="pcoderange" class="control-label">Postal Code Range:</label>
+                                <input type="number" class="form-control" min="1" max="5" id="pcoderange">
+                            </div>
+                            <div class="form-group">
+                                <label for="pcode2" class="control-label">Postal Code2:</label>
+                                <input type="text" class="form-control" id="pcode2" placeholder="A0AA0A">
+                            </div>
+                            <div class="form-group">
+                                <label for="pcoderange2" class="control-label">Postal Code Range2:</label>
+                                <input type="number" class="form-control" min="1" max="5" id="pcoderange2">
+                            </div>
+                            <div class="form-group">
+                                <label for="occupancy" class="control-label">Occupancy:</label>
+                                <input type="number" class="form-control" id="occupancy">
+                            </div>
+                            <div class="form-group">
+                                <label for="cost" class="control-label">Cost:</label>
+                                <input type="number" class="form-control" id="cost">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="submit" id="confirm" class="btn btn-primary">Confirm</button>
                     </div>
                 </div>
             </div>
-        </section>
-        <section>
-            <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="ModalLabel">Delete Info</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>You are about to delete one track, this procedure is irreversible.</p>
-                            <p>Do you want to proceed?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-danger btn-ok" id="delete">Delete</a>
-                        </div>
+        </div>
+    </section>
+    <section>
+        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="ModalLabel">Delete Info</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>You are about to delete one track, this procedure is irreversible.</p>
+                        <p>Do you want to proceed?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-danger btn-ok" id="delete">Delete</a>
                     </div>
                 </div>
             </div>
-        </section>
-        <section>
-            <h2>Here is my routine</h2>
-            <table class="table" id="result" value='<%= routine %>' />
+        </div>
+    </section>
+    <section>
+        <h2>Here is my routine</h2>
+        <table class="table" id="result" value='<%= routine %>'/>
+        <thead>
+        <tr>
+            <th>Sunday</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr style="background-color:white">
+            <% if(routine){%>
+            <% for (var i =0; i< routine.length;i++){%>
+            <td class="DriverDeptHourSun">
+                <%=routine[i].sund.dayhour%>
+            </td>
+            <td style="width: 70px;" class="btn btn-primary btn-sm" name="editdia" id="editdia">Edit</td>
+            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editdialog">Test</button> -->
+            <%}%>
+            <%}%>
+        </tr>
+        </tbody>
+        </table>
+        <td type="submit" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#"
+            data-id="edit">Edit
+        </td>
+    </section>
+    <section>
+        <table class="table">
             <thead>
-                <tr>
-                    <th>Sunday</th>
-                </tr>
+            <tr>
+                <th>Sunday</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednsday</th>
+                <th>Thurday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+                <th>Postcode</th>
+                <th>Postcode Range</th>
+                <th>Occupancy</th>
+                <th>Cost</th>
+            </tr>
             </thead>
-            <tbody>
-                <tr style="background-color:white">
-                    <% if(routine){%>
-                        <% for (var i =0; i< routine.length;i++){%>
-                            <td class="DriverDeptHourSun">
-                                    <%=routine[i].sund.dayhour%>
-                                </td>
-                            <td style="width: 70px;" class="btn btn-primary btn-sm" name="editdia" id="editdia">Edit</td>
-                            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editdialog">Test</button> -->
-                        <%}%>
-                    <%}%>
-                </tr>
-            </tbody>
-            </table>
-            <td type="submit" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#" data-id="edit">Edit</td>
-        </section>
-        <section>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Sunday</th>
-                        <th>Monday</th>
-                        <th>Tuesday</th>
-                        <th>Wednsday</th>
-                        <th>Thurday</th>
-                        <th>Friday</th>
-                        <th>Saturday</th>
-                        <th>Postcode</th>
-                        <th>Postcode Range</th>
-                        <th>Occupancy</th>
-                        <th>Cost</th>
-                    </tr>
-                </thead>
-            </table>
-        </section>
-        <!-- <div class="col-sm-3"></div> -->
-        <!--End of form_row div-->
-    </div>
-    <!-- Script -->
-    <script type="text/javascript" src="js/modernizr.js"></script>
-    <!-- Modernizer -->
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <!-- Jquery -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <!-- Bootstrap -->
-    <script type="text/javascript" src="js/html5lightbox.js"></script>
-    <!-- HTML -->
-    <script type="text/javascript" src="js/scrolly.js"></script>
-    <!-- Parallax -->
-    <script type="text/javascript" src="js/price-range.js"></script>
-    <!-- Parallax -->
-    <script type="text/javascript" src="js/script.js"></script>
-    <!-- Script -->
-    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
-    <!-- Date -->
-    <script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
-    <!-- Time -->
-    <script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-    <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
+        </table>
+    </section>
+    <!-- <div class="col-sm-3"></div> -->
+    <!--End of form_row div-->
+</div>
+<!-- Script -->
+<script type="text/javascript" src="js/modernizr.js"></script>
+<!-- Modernizer -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<!-- Jquery -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<!-- Bootstrap -->
+<script type="text/javascript" src="js/html5lightbox.js"></script>
+<!-- HTML -->
+<script type="text/javascript" src="js/scrolly.js"></script>
+<!-- Parallax -->
+<script type="text/javascript" src="js/price-range.js"></script>
+<!-- Parallax -->
+<script type="text/javascript" src="js/script.js"></script>
+<!-- Script -->
+<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+<!-- Date -->
+<script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
+<!-- Time -->
+<script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
 
         var currentRoute;
 
         function bindShowEvent() {
-            $('#editdialog').on('show.bs.modal', function(event) {
+            $('#editdialog').on('show.bs.modal', function (event) {
                 //$(this).removeClass('modal-backdrop');
                 //Now set z-index of modal greater than backdrop
                 var button = $(event.relatedTarget) // Button that triggered the modal
-                    //ajax here
+                //ajax here
                 var modal = $(this)
                 modal.find('.modal-title').text('Edit Info');
-                setTimeout(function() {
+                setTimeout(function () {
                     modal.find('.modal-backdrop').remove();
                 }, 200);
                 currentRoute = button.attr("data-id");
@@ -345,28 +357,28 @@
 
         bindShowEvent();
 
-        $('#editdialog').on('hide.bs.modal', function(event) {
+        $('#editdialog').on('hide.bs.modal', function (event) {
             bindShowEvent();
         })
 
-        $('#confirm').on('click', function(event) {
+        $('#confirm').on('click', function (event) {
 
             $.post("/driverroutes/updateRoute?routeId=" + currentRoute, {
-                    dridate: $('#dridate').val(),
-                    drihour: $('#drihour').val(),
-                    drimin: $('#drimin').val(),
-                    timetlr: $('#timetlr').val(),
-                    pcode: $('#pcode').val(),
-                    pcoderange: $('#pcoderange').val(),
-                    pcode2: $('#pcode2').val(),
-                    pcoderange2: $('#pcoderange2').val(),
-                    occupancy: $('#occupancy').val(),
-                    cost: $('#cost').val()
+                        dridate: $('#dridate').val(),
+                        drihour: $('#drihour').val(),
+                        drimin: $('#drimin').val(),
+                        timetlr: $('#timetlr').val(),
+                        pcode: $('#pcode').val(),
+                        pcoderange: $('#pcoderange').val(),
+                        pcode2: $('#pcode2').val(),
+                        pcoderange2: $('#pcoderange2').val(),
+                        occupancy: $('#occupancy').val(),
+                        cost: $('#cost').val()
 
-                })
-                .done(function(res) {
-                    location.reload();
-                });
+                    })
+                    .done(function (res) {
+                        location.reload();
+                    });
             $('#dridate').html($('#dridate').val());
             $('#drihour').html($('#drihour').val());
             $('#drimin').html($('#drimin').val());
@@ -381,29 +393,29 @@
 
         })
 
-        $('#confirm-delete').on('show.bs.modal', function(event) {
+        $('#confirm-delete').on('show.bs.modal', function (event) {
             //$(this).removeClass('modal-backdrop');
             //Now set z-index of modal greater than backdrop
             var button = $(event.relatedTarget) // Button that triggered the modal
-                //ajax here
+            //ajax here
             var modal = $(this)
             modal.find('.modal-title').text('Delete Info');
-            setTimeout(function() {
+            setTimeout(function () {
                 modal.find('.modal-backdrop').remove();
             }, 200);
             currentRoute = button.attr("data-id");
             console.log(currentRoute);
         })
 
-        $('#delete').on('click', function(event) {
+        $('#delete').on('click', function (event) {
 
             $.post("/driverroutes/deleteRoute?routeId=" + currentRoute, {})
-                .done(function(res) {
-                    location.reload();
-                });
+                    .done(function (res) {
+                        location.reload();
+                    });
         })
 
-        $('#editdia').on('click', function(event) {
+        $('#editdia').on('click', function (event) {
             console.log("ss");
         })
     })
@@ -464,7 +476,7 @@
         videoJsPath: "rs-plugin/videojs/",
         fullScreenOffsetContainer: ""
     });
-    </script>
+</script>
 </body>
 
 </html>
