@@ -1,3 +1,4 @@
+var moment = require('moment');
 exports.createRoute = function() {
     return function(req, res) {
         var Route = global.dbHandel.getModel('driverroute');
@@ -14,7 +15,8 @@ exports.createRoute = function() {
         var deptpcoderange = req.body.deptpcoderange;
         var postcode2 = req.body.postcode2;
         var arripcoderange = req.body.arripcoderange;
-
+        //var createdate = new Date(drideptdate);
+        var createdate = moment(drideptdate, "MM-DD-YYYY").format("YYYY-MM-DD");
         console.log(req.body);
         Route.create({ // 创建一组route对象置入model
             name: name,
@@ -29,7 +31,8 @@ exports.createRoute = function() {
             occupancy: occu,
             cost: cost,
             mintime: mintime,
-            maxtime: maxtime
+            maxtime: maxtime,
+            createdate: createdate
         }, function(err) {
             if (err) {
                 res.send(500);

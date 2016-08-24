@@ -162,10 +162,12 @@
                 <% if(driverroute){%>
                 <% for (var i =0; i< driverroute.length;i++){%>
                 <tr>
-                    < class="searchtime">
+                    <td>
+                    <div class="searchtime">
                         <img src="images/blueArrow.jpg">
                         <br>
-                        <%=driverroute[i].dridate%>
+                        <strong><%=driverroute[i].dridate%></strong>
+                    </div>
                     </td>
                     <td>
                         <div class="searchdeparture">
@@ -315,28 +317,38 @@
             var routedestination = $('#PostalCode2').val();
             var routehour = $('#DriverDeptTime').val();
             var routemin = $('#DriverDeptMin').val();
-            var data = {
-                "routedate": routedate,
-                "routedeparture": routedeparture,
-                "routedestination": routedestination,
-                "routehour": routehour,
-                "routemin": routemin,
-            };
-            $.ajax({
-                url: '/searchRoute/searchPage',
-                type: 'get',
-                data: data,
-                success: function (data) {
-                    alert("success");
-                }
-            });
+            var searchLink = "/searchRoute?";
+//            var time = Number(routehour) * 3600 + Number(routemin) * 60;
+            if (routedate != "") {
+                console.log(routedate);
+                searchLink = searchLink + "&routedate=" + routedate;
+                console.log(searchLink)
+            }
+            if (routedeparture != "") {
+                searchLink = searchLink + "&pcode=" + routedeparture;
+                console.log(searchLink)
+            }
+            if (routedestination != "") {
+                searchLink = searchLink + "&pcode2=" + routedestination;
+                console.log(searchLink)
+            }
+            if (routehour != "") {
+                searchLink = searchLink + "&routehour=" + routehour;
+                console.log(searchLink)
+            }
+            if (routemin != "") {
+                searchLink = searchLink + "&routemin=" + routemin;
+                console.log(searchLink)
+            }
+//            if (time != "" && time != 0) {
+//                searchLink = searchLink + "&mintime=<=" + time;
+//                searchLink = searchLink + "&maxtime=>=" + time;
+//                console.log(searchLink)
+//            }
+            window.location.href = searchLink;
         });
-        $('#DriverDeptDate').html($('#DriverDeptDate').val());
-        $('#PostalCode').html($('#PostalCode').val());
-        $('#PostalCode2').html($('#PostalCode2').val());
-        $('#DriverDeptTime').html($('#DriverDeptTime').val());
-        $('#DriverDeptMin').html($('#DriverDeptMin').val());
     });
+
     $(document).ready(function () {
         var currentRoute;
 

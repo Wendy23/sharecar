@@ -14,8 +14,7 @@ module.exports = {
         pcode2: { type: String, required: true },
         pcoderange2: { type: Number, required: true },
         occupied: {type: Number, default:0},
-        riderId: [{
-            type: String,
-            ref: 'models' }]
+        createdate: {type: Date, required: true},
+        ridername: [{type: String}]
     }
 };
