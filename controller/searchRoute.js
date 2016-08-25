@@ -29,7 +29,7 @@ exports.driverroutes = function () {
             if (routedate != null && routedate.length != 0) {
                 query['dridate'] = routedate;
             }
-            query['createdate'] = {$lte: currentdate};
+            query['createdate'] = {$gte: currentdate};
             /*query['occupancy'] > query['occupied'];*/
             if((routehour != null && routehour!= undefined) || (routemin != null && routemin!= undefined)) {
                 var time = Number(routehour) * 3600 + Number(routemin) * 60;
@@ -72,17 +72,19 @@ exports.driverroutes = function () {
 
 exports.updateRoute = function () {
     return function (req, res) {
-        console.log("get into update ridername");
+        console.log("get into update riderId");
         if (!req.session.user) { //到达/home路径首先判断是否已经登录
             req.session.error = "请先登录"
             res.redirect("/login"); //未登录则重定向到 /login 路径
         } else {
             console.log(req.body, req.query);
             var Route = global.dbHandel.getModel('driverroute');
-
-            Route.update({_id: req.query.routeId}, {$addToSet: {"ridername": req.session.user.name}}, {}, function (err, raw) {
-                Route.update({ridername: req.session.user.name}, {$inc: {occupied: 1}}, {}, function (err, raw) {
-                    console.log("update ridername", err, raw);
+            var currentId = req.body.routeId;
+            var passnum = req.body.passenger;
+            var rest = req.body.rest;
+            Route.update({_id: currentId}, {$addToSet: {"riderid": req.session.user._id}}, {}, function (err, raw) {
+                Route.update({riderid: req.session.user._id}, {$inc: {occupied: passnum}}, {}, function (err, raw) {
+                    console.log("update riderid", err, raw);
                     if (err) res.status(500);
                     res.send(raw);
                 });

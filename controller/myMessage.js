@@ -7,8 +7,8 @@ exports.myMessage = function () {
         } else {
             var Message = global.dbHandel.getModel('driverroute');
             var name = req.session.user;
-            var name1 = name.name;
-            Message.find({ ridername: name1 }, function(err, doc) {
+            var name1 = name._id;
+            Message.find({ riderid: name1 }, function(err, doc) {
                 //req.session.user = doc;
                 console.log(doc);
                 res.render("myMessage", {driverroutes: doc,title: 'ShareCar'});

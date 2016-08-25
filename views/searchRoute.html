@@ -150,12 +150,12 @@
             <table class="table table-hover" id="rideTable" width="70%">
                 <thead>
                 <tr>
-                    <th>1</th>
-                    <th>2</th>
-                    <th>3</th>
-                    <th>4</th>
-                    <th>5</th>
-                    <th>6</th>
+                    <th>Date</th>
+                    <th>Departure Place</th>
+                    <th>Arrival Place</th>
+                    <th>Time</th>
+                    <th>Cost & Seats left</th>
+                    <th>Evaluation</th>
                 </tr>
                 </thead>
                 <tbody id="routeInfoBody">
@@ -163,25 +163,33 @@
                 <% for (var i =0; i< driverroute.length;i++){%>
                 <tr>
                     <td>
-                    <div class="searchtime">
-                        <img src="images/blueArrow.jpg">
-                        <br>
+                    <div class="blueArrow">
                         <strong><%=driverroute[i].dridate%></strong>
                     </div>
                     </td>
                     <td>
                         <div class="searchdeparture">
                             <strong><%=driverroute[i].pcode%></strong>
+                            <% for (var k =0; k< 10;k++){%>
+                           &nbsp
+                            <%}%>
+                            <img src="images/blueArrow.jpg">
                         </div>
                     </td>
                     <td>
-                        <div class="searchdestination"><span class="itineraryArrowInt3"></span>
+                        <div class="searcharrival">
+                            <strong><%=driverroute[i].pcode2%></strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="time">
+                            <strong><%=driverroute[i].drihour%>&#58</strong>
                             <strong><%=driverroute[i].drimin%></strong>
                         </div>
                     </td>
                     <td class="seatsAvailability">
                         <div class="itineraryPrice">
-                            <p><a class="titleBubble" href="#" title="Prix du conducteur"><%=driverroute[i].cost%></a>
+                            <strong>$<%=driverroute[i].cost%></strong>
                                 <br>
                                 <% for (var j =0; j< driverroute[i].occupied;j++){%>
                                 <img src="images/blueMan.jpg" alt="Blue Man" class="blueMan">
@@ -189,7 +197,6 @@
                                 <% for (var j =0; j< driverroute[i].occupancy-driverroute[i].occupied;j++){%>
                                 <img src="images/whiteMan.jpg" alt="white Man" class="whiteMan">
                                 <%}%>
-                            </p>
                         </div>
                     </td>
                     <td class="stars">
@@ -205,6 +212,7 @@
                         <button type="button" class="btn btn-primary btn-lg" data-dridate="<%=driverroute[i].dridate%>"
                                 data-pcode="<%=driverroute[i].pcode%>" data-pcode2="<%=driverroute[i].pcode2%>"
                                 data-drihour="<%=driverroute[i].drihour%>" data-drimin="<%=driverroute[i].drimin%>"
+                                data-occupancy="<%=driverroute[i].occupancy%>" data-occupied="<%=driverroute[i].occupied%>"
                                 data-toggle="modal" name="checkRoute" data-target="#checkRoute"
                                 data-id="<%= driverroute[i]._id%>">
                             Check
@@ -220,7 +228,7 @@
         </div>
     </section>
     <!-- Modal -->
-    <div class="modal fade" id="checkRoute" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="checkRoute" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -230,6 +238,9 @@
                 </div>
                 <div class="modal-body">
                     <span id="checkRoute_date"></span>
+                    <br>
+                    <h5>Passenger Number</h5>
+                    <input type="number" min="0" max="10" size="15" id="passengernum" name="passengernum">
                 </div>
                 <div class="modal-footer">
                     <button type="submit" id="sendmessage" class="btn btn-primary">Send my message</button>
@@ -372,14 +383,29 @@
 
         $("#sendmessage").click(function () {
             console.log("get into send messages");
-            //var session_value ='<%- user.name %>';
-            //console.log("info:" + session_value);
-            $.post("/searchRoute/updateRoute?routeId=" + currentRoute, {
-                        //         ridername: session_value,
-                    })
-                    .done(function (res) {
+            var passenger = $("#passengernum").val();
+            var routeId = currentRoute;
+            var data = {
+                "passenger": passenger,
+                "routeId": routeId
+            }
+            $.ajax({
+                url: '/searchRoute/updateRoute',
+                // data: $("form").serialize(),
+                type: 'post',
+                data: data,
+                success: function (data, status) {
+                    if (status == 'success') {
+                        //location.href = 'home';
                         location.reload();
-                    });
+                    }
+                },
+                error: function (data, status) {
+                    if (status == 'error') {
+                        location.href = 'searchRoute';
+                    }
+                }
+            });
         })
 
         bindShowEvent();
@@ -395,7 +421,11 @@
                 if (at == "checkRoute") {
                     var dridate = $(target).data("dridate");
                     var pcode = $(target).data("pcode");
-                    $("#checkRoute_date").html("<strong>" + "Date" + "<br>" + "</strong>" + dridate + "<br>" + "<br>" + "<strong>" + "Departure Place" + "</strong>" + "<br>" + pcode + "<br>");
+                    var pcode2 = $(target).data("pcode2");
+                    var occupancy = $(target).data("occupancy");
+                    var occupied = $(target).data("occupied");
+                    var rest = occupancy - occupied;
+                    $("#checkRoute_date").html("<strong>" + "Date" + "<br>" + "</strong>" + dridate + "<br>" + "<br>" + "<strong>" + "Departure Place" + "</strong>" + "<br>" + pcode + "<br>"+ "<strong>" + "Arrival Place" + "</strong>" + "<br>" + pcode2 + "<br>"+ "<br>"+"Seats are left" + "</strong>" + "<br>" + rest);
                 }
             }
         });
