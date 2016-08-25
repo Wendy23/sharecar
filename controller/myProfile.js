@@ -10,15 +10,8 @@ exports.createProfile = function() {
         var email = req.body.email;
         var mobile = req.body.mobile;
         console.log(req.body);
-        Route.remove({ name: name1, password: password }, function(err, doc) {});
-        Route.create({ // 创建一组route对象置入model
-            name: name1,
-            password: password,
-            nametitle: nametitle,
-            gender: gender,
-            email: email,
-            mobile: mobile
-        }, function(err, doc) {
+        //Route.remove({ name: name1, password: password }, function(err, doc) {});
+        Route.update({name:name1},{$set:{nametitle:nametitle,gender:gender,email:email,mobile:mobile}},function(err, doc) {
             if (err) {
                 res.send(500);
                 console.log(err);
