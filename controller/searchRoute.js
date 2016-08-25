@@ -82,13 +82,34 @@ exports.updateRoute = function () {
             var userid = req.session.user._id;
             var currentId = req.body.routeId;
             var passnum = req.body.passenger;
-            Route.update({_id: currentId}, {$push:{riderid:{userid:userid,passnum:passnum}}}, {}, function (err, raw) {
-                    Route.update({_id: currentId}, {$inc: {occupied: passnum}}, {}, function (err, raw) {
-                        console.log("update riderid", err, raw);
+            Route.update({"riderid.userid": userid}, {
+                '$inc': {
+                    'riderid.$.passnum': passnum,
+                    'occupied': passnum
+                }
+            }, {}, function (err, raw) {
+                //console.log("update riderid", err, "raw",raw);
+                console.log("raw: ", raw);
+                if (raw.nModified == '0') {
+                    Route.update({_id: currentId}, {
+                        $push: {
+                            riderid: {
+                                userid: userid,
+                                passnum: passnum
+                            }
+                        },
+                        $inc: {
+                            'occupied': passnum
+                        }
+                    }, {}, function () {
                         if (err) res.status(500);
                         res.send(raw);
                     });
-            });
+
+                }
+                if (err) res.status(500);
+                res.send(raw);
+            })
         }
     }
 }
