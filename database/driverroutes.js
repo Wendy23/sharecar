@@ -15,6 +15,8 @@ module.exports = {
         pcoderange2: { type: Number, required: true },
         occupied: {type: Number, default:0},
         createdate: {type: Date, required: true},
-        riderid: [{type: String}]
+        riderid: [{
+            userid: String,
+            passnum: Number,default:0}]
     }
 };

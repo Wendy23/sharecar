@@ -133,11 +133,11 @@
                 <td class="cost">
                     <%=driverroutes[i].cost%>
                 </td>
-                <td type="delete" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
-                    data-target="#confirm-delete" data-id="<%= driverroutes[i].riderid%>">Cancel
-                </td>
-                <td type="submit" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
-                    data-target="#feedback" data-id="<%= driverroutes[i]._id%>">Comment
+                <td>
+                    <button type="button" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
+                    data-target="#cancelRoute" data-id="<%= driverroutes[i].riderid.userid%>" name="cancelRoute" id="cancel" data-target="#cancelRoute">Cancel</button>
+                    <button type="button" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
+                    data-target="#feedback" data-id="<%= driverroutes[i]._id%>">Comment</button>
                 </td>
                 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editdialog">Test</button> -->
             </tr>
@@ -145,6 +145,28 @@
             </tbody>
         </table>
     </section>
+    <section>
+        <div class="modal fade" id="cancelRoute" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Passenger Info</h4>
+                    </div>
+                    <div class="modal-body">
+                        <span id="passenger_num"></span>
+                        <h5>Cancel Passenger Number</h5>
+                        <input type="number" min="0" max="10" size="15" id="passengernum" name="passengernum">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="sendmessage" class="btn btn-primary">Send my message</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>>
     <section>
         <h3>Messages I received</h3>
     </section>
@@ -176,6 +198,54 @@
 <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+        var currentRoute;
+        function bindShowEvent() {
+            $('#cancelRoute').on('show.bs.modal', function (event) {
+                //$(this).removeClass('modal-backdrop');
+                //Now set z-index of modal greater than backdrop
+                //ajax here
+                var button = $(event.relatedTarget)
+                var modal = $(this)
+                modal.find('.modal-title').text('Passenger Info');
+                setTimeout(function () {
+                    modal.find('.modal-backdrop').remove();
+                }, 200);
+                currentRoute = button.attr("data-id");
+                $(this).off('show.bs.modal');
+            });
+        }
+
+        bindShowEvent();
+        $('#cancelRoute').on('hide.bs.modal', function (event) {
+            bindShowEvent();
+        })
+
+        $("#cancelRoute").click(function () {
+            console.log("get into cancel route");
+            var passenger = $("#passengernum").val();
+            var routeId = currentRoute;
+            var data = {
+                "passenger": passenger,
+                "routeId": routeId
+            }
+            $.ajax({
+                url: '/myMessage/removeRoute',
+                // data: $("form").serialize(),
+                type: 'post',
+                data: data,
+                success: function (data, status) {
+                    if (status == 'success') {
+                        //location.href = 'home';
+                        location.reload();
+                    }
+                },
+                error: function (data, status) {
+                    if (status == 'error') {
+                        location.href = 'searchRoute';
+                    }
+                }
+            });
+        })
         "use strict";
         jQuery('.tp-banner').show().revolution({
             dottedOverlay: "none",

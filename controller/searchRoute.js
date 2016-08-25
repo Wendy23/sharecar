@@ -31,7 +31,7 @@ exports.driverroutes = function () {
             }
             query['createdate'] = {$gte: currentdate};
             /*query['occupancy'] > query['occupied'];*/
-            if((routehour != null && routehour!= undefined) || (routemin != null && routemin!= undefined)) {
+            if ((routehour != null && routehour != undefined) || (routemin != null && routemin != undefined)) {
                 var time = Number(routehour) * 3600 + Number(routemin) * 60;
                 if (time != null && time != "0") {
                     query['mintime'] = {$lte: time};
@@ -79,15 +79,15 @@ exports.updateRoute = function () {
         } else {
             console.log(req.body, req.query);
             var Route = global.dbHandel.getModel('driverroute');
+            var userid = req.session.user._id;
             var currentId = req.body.routeId;
             var passnum = req.body.passenger;
-            var rest = req.body.rest;
-            Route.update({_id: currentId}, {$addToSet: {"riderid": req.session.user._id}}, {}, function (err, raw) {
-                Route.update({riderid: req.session.user._id}, {$inc: {occupied: passnum}}, {}, function (err, raw) {
-                    console.log("update riderid", err, raw);
-                    if (err) res.status(500);
-                    res.send(raw);
-                });
+            Route.update({_id: currentId}, {$push:{riderid:{userid:userid,passnum:passnum}}}, {}, function (err, raw) {
+                    Route.update({_id: currentId}, {$inc: {occupied: passnum}}, {}, function (err, raw) {
+                        console.log("update riderid", err, raw);
+                        if (err) res.status(500);
+                        res.send(raw);
+                    });
             });
         }
     }
