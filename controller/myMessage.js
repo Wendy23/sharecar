@@ -8,15 +8,17 @@ exports.myMessage = function () {
             var Message = global.dbHandel.getModel('driverroute');
             var name = req.session.user;
             var name1 = name._id;
-            Message.find({ riderid:{userid:name1}}, function(err, doc) {
+            Message.find({'riderid.userid':req.session.user._id}, function(err, doc) {
                 //req.session.user = doc;
-                console.log(doc);
+                console.log("doc",doc);
                 res.render("myMessage", {driverroutes: doc,title: 'ShareCar'});
                 //res.render("myProfile", { user: JSON.stringify(doc), title: 'ShareCar' });
             });
         }
     }
 }
+
+
 
 exports.removeRoute = function () {
     return function (req, res) {

@@ -112,9 +112,7 @@
             </thead>
             <tbody>
             <tr style="background-color:white">
-                <% for (var i =0; i
-                <driverroutes.length
-                ; i++){%>
+                <% for (var i =0; i<driverroutes.length ; i++){%>
                 <td class="drivedate">
                     <%=driverroutes[i].dridate%>
                 </td>
@@ -135,9 +133,9 @@
                 </td>
                 <td>
                     <button type="button" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
-                    data-target="#cancelRoute" data-id="<%= driverroutes[i].riderid.userid%>" name="cancelRoute" id="cancel" data-target="#cancelRoute">Cancel</button>
+                            data-target="#cancelRoute" data-id="<%= driverroutes[i].riderid.userid%>" name="cancelRoute" id="cancel" data-target="#cancelRoute">Cancel</button>
                     <button type="button" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
-                    data-target="#feedback" data-id="<%= driverroutes[i]._id%>">Comment</button>
+                            data-target="#feedback" data-id="<%= driverroutes[i]._id%>">Comment</button>
                 </td>
                 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editdialog">Test</button> -->
             </tr>
@@ -166,7 +164,7 @@
                 </div>
             </div>
         </div>
-    </section>>
+    </section>
     <section>
         <h3>Messages I received</h3>
     </section>

@@ -7,12 +7,14 @@ exports.driverroutes = function() {
         } else {
             var Route = global.dbHandel.getModel('driverroute');
             var Routine = global.dbHandel.getModel('routine');
+            var name = req.session.user;
+            var name1 = name._id;
             // Route.statics.getModel(req.session.user, function(userId, callback) {
             //     this.model('driverroute').find({ name: userId }, callback);
             // })
             //Route.find({ name: req.session.user }, function(err, doc) {
-            Route.find({ name: req.session.user }, function(err, doc) {
-                Routine.find({ name: req.session.user }, function(err, docs) {
+            Route.find({ name: name1 }, function(err, doc) {
+                Routine.find({ name: name1 }, function(err, docs) {
                     res.render("driverRoutes", { driverroutes: doc, routine: docs });
                     console.log("doc:"+doc);
                     console.log("docs:"+docs);

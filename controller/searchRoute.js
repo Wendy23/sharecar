@@ -82,34 +82,40 @@ exports.updateRoute = function () {
             var userid = req.session.user._id;
             var currentId = req.body.routeId;
             var passnum = req.body.passenger;
-            Route.update({"riderid.userid": userid}, {
-                '$inc': {
-                    'riderid.$.passnum': passnum,
-                    'occupied': passnum
-                }
-            }, {}, function (err, raw) {
-                //console.log("update riderid", err, "raw",raw);
-                console.log("raw: ", raw);
-                if (raw.nModified == '0') {
-                    Route.update({_id: currentId}, {
-                        $push: {
-                            riderid: {
-                                userid: userid,
-                                passnum: passnum
+            Route.update(
+                {
+                    "_id": currentId,
+                    "riderid.userid": userid
+                },
+                {
+                    "$inc": {
+                        'riderid.$.passnum': passnum,
+                        'occupied': passnum
+                    }
+                }, {}, function (err, raw) {
+                    console.log("raw: ", raw);
+                    if (raw.nModified == '0') {
+                        console.log("modify==0");
+                        Route.update({_id: currentId},
+                            {
+                                $push: {
+                                    riderid: {
+                                        userid: userid,
+                                        passnum: passnum
+                                    }
+                                },
+                                $inc:{
+                                    'occupied':passnum
+                                }
+                            },{},function(err,raw){
+                                //if (err) res.status(500);
+                                //res.send(raw);
                             }
-                        },
-                        $inc: {
-                            'occupied': passnum
-                        }
-                    }, {}, function () {
-                        if (err) res.status(500);
-                        res.send(raw);
-                    });
-
-                }
-                if (err) res.status(500);
-                res.send(raw);
-            })
+                        )
+                    }
+                    if (err) res.status(500);
+                    res.send(raw);
+                })
         }
     }
 }

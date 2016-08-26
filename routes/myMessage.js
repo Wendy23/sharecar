@@ -14,5 +14,5 @@ var message = require('../controller/myMessage');
 // });
 
 router.get('/',message.myMessage());
-router.post('/removeRoute',message.removeRoute());
+//router.post('/removeRoute',message.removeRoute());
 module.exports = router;
