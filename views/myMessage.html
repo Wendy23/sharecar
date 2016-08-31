@@ -108,9 +108,10 @@
                 <th>PostalCode</th>
                 <th>PostalCode2</th>
                 <th>Cost</th>
+                <th>Number of Passengers</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="routeInfoBody">
             <tr style="background-color:white">
                 <% for (var i =0; i<driverroutes.length ; i++){%>
                 <td class="drivedate">
@@ -131,9 +132,13 @@
                 <td class="cost">
                     <%=driverroutes[i].cost%>
                 </td>
+                <td class="occupied">
+                    <%=driverroutes[i].riderid.passnum%>
+                </td>
                 <td>
                     <button type="button" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
-                            data-target="#cancelRoute" data-id="<%= driverroutes[i].riderid.userid%>" name="cancelRoute" id="cancel" data-target="#cancelRoute">Cancel</button>
+                            data-target="#cancelRoute"  name="cancelRoute" id="cancel" data-target="#cancelRoute" data-id="<%= driverroutes[i]._id%>"
+                            data-passnum="<%=driverroutes[i].riderid.passnum%>">Cancel</button>
                     <button type="button" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
                             data-target="#feedback" data-id="<%= driverroutes[i]._id%>">Comment</button>
                 </td>
@@ -153,6 +158,8 @@
                         <h4 class="modal-title" id="myModalLabel">Passenger Info</h4>
                     </div>
                     <div class="modal-body">
+                        <span id="num"></span>
+                        <br>
                         <span id="passenger_num"></span>
                         <h5>Cancel Passenger Number</h5>
                         <input type="number" min="0" max="10" size="15" id="passengernum" name="passengernum">
@@ -197,6 +204,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var currentRoute;
+
         function bindShowEvent() {
             $('#cancelRoute').on('show.bs.modal', function (event) {
                 //$(this).removeClass('modal-backdrop');
@@ -208,18 +216,15 @@
                 setTimeout(function () {
                     modal.find('.modal-backdrop').remove();
                 }, 200);
+                // currentMessage = button.attr("data-id");
                 currentRoute = button.attr("data-id");
+                console.log(currentRoute);
                 $(this).off('show.bs.modal');
             });
         }
 
-        bindShowEvent();
-        $('#cancelRoute').on('hide.bs.modal', function (event) {
-            bindShowEvent();
-        })
-
-        $("#cancelRoute").click(function () {
-            console.log("get into cancel route");
+        $("#sendmessage").click(function () {
+            console.log("get into remove passengers");
             var passenger = $("#passengernum").val();
             var routeId = currentRoute;
             var data = {
@@ -239,11 +244,32 @@
                 },
                 error: function (data, status) {
                     if (status == 'error') {
-                        location.href = 'searchRoute';
+                        location.href = 'myMessage';
                     }
                 }
             });
         })
+
+        bindShowEvent();
+        $('#cancelRoute').on('hide.bs.modal', function (event) {
+            bindShowEvent();
+        })
+
+        $("#routeInfoBody").click(function (event) {
+            var ev = event || window.event;
+            var target = ev.target || ev.srcElement;
+            console.log(target);
+            if (target.nodeName.toLowerCase() == "button") {
+                var at = $(target).attr("name");
+                if (at == "cancelRoute") {
+                    var passnum = $(target).data("passnum");
+                    $("#num").html("Reserved Seat(s)" + "<br>" + passnum);
+                }
+            }
+        });
+
+
+
         "use strict";
         jQuery('.tp-banner').show().revolution({
             dottedOverlay: "none",
