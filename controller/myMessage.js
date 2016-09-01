@@ -6,6 +6,7 @@ exports.myMessage = function () {
             res.redirect("/login"); //未登录则重定向到 /login 路径
         } else {
             var Message = global.dbHandel.getModel('driverroute');
+            var Message2 = global.dbHandel.getModel('driverroute');
             var name = req.session.user;
             var name1 = name._id;
             Message.aggregate(
@@ -22,12 +23,19 @@ exports.myMessage = function () {
                 //    "$group": {"_id": "$_id", "riderid": {'$push': "$riderid"}}
                 //},
                 function (err, doc) {
-                    //req.session.user = doc;
-                    console.log("doc", doc);
-                    res.render("myMessage", {driverroutes: doc, title: 'ShareCar'});
-                    //res.render("myProfile", { user: JSON.stringify(doc), title: 'ShareCar' });
-                }
-            );
+                    Message2.find(
+                        {
+                            name: name1,
+                            "riderid.passnum":{$exists:true}
+                        }, function (err, docs) {
+                            res.render("myMessage", {driverroutes: doc, routes: docs});
+                            console.log("doc:" + doc);
+                            //console.log("docs:" + docs);
+                            //res.render("myMessage", {driverroutes: doc, title: 'ShareCar'});
+                            //res.render("myProfile", { user: JSON.stringify(doc), title: 'ShareCar' });
+                        }
+                    );
+                })
         }
     }
 }
