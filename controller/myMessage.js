@@ -26,10 +26,13 @@ exports.myMessage = function () {
                     Message2.find(
                         {
                             name: name1,
-                            "riderid.passnum":{$exists:true}
+                            "riderid.passnum": {$exists: true}
                         }, function (err, docs) {
-                            res.render("myMessage", {driverroutes: doc, routes: docs});
-                            console.log("doc:" + doc);
+                            Message2.find().populate('user').exec(function (err, docc) {
+                                res.render("myMessage", {driverroutes: doc, routes: docs, user: docc});
+                                console.log("user:" + docc);
+                            })
+
                             //console.log("docs:" + docs);
                             //res.render("myMessage", {driverroutes: doc, title: 'ShareCar'});
                             //res.render("myProfile", { user: JSON.stringify(doc), title: 'ShareCar' });

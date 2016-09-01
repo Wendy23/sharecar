@@ -1,3 +1,5 @@
+var mongoose = require('mongoose');
+var ObjectId = mongoose.Schema.Types.ObjectId;
 module.exports = {
     driverroute: {
         name: { type: String, required: true },
@@ -16,7 +18,7 @@ module.exports = {
         occupied: {type: Number, default:0},
         createdate: {type: Date, required: true},
         riderid: [{
-            userid: String,
+            userid: {type:ObjectId,ref:'user'},
             passnum: Number,default:0}]
     }
 };
