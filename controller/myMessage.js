@@ -28,7 +28,7 @@ exports.myMessage = function () {
                             name: name1,
                             "riderid.passnum": {$exists: true}
                         }, function (err, docs) {
-                            user1.find({}).populate('riderid',null).exec(function (err, docc) {
+                            Message.find({name:req.session.user._id}).populate('riderid.userid', null).exec(function (err, docc) {
                                 res.render("myMessage", {driverroutes: doc, routes: docs, user: docc});
                                 console.log("user:" + docc);
                             })
