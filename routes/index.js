@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
+var id = mongoose.Types.ObjectId();
 
 /* GET index page. */
 router.get('/', function(req, res, next) {
@@ -60,7 +62,9 @@ function(req, res) {
             req.session.error = '用户名已存在！';
             res.send(500);
         } else {
+            console.log(id);
             User.create({ // 创建一组user对象置入model
+                _id:id,//ObjectId(123123123123123),
                 name: uname,
                 password: upwd
             }, function(err, doc) {

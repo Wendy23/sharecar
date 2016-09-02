@@ -6,22 +6,22 @@ exports.myMessage = function () {
             res.redirect("/login"); //未登录则重定向到 /login 路径
         } else {
             var Message = global.dbHandel.getModel('driverroute');
-            var user1 = global.dbHandel.getModel('user');
             var name = req.session.user;
             var name1 = name._id;
-            Message.aggregate(
-                {
-                    $unwind: '$riderid'
-                },
-                {
-                    $match: {'riderid.userid': req.session.user._id}
-                },
-                //{
-                //    $project: {cost: 1, riderid: 1, _id: 0, passnum: 1}
-                //},
-                //{
-                //    "$group": {"_id": "$_id", "riderid": {'$push': "$riderid"}}
-                //},
+            Message.find({'riderid.userid': req.session.user._id},
+            //Message.aggregate(
+            //    {
+            //        $unwind: '$riderid'
+            //    },
+            //    {
+            //        $match: {'riderid.userid': req.session.user._id}
+            //    },
+            //    //{
+            //    //    $project: {cost: 1, riderid: 1, _id: 0, passnum: 1}
+            //    //},
+            //    //{
+            //    //    "$group": {"_id": "$_id", "riderid": {'$push': "$riderid"}}
+            //    //},
                 function (err, doc) {
                     Message.find(
                         {
@@ -29,8 +29,9 @@ exports.myMessage = function () {
                             "riderid.passnum": {$exists: true}
                         }, function (err, docs) {
                             Message.find({name:req.session.user._id}).populate('riderid.userid', null).exec(function (err, docc) {
-                                res.render("myMessage", {driverroutes: doc, routes: docs, user: docc});
+                                console.log("sent:" + doc);
                                 console.log("user:" + docc);
+                                res.render("myMessage", {driverroutes: doc, currentId:name1,routes: docs, user: (docc!=null && docc.length>0?docc[0]._doc.riderid:{})});
                             })
 
                             //console.log("docs:" + docs);

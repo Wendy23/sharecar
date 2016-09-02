@@ -133,12 +133,16 @@
                     <td class="cost">
                         <%=driverroutes[i].cost%>
                     </td>
-                    <td class="occupied">
-                        <%=driverroutes[i].riderid.passnum%>
+                    <td class="occupied" id="">
+                        <% for (var k =0; k < driverroutes[i].riderid.length ; k++){%>
+                        <% if(driverroutes[i].riderid[k].userid == currentId){%>
+                        <%=driverroutes[i].riderid[k].passnum%>
+                        <%}%>
+                        <%}%>
                     </td>
                     <td>
                         <button type="button" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
-                                data-target="#cancelRoute" name="cancelRoute" id="cancel" data-target="#cancelRoute"
+                                data-target="#cancelRoute" name="cancelRoute" data-target="#cancelRoute"
                                 data-id="<%= driverroutes[i]._id%>"
                                 data-passnum="<%=driverroutes[i].riderid.passnum%>">Cancel
                         </button>
@@ -153,7 +157,7 @@
         </table>
     </section>
     <section>
-        <div class="modal fade" id="cancelRoute" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="cancelRoute" data-id="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -224,7 +228,7 @@
                         <!--data-target="#cancelRoute"  name="cancelRoute" id="cancel" data-target="#cancelRoute" data-id="<%= routes[i]._id%>"-->
                         <!--data-passnum="<%=routes[i].riderid.passnum%>">Cancel</button>-->
                         <button type="button" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
-                                data-target="#confirm" name="confirm" id="confirmRoute" data-id="<%= routes[i]._id%>"  data-passnuminfo="<%=routes[i].riderid[0].passnum%>">Confirm
+                                data-target="#confirm" name="confirm" id="confirmRoute" data-id="<%= routes[i]._id%>"  data-passnuminfo="<%=user%>">Confirm
                         </button>
                     </td>
                     <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editdialog">Test</button> -->
@@ -243,9 +247,36 @@
                     <h4 class="modal-title" id="receiveModalLabel">Passenger Information</h4>
                 </div>
                 <div class="modal-body">
-                    <h5>zheli</h5>
-                    <span id="info"></span>
-                    <br>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <% if (user != null && user.length >0){%>
+                                <% for (var i =0; i <user.length ; i++){%>
+                                    <tr>
+                                    <td>
+                                        <%=user[i].userid.nametitle%>
+                                    </td>
+                                    <td>
+                                        <%=user[i].userid.gender%>
+                                    </td>
+                                    <td>
+                                        <%=user[i].userid.mobile%>
+                                    </td>
+                                    <td>
+                                        <%=user[i].userid.email%>
+                                    </td>
+                                    </tr>
+                                <%}%>
+                            <%}%>
+                        </tbody>
+                    </table>
                 </div>
                 <div>
                     <div class="modal-footer">
@@ -297,7 +328,7 @@
                     modal.find('.modal-backdrop').remove();
                 }, 200);
                 // currentMessage = button.attr("data-id");
-                currentRoute = button.attr("data-id");
+                currentRoute =modal.data("id");
                 console.log(currentRoute);
                 $(this).off('show.bs.modal');
             });
@@ -338,12 +369,12 @@
         $("#routeInfoBody").click(function (event) {
             var ev = event || window.event;
             var target = ev.target || ev.srcElement;
-            console.log(target);
             if (target.nodeName.toLowerCase() == "button") {
-                var at = $(target).attr("name");
-                if (at == "cancelRoute") {
-                    var passnum = $(target).data("passnum");
-                    $("#num").html("Reserved Seat(s)" + "<br>" + passnum);
+                if($(target).attr("name")=="cancelRoute"){//取消
+                    var num=$(target).parent().prev().html();
+                    var id=$(target).data("id");
+                    $("#cancelRoute").data("id",id);
+                    $("#num").html("Reserved Seat(s)" + "<br>" +num);
                 }
             }
         });
@@ -372,18 +403,18 @@
             bindShowEvent1();
         })
 
-        $("#receiveInfoBody").click(function (event) {
-            var ev = event || window.event;
-            var target = ev.target || ev.srcElement;
-            console.log(target);
-            if (target.nodeName.toLowerCase() == "button") {
-                var at = $(target).attr("name");
-                if (at == "confirm") {
-                    var passnum = $(target).data("passnuminfo");
-                    $("#info").html("Reserved Seat(s)" + "<br>" + passnum);
-                }
-            }
-        });
+//        $("#receiveInfoBody").click(function (event) {
+//            var ev = event || window.event;
+//            var target = ev.target || ev.srcElement;
+//            console.log(target);
+//            if (target.nodeName.toLowerCase() == "button") {
+//                var at = $(target).attr("name");
+//                if (at == "confirm") {
+//                    var passnum = $(target).data("passnuminfo");
+//                    $("#info").html("Reserved Seat(s)" + "<br>" + passnum);
+//                }
+//            }
+//        });
 
         "use strict";
         jQuery('.tp-banner').show().revolution({
