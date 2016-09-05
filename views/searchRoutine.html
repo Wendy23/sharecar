@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        ShareCar
+    </title>
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="images/favicon.jpg"/>
+    <!-- Styles -->
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" type="text/css"/>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css" type="text/css"/>
+    <!-- Style -->
+    <!--  <link rel="stylesheet" href="css/responsive.css" type="text/css" /> -->
+    <!-- Responsive -->
+    <link rel="stylesheet" href="/stylesheets/colors.css" type="text/css"/>
+    <!-- color -->
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <!--Slides-->
+    <!--Date-->
+    <link rel='stylesheet' href='/stylesheets/datepicker.css'/>
+    <!--Time-->
+    <link rel='stylesheet' href='/stylesheets/bootstrap-timepicker.min.css'/>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<!-- /.preloader -->
+<div id="preloader"></div>
+<div class="theme-layout">
+    <!-- Header -->
+    <header class="simple-header for-sticky white">
+        <!-- Top bar -->
+        <div class="top-bar">
+            <div class="container">
+                <ul class="contact-item">
+                    <li><i class="fa fa-envelope-o"></i>yourcompnay@email.com</li>
+                    <li><i class="fa fa-mobile"></i>+1 333 44 555 / +1 333 44 500</li>
+                </ul>
+                <div class="choose-language">
+                    <a href="#" title="">EN</a>
+                    <a href="#" title="">CH</a>
+                </div>
+            </div>
+        </div>
+        <div class="menu">
+            <div class="container">
+                <!-- LOGO -->
+                <div class="logo">
+                    <span>ShareCar</span>
+                    <strong>CITY CARPOOL</strong>
+                </div>
+                <span class="menu-toggle"><i class="fa fa-bars"></i></span>
+                <nav>
+                    <h1 class="nocontent outline">--- Main Navigation ---</h1>
+                    <ul>
+                        <li>
+                            <a href="/home" title="">HOME</a>
+                        </li>
+                        <li>
+                            <a href="#" title="">ABOUT</a>
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href="#" title="">SEARCH</a>
+                            <ul>
+                                <li><a href="/searchRoute" title="">Route</a></li>
+                                <li><a href="#" title="">Home v2</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#" title="">CONTACT</a></li>
+                        <li><a href="#" title=""><strong>Welcome, <%- user.name %></strong></a></li>
+                        <li>
+                            <a href="/logout" title="">
+                                <span><i class="fa fa-sign-out "></i> logout</span></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+</div>
+<section>
+    <form id="search-route" class="form-group" role="form">
+        <div>
+            <label for="departure"><span>Leave from:</span></label>
+            <input type="text" id="departure"
+                   name="departure">
+            <label for="arrive"><span>Arrive at:</span></label>
+            <input type="text" id="arrive"
+                   name="arrive">
+        </div>
+        <!-- Fixed time -->
+        <div class="formRow" id="fixedTimeSelectorContainer">
+            <input type="radio" name="timeModeSelector" value="fixedTimeRadio" id="fixedTimeRadio"
+                   checked="checked"/>
+            <label for="fixedTimeRadio"><span>From Monday to Friday I leave at:</span></label>
+            <input class="daytime-label disabled" type="number" min="0" max="23" size="15" id="DriverDeptHourSame"
+                   name="DriverDeptHour"> &#58;
+            <select id="DriverDeptMinSame" name="DriverDeptMin">
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="45">45</option>
+            </select>
+        </div>
+        <!--End of form_row div-->
+        <!-- Flexible time -->
+        <div class="formRow">
+            <input type="radio" name="timeModeSelector" value="flexibleTimeRadio" id="flexibleTimeRadio"/>
+            <label for="flexibleTimeRadio"><span>My schedule is flexible:</span></label>
+            <table class="flexibleTimeSelectorContainer" id="flexibleTimeSelectorContainer" style="display: none;">
+                <tr>
+                    <td>
+                        <input type="checkbox" class="daytimecheck" id="day-sund"/>
+                    </td>
+                    <td>
+                        <span class="daytime-label disabled"><label for="day-sund">Sunday</label></span>
+                    </td>
+                    <td>
+                        <span class="daytime-label">I leave at:</span>
+                    </td>
+                    <td>
+                        <input class="daytime-label" type="number" min="0" max="23" size="15"
+                               id="DriverDeptHoursund" name="DriverDeptHour" disabled="disabled"> &#58;
+                    </td>
+                    <td>
+                        <select id="DriverDeptMinsund" name="DriverDeptMin">
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="checkbox" class="daytimecheck" id="day-mon"/>
+                    </td>
+                    <td>
+                        <span class="daytime-label disabled"><label for="day-mon">Monday</label></span>
+                    </td>
+                    <td>
+                        <span class="daytime-label">I leave at:</span>
+                    </td>
+                    <td>
+                        <input class="daytime-label disabled" type="number" min="0" max="23" size="15"
+                               id="DriverDeptHourmon" name="DriverDeptHour"> &#58;
+                    </td>
+                    <td>
+                        <select id="DriverDeptMinmon" name="DriverDeptMin">
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                        </select>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" class="daytimecheck" id="day-tues"/>
+                    </td>
+                    <td>
+                        <span class="daytime-label disabled"><label for="day-tues">Tuesday</label></span>
+                    </td>
+                    <td>
+                        <span class="daytime-label">I leave at:</span>
+                    <td>
+                        <input class="daytime-label disabled" type="number" min="0" max="23" size="15"
+                               id="DriverDeptHourtues" name="DriverDeptHour"> &#58;
+                    </td>
+                    <td>
+                        <select id="DriverDeptMintues" name="DriverDeptMin">
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="checkbox" class="daytimecheck" id="day-wednes"/>
+                    </td>
+                    <td>
+                        <span class="daytime-label disabled"><label for="day-wednes">Wednesday</label></span>
+                    </td>
+                    <td>
+                        <span class="daytime-label">I leave at:</span>
+                    </td>
+                    <td>
+                        <input class="daytime-label disabled" type="number" min="0" max="23" size="15"
+                               id="DriverDeptHourwednes" name="DriverDeptHour"> &#58;
+                    </td>
+                    <td>
+                        <select id="DriverDeptMinwednes" name="DriverDeptMin">
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="checkbox" class="daytimecheck" id="day-thurs"/>
+                    </td>
+                    <td>
+                        <span class="daytime-label disabled"><label for="day-thurs">Thursday</label></span>
+                    </td>
+                    <td>
+                        <span class="daytime-label">I leave at:</span>
+                    </td>
+                    <td>
+                        <input class="daytime-label disabled" type="number" min="0" max="23" size="15"
+                               id="DriverDeptHourthurs" name="DriverDeptHour"> &#58;
+                    </td>
+                    <td>
+                        <select id="DriverDeptMinthurs" name="DriverDeptMin">
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="checkbox" class="daytimecheck" id="day-fri"/>
+                    </td>
+                    <td>
+                        <span class="daytime-label disabled"><label for="day-Mon">Friday</label></span>
+                    </td>
+                    <td>
+                        <span class="daytime-label">I leave at:</span>
+                    </td>
+                    <td>
+                        <input class="daytime-label disabled" type="number" min="0" max="23" size="15"
+                               id="DriverDeptHourfri" name="DriverDeptHour"> &#58;
+                    </td>
+                    <td>
+                        <select id="DriverDeptMinfri" name="DriverDeptMin">
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="checkbox" class="daytimecheck" id="day-satur"/>
+                    </td>
+                    <td>
+                        <span class="daytime-label disabled"><label for="day-satur">Saturday</label></span>
+                    </td>
+                    <td>
+                        <span class="daytime-label">I leave at:</span>
+                    </td>
+                    <td>
+                        <input class="daytime-label" type="number" min="0" max="23" size="15"
+                               id="DriverDeptHoursatur" name="DriverDeptHour"> &#58;
+                    </td>
+                    <td>
+                        <select id="DriverDeptMinsatur" name="DriverDeptMin">
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <button type="button" style="width: 100px;" class="btn btn-primary btn-block" id="search">SEARCH</button>
+        </div>
+    </form>
+</section>
+
+<!-- Script -->
+<script type="text/javascript" src="js/modernizr.js"></script>
+<!-- Modernizer -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<!-- Jquery -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<!-- Bootstrap -->
+<script type="text/javascript" src="js/html5lightbox.js"></script>
+<!-- HTML -->
+<script type="text/javascript" src="js/scrolly.js"></script>
+<!-- Parallax -->
+<script type="text/javascript" src="js/price-range.js"></script>
+<!-- Parallax -->
+<script type="text/javascript" src="js/script.js"></script>
+<!-- Script -->
+<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+<!-- Date -->
+<script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
+<!-- Time -->
+<script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('input[name=timeModeSelector]').change(function () {
+            if ($(this).val() == 'flexibleTimeRadio') { //flexible time
+                $('#radioFlag').val(2);
+                $('#flexibleTimeSelectorContainer').show();
+                $('#fixedTimeSelectorContainer').children('select').attr('disabled', 'disabled');
+                $('#fixedTimeSelectorContainer').children('span').addClass('disabled');
+                $('#fixedTimeSelectorContainer').children('input').attr('disabled');
+            } else if ($(this).val() == 'fixedTimeRadio') { //fixed time
+                $('#radioFlag').val(1);
+                $('#flexibleTimeSelectorContainer').hide();
+                $('#fixedTimeSelectorContainer').children('select').removeAttr('disabled', 'disabled');
+                $('#fixedTimeSelectorContainer').children('span').removeClass('disabled');
+                $('#fixedTimeSelectorContainer').children('input').removeAttr('disabled');
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        "use strict";
+        jQuery('.tp-banner').show().revolution({
+            dottedOverlay: "none",
+            delay: 16000, //revolution
+            startwidth: 1170,
+            startheight: 700,
+            hideThumbs: 200,
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview1",
+            touchenabled: "on",
+            onHoverStop: "on",
+            swipe_velocity: 0.7,
+            swipe_min_touches: 1,
+            swipe_max_touches: 1,
+            drag_block_vertical: false,
+            parallax: "mouse",
+            parallaxBgFreeze: "on",
+            parallaxLevels: [7, 4, 3, 2, 5, 4, 3, 2, 1, 0],
+            keyboardNavigation: "off",
+            navigationHAlign: "center",
+            navigationVAlign: "bottom",
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+            shadow: 0,
+            fullWidth: "on",
+            fullScreen: "off",
+            spinner: "spinner4",
+            stopLoop: "off",
+            stopAfterLoops: -1,
+            stopAtSlide: -1,
+            shuffle: "off",
+            autoHeight: "off",
+            forceFullWidth: "off",
+            hideThumbsOnMobile: "off",
+            hideNavDelayOnMobile: 1500,
+            hideBulletsOnMobile: "off",
+            hideArrowsOnMobile: "off",
+            hideThumbsUnderResolution: 0,
+            hideSliderAtLimit: 0,
+            hideCaptionAtLimit: 0,
+            hideAllCaptionAtLilmit: 0,
+            startWithSlide: 0,
+            videoJsPath: "rs-plugin/videojs/",
+            fullScreenOffsetContainer: ""
+        });
+    });
+</script>
+</body>
+
+</html>

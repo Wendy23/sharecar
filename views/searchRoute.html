@@ -162,15 +162,15 @@
                 <% for (var i =0; i< driverroute.length;i++){%>
                 <tr>
                     <td>
-                    <div class="blueArrow">
-                        <strong><%=driverroute[i].dridate%></strong>
-                    </div>
+                        <div class="blueArrow">
+                            <strong><%=driverroute[i].dridate%></strong>
+                        </div>
                     </td>
                     <td>
                         <div class="searchdeparture">
                             <strong><%=driverroute[i].pcode%></strong>
                             <% for (var k =0; k< 10;k++){%>
-                           &nbsp
+                            &nbsp
                             <%}%>
                             <img src="images/blueArrow.jpg">
                         </div>
@@ -189,13 +189,13 @@
                     <td class="seatsAvailability">
                         <div class="itineraryPrice">
                             <strong>$<%=driverroute[i].cost%></strong>
-                                <br>
-                                <% for (var j =0; j< driverroute[i].occupied;j++){%>
-                                <img src="images/blueMan.jpg" alt="Blue Man" class="blueMan">
-                                <%}%>
-                                <% for (var j =0; j< driverroute[i].occupancy-driverroute[i].occupied;j++){%>
-                                <img src="images/whiteMan.jpg" alt="white Man" class="whiteMan">
-                                <%}%>
+                            <br>
+                            <% for (var j =0; j< driverroute[i].occupied;j++){%>
+                            <img src="images/blueMan.jpg" alt="Blue Man" class="blueMan">
+                            <%}%>
+                            <% for (var j =0; j< driverroute[i].occupancy-driverroute[i].occupied;j++){%>
+                            <img src="images/whiteMan.jpg" alt="white Man" class="whiteMan">
+                            <%}%>
                         </div>
                     </td>
                     <td class="stars">
@@ -211,7 +211,8 @@
                         <button type="button" class="btn btn-primary btn-lg" data-dridate="<%=driverroute[i].dridate%>"
                                 data-pcode="<%=driverroute[i].pcode%>" data-pcode2="<%=driverroute[i].pcode2%>"
                                 data-drihour="<%=driverroute[i].drihour%>" data-drimin="<%=driverroute[i].drimin%>"
-                                data-occupancy="<%=driverroute[i].occupancy%>" data-occupied="<%=driverroute[i].occupied%>"
+                                data-occupancy="<%=driverroute[i].occupancy%>"
+                                data-occupied="<%=driverroute[i].occupied%>"
                                 data-toggle="modal" name="checkRoute" data-target="#checkRoute"
                                 data-id="<%= driverroute[i]._id%>">
                             Check
@@ -424,7 +425,7 @@
                     var occupancy = $(target).data("occupancy");
                     var occupied = $(target).data("occupied");
                     var rest = occupancy - occupied;
-                    $("#checkRoute_date").html("<strong>" + "Date" + "<br>" + "</strong>" + dridate + "<br>" + "<br>" + "<strong>" + "Departure Place" + "</strong>" + "<br>" + pcode + "<br>"+ "<strong>" + "Arrival Place" + "</strong>" + "<br>" + pcode2 + "<br>"+ "<br>"+"Seats are left" + "</strong>" + "<br>" + rest);
+                    $("#checkRoute_date").html("<strong>" + "Date" + "<br>" + "</strong>" + dridate + "<br>" + "<br>" + "<strong>" + "Departure Place" + "</strong>" + "<br>" + pcode + "<br>" + "<strong>" + "Arrival Place" + "</strong>" + "<br>" + pcode2 + "<br>" + "<br>" + "Seats are left" + "</strong>" + "<br>" + rest);
                 }
             }
         });
@@ -486,17 +487,6 @@
             fullScreenOffsetContainer: ""
         });
     });
-    function a(){
-        var a=new Array();
-        var c="";
-
-        for(){
-            $("[name='']").each(function(){
-                $(this).prop("disabled",true);
-            });
-        }
-
-    }
 </script>
 </body>
 
