@@ -267,51 +267,10 @@
     </section>
     <section>
         <h2>Here is my routine</h2>
-        <table class="table" id="result" value='<%= routine %>'/>
-        <thead>
-        <tr>
-            <th>Sunday</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr style="background-color:white">
-            <% if(routine){%>
-            <% for (var i =0; i< routine.length;i++){%>
-            <td class="DriverDeptHourSun">
-                <%=routine[i].sund.dayhour%>
-            </td>
-            <td style="width: 70px;" class="btn btn-primary btn-sm" name="editdia" id="editdia">Edit</td>
-            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editdialog">Test</button> -->
-            <%}%>
-            <%}%>
-        </tr>
-        </tbody>
-        </table>
-        <td type="submit" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#"
-            data-id="edit">Edit
-        </td>
+        <div class="editroutinr">
+            <a href="createRoutine" title="">Edit</a>
+        </div>
     </section>
-    <section>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Sunday</th>
-                <th>Monday</th>
-                <th>Tuesday</th>
-                <th>Wednsday</th>
-                <th>Thurday</th>
-                <th>Friday</th>
-                <th>Saturday</th>
-                <th>Postcode</th>
-                <th>Postcode Range</th>
-                <th>Occupancy</th>
-                <th>Cost</th>
-            </tr>
-            </thead>
-        </table>
-    </section>
-    <!-- <div class="col-sm-3"></div> -->
-    <!--End of form_row div-->
 </div>
 <!-- Script -->
 <script type="text/javascript" src="js/modernizr.js"></script>

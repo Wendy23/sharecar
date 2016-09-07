@@ -89,199 +89,334 @@
     </header>
 </div>
 <section>
-    <form id="search-route" class="form-group" role="form">
-        <div>
-            <label for="departure"><span>Leave from:</span></label>
-            <input type="text" id="departure"
-                   name="departure">
-            <label for="arrive"><span>Arrive at:</span></label>
-            <input type="text" id="arrive"
-                   name="arrive">
+    <div class="row" style="background:#fbf9f9;border:1px solid #c3c2c2;">
+        <div class="col-md-2 col-md-offset-5">
+            <form id="search-route" name="search-route" class="form-group" role="form"
+            >
+                <div class="row">
+                    <div class="col-md-6"><label for="departure"><span>Leave from:</span></label>
+                        <input type="text" id="departure"
+                               name="departure" class="required">
+                    </div>
+                    <div class="col-md-6" style="margin-right:1px;"><label for="arrive"><span>Arrive at:</span></label>
+                        <input type="text" id="arrive"
+                               name="arrive" class="required"></div>
+                </div>
+                <!-- Fixed time -->
+                <div class="formRow" id="fixedTimeSelectorContainer">
+                    <input type="radio" name="timeModeSelector" value="fixedTimeRadio" id="fixedTimeRadio"
+                           checked="checked"/>
+                    <label for="fixedTimeRadio"><span>From Monday to Friday I leave at:</span></label>
+                    <input class="daytime-label disabled" type="number" min="0" max="23" size="15"
+                           id="DriverDeptHourSame"
+                           name="DriverDeptHour"> &#58;
+                    <select id="DriverDeptMinSame" name="DriverDeptMin">
+                        <option value="15">15</option>
+                        <option value="30">30</option>
+                        <option value="45">45</option>
+                    </select>
+                </div>
+                <!--End of form_row div-->
+                <!-- Flexible time -->
+                <div class="formRow">
+                    <input type="radio" name="timeModeSelector" value="flexibleTimeRadio" id="flexibleTimeRadio"/>
+                    <label for="flexibleTimeRadio"><span>My schedule is flexible:</span></label>
+                    <table class="flexibleTimeSelectorContainer" id="flexibleTimeSelectorContainer">
+                        <!--style="display: none;"-->
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="daytimecheck" checked="checked" id="day-sund"/>
+                            </td>
+                            <td>
+                                <span class="daytime-label"><label for="day-sund">Sunday</label></span>
+                            </td>
+                            <td>
+                                <span class="daytime-label">I leave at:</span>
+                            </td>
+                            <td>
+                                <input class="daytime-label" type="number" min="0" max="23" size="15"
+                                       id="DriverDeptHoursund" name="DriverDeptHour"> &#58;
+                            </td>
+                            <td>
+                                <select id="DriverDeptMinsund" name="DriverDeptMin">
+                                    <option value="15">15</option>
+                                    <option value="30">30</option>
+                                    <option value="45">45</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="daytimecheck" id="day-mon"/>
+                            </td>
+                            <td>
+                                <span class="daytime-label disabled"><label for="day-mon">Monday</label></span>
+                            </td>
+                            <td>
+                                <span class="daytime-label">I leave at:</span>
+                            </td>
+                            <td>
+                                <input class="daytime-label disabled" type="number" min="0" max="23" size="15"
+                                       id="DriverDeptHourmon" name="DriverDeptHour" disabled="disabled"> &#58;
+                            </td>
+                            <td>
+                                <select id="DriverDeptMinmon" name="DriverDeptMin" disabled="disabled">
+                                    <option value="15">15</option>
+                                    <option value="30">30</option>
+                                    <option value="45">45</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="daytimecheck" id="day-tues"/>
+                            </td>
+                            <td>
+                                <span class="daytime-label disabled"><label for="day-tues">Tuesday</label></span>
+                            </td>
+                            <td>
+                                <span class="daytime-label">I leave at:</span>
+                            <td>
+                                <input class="daytime-label disabled" type="number" min="0" max="23" size="15"
+                                       id="DriverDeptHourtues" name="DriverDeptHour" disabled="disabled"> &#58;
+                            </td>
+                            <td>
+                                <select id="DriverDeptMintues" name="DriverDeptMin" disabled="disabled">
+                                    <option value="15">15</option>
+                                    <option value="30">30</option>
+                                    <option value="45">45</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="daytimecheck" id="day-wednes"/>
+                            </td>
+                            <td>
+                                <span class="daytime-label disabled"><label for="day-wednes">Wednesday</label></span>
+                            </td>
+                            <td>
+                                <span class="daytime-label">I leave at:</span>
+                            </td>
+                            <td>
+                                <input class="daytime-label disabled" type="number" min="0" max="23" size="15"
+                                       id="DriverDeptHourwednes" name="DriverDeptHour" disabled="disabled"> &#58;
+                            </td>
+                            <td>
+                                <select id="DriverDeptMinwednes" name="DriverDeptMin" disabled="disabled">
+                                    <option value="15">15</option>
+                                    <option value="30">30</option>
+                                    <option value="45">45</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="daytimecheck" id="day-thurs"/>
+                            </td>
+                            <td>
+                                <span class="daytime-label disabled"><label for="day-thurs">Thursday</label></span>
+                            </td>
+                            <td>
+                                <span class="daytime-label">I leave at:</span>
+                            </td>
+                            <td>
+                                <input class="daytime-label disabled" type="number" min="0" max="23" size="15"
+                                       id="DriverDeptHourthurs" name="DriverDeptHour" disabled="disabled"> &#58;
+                            </td>
+                            <td>
+                                <select id="DriverDeptMinthurs" name="DriverDeptMin" disabled="disabled">
+                                    <option value="15">15</option>
+                                    <option value="30">30</option>
+                                    <option value="45">45</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="daytimecheck" id="day-fri"/>
+                            </td>
+                            <td>
+                                <span class="daytime-label disabled"><label for="day-Mon">Friday</label></span>
+                            </td>
+                            <td>
+                                <span class="daytime-label">I leave at:</span>
+                            </td>
+                            <td>
+                                <input class="daytime-label disabled" type="number" min="0" max="23" size="15"
+                                       id="DriverDeptHourfri" name="DriverDeptHour" disabled="disabled"> &#58;
+                            </td>
+                            <td>
+                                <select id="DriverDeptMinfri" name="DriverDeptMin" disabled="disabled">
+                                    <option value="15">15</option>
+                                    <option value="30">30</option>
+                                    <option value="45">45</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="daytimecheck" id="day-satur"/>
+                            </td>
+                            <td>
+                                <span class="daytime-label disabled"><label for="day-satur">Saturday</label></span>
+                            </td>
+                            <td>
+                                <span class="daytime-label">I leave at:</span>
+                            </td>
+                            <td>
+                                <input class="daytime-label" type="number" min="0" max="23" size="15"
+                                       id="DriverDeptHoursatur" name="DriverDeptHour" disabled="disabled"> &#58;
+                            </td>
+                            <td>
+                                <select id="DriverDeptMinsatur" name="DriverDeptMin" disabled="disabled">
+                                    <option value="15">15</option>
+                                    <option value="30">30</option>
+                                    <option value="45">45</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <button type="button" style="width: 100px;" class="btn btn-primary btn-block" id="search">SEARCH
+                    </button>
+                </div>
+            </form>
         </div>
-        <!-- Fixed time -->
-        <div class="formRow" id="fixedTimeSelectorContainer">
-            <input type="radio" name="timeModeSelector" value="fixedTimeRadio" id="fixedTimeRadio"
-                   checked="checked"/>
-            <label for="fixedTimeRadio"><span>From Monday to Friday I leave at:</span></label>
-            <input class="daytime-label disabled" type="number" min="0" max="23" size="15" id="DriverDeptHourSame"
-                   name="DriverDeptHour"> &#58;
-            <select id="DriverDeptMinSame" name="DriverDeptMin">
-                <option value="15">15</option>
-                <option value="30">30</option>
-                <option value="45">45</option>
-            </select>
-        </div>
-        <!--End of form_row div-->
-        <!-- Flexible time -->
-        <div class="formRow">
-            <input type="radio" name="timeModeSelector" value="flexibleTimeRadio" id="flexibleTimeRadio"/>
-            <label for="flexibleTimeRadio"><span>My schedule is flexible:</span></label>
-            <table class="flexibleTimeSelectorContainer" id="flexibleTimeSelectorContainer" style="display: none;">
-                <tr>
-                    <td>
-                        <input type="checkbox" class="daytimecheck" id="day-sund"/>
-                    </td>
-                    <td>
-                        <span class="daytime-label disabled"><label for="day-sund">Sunday</label></span>
-                    </td>
-                    <td>
-                        <span class="daytime-label">I leave at:</span>
-                    </td>
-                    <td>
-                        <input class="daytime-label" type="number" min="0" max="23" size="15"
-                               id="DriverDeptHoursund" name="DriverDeptHour" disabled="disabled"> &#58;
-                    </td>
-                    <td>
-                        <select id="DriverDeptMinsund" name="DriverDeptMin">
-                            <option value="15">15</option>
-                            <option value="30">30</option>
-                            <option value="45">45</option>
-                        </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <input type="checkbox" class="daytimecheck" id="day-mon"/>
-                    </td>
-                    <td>
-                        <span class="daytime-label disabled"><label for="day-mon">Monday</label></span>
-                    </td>
-                    <td>
-                        <span class="daytime-label">I leave at:</span>
-                    </td>
-                    <td>
-                        <input class="daytime-label disabled" type="number" min="0" max="23" size="15"
-                               id="DriverDeptHourmon" name="DriverDeptHour"> &#58;
-                    </td>
-                    <td>
-                        <select id="DriverDeptMinmon" name="DriverDeptMin">
-                            <option value="15">15</option>
-                            <option value="30">30</option>
-                            <option value="45">45</option>
-                        </select>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" class="daytimecheck" id="day-tues"/>
-                    </td>
-                    <td>
-                        <span class="daytime-label disabled"><label for="day-tues">Tuesday</label></span>
-                    </td>
-                    <td>
-                        <span class="daytime-label">I leave at:</span>
-                    <td>
-                        <input class="daytime-label disabled" type="number" min="0" max="23" size="15"
-                               id="DriverDeptHourtues" name="DriverDeptHour"> &#58;
-                    </td>
-                    <td>
-                        <select id="DriverDeptMintues" name="DriverDeptMin">
-                            <option value="15">15</option>
-                            <option value="30">30</option>
-                            <option value="45">45</option>
-                        </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <input type="checkbox" class="daytimecheck" id="day-wednes"/>
-                    </td>
-                    <td>
-                        <span class="daytime-label disabled"><label for="day-wednes">Wednesday</label></span>
-                    </td>
-                    <td>
-                        <span class="daytime-label">I leave at:</span>
-                    </td>
-                    <td>
-                        <input class="daytime-label disabled" type="number" min="0" max="23" size="15"
-                               id="DriverDeptHourwednes" name="DriverDeptHour"> &#58;
-                    </td>
-                    <td>
-                        <select id="DriverDeptMinwednes" name="DriverDeptMin">
-                            <option value="15">15</option>
-                            <option value="30">30</option>
-                            <option value="45">45</option>
-                        </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <input type="checkbox" class="daytimecheck" id="day-thurs"/>
-                    </td>
-                    <td>
-                        <span class="daytime-label disabled"><label for="day-thurs">Thursday</label></span>
-                    </td>
-                    <td>
-                        <span class="daytime-label">I leave at:</span>
-                    </td>
-                    <td>
-                        <input class="daytime-label disabled" type="number" min="0" max="23" size="15"
-                               id="DriverDeptHourthurs" name="DriverDeptHour"> &#58;
-                    </td>
-                    <td>
-                        <select id="DriverDeptMinthurs" name="DriverDeptMin">
-                            <option value="15">15</option>
-                            <option value="30">30</option>
-                            <option value="45">45</option>
-                        </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <input type="checkbox" class="daytimecheck" id="day-fri"/>
-                    </td>
-                    <td>
-                        <span class="daytime-label disabled"><label for="day-Mon">Friday</label></span>
-                    </td>
-                    <td>
-                        <span class="daytime-label">I leave at:</span>
-                    </td>
-                    <td>
-                        <input class="daytime-label disabled" type="number" min="0" max="23" size="15"
-                               id="DriverDeptHourfri" name="DriverDeptHour"> &#58;
-                    </td>
-                    <td>
-                        <select id="DriverDeptMinfri" name="DriverDeptMin">
-                            <option value="15">15</option>
-                            <option value="30">30</option>
-                            <option value="45">45</option>
-                        </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <input type="checkbox" class="daytimecheck" id="day-satur"/>
-                    </td>
-                    <td>
-                        <span class="daytime-label disabled"><label for="day-satur">Saturday</label></span>
-                    </td>
-                    <td>
-                        <span class="daytime-label">I leave at:</span>
-                    </td>
-                    <td>
-                        <input class="daytime-label" type="number" min="0" max="23" size="15"
-                               id="DriverDeptHoursatur" name="DriverDeptHour"> &#58;
-                    </td>
-                    <td>
-                        <select id="DriverDeptMinsatur" name="DriverDeptMin">
-                            <option value="15">15</option>
-                            <option value="30">30</option>
-                            <option value="45">45</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-            <button type="button" style="width: 100px;" class="btn btn-primary btn-block" id="search">SEARCH</button>
-        </div>
-    </form>
+    </div>
 </section>
+<section>
+    <div class="row">
+        <% if(routine){%>
+        <%for(var i=0;i<routine.length ;i++){%>
+        <div class="col-md-4">
+            <div class="col-sm-2"></div>
+            <div class="list-group col-sm-8" style="padding-top:20px">
+                <li class="list-group-item list-group-item-success">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            Departure Area:
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <%=routine[i].departure%>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            Arrive Area:
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <%=routine[i].arrive%>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            Sunday:
+                        </div>
+                        <%if(routine[i].sund.weekday!=""){%>
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <%=routine[i].sund.dayhour%>&#58;<%=routine[i].sund.daymin%> &plusmn; <%=routine[i].sund.daytimetlr%>
+                        </div>
+                        <%}%>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            Monday:
+                        </div>
+                        <%if(routine[i].mon.weekday!=""){%>
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <%=routine[i].mon.dayhour%>&#58;<%=routine[i].mon.daymin%> &plusmn; <%=routine[i].mon.daytimetlr%>
+                        </div>
+                        <%}%>
+                    </div>
 
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            Tuesday:
+                        </div>
+                        <%if(routine[i].tues.weekday!=""){%>
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <%=routine[i].tues.dayhour%>&#58;<%=routine[i].tues.daymin%> &plusmn; <%=routine[i].tues.daytimetlr%>
+                        </div>
+                        <%}%>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            Wednesday:
+                        </div>
+                        <%if(routine[i].wednes.weekday!=""){%>
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <%=routine[i].wednes.dayhour%>&#58;<%=routine[i].wednes.daymin%> &plusmn; <%=routine[i].wednes.daytimetlr%>
+                        </div>
+                        <%}%>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            Thursday:
+                        </div>
+                        <%if(routine[i].thurs.weekday!=""){%>
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <%=routine[i].thurs.dayhour%>&#58;<%=routine[i].thurs.daymin%> &plusmn; <%=routine[i].thurs.daytimetlr%>
+                        </div>
+                        <%}%>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            Friday:
+                        </div>
+                        <%if(routine[i].fri.weekday!=""){%>
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <%=routine[i].fri.dayhour%>&#58;<%=routine[i].fri.daymin%> &plusmn; <%=routine[i].fri.daytimetlr%>
+                        </div>
+                        <%}%>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            Saturday:
+                        </div>
+                        <%if(routine[i].satur.weekday!=""){%>
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <%=routine[i].satur.dayhour%>&#58;<%=routine[i].satur.daymin%> &plusmn; <%=routine[i].satur.daytimetlr%>
+                        </div>
+                        <%}%>
+                    </div>
+                    </br>
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <h5>Matching:</h5>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <h4><span class="label label-info">85%</span></h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5"></div>
+                        <button type="button" id="checkRoutine" class="btn btn-primary btn-sm"
+                                data-id="<%= routine[i]._id%>">Choose</button>
+                        <!--<button type="button" class="btn btn-success btn-sm">小型button</button>-->
+                    </div>
+                </li>
+            </div>
+        </div>
+        <%}%>
+        <%}%>
+        <!--<div class="col-md-4">.col-md-4</div>-->
+        <!--<div class="col-md-4">.col-md-4</div>-->
+    </div>
+</section>
+<section>
+
+</section>
 <!-- Script -->
 <script type="text/javascript" src="js/modernizr.js"></script>
 <!-- Modernizer -->
@@ -303,6 +438,7 @@
 <!-- Time -->
 <script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
 <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script src="js/jquery-validation/1.11.1/jquery.validate.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(function () {
         $('input[name=timeModeSelector]').change(function () {
@@ -321,6 +457,43 @@
             }
         });
     });
+
+    $('.daytimecheck').change(function () {
+        if ($('.daytimecheck:checked').length == 0) {
+            $(this).prop('checked', true);
+            return;
+        }
+        if ($(this).is(':checked')) {
+            $(this).parent().parent().find("select").each(function () {
+                $(this).prop("disabled", false);
+            });
+            $(this).parent().parent().find("input[type='number']").prop("disabled", false);
+        } else {
+            $(this).parent().parent().find("select").each(function () {
+                $(this).prop("disabled", true);
+            });
+            $(this).parent().parent().find("input[type='number']").prop("disabled", true);
+        }
+    });
+
+    $("#search").click(function () {
+        var b=$("#search-route").valid();
+        if(!b){//验证没有通过
+            return false;
+        }
+        console.log("get into search routine ajax");
+        var departure = $('#departure').val();
+        var arrive = $('#arrive').val();
+        var searchLink = "/searchRoutine?";
+//            var time = Number(routehour) * 3600 + Number(routemin) * 60;
+        if(document.getElementById("fixedTimeRadio").checked){
+            alert("fix");
+        } else  if(document.getElementById("flexibleTimeRadio").checked){
+            alert("flexibleTimeRadio");
+        }
+        //window.location.href = searchLink;
+    });
+
 
     $(document).ready(function () {
         "use strict";

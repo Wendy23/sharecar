@@ -586,6 +586,8 @@
         console.log(result);
         if (result != null && result != undefined) {
             $("#radioFlag").val(result.flag);
+            $("#departure").val(result.departure);
+            $("#arrive").val(result.arrive);
             //根据flag让radio  checked
             //全部赋值
             //------------------------------flag=1d的赋值加一下
