@@ -19,6 +19,7 @@ var searchRoute = require('./routes/searchRoute');
 var searchRoutine = require('./routes/searchRoutine');
 var myProfile = require('./routes/myProfile');
 var myMessage = require('./routes/myMessage');
+var routineBack = require('./routes/createRoutine');
 
 global.dbHandel = require('./database/dbHandel');
 //global.db = mongoose.connect("mongodb://localhost:27017/nodedb");
@@ -81,6 +82,7 @@ app.use('/searchRoute',searchRoute); // 即为为路径 /searchRoute 设置路�
 app.use('/searchRoutine',searchRoutine); // 即为为路径 /searchRoute 设置路由
 app.use('/myProfile',myProfile); // 即为为路径 /profile 设置路由
 app.use('/myMessage',myMessage);// 即为为路径 /message 设置路由
+app.use('/routineBack',routineBack);// 即为为路径 /routineBack 设置路由
 
 
 // catch 404 and forward to error handler

@@ -6,11 +6,11 @@ exports.createRoutine = function() {
         console.log(name);
         var flag = req.body.flag;
         //先删除再新增
-        Routine.remove({name: name}, function(err, raw){
-            console.log("remove message", err, raw);
-            //if (err) res.status(500);
-            //res.send(raw);
-        });
+        //Routine.remove({name: name}, function(err, raw){
+        //    console.log("remove message", err, raw);
+        //    //if (err) res.status(500);
+        //    //res.send(raw);
+        //});
         if (flag == 1) {
             var dayhour = req.body.dayhour;
             var daymin = req.body.daymin;
