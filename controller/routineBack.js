@@ -1,4 +1,4 @@
-exports.createRoutine = function() {
+exports.routineBack = function() {
     return function(req, res) {
         var Routine = global.dbHandel.getModel('routine');
         // var name = "lk";//req.session.user;这个session取不到，看一下
@@ -6,7 +6,7 @@ exports.createRoutine = function() {
         console.log(name);
         var flag = req.body.flag;
         //先删除再新增
-        Routine.remove({name: name,comeback:"come"}, function(err, raw){
+        Routine.remove({name: name,comeback:"back"}, function(err, raw){
             console.log("remove message", err, raw);
             //if (err) res.status(500);
             //res.send(raw);
@@ -28,7 +28,7 @@ exports.createRoutine = function() {
                 arrive:arrive,
                 occupancy:occupancy,
                 cost:cost,
-                comeback:"come",
+                comeback:"back",
                 mon: {
                     weekday: "mon",
                     dayhour: dayhour,
@@ -129,7 +129,7 @@ exports.createRoutine = function() {
                 arrive:arrive,
                 occupancy:occupancy,
                 cost:cost,
-                comeback:"come",
+                comeback:"back",
                 mon: {
                     weekday: Monweekday,
                     dayhour: Mondayhour,
@@ -197,15 +197,16 @@ exports.queryRoutine = function() {
             res.redirect("/login"); //未登录则重定向到 /login 路径
         } else {
             var Routine = global.dbHandel.getModel('routine');
-            var name = req.session.user;//req.session.user;这个session取不到，看一下
+            var name = req.session.user;//
             Routine.find({name: name}, function(err, doc) {
                 //req.session.user = doc;
                 console.log(doc);
                 //if(doc!=null && doc.length>0){
-                if(doc.comeback=="come"){
-                    res.render("createRoutine", { routine: JSON.stringify(doc[0]._doc),title: 'ShareCar' });
+                if(doc.comeback=="back"){
+                    //res.render("routineBack",{routine:"",title: 'ShareCar' });
+                    res.render("routineBack", { routine: JSON.stringify(doc[1]._doc),title: 'ShareCar' });
                 }
-                res.render("createRoutine",{routine:"",title: 'ShareCar' });
+                res.render("routineBack",{routine:"",title: 'ShareCar' });
 
             });
         }

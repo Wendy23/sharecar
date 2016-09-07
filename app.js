@@ -19,7 +19,7 @@ var searchRoute = require('./routes/searchRoute');
 var searchRoutine = require('./routes/searchRoutine');
 var myProfile = require('./routes/myProfile');
 var myMessage = require('./routes/myMessage');
-var routineBack = require('./routes/createRoutine');
+var routineBack = require('./routes/routineBack');
 
 global.dbHandel = require('./database/dbHandel');
 //global.db = mongoose.connect("mongodb://localhost:27017/nodedb");

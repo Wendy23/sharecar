@@ -7,6 +7,7 @@ module.exports = {
         cost:{type:Number,default:0},
         occupancy: { type: Number, default:0},
         occupied: {type: Number, default:0},
+        comeback:{type:String},
         mon: {
             weekday: {type: String},
             dayhour: {type: Number},

@@ -18,10 +18,6 @@
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" type="text/css"/>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css" type="text/css"/>
-    <!-- Style -->
-    <!-- <link rel="stylesheet" href="css/responsive.css" type="text/css" /> -->
-    <!-- Responsive -->
-    <link rel="stylesheet" href="css/colors.css" type="text/css"/>
     <!-- color -->
     <link rel='stylesheet' href='/stylesheets/style.css'/>
     <!--Date-->
@@ -89,9 +85,9 @@
         </div>
     </header>
     <section>
-        <form id="new-route" class="form-group" role="form" method="post" action="/createRoutine">
+        <form id="new-route" class="form-group" role="form" method="post" action="/routineBack">
             <input type="hidden" id="radioFlag" value="1"/>
-            <input type="hidden" id="result">
+            <input type="hidden" id="result" value='<%= routine %>'/>
             <div>
                 <label for="departure"><span>Leave from:</span></label>
                 <input type="text" id="departure"
@@ -479,13 +475,14 @@
                 "cost": $('#cost').val()
             };
             $.ajax({
-                url: '/createRoutine',
+                url: '/routineBack',
                 // data: $("form").serialize(),
                 type: 'post',
                 data: data,
                 success: function (data, status) {
                     if (status == 'success') {
-                        location.href = 'myMessage';
+                        //alert("success");
+                        location.href = 'driverRoutes';
                     }
                 },
                 error: function (data, status) {
@@ -514,13 +511,14 @@
                         data[currdaytimetlr] = $("#daytimetolerance" + currday).val()
             });
             $.ajax({
-                url: '/createRoutine',
+                url: '/routineBack',
                 // data: $("form").serialize(),
                 type: 'post',
                 data: data,
                 success: function (data, status) {
                     if (status == 'success') {
-                        location.href = 'myMessage';
+                        //alert("success");
+                        location.href = 'driverRoutes';
                     }
                 },
                 error: function (data, status) {
@@ -591,6 +589,51 @@
             videoJsPath: "rs-plugin/videojs/",
             fullScreenOffsetContainer: ""
         });
+        var res = $("#result").val();
+        var result = eval("(" + res + ")");
+        console.log(result);
+        if (result != null && result != undefined) {
+            $("#radioFlag").val(result.flag);
+            $("#departure").val(result.departure);
+            $("#arrive").val(result.arrive);
+            $("#occupancy").val(result.occupancy);
+            $("#cost").val(result.cost);
+            //根据flag让radio  checked
+            //全部赋值
+            //------------------------------flag=1d的赋值加一下
+
+            //flag=2的赋值
+            //$("#flexibleTimeRadio").attr('checked', true);没填的不能打钩，只有填了的才能打钩，现在写的是全打钩的
+            if (result.flag == 2) {
+                $('#flexibleTimeSelectorContainer').show();
+                $("#flexibleTimeRadio").attr('checked', true);
+                var days = ["mon", "sund", "tues", "wednes", "thurs", "fri", "satur"];
+                for (var i = 0; i < days.length; i++) {
+                    var day = days[i];
+                    if (result[day].weekday != "") {
+                        $("#day-" + day).attr('checked', 'checked');
+
+                        $("#day-" + day).parent().parent().find("select").each(function () {
+                            $(this).prop("disabled", false);
+                        });
+                        $("#day-" + day).siblings('span').removeClass('disabled');
+                        $("#day-" + day).parent().parent().find("input[type='number']").prop("disabled", false);
+
+                        $("#DriverDeptHour" + day).val(result[day].dayhour);
+                        $("#DriverDeptMin" + day).val(result[day].daymin);
+                        $("#daytimetolerance" + day).val(result[day].daytimetlr);
+                    }
+                    if (result[day].weekday == "") {
+                        $("#day-" + day).attr('checked', false);
+                        $("#day-" + day).parent().parent().find("select").each(function () {
+                            $(this).prop("disabled", true);
+                        });
+                        $("#day-" + day).siblings('span').addClass('disabled');
+                        $("#day-" + day).parent().parent().find("input[type='number']").prop("disabled", true);
+                    }
+                }
+            }
+        }
     });
 </script>
 </body>
