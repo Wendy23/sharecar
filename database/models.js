@@ -3,7 +3,7 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 module.exports = {
     user: {
         _id:{type:ObjectId,ref:'driverroute'},
-        name: { type: String, required: true },
+        name: { type: String, required: true,ref:'routine' },
         password: { type: String },
         nametitle: { type: String, default:"name" },
         gender: { type: String, default:"gender" },

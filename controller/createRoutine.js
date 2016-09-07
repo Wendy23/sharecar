@@ -17,6 +17,8 @@ exports.createRoutine = function() {
             var daytimetlr = req.body.daytimetlr;
             var departure = req.body.departure;
             var arrive = req.body.arrive;
+            var occupancy = req.body.occupancy;
+            var cost =  req.body.cost;
 
             console.log(req.body);
             Routine.create({ // 创建一组route对象置入model
@@ -24,6 +26,8 @@ exports.createRoutine = function() {
                 flag: flag,
                 departure:departure,
                 arrive:arrive,
+                occupancy:occupancy,
+                cost:cost,
                 mon: {
                     weekday: "mon",
                     dayhour: dayhour,
@@ -113,6 +117,8 @@ exports.createRoutine = function() {
 
             var departure = req.body.departure;
             var arrive = req.body.arrive;
+            var occupancy = req.body.occupancy;
+            var cost = req.body.cost;
 
             console.log(req.body);
             Routine.create({ // 创建一组route对象置入model
@@ -120,6 +126,8 @@ exports.createRoutine = function() {
                 flag: flag,
                 departure:departure,
                 arrive:arrive,
+                occupancy:occupancy,
+                cost:cost,
                 mon: {
                     weekday: Monweekday,
                     dayhour: Mondayhour,

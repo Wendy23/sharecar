@@ -76,7 +76,6 @@
                                 <li><a href="#" title="">Home v2</a></li>
                             </ul>
                         </li>
-                        <li><a href="#" title="">CONTACT</a></li>
                         <li><a href="#" title=""><strong>Welcome, <%- user.name %></strong></a></li>
                         <li>
                             <a href="/logout" title="">
@@ -314,6 +313,30 @@
                             <%=routine[i].arrive%>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            Occupancy:
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <%=routine[i].occupancy%>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            Occupied:
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <%=routine[i].occupied%>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            Cost:
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <%=routine[i].cost%>
+                        </div>
+                    </div>
                     <br/>
                     <div class="row">
                         <div class="col-lg-5 col-md-5 col-sm-5">
@@ -401,7 +424,8 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-5 col-md-5 col-sm-5"></div>
-                        <button type="button" id="checkRoutine" class="btn btn-primary btn-sm"
+                        <button type="button" class="btn btn-primary btn-sm"
+                                data-toggle="modal" name="checkRoutine" data-target="#checkRoutine"
                                 data-id="<%= routine[i]._id%>">Choose</button>
                         <!--<button type="button" class="btn btn-success btn-sm">小型button</button>-->
                     </div>
@@ -414,9 +438,25 @@
         <!--<div class="col-md-4">.col-md-4</div>-->
     </div>
 </section>
-<section>
-
-</section>
+<div class="modal fade" id="checkRoutine" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Verify this routine</h4>
+            </div>
+            <div class="modal-body">
+                <h5>Passenger Number</h5>
+                <input type="number" min="1" max="10" size="15" id="passengernum" name="passengernum">
+            </div>
+            <div class="modal-footer">
+                <button type="submit" id="sendmessage" class="btn btn-primary">Send my message</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Script -->
 <script type="text/javascript" src="js/modernizr.js"></script>
 <!-- Modernizer -->
@@ -496,6 +536,57 @@
 
 
     $(document).ready(function () {
+        var currentRoutine;
+
+        function bindShowEvent() {
+            $('#checkRoutine').on('show.bs.modal', function (event) {
+                //$(this).removeClass('modal-backdrop');
+                //Now set z-index of modal greater than backdrop
+                //ajax here
+                var button = $(event.relatedTarget)
+                var modal = $(this)
+                modal.find('.modal-title').text('Verify this routine');
+                setTimeout(function () {
+                    modal.find('.modal-backdrop').remove();
+                }, 200);
+                // currentMessage = button.attr("data-id");
+                currentRoutine = button.attr("data-id");
+                console.log(currentRoutine);
+                $(this).off('show.bs.modal');
+            });
+        }
+
+        $("#sendmessage").click(function () {
+            console.log("get into send routine message");
+            var passenger = $("#passengernum").val();
+            var routineId = currentRoutine;
+            var data = {
+                "passenger": passenger,
+                "routineId": routineId
+            }
+            $.ajax({
+                url: '/searchRoutine/updateRoutine',
+                // data: $("form").serialize(),
+                type: 'post',
+                data: data,
+                success: function (data, status) {
+                    if (status == 'success') {
+                        //location.href = 'home';
+                        location.reload();
+                    }
+                },
+                error: function (data, status) {
+                    if (status == 'error') {
+                        location.href = 'searchRoutine';
+                    }
+                }
+            });
+        })
+
+        bindShowEvent();
+        $('#checkRoutine').on('hide.bs.modal', function (event) {
+            bindShowEvent();
+        })
         "use strict";
         jQuery('.tp-banner').show().revolution({
             dottedOverlay: "none",
