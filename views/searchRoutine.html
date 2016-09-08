@@ -109,6 +109,9 @@
                     <input class="daytime-label disabled" type="number" min="0" max="23" size="15"
                            id="DriverDeptHourSame"
                            name="DriverDeptHour"> &#58;
+                    <!--<input class="daytime-label disabled" type="number" min="0" max="59" size="15"-->
+                           <!--id="DriverDeptMinSame"-->
+                           <!--name="DriverDeptMin">-->
                     <select id="DriverDeptMinSame" name="DriverDeptMin">
                         <option value="15">15</option>
                         <option value="30">30</option>
@@ -524,14 +527,110 @@
         console.log("get into search routine ajax");
         var departure = $('#departure').val();
         var arrive = $('#arrive').val();
+        var dayhour = $('#DriverDeptHourSame').val();
+        var daymin = $('#DriverDeptMinSame').val();
+
+        var dayhoursatur =  $('#DriverDeptHoursatur').val();
+        var dayminsatur =  $('#DriverDeptMinsatur').val();
+
+        var dayhoursund =  $('#DriverDeptHoursund').val();
+        var dayminsund =  $('#DriverDeptMinsund').val();
+
+        var dayhourmon =  $('#DriverDeptHourmon').val();
+        var dayminmon =  $('#DriverDeptMinmon').val();
+
+        var dayhourtues =  $('#DriverDeptHourtues').val();
+        var daymintues =  $('#DriverDeptMintues').val();
+
+        var dayhourwednes =  $('#DriverDeptHourwednes').val();
+        var dayminwednes =  $('#DriverDeptMinwednes').val();
+
+        var dayhourthurs =  $('#DriverDeptHourthurs').val();
+        var dayminthurs =  $('#DriverDeptMinthurs').val();
+
+        var dayhourfri =  $('#DriverDeptHourfri').val();
+        var dayminfri =  $('#DriverDeptMinfri').val();
+
         var searchLink = "/searchRoutine?";
 //            var time = Number(routehour) * 3600 + Number(routemin) * 60;
         if(document.getElementById("fixedTimeRadio").checked){
-            alert("fix");
+            //alert("fix");
+            searchLink = searchLink + "departure=" + departure +  "&arrive=" + arrive;
+            console.log(searchLink)
+            if (dayhour != "") {
+                searchLink = searchLink + "&dayhour=" + dayhour + "&daymin=" + daymin;
+                console.log(searchLink)
+            }
+
         } else  if(document.getElementById("flexibleTimeRadio").checked){
-            alert("flexibleTimeRadio");
+            //alert("flexibleTimeRadio");
+            searchLink = searchLink + "departure=" + departure +  "&arrive=" + arrive;
+            console.log(searchLink)
+            if (dayhoursund != "") {
+                searchLink = searchLink + "&dayhoursund=" + dayhoursund;
+                console.log(searchLink)
+            }
+            if (dayminsund != "" && document.getElementById("day-sund").checked) {
+                searchLink = searchLink + "&dayminsund=" + dayminsund;
+                console.log(searchLink)
+            }
+
+            if (dayhourmon != "") {
+                searchLink = searchLink + "&dayhourmon=" + dayhourmon;
+                console.log(searchLink)
+            }
+            if (dayminmon != "" && document.getElementById("day-mon").checked) {
+                searchLink = searchLink + "&dayminmon=" + dayminmon;
+                console.log(searchLink)
+            }
+
+            if (dayhourtues != "") {
+                searchLink = searchLink + "&dayhourtues=" + dayhourtues;
+                console.log(searchLink)
+            }
+            if (daymintues != "" && document.getElementById("day-tues").checked) {
+                searchLink = searchLink + "&daymintues=" + daymintues;
+                console.log(searchLink)
+            }
+
+            if (dayhourwednes != "") {
+                searchLink = searchLink + "&dayhourwednes=" + dayhourwednes;
+                console.log(searchLink)
+            }
+            if (dayminwednes != "" && document.getElementById("day-wednes").checked) {
+                searchLink = searchLink + "&dayminwednes=" + dayminwednes;
+                console.log(searchLink)
+            }
+
+            if (dayhourthurs != "") {
+                searchLink = searchLink + "&dayhourthurs=" + dayhourthurs;
+                console.log(searchLink)
+            }
+            if (dayminthurs != "" && document.getElementById("day-thurs").checked) {
+                searchLink = searchLink + "&dayminthurs=" + dayminthurs;
+                console.log(searchLink)
+            }
+
+            if (dayhourfri != "") {
+                searchLink = searchLink + "&dayhourfri=" + dayhourfri;
+                console.log(searchLink)
+            }
+            if (dayminfri != "" && document.getElementById("day-fri").checked) {
+                searchLink = searchLink + "&dayminfri=" + dayminfri;
+                console.log(searchLink)
+            }
+
+            if (dayhoursatur != "") {
+                searchLink = searchLink + "&dayhoursatur=" + dayhoursatur;
+                console.log(searchLink)
+            }
+            if (dayminsatur != "" && document.getElementById("day-satur").checked) {
+                searchLink = searchLink + "&dayminsatur=" + dayminsatur;
+                console.log(searchLink)
+            }
+
         }
-        //window.location.href = searchLink;
+        window.location.href = searchLink;
     });
 
 

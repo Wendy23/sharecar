@@ -7,7 +7,14 @@ exports.routine = function () {
         } else {
             var Routine = global.dbHandel.getModel('routine');
             console.log(req.query);
-            Routine.find({}, function (err, doc) {
+            var departure = req.query.departure;
+            var arrive = req.query.arrive;
+            var query = {};
+            if (arrive != null && arrive != undefined && departure != null && departure != undefined) {
+                query['arrive'] = arrive;
+                query['departure'] = departure;
+            }
+            Routine.find(query, function (err, doc) {
                 console.log(doc);
                 res.render("searchRoutine", {routine: doc});
 
@@ -50,10 +57,10 @@ exports.updateRoutine = function () {
                                         passnum: passnum
                                     }
                                 },
-                                $inc:{
-                                    'occupied':passnum
+                                $inc: {
+                                    'occupied': passnum
                                 }
-                            },{},function(err,raw){
+                            }, {}, function (err, raw) {
                                 //if (err) res.status(500);
                                 //res.send(raw);
                             }

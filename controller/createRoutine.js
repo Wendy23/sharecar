@@ -197,13 +197,16 @@ exports.queryRoutine = function() {
             res.redirect("/login"); //未登录则重定向到 /login 路径
         } else {
             var Routine = global.dbHandel.getModel('routine');
-            var name = req.session.user;//req.session.user;这个session取不到，看一下
-            Routine.find({name: name}, function(err, doc) {
+            var id = req.session.user._id;//req.session.user;这个session取不到，看一下
+            Routine.find({name: id}, function(err, doc) {
                 //req.session.user = doc;
                 console.log(doc);
-                //if(doc!=null && doc.length>0){
-                if(doc.comeback=="come"){
-                    res.render("createRoutine", { routine: JSON.stringify(doc[0]._doc),title: 'ShareCar' });
+                if(doc!=null && doc.length>0) {
+                    for(var i=0;i<doc.length;i++){
+                        if (doc[i]._doc.comeback == "come") {
+                            res.render("createRoutine", {routine: JSON.stringify(doc[0]._doc), title: 'ShareCar'});
+                        }
+                    }
                 }
                 res.render("createRoutine",{routine:"",title: 'ShareCar' });
 
