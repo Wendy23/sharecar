@@ -9,12 +9,109 @@ exports.routine = function () {
             console.log(req.query);
             var departure = req.query.departure;
             var arrive = req.query.arrive;
+            var radio = req.query.radio;
             var query = {};
             if (arrive != null && arrive != undefined && departure != null && departure != undefined) {
                 query['arrive'] = arrive;
                 query['departure'] = departure;
             }
             Routine.find(query, function (err, doc) {
+                if (doc != null && doc.length>0) {
+                    if (radio != null && radio != undefined) {
+                        if (radio == "1") {
+                            var dayhour = req.query.dayhour;
+                            var daymin = req.query.daymin;
+                            var inputTime = parseInt(dayhour) * 60 + parseInt(daymin);
+                            for(var i=0;i<doc.length;i++){
+                                var document = doc[i]._doc;
+                                doc[i]._doc.sortTop = 0;
+                                var weekdayArray = ['mon','tues','wednes','thurs','fri'];
+                                for(var k=0;k<weekdayArray.length;k++){
+                                    var currentWeekday = document[weekdayArray[k]];
+                                    if(currentWeekday.weekday != ""){
+                                        var leftTime = parseInt(currentWeekday.dayhour) * 60 + parseInt(currentWeekday.daymin) - parseInt(currentWeekday.daytimetlr);
+                                        var rightTime = parseInt(currentWeekday.dayhour) * 60 + parseInt(currentWeekday.daymin) + parseInt(currentWeekday.daytimetlr);
+                                        var leftTimeABS = Math.abs(parseInt(leftTime) - parseInt(inputTime));
+                                        var rightTimeABS = Math.abs(parseInt(rightTime) - parseInt(inputTime));
+                                        doc[i]._doc.sortTop = doc[i]._doc.sortTop + (parseInt(leftTimeABS)<parseInt(rightTimeABS) ? leftTimeABS : rightTimeABS);
+                                    }
+                                }
+                            }
+                            for(var i=0;i<doc.length;i++) {
+                                if(doc[i]._doc.sortTop==0){
+                                    doc[i]._doc.sortTop==9999999999;
+                                }
+                            }
+                            var temp;
+                            for(var i=0;i<doc.length;i++) {
+                                for(j = 0; j < doc.length; j++){
+                                    if(doc[i]._doc.sortTop < doc[j]._doc.sortTop){
+                                        temp = doc[i];
+                                        doc[i] = doc[j];
+                                        doc[j] = temp;
+                                    }
+                                }
+                            }
+                            console.log(doc);
+                        } else if (radio == "2") {
+                            var currhour;
+                            var currmin;
+                            var inputTime = 0;
+                            for(var i=0;i<doc.length;i++){
+                                var document = doc[i]._doc;
+                                doc[i]._doc.sortTop = 0;
+                                var weekdayArray = ['mon','tues','wednes','thurs','fri','satur','sund'];
+                                for(var k=0;k<weekdayArray.length;k++){
+                                    if(k==0){
+                                        if(req.query.dayhourmon != null && req.query.dayhourmon != undefined) {
+                                            currhour = req.query.dayhourmon;
+                                            currmin = req.query.dayminmon;
+                                            inputTime = parseInt(currhour) * 60 + parseInt(currmin);
+                                        }
+                                    }
+                                    if(k==1){
+                                        if(req.query.dayhourtues != null && req.query.dayhourtues != undefined) {
+                                            currhour = req.query.dayhourtues;
+                                            currmin = req.query.daymintues;
+                                            inputTime = parseInt(currhour) * 60 + parseInt(currmin);
+                                        }
+                                    }
+                                    if(k==2){
+                                        if(req.query.dayhourwednes != null && req.query.dayhourwednes != undefined) {
+                                            currhour = req.query.dayhourwednes;
+                                            currmin = req.query.dayminwednes;
+                                            inputTime = parseInt(currhour) * 60 + parseInt(currmin);
+                                        }
+                                    }
+                                    var currentWeekday = document[weekdayArray[k]];
+                                    if(currentWeekday.weekday != ""){
+                                        var leftTime = parseInt(currentWeekday.dayhour) * 60 + parseInt(currentWeekday.daymin) - parseInt(currentWeekday.daytimetlr);
+                                        var rightTime = parseInt(currentWeekday.dayhour) * 60 + parseInt(currentWeekday.daymin) + parseInt(currentWeekday.daytimetlr);
+                                        var leftTimeABS = Math.abs(parseInt(leftTime) - parseInt(inputTime));
+                                        var rightTimeABS = Math.abs(parseInt(rightTime) - parseInt(inputTime));
+                                        doc[i]._doc.sortTop = doc[i]._doc.sortTop + (parseInt(leftTimeABS)<parseInt(rightTimeABS) ? leftTimeABS : rightTimeABS);
+                                    }
+                                }
+                            }
+                            for(var i=0;i<doc.length;i++) {
+                                if(doc[i]._doc.sortTop==0){
+                                    doc[i]._doc.sortTop==9999999999;
+                                }
+                            }
+                            var temp;
+                            for(var i=0;i<doc.length;i++) {
+                                for(j = 0; j < doc.length; j++){
+                                    if(doc[i]._doc.sortTop < doc[j]._doc.sortTop){
+                                        temp = doc[i];
+                                        doc[i] = doc[j];
+                                        doc[j] = temp;
+                                    }
+                                }
+                            }
+                            console.log(doc);
+                        }
+                    }
+                }
                 console.log(doc);
                 res.render("searchRoutine", {routine: doc});
 

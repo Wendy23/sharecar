@@ -559,12 +559,13 @@
             console.log(searchLink)
             if (dayhour != "") {
                 searchLink = searchLink + "&dayhour=" + dayhour + "&daymin=" + daymin;
-                console.log(searchLink)
+                console.log(searchLink);
+                searchLink = searchLink + "&radio=1";
             }
-
         } else  if(document.getElementById("flexibleTimeRadio").checked){
             //alert("flexibleTimeRadio");
             searchLink = searchLink + "departure=" + departure +  "&arrive=" + arrive;
+            searchLink = searchLink + "&radio=2";
             console.log(searchLink)
             if (dayhoursund != "") {
                 searchLink = searchLink + "&dayhoursund=" + dayhoursund;
