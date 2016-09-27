@@ -95,11 +95,11 @@
                 <div class="row">
                     <div class="col-md-6"><label for="departure"><span>Leave from:</span></label>
                         <input type="text" id="departure"
-                               name="departure" class="required">
+                               name="departure" value="<%=departure%>" class="required">
                     </div>
                     <div class="col-md-6" style="margin-right:1px;"><label for="arrive"><span>Arrive at:</span></label>
                         <input type="text" id="arrive"
-                               name="arrive" class="required"></div>
+                               name="arrive" value="<%=arrive%>" class="required"></div>
                 </div>
                 <!-- Fixed time -->
                 <div class="formRow" id="fixedTimeSelectorContainer">
@@ -108,14 +108,15 @@
                     <label for="fixedTimeRadio"><span>From Monday to Friday I leave at:</span></label>
                     <input class="daytime-label disabled" type="number" min="0" max="23" size="15"
                            id="DriverDeptHourSame"
-                           name="DriverDeptHour"> &#58;
+                           name="DriverDeptHour" value="<%=dayhour%>"> &#58;
                     <!--<input class="daytime-label disabled" type="number" min="0" max="59" size="15"-->
-                           <!--id="DriverDeptMinSame"-->
-                           <!--name="DriverDeptMin">-->
+                    <!--id="DriverDeptMinSame"-->
+                    <!--name="DriverDeptMin">-->
                     <select id="DriverDeptMinSame" name="DriverDeptMin">
                         <option value="15">15</option>
                         <option value="30">30</option>
                         <option value="45">45</option>
+                        <!--<option selected="selected">value="<%=daymin%>"</option>-->
                     </select>
                 </div>
                 <!--End of form_row div-->
@@ -123,8 +124,8 @@
                 <div class="formRow">
                     <input type="radio" name="timeModeSelector" value="flexibleTimeRadio" id="flexibleTimeRadio"/>
                     <label for="flexibleTimeRadio"><span>My schedule is flexible:</span></label>
-                    <table class="flexibleTimeSelectorContainer" id="flexibleTimeSelectorContainer">
-                        <!--style="display: none;"-->
+                    <table class="flexibleTimeSelectorContainer" id="flexibleTimeSelectorContainer"
+                           style="display: none;">
                         <tr>
                             <td>
                                 <input type="checkbox" class="daytimecheck" checked="checked" id="day-sund"/>
@@ -295,150 +296,159 @@
 <section>
     <div class="row">
         <% if(routine){%>
-        <%for(var i=0;i<routine.length ;i++){%>
-        <div class="col-md-4">
-            <div class="col-sm-2"></div>
-            <div class="list-group col-sm-8" style="padding-top:20px">
-                <li class="list-group-item list-group-item-success">
-                    <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            Departure Area:
+        <%for(var i=0;i
+        <routine.length ;i++){%>
+            <div class="col-md-4">
+                <div class="col-sm-2"></div>
+                <div class="list-group col-sm-8" style="padding-top:20px">
+                    <li class="list-group-item list-group-item-success">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                Departure Area:
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <%=routine[i].departure%>
+                            </div>
                         </div>
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            <%=routine[i].departure%>
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                Arrive Area:
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <%=routine[i].arrive%>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            Arrive Area:
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                Occupancy:
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <%=routine[i].occupancy%>
+                            </div>
                         </div>
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            <%=routine[i].arrive%>
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                Occupied:
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <%=routine[i].occupied%>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            Occupancy:
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                Cost:
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <%=routine[i].cost%>
+                            </div>
                         </div>
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            <%=routine[i].occupancy%>
+                        <br/>
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                Sunday:
+                            </div>
+                            <%if(routine[i].sund.weekday!=""){%>
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <%=routine[i].sund.dayhour%>&#58;<%=routine[i].sund.daymin%> &plusmn;
+                                <%=routine[i].sund.daytimetlr%>
+                            </div>
+                            <%}%>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            Occupied:
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                Monday:
+                            </div>
+                            <%if(routine[i].mon.weekday!=""){%>
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <%=routine[i].mon.dayhour%>&#58;<%=routine[i].mon.daymin%> &plusmn;
+                                <%=routine[i].mon.daytimetlr%>
+                            </div>
+                            <%}%>
                         </div>
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            <%=routine[i].occupied%>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            Cost:
-                        </div>
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            <%=routine[i].cost%>
-                        </div>
-                    </div>
-                    <br/>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            Sunday:
-                        </div>
-                        <%if(routine[i].sund.weekday!=""){%>
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            <%=routine[i].sund.dayhour%>&#58;<%=routine[i].sund.daymin%> &plusmn; <%=routine[i].sund.daytimetlr%>
-                        </div>
-                        <%}%>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            Monday:
-                        </div>
-                        <%if(routine[i].mon.weekday!=""){%>
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            <%=routine[i].mon.dayhour%>&#58;<%=routine[i].mon.daymin%> &plusmn; <%=routine[i].mon.daytimetlr%>
-                        </div>
-                        <%}%>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            Tuesday:
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                Tuesday:
+                            </div>
+                            <%if(routine[i].tues.weekday!=""){%>
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <%=routine[i].tues.dayhour%>&#58;<%=routine[i].tues.daymin%> &plusmn;
+                                <%=routine[i].tues.daytimetlr%>
+                            </div>
+                            <%}%>
                         </div>
-                        <%if(routine[i].tues.weekday!=""){%>
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            <%=routine[i].tues.dayhour%>&#58;<%=routine[i].tues.daymin%> &plusmn; <%=routine[i].tues.daytimetlr%>
-                        </div>
-                        <%}%>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            Wednesday:
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                Wednesday:
+                            </div>
+                            <%if(routine[i].wednes.weekday!=""){%>
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <%=routine[i].wednes.dayhour%>&#58;<%=routine[i].wednes.daymin%> &plusmn;
+                                <%=routine[i].wednes.daytimetlr%>
+                            </div>
+                            <%}%>
                         </div>
-                        <%if(routine[i].wednes.weekday!=""){%>
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            <%=routine[i].wednes.dayhour%>&#58;<%=routine[i].wednes.daymin%> &plusmn; <%=routine[i].wednes.daytimetlr%>
-                        </div>
-                        <%}%>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            Thursday:
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                Thursday:
+                            </div>
+                            <%if(routine[i].thurs.weekday!=""){%>
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <%=routine[i].thurs.dayhour%>&#58;<%=routine[i].thurs.daymin%> &plusmn;
+                                <%=routine[i].thurs.daytimetlr%>
+                            </div>
+                            <%}%>
                         </div>
-                        <%if(routine[i].thurs.weekday!=""){%>
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            <%=routine[i].thurs.dayhour%>&#58;<%=routine[i].thurs.daymin%> &plusmn; <%=routine[i].thurs.daytimetlr%>
-                        </div>
-                        <%}%>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            Friday:
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                Friday:
+                            </div>
+                            <%if(routine[i].fri.weekday!=""){%>
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <%=routine[i].fri.dayhour%>&#58;<%=routine[i].fri.daymin%> &plusmn;
+                                <%=routine[i].fri.daytimetlr%>
+                            </div>
+                            <%}%>
                         </div>
-                        <%if(routine[i].fri.weekday!=""){%>
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            <%=routine[i].fri.dayhour%>&#58;<%=routine[i].fri.daymin%> &plusmn; <%=routine[i].fri.daytimetlr%>
-                        </div>
-                        <%}%>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            Saturday:
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                Saturday:
+                            </div>
+                            <%if(routine[i].satur.weekday!=""){%>
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <%=routine[i].satur.dayhour%>&#58;<%=routine[i].satur.daymin%> &plusmn;
+                                <%=routine[i].satur.daytimetlr%>
+                            </div>
+                            <%}%>
                         </div>
-                        <%if(routine[i].satur.weekday!=""){%>
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            <%=routine[i].satur.dayhour%>&#58;<%=routine[i].satur.daymin%> &plusmn; <%=routine[i].satur.daytimetlr%>
+                        </br>
+                        <!--<div class="row">-->
+                        <!--<div class="col-lg-5 col-md-5 col-sm-5">-->
+                        <!--<h5>Matching:</h5>-->
+                        <!--</div>-->
+                        <!--<div class="col-lg-5 col-md-5 col-sm-5">-->
+                        <!--<h4><span class="label label-info">85%</span></h4>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5"></div>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    data-toggle="modal" name="checkRoutine" data-target="#checkRoutine"
+                                    data-id="<%= routine[i]._id%>">Choose
+                            </button>
+                            <!--<button type="button" class="btn btn-success btn-sm">小型button</button>-->
                         </div>
-                        <%}%>
-                    </div>
-                    </br>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            <h5>Matching:</h5>
-                        </div>
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            <h4><span class="label label-info">85%</span></h4>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-5"></div>
-                        <button type="button" class="btn btn-primary btn-sm"
-                                data-toggle="modal" name="checkRoutine" data-target="#checkRoutine"
-                                data-id="<%= routine[i]._id%>">Choose</button>
-                        <!--<button type="button" class="btn btn-success btn-sm">小型button</button>-->
-                    </div>
-                </li>
+                    </li>
+                </div>
             </div>
-        </div>
-        <%}%>
-        <%}%>
-        <!--<div class="col-md-4">.col-md-4</div>-->
-        <!--<div class="col-md-4">.col-md-4</div>-->
+            <%}%>
+            <%}%>
+            <!--<div class="col-md-4">.col-md-4</div>-->
+            <!--<div class="col-md-4">.col-md-4</div>-->
     </div>
 </section>
 <div class="modal fade" id="checkRoutine" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -520,8 +530,8 @@
     });
 
     $("#search").click(function () {
-        var b=$("#search-route").valid();
-        if(!b){//验证没有通过
+        var b = $("#search-route").valid();
+        if (!b) {//验证没有通过
             return false;
         }
         console.log("get into search routine ajax");
@@ -530,41 +540,41 @@
         var dayhour = $('#DriverDeptHourSame').val();
         var daymin = $('#DriverDeptMinSame').val();
 
-        var dayhoursatur =  $('#DriverDeptHoursatur').val();
-        var dayminsatur =  $('#DriverDeptMinsatur').val();
+        var dayhoursatur = $('#DriverDeptHoursatur').val();
+        var dayminsatur = $('#DriverDeptMinsatur').val();
 
-        var dayhoursund =  $('#DriverDeptHoursund').val();
-        var dayminsund =  $('#DriverDeptMinsund').val();
+        var dayhoursund = $('#DriverDeptHoursund').val();
+        var dayminsund = $('#DriverDeptMinsund').val();
 
-        var dayhourmon =  $('#DriverDeptHourmon').val();
-        var dayminmon =  $('#DriverDeptMinmon').val();
+        var dayhourmon = $('#DriverDeptHourmon').val();
+        var dayminmon = $('#DriverDeptMinmon').val();
 
-        var dayhourtues =  $('#DriverDeptHourtues').val();
-        var daymintues =  $('#DriverDeptMintues').val();
+        var dayhourtues = $('#DriverDeptHourtues').val();
+        var daymintues = $('#DriverDeptMintues').val();
 
-        var dayhourwednes =  $('#DriverDeptHourwednes').val();
-        var dayminwednes =  $('#DriverDeptMinwednes').val();
+        var dayhourwednes = $('#DriverDeptHourwednes').val();
+        var dayminwednes = $('#DriverDeptMinwednes').val();
 
-        var dayhourthurs =  $('#DriverDeptHourthurs').val();
-        var dayminthurs =  $('#DriverDeptMinthurs').val();
+        var dayhourthurs = $('#DriverDeptHourthurs').val();
+        var dayminthurs = $('#DriverDeptMinthurs').val();
 
-        var dayhourfri =  $('#DriverDeptHourfri').val();
-        var dayminfri =  $('#DriverDeptMinfri').val();
+        var dayhourfri = $('#DriverDeptHourfri').val();
+        var dayminfri = $('#DriverDeptMinfri').val();
 
         var searchLink = "/searchRoutine?";
 //            var time = Number(routehour) * 3600 + Number(routemin) * 60;
-        if(document.getElementById("fixedTimeRadio").checked){
+        if (document.getElementById("fixedTimeRadio").checked) {
             //alert("fix");
-            searchLink = searchLink + "departure=" + departure +  "&arrive=" + arrive;
+            searchLink = searchLink + "&departure=" + departure + "&arrive=" + arrive;
             console.log(searchLink)
             if (dayhour != "") {
                 searchLink = searchLink + "&dayhour=" + dayhour + "&daymin=" + daymin;
                 console.log(searchLink);
                 searchLink = searchLink + "&radio=1";
             }
-        } else  if(document.getElementById("flexibleTimeRadio").checked){
+        } else if (document.getElementById("flexibleTimeRadio").checked) {
             //alert("flexibleTimeRadio");
-            searchLink = searchLink + "departure=" + departure +  "&arrive=" + arrive;
+            searchLink = searchLink + "departure=" + departure + "&arrive=" + arrive;
             searchLink = searchLink + "&radio=2";
             console.log(searchLink)
             if (dayhoursund != "") {
@@ -744,6 +754,47 @@
             videoJsPath: "rs-plugin/videojs/",
             fullScreenOffsetContainer: ""
         });
+        var radio = "<%=radio%>";
+        var daymin = "<%=daymin%>";
+        var dayhour = "<%=dayhour%>";
+        var dayhoursund = "<%=dayhoursund%>";
+        var dayminsund = "<%=dayminsund%>";
+        var dayhourmon = "<%=dayhourmon%>";
+        if (radio == "1") {
+            $(fixedTimeRadio).attr('checked', 'checked');
+            var t1 = document.getElementById("DriverDeptMinSame");
+            for (i = 0; i < t1.length; i++) {//给select赋值
+                if (daymin == t1.options[i].value) {
+                    t1.options[i].selected = true
+                }
+            }
+            document.getElementById("DriverDeptHourSame").value = dayhour;
+        }
+        if (radio == "2") {
+            $(flexibleTimeRadio).attr('checked', 'checked');
+            $(flexibleTimeSelectorContainer).show();
+            //var days = ["sund","mon", "tues", "wednes", "thurs", "fri", "satur"];
+            //console.log("weishen"+dayhoursund);
+            //console.log(typeof dayhoursund);
+            if (dayhoursund != null) {
+                document.getElementById("DriverDeptHoursund").value = dayhoursund;
+                $("#day-sund").attr('checked', 'checked');
+                $(DriverDeptHoursund).prop("disabled", false);
+                $(DriverDeptMinsund).prop("disabled", false);
+                var t1 = document.getElementById("DriverDeptMinsund");
+                for (i = 0; i < t1.length; i++) {//给select赋值
+                    if (dayminsund == t1.options[i].value) {
+                        t1.options[i].selected = true
+                    }
+                }
+            }
+            if (dayhourmon != null) {
+                document.getElementById("DriverDeptHourmon").value = dayhourmon;
+                $("#day-mon").attr('checked', 'checked');
+                $(DriverDeptHourmon).prop("disabled", false);
+                $(DriverDeptMinmon).prop("disabled", false);
+            }
+        }
     });
 </script>
 </body>

@@ -23,12 +23,12 @@ router.route("/login")
             res.send(500);
             console.log(err);
         } else if (!doc) { //查询不到用户名匹配信息，则用户名不存在
-            req.session.error = '用户名不存在';
+            req.session.error = 'user is not exist';
             res.send(404); //   状态码返回404
             //  res.redirect("/login");
         } else {
             if (req.body.upwd != doc.password) { //查询到匹配用户名的信息，但相应的password属性不匹配
-                req.session.error = "密码错误";
+                req.session.error = "incorrect password";
                 res.send(404);
                 //  res.redirect("/login");
             } else { //信息匹配成功，则将此对象（匹配到的user) 赋给session.user  并返回成功
@@ -56,10 +56,10 @@ function(req, res) {
     User.findOne({ name: uname }, function(err, doc) { // 同理 /login 路径的处理方式
         if (err) {
             res.send(500);
-            req.session.error = '网络异常错误！';
+            req.session.error = 'Network exception error！';
             console.log(err);
         } else if (doc) {
-            req.session.error = '用户名已存在！';
+            req.session.error = 'user already exists！';
             res.send(500);
         } else {
             console.log(id);
@@ -72,7 +72,7 @@ function(req, res) {
                     res.send(500);
                     console.log(err);
                 } else {
-                    req.session.error = '用户名创建成功！';
+                    req.session.error = 'user created！';
                     res.send(200);
                 }
             });
@@ -83,7 +83,7 @@ function(req, res) {
 /* GET home page. */
 router.get("/home", function(req, res) {
     if (!req.session.user) { //到达/home路径首先判断是否已经登录
-        req.session.error = "请先登录"
+        req.session.error = "Please login"
         res.redirect("/login"); //未登录则重定向到 /login 路径
     }
     res.render("home", { title: 'ShareCar' }); //已登录则渲染home页面

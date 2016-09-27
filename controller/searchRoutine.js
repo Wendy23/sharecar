@@ -10,6 +10,9 @@ exports.routine = function () {
             var departure = req.query.departure;
             var arrive = req.query.arrive;
             var radio = req.query.radio;
+            var dayhoursund = req.query.dayhoursund;
+            var dayminsund = req.query.dayminsund;
+            var dayhourmon = req.query.dayhourmon;
             var query = {};
             if (arrive != null && arrive != undefined && departure != null && departure != undefined) {
                 query['arrive'] = arrive;
@@ -61,15 +64,15 @@ exports.routine = function () {
                                 var document = doc[i]._doc;
                                 doc[i]._doc.sortTop = 0;
                                 var weekdayArray = ['mon','tues','wednes','thurs','fri','satur','sund'];
-                                for(var k=0;k<weekdayArray.length;k++){
-                                    if(k==0){
-                                        if(req.query.dayhourmon != null && req.query.dayhourmon != undefined) {
-                                            currhour = req.query.dayhourmon;
-                                            currmin = req.query.dayminmon;
-                                            inputTime = parseInt(currhour) * 60 + parseInt(currmin);
-                                        }
-                                    }
-                                    if(k==1){
+                                        for(var k=0;k<weekdayArray.length;k++){
+                                            if(k==0){
+                                                if(req.query.dayhourmon != null && req.query.dayhourmon != undefined) {
+                                                    currhour = req.query.dayhourmon;
+                                                    currmin = req.query.dayminmon;
+                                                    inputTime = parseInt(currhour) * 60 + parseInt(currmin);
+                                                }
+                                            }
+                                            if(k==1){
                                         if(req.query.dayhourtues != null && req.query.dayhourtues != undefined) {
                                             currhour = req.query.dayhourtues;
                                             currmin = req.query.daymintues;
@@ -80,6 +83,34 @@ exports.routine = function () {
                                         if(req.query.dayhourwednes != null && req.query.dayhourwednes != undefined) {
                                             currhour = req.query.dayhourwednes;
                                             currmin = req.query.dayminwednes;
+                                            inputTime = parseInt(currhour) * 60 + parseInt(currmin);
+                                        }
+                                    }
+                                    if(k==3){
+                                        if(req.query.dayhourthurs != null && req.query.dayhourthurs != undefined) {
+                                            currhour = req.query.dayhourthurs;
+                                            currmin = req.query.dayminthurs;
+                                            inputTime = parseInt(currhour) * 60 + parseInt(currmin);
+                                        }
+                                    }
+                                    if(k==4){
+                                        if(req.query.dayhourfri != null && req.query.dayhourfri != undefined) {
+                                            currhour = req.query.dayhourfri;
+                                            currmin = req.query.dayminfri;
+                                            inputTime = parseInt(currhour) * 60 + parseInt(currmin);
+                                        }
+                                    }
+                                    if(k==5){
+                                        if(req.query.dayhoursatur != null && req.query.dayhoursatur != undefined) {
+                                            currhour = req.query.dayhoursatur;
+                                            currmin = req.query.dayminsatur;
+                                            inputTime = parseInt(currhour) * 60 + parseInt(currmin);
+                                        }
+                                    }
+                                    if(k==6){
+                                        if(req.query.dayhoursund != null && req.query.dayhoursund != undefined) {
+                                            currhour = req.query.dayhoursund;
+                                            currmin = req.query.dayminsund;
                                             inputTime = parseInt(currhour) * 60 + parseInt(currmin);
                                         }
                                     }
@@ -113,7 +144,26 @@ exports.routine = function () {
                     }
                 }
                 console.log(doc);
-                res.render("searchRoutine", {routine: doc});
+                //var queryDayArrayTemp =[];
+                //if(dayhoursund!=null && dayhoursund != undefined){
+                //    queryDayArrayTemp.push(dayhoursund);
+                //}
+                //if(dayhourmon!=null && dayhourmon != undefined){
+                //    queryDayArrayTemp.push(dayhourmon);
+                //}
+                res.render("searchRoutine", {
+                    routine: doc,
+                    'departure': departure,
+                    'arrive': arrive,
+                    'dayhour': dayhour,
+                    'daymin': daymin,
+                    'radio': radio,
+                   // 'queryDayArray' :queryDayArrayTemp,
+                    'dayhoursund': dayhoursund,
+                    'dayhourmon': dayhourmon,
+                    'dayminsund': dayminsund
+
+                });
 
             })
         }
