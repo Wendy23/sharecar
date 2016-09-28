@@ -12,7 +12,9 @@ exports.routine = function () {
             var radio = req.query.radio;
             var dayhoursund = req.query.dayhoursund;
             var dayminsund = req.query.dayminsund;
+            var dayhourtues = req.query.dayhourtues;
             var dayhourmon = req.query.dayhourmon;
+            var dayminmon = req.query.dayminmon;
             var satur = req.query.satur;
             var query = {};
             if (arrive != null && arrive != undefined && departure != null && departure != undefined) {
@@ -146,25 +148,21 @@ exports.routine = function () {
                 }
                 console.log(doc);
                 var queryDayArrayTemp =[];
-                if(satur!=""){
-                    queryDayArrayTemp.push(satur);
+                var queryHourArrayTemp = [];
+                var queryMinArrayTemp = [];
+                if(dayhourmon!=null && dayhourmon != undefined){
+                    queryDayArrayTemp.push("mon");
+                    queryHourArrayTemp.push(dayhourmon);
+                    queryMinArrayTemp.push(dayminmon);
                 }
-                //if(dayhourmon!=null && dayhourmon != undefined){
-                //    queryDayArrayTemp.push(dayhourmon);
-                //}
-                var initState={
-                    routine: doc,
-                    'departure': departure,
-                    'arrive': arrive,
-                    'dayhour': dayhour,
-                    'daymin': daymin,
-                    'radio': radio,
-                    'dayhoursund': dayhoursund,
-                    'dayhourmon': dayhourmon,
-                    'dayminsund': dayminsund
-                    //'satur':satur
 
+                if(dayhoursund!=null && dayhoursund != undefined){
+                    queryDayArrayTemp.push("sund");
+                    queryHourArrayTemp.push(dayhoursund);
+                    queryMinArrayTemp.push(dayminsund);
                 }
+
+
                 res.render("searchRoutine", {
                     routine: doc,
                     'departure': departure,
@@ -172,9 +170,14 @@ exports.routine = function () {
                     'dayhour': dayhour,
                     'daymin': daymin,
                     'radio': radio,
-                    'dayhoursund': dayhoursund,
-                    'dayhourmon': dayhourmon,
-                    'dayminsund': dayminsund
+                    //'dayhoursund': dayhoursund,
+                    //'dayhourmon': dayhourmon,
+                    //'dayhourtues': dayhourtues,
+                    //'dayminsund': dayminsund,
+                    //'dayminmon': dayminmon,
+                    'queryDayArray' : queryDayArrayTemp,
+                    'queryHourArray' : queryHourArrayTemp,
+                    'queryMinArray' : queryMinArrayTemp
                     //'satur':satur
 
                 });

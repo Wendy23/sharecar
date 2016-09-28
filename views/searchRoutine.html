@@ -125,7 +125,7 @@
                     <input type="radio" name="timeModeSelector" value="flexibleTimeRadio" id="flexibleTimeRadio"/>
                     <label for="flexibleTimeRadio"><span>My schedule is flexible:</span></label>
                     <table class="flexibleTimeSelectorContainer" id="flexibleTimeSelectorContainer"
-                           style="display: none;">
+                           style="<%=radio == 2 ? "display:none" : ""%>">
                         <tr>
                             <td>
                                 <input type="checkbox" class="daytimecheck" checked="checked" id="day-sund"/>
@@ -758,11 +758,18 @@
         var radio = "<%=radio%>";
         var daymin = "<%=daymin%>";
         var dayhour = "<%=dayhour%>";
-        var dayhoursund = "<%=dayhoursund%>";
-        var dayminsund = "<%=dayminsund%>";
-        var dayhourmon = "<%=dayhourmon%>";
-        var queryDayArray = "<%=queryDayArray%>"
+        var queryDayArrayTemp = "<%=queryDayArray%>";
+        var queryDayArray = queryDayArrayTemp.split(",");
+
+        var queryHourArrayTemp = "<%=queryHourArray%>";
+        var queryHourArray = queryHourArrayTemp.split(",");
+
+        var queryMinArrayTemp = "<%=queryMinArray%>";
+        var queryMinArray = queryMinArrayTemp.split(",");
+
+        console.log("this is query array on client");
         console.log(queryDayArray);
+        console.log(typeof queryDayArray);
         if (radio == "1") {
             $(fixedTimeRadio).attr('checked', 'checked');
             var t1 = document.getElementById("DriverDeptMinSame");
@@ -776,28 +783,43 @@
         if (radio == "2") {
             $(flexibleTimeRadio).attr('checked', 'checked');
             $(flexibleTimeSelectorContainer).show();
-            //var days = ["sund","mon", "tues", "wednes", "thurs", "fri", "satur"];
-            //console.log("weishen"+dayhoursund);
-            //console.log(typeof dayhoursund);
-            if (dayhoursund != null) {
-                $(DriverDeptHoursund).val(dayhoursund);
-                //$(DriverDeptHoursund).siblings().find("input[type='checkbox']").attr('checked', 'checked');
-                $("#day-sund").attr('checked', 'checked');
-                $(DriverDeptHoursund).prop("disabled", false);
-                $(DriverDeptMinsund).prop("disabled", false);
-                var t1 = document.getElementById("DriverDeptMinsund");
-                for (i = 0; i < t1.length; i++) {//给select赋值
-                    if (dayminsund == t1.options[i].value) {
-                        t1.options[i].selected = true
+            if(queryDayArray.length>0){
+                for(i =0; i <queryDayArray.length;i++){
+                    $("#day-"+queryDayArray[i]).attr('checked', 'checked');
+                    $("#DriverDeptHour"+queryDayArray[i]).val(queryHourArray[i]);
+                    $("#DriverDeptHour"+queryDayArray[i]).prop("disabled", false);
+                    $("#DriverDeptMin"+queryDayArray[i]).prop("disabled", false);
+                    var t1 = document.getElementById("DriverDeptMin"+queryDayArray[i]);
+                    console.log(queryMinArray);
+                    for (j = 0; j < t1.length; j++) {//给select赋值
+                        if (queryMinArray[i] == t1.options[j].value) {
+                            console.log("Query Min Array" + queryMinArray[i]+"####"+"option J is "+t1.options[j].value);
+                            t1.options[j].selected = true
+                        }
                     }
+
                 }
+
             }
-            if (dayhourmon != "") {
-                document.getElementById("DriverDeptHourmon").value = dayhourmon;
-                $("#day-mon").attr('checked', 'checked');
-                $(DriverDeptHourmon).prop("disabled", false);
-                $(DriverDeptMinmon).prop("disabled", false);
-            }
+//            if (dayhoursund != null) {
+//                $(DriverDeptHoursund).val(dayhoursund);
+//                //$(DriverDeptHoursund).siblings().find("input[type='checkbox']").attr('checked', 'checked');
+//                $("#day-sund").attr('checked', 'checked');
+//                $(DriverDeptHoursund).prop("disabled", false);
+//                $(DriverDeptMinsund).prop("disabled", false);
+//                var t1 = document.getElementById("DriverDeptMinsund");
+//                for (i = 0; i < t1.length; i++) {//给select赋值
+//                    if (dayminsund == t1.options[i].value) {
+//                        t1.options[i].selected = true
+//                    }
+//                }
+//            }
+//            if (dayhourmon != "") {
+//                document.getElementById("DriverDeptHourmon").value = dayhourmon;
+//                $("#day-mon").attr('checked', 'checked');
+//                $(DriverDeptHourmon).prop("disabled", false);
+//                $(DriverDeptMinmon).prop("disabled", false);
+//            }
 //            for(i = 0;i<days.length;i++){
 //                var day = days[i];
 //                for(j = 0,j<day;j++){
