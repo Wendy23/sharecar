@@ -13,6 +13,7 @@ exports.routine = function () {
             var dayhoursund = req.query.dayhoursund;
             var dayminsund = req.query.dayminsund;
             var dayhourmon = req.query.dayhourmon;
+            var satur = req.query.satur;
             var query = {};
             if (arrive != null && arrive != undefined && departure != null && departure != undefined) {
                 query['arrive'] = arrive;
@@ -144,13 +145,26 @@ exports.routine = function () {
                     }
                 }
                 console.log(doc);
-                //var queryDayArrayTemp =[];
-                //if(dayhoursund!=null && dayhoursund != undefined){
-                //    queryDayArrayTemp.push(dayhoursund);
-                //}
+                var queryDayArrayTemp =[];
+                if(satur!=""){
+                    queryDayArrayTemp.push(satur);
+                }
                 //if(dayhourmon!=null && dayhourmon != undefined){
                 //    queryDayArrayTemp.push(dayhourmon);
                 //}
+                var initState={
+                    routine: doc,
+                    'departure': departure,
+                    'arrive': arrive,
+                    'dayhour': dayhour,
+                    'daymin': daymin,
+                    'radio': radio,
+                    'dayhoursund': dayhoursund,
+                    'dayhourmon': dayhourmon,
+                    'dayminsund': dayminsund
+                    //'satur':satur
+
+                }
                 res.render("searchRoutine", {
                     routine: doc,
                     'departure': departure,
@@ -158,10 +172,10 @@ exports.routine = function () {
                     'dayhour': dayhour,
                     'daymin': daymin,
                     'radio': radio,
-                   // 'queryDayArray' :queryDayArrayTemp,
                     'dayhoursund': dayhoursund,
                     'dayhourmon': dayhourmon,
                     'dayminsund': dayminsund
+                    //'satur':satur
 
                 });
 

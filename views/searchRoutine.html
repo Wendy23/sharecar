@@ -542,6 +542,7 @@
 
         var dayhoursatur = $('#DriverDeptHoursatur').val();
         var dayminsatur = $('#DriverDeptMinsatur').val();
+        //var satur = $('#day-satur').is(':checked')?1:0;
 
         var dayhoursund = $('#DriverDeptHoursund').val();
         var dayminsund = $('#DriverDeptMinsund').val();
@@ -636,7 +637,7 @@
                 console.log(searchLink)
             }
             if (dayminsatur != "" && document.getElementById("day-satur").checked) {
-                searchLink = searchLink + "&dayminsatur=" + dayminsatur;
+                searchLink = searchLink + "&dayminsatur=" + dayminsatur + "&saturday_status="+ satur;
                 console.log(searchLink)
             }
 
@@ -760,6 +761,8 @@
         var dayhoursund = "<%=dayhoursund%>";
         var dayminsund = "<%=dayminsund%>";
         var dayhourmon = "<%=dayhourmon%>";
+        var queryDayArray = "<%=queryDayArray%>"
+        console.log(queryDayArray);
         if (radio == "1") {
             $(fixedTimeRadio).attr('checked', 'checked');
             var t1 = document.getElementById("DriverDeptMinSame");
@@ -777,7 +780,8 @@
             //console.log("weishen"+dayhoursund);
             //console.log(typeof dayhoursund);
             if (dayhoursund != null) {
-                document.getElementById("DriverDeptHoursund").value = dayhoursund;
+                $(DriverDeptHoursund).val(dayhoursund);
+                //$(DriverDeptHoursund).siblings().find("input[type='checkbox']").attr('checked', 'checked');
                 $("#day-sund").attr('checked', 'checked');
                 $(DriverDeptHoursund).prop("disabled", false);
                 $(DriverDeptMinsund).prop("disabled", false);
@@ -788,12 +792,30 @@
                     }
                 }
             }
-            if (dayhourmon != null) {
+            if (dayhourmon != "") {
                 document.getElementById("DriverDeptHourmon").value = dayhourmon;
                 $("#day-mon").attr('checked', 'checked');
                 $(DriverDeptHourmon).prop("disabled", false);
                 $(DriverDeptMinmon).prop("disabled", false);
             }
+//            for(i = 0;i<days.length;i++){
+//                var day = days[i];
+//                for(j = 0,j<day;j++){
+//                    if (i==j) {
+//                        $(DriverDeptHoursund).val(dayhoursund);
+//                        //$(DriverDeptHoursund).siblings().find("input[type='checkbox']").attr('checked', 'checked');
+//                        $("#day-sund").attr('checked', 'checked');
+//                        $(DriverDeptHoursund).prop("disabled", false);
+//                        $(DriverDeptMinsund).prop("disabled", false);
+//                        var t1 = document.getElementById("DriverDeptMinsund");
+//                        for (i = 0; i < t1.length; i++) {//给select赋值
+//                            if (dayminsund == t1.options[i].value) {
+//                                t1.options[i].selected = true
+//                            }
+//                        }
+//                    }
+//                };
+//            }
         }
     });
 </script>

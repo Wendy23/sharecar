@@ -4,9 +4,8 @@
     <list default="true" id="53ed094c-eb52-4282-9caa-d3ab9c9a178c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/searchRoutine.js" afterPath="$PROJECT_DIR$/controller/searchRoutine.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/login.html" afterPath="$PROJECT_DIR$/views/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/register.html" afterPath="$PROJECT_DIR$/views/register.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/createRoutine.html" afterPath="$PROJECT_DIR$/views/createRoutine.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/routineBack.html" afterPath="$PROJECT_DIR$/views/routineBack.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/searchRoutine.html" afterPath="$PROJECT_DIR$/views/searchRoutine.html" />
     </list>
     <ignored path="myapp.iws" />
@@ -31,8 +30,8 @@
       <file leaf-file-name="searchRoutine.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller/searchRoutine.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.333334">
-              <caret line="159" column="35" selection-start-line="159" selection-start-column="35" selection-end-line="159" selection-end-column="35" />
+            <state vertical-scroll-proportion="-19.555555">
+              <caret line="183" column="5" selection-start-line="183" selection-start-column="5" selection-end-line="183" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -41,11 +40,11 @@
       <file leaf-file-name="searchRoutine.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/searchRoutine.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8388889">
-              <caret line="786" column="53" selection-start-line="786" selection-start-column="53" selection-end-line="786" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.6627907">
+              <caret line="406" column="39" selection-start-line="406" selection-start-column="39" selection-end-line="406" selection-end-column="39" />
               <folding>
                 <element signature="n#style#0;n#table#0;n#div#2;n#form#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1475015005671" expanded="true" signature="4956:5129" placeholder="..." />
+                <marker date="1475026200013" expanded="true" signature="4956:5129" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -54,8 +53,8 @@
       <file leaf-file-name="createRoutine.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/createRoutine.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.5263157">
-              <caret line="623" column="76" selection-start-line="623" selection-start-column="76" selection-end-line="623" selection-end-column="76" />
+            <state vertical-scroll-proportion="-20.535715">
+              <caret line="621" column="52" selection-start-line="621" selection-start-column="52" selection-end-line="621" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -81,7 +80,6 @@
         <option value="$PROJECT_DIR$/database/rider.js" />
         <option value="$PROJECT_DIR$/controller/createRoute.js" />
         <option value="$PROJECT_DIR$/controller/myProfile.js" />
-        <option value="internal/streams/lazy_transform.js" />
         <option value="internal/module.js" />
         <option value="$PROJECT_DIR$/controller/driverroutes.js" />
         <option value="$PROJECT_DIR$/routes/searchRoute.js" />
@@ -100,9 +98,7 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/routineBack.js" />
         <option value="$PROJECT_DIR$/views/home.html" />
-        <option value="$PROJECT_DIR$/views/createRoutine.html" />
         <option value="$PROJECT_DIR$/views/driverRoutes.html" />
-        <option value="$PROJECT_DIR$/views/routineBack.html" />
         <option value="$PROJECT_DIR$/database/routine.js" />
         <option value="$PROJECT_DIR$/routes/createRoutine.js" />
         <option value="$PROJECT_DIR$/controller/createRoutine.js" />
@@ -114,6 +110,9 @@
         <option value="$PROJECT_DIR$/views/register.html" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/views/searchRoute.html" />
+        <option value="$PROJECT_DIR$/views/routineBack.html" />
+        <option value="$PROJECT_DIR$/views/createRoutine.html" />
+        <option value="internal/streams/lazy_transform.js" />
         <option value="$PROJECT_DIR$/controller/searchRoutine.js" />
         <option value="$PROJECT_DIR$/views/searchRoutine.html" />
       </list>
@@ -531,7 +530,13 @@
       <option name="project" value="LOCAL" />
       <updated>1473323588459</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="redunctant searchroutine, no comment">
+      <created>1475015394253</created>
+      <option name="number" value="00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1475015394253</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TodoView">
@@ -549,17 +554,17 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18220116" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.200883" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3738938" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30573952" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.07079646" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32853982" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27704194" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31969026" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -595,7 +600,8 @@
     <MESSAGE value="middle,can post but not successed" />
     <MESSAGE value="prepare to do search routine" />
     <MESSAGE value="prepare to do search routine thursday" />
-    <option name="LAST_COMMIT_MESSAGE" value="prepare to do search routine thursday" />
+    <MESSAGE value="redunctant searchroutine, no comment" />
+    <option name="LAST_COMMIT_MESSAGE" value="redunctant searchroutine, no comment" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -609,7 +615,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="252" />
+      <option name="time" value="264" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -790,13 +796,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/routineBack.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="506" column="52" selection-start-line="506" selection-start-column="52" selection-end-line="506" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/driverRoutes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.555555">
@@ -822,13 +821,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.3333333">
           <caret line="202" column="33" selection-start-line="202" selection-start-column="33" selection-end-line="202" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/createRoutine.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.4074075">
-          <caret line="193" column="8" selection-start-line="193" selection-start-column="8" selection-end-line="193" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -864,6 +856,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -940,14 +933,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/searchRoute.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="126.965515">
-          <caret line="97" column="43" selection-start-line="97" selection-start-column="31" selection-end-line="97" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controller/searchRoute.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.48333332">
@@ -964,29 +949,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/searchRoute.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.595707">
+          <caret line="97" column="43" selection-start-line="97" selection-start-column="31" selection-end-line="97" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/routineBack.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.47920433">
+          <caret line="609" column="60" selection-start-line="609" selection-start-column="60" selection-end-line="609" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/createRoutine.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.175">
+          <caret line="80" column="17" selection-start-line="80" selection-start-column="17" selection-end-line="80" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/views/createRoutine.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.5263157">
-          <caret line="623" column="76" selection-start-line="623" selection-start-column="76" selection-end-line="623" selection-end-column="76" />
+        <state vertical-scroll-proportion="-20.535715">
+          <caret line="621" column="52" selection-start-line="621" selection-start-column="52" selection-end-line="621" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controller/searchRoutine.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.333334">
-          <caret line="159" column="35" selection-start-line="159" selection-start-column="35" selection-end-line="159" selection-end-column="35" />
+        <state vertical-scroll-proportion="-19.555555">
+          <caret line="183" column="5" selection-start-line="183" selection-start-column="5" selection-end-line="183" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/searchRoutine.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8388889">
-          <caret line="786" column="53" selection-start-line="786" selection-start-column="53" selection-end-line="786" selection-end-column="53" />
+        <state vertical-scroll-proportion="0.6627907">
+          <caret line="406" column="39" selection-start-line="406" selection-start-column="39" selection-end-line="406" selection-end-column="39" />
           <folding>
             <element signature="n#style#0;n#table#0;n#div#2;n#form#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1475015005671" expanded="true" signature="4956:5129" placeholder="..." />
+            <marker date="1475026200013" expanded="true" signature="4956:5129" placeholder="..." />
           </folding>
         </state>
       </provider>

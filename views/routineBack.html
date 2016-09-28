@@ -604,7 +604,13 @@
 
             //flag=2的赋值
             //$("#flexibleTimeRadio").attr('checked', true);没填的不能打钩，只有填了的才能打钩，现在写的是全打钩的
-            if (result.flag == 2) {
+            if (result.flag == 1 && result.comeback == "back") {
+                $("#fixedTimeRadio").attr('checked', true);
+                $(DriverDeptHourSame).val(result.mon.dayhour);
+                $(DriverDeptMinSame).val(result.mon.daymin);
+                $(daytimetoleranceSame).val(result.mon.daytimetlr);
+            }
+            if (result.flag == 2 && result.comeback == "back") {
                 $('#flexibleTimeSelectorContainer').show();
                 $("#flexibleTimeRadio").attr('checked', true);
                 var days = ["mon", "sund", "tues", "wednes", "thurs", "fri", "satur"];

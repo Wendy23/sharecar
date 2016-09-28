@@ -593,7 +593,7 @@
         });
         var res = $("#result").val();
         var result = eval("(" + res + ")");
-        console.log(result);
+        console.log("result" + result);
         if (result != null && result != undefined) {
             $("#radioFlag").val(result.flag);
             $("#departure").val(result.departure);
@@ -606,7 +606,14 @@
 
             //flag=2的赋值
             //$("#flexibleTimeRadio").attr('checked', true);没填的不能打钩，只有填了的才能打钩，现在写的是全打钩的
-            if (result.flag == 2) {
+            if (result.flag == 1 && result.comeback =="come") {
+                console.log("come yes");
+                $("#fixedTimeRadio").attr('checked', true);
+                $(DriverDeptHourSame).val(result.mon.dayhour);
+                $(DriverDeptMinSame).val(result.mon.daymin);
+                $(daytimetoleranceSame).val(result.mon.daytimetlr);
+            }
+            if (result.flag == 2 && result.comeback == "come") {
                 $('#flexibleTimeSelectorContainer').show();
                 $("#flexibleTimeRadio").attr('checked', true);
                 var days = ["mon", "sund", "tues", "wednes", "thurs", "fri", "satur"];
