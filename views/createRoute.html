@@ -28,94 +28,11 @@
     <link rel='stylesheet' href='/stylesheets/datepicker.css'/>
     <!--Time-->
     <link rel='stylesheet' href='/stylesheets/bootstrap-timepicker.min.css'/>
+    <!--Project-->
+    <link rel='stylesheet' href='/stylesheets/project-style.css'/>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <!--<script type='text/javascript'>function init_map() {-->
-        <!--var myOptions = {-->
-            <!--zoom: 12,-->
-            <!--center: new google.maps.LatLng(48.394004939205935, -89.25214549580078),-->
-            <!--mapTypeId: google.maps.MapTypeId.ROADMAP-->
-        <!--};-->
-        <!--map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);-->
-        <!--marker = new google.maps.Marker({-->
-            <!--map: map,-->
-            <!--position: new google.maps.LatLng(48.394004939205935, -89.25214549580078)-->
-        <!--});-->
-        <!--infowindow = new google.maps.InfoWindow({content: '<strong>ShareCar</strong><br>Thunder Bay<br>'});-->
-        <!--google.maps.event.addListener(marker, 'click', function () {-->
-            <!--infowindow.open(map, marker);-->
-        <!--});-->
-        <!--infowindow.open(map, marker);-->
-    <!--}-->
-    <!--google.maps.event.addDomListener(window, 'load', init_map);</script>-->
-
 </head>
-<style>
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
-    #map {
-        height: 100%;
-    }
-    #floating-panel {
-        position: absolute;
-        top: 10px;
-        left: 25%;
-        z-index: 5;
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-        text-align: center;
-        font-family: 'Roboto','sans-serif';
-        line-height: 30px;
-        padding-left: 10px;
-    }
-
-</style>
-<body>
-<!-- /.preloader -->
-<div id="preloader"></div>
-
-
-<!--<div id="floating-panel">-->
-    <!--<input id="address" type="textbox" value="Thunder Bay, ON">-->
-    <!--<input id="submit" type="button" value="Geocode">-->
-<!--</div>-->
-<!--<div id="map" style="height: 100%; width: 50%; margin-left: 50px";></div>-->
-<script>
-    function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 12,
-            center: {lat: 48.39, lng: -89.252}
-        });
-        var geocoder = new google.maps.Geocoder();
-
-        document.getElementById('submit').addEventListener('click', function() {
-            geocodeAddress(geocoder, map);
-        });
-    }
-
-    function geocodeAddress(geocoder, resultsMap) {
-        var address = document.getElementById('address').value;
-        geocoder.geocode({'address': address}, function(results, status) {
-            if (status === google.maps.GeocoderStatus.OK) {
-                resultsMap.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                    map: resultsMap,
-                    position: results[0].geometry.location
-                });
-            } else {
-                alert('Geocode was not successful for the following reason: ' + status);
-            }
-        });
-    }
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATltk2TwkHYYTotz6t0lOs1YDOWNeZjX8&signed_in=true&callback=initMap"
-        async defer></script>
-
-
 
 <div class="theme-layout">
     <!-- Header -->
@@ -170,70 +87,67 @@
     <section>
         <form id="new-route" class="form-group" role="form" method="post" action="/createRoute">
             <div class="container">
-                <div class="well">
-                    <label for="DriverDeptDate">Departure Date</label>
-                    <input type="text" class="datepicker" id="DriverDeptDate" name="DriverDeptDate">
-                    <script>
-                        $(function () {
-                            $('#DriverDeptDate').datepicker();
-                        });
-                    </script>
+                <div class="row">
+                    <!-- Left Section -->
+                    <div class="col-lg-4">
+                        <div class="well">
+                            <label for="DriverDeptDate">Departure Date</label>
+                            <input type="text" class="datepicker" id="DriverDeptDate" name="DriverDeptDate">
+                            <script>
+                                $(function () {
+                                    $('#DriverDeptDate').datepicker();
+                                });
+                            </script>
+                        </div>
+                        <div class="well">
+                            <label for="DriverDeptMin">Departure Time</label>
+                            <input type="number" min="0" max="23" size="15" id="DriverDeptHour" name="DriverDeptHour"> &#58;
+                            <select id="DriverDeptMin" name="DriverDeptMin">
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                            <span type="number" class="plus-minus-label">&plusmn;</span>
+                            <select id="TimeTolerance" name="TimeTolerance">
+                                <option value="15" SELECTED>15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                            <span> mins</span>
+                        </div>
+                        <div class="well">
+                            <label for="PostalCode">Departure PostCode</label>
+                            <input type="text" id="PostalCode" name="PostalCode" placeholder="A0AA0A">
+                        </div>
+                        <div class="well">
+                            <label for="deptpcoderange">Departure PostCode Range(km)</label>
+                            <input type="number" min="1" max="5" size="15" id="deptpcoderange" name="deptpcoderange">
+                        </div>
+                        <div class="well">
+                            <label for="PostalCode2">Arrival PostCode</label>
+                            <input type="text" id="PostalCode2" name="PostalCode2" placeholder="A0AA0A">
+                        </div>
+                        <div class="well">
+                            <label for="arripcoderange">Arrival PostCode Range(km)</label>
+                            <input type="number" min="1" max="5" size="15" id="arripcoderange" name="arripcoderange">
+                        </div>
+                        <div class="well">
+                            <label for="Occupancy">Occupancy</label>
+                            <input type="number" min="1" max="10" size="15" id="Occupancy" name="Occupancy">
+                        </div>
+                        <div class="well">
+                            <label for="Cost">Cost</label>
+                            <input type="number" min="0" max="100" size="15" id="Cost" name="Cost">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" id="driverroute">Submit</button>
+                    </div>
+                    <!-- Right Section -->
+                    <div class="col-lg-8">
+                        <div class="map-canvas">
+                            <div id="map"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="well">
-                    <label for="DriverDeptMin">Departure Time</label>
-                    <input type="number" min="0" max="23" size="15" id="DriverDeptHour" name="DriverDeptHour"> &#58;
-                    <select id="DriverDeptMin" name="DriverDeptMin">
-                        <option value="15">15</option>
-                        <option value="30">30</option>
-                        <option value="45">45</option>
-                    </select>
-                    <script>
-                        // $(function() {
-                        //     $('#DriverDeptTime').timepicker({
-                        //         showMeridian: false,
-                        //         template: 'dropdown',
-                        //         showWidgetOnAddonClick: true,
-                        //         icons: {
-                        //             up: 'glyphicon glyphicon-chevron-up',
-                        //             down: 'glyphicon glyphicon-chevron-down'
-                        //         },
-                        //         maxHours: 24
-                        //     });
-                        // });
-                    </script>
-                    <span type="number" class="plus-minus-label">&plusmn;</span>
-                    <select id="TimeTolerance" name="TimeTolerance">
-                        <option value="15" SELECTED>15</option>
-                        <option value="30">30</option>
-                        <option value="45">45</option>
-                    </select>
-                    <span> mins</span>
-                </div>
-                <div class="well">
-                    <label for="PostalCode">Departure PostCode</label>
-                    <input type="text" id="PostalCode" name="PostalCode" placeholder="A0AA0A">
-                </div>
-                <div class="well">
-                    <label for="deptpcoderange">Departure PostCode Range(km)</label>
-                    <input type="number" min="1" max="5" size="15" id="deptpcoderange" name="deptpcoderange">
-                </div>
-                <div class="well">
-                    <label for="PostalCode2">Arrival PostCode</label>
-                    <input type="text" id="PostalCode2" name="PostalCode2" placeholder="A0AA0A">
-                </div>
-                <div class="well">
-                    <label for="arripcoderange">Arrival PostCode Range(km)</label>
-                    <input type="number" min="1" max="5" size="15" id="arripcoderange" name="arripcoderange">
-                </div>
-                <div class="well">
-                    <label for="Occupancy">Occupancy</label>
-                    <input type="number" min="1" max="10" size="15" id="Occupancy" name="Occupancy">
-                </div>
-                <div class="well">
-                    <label for="Cost">Cost</label>
-                    <input type="number" min="0" max="100" size="15" id="Cost" name="Cost">
-                </div>
-                <button type="submit" class="btn btn-primary btn-block" id="driverroute">Submit</button>
             </div>
         </form>
     </section>
@@ -258,6 +172,11 @@
 <!-- Time -->
 <script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
 <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<!-- Project -->
+<script src="js/project.js" type="text/javascript"></script>
+<!-- Google Map Api -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATltk2TwkHYYTotz6t0lOs1YDOWNeZjX8&signed_in=true&callback=initMap" type="text/javascript"></script>
+
 <script type="text/javascript">
     $(function () {
         $("#new-route").submit(function (e) {

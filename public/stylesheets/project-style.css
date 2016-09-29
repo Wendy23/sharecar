@@ -1,0 +1,12 @@
+body {
+  height: 100%;
+}
+
+.map-canvas {
+  height: 700px;
+  background-color: yellow;
+}
+
+.map-canvas #map {
+  height: 100%;
+}
