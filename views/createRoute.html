@@ -30,11 +30,93 @@
     <link rel='stylesheet' href='/stylesheets/bootstrap-timepicker.min.css'/>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-</head>
+    <!--<script type='text/javascript'>function init_map() {-->
+        <!--var myOptions = {-->
+            <!--zoom: 12,-->
+            <!--center: new google.maps.LatLng(48.394004939205935, -89.25214549580078),-->
+            <!--mapTypeId: google.maps.MapTypeId.ROADMAP-->
+        <!--};-->
+        <!--map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);-->
+        <!--marker = new google.maps.Marker({-->
+            <!--map: map,-->
+            <!--position: new google.maps.LatLng(48.394004939205935, -89.25214549580078)-->
+        <!--});-->
+        <!--infowindow = new google.maps.InfoWindow({content: '<strong>ShareCar</strong><br>Thunder Bay<br>'});-->
+        <!--google.maps.event.addListener(marker, 'click', function () {-->
+            <!--infowindow.open(map, marker);-->
+        <!--});-->
+        <!--infowindow.open(map, marker);-->
+    <!--}-->
+    <!--google.maps.event.addDomListener(window, 'load', init_map);</script>-->
 
+</head>
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    #map {
+        height: 100%;
+    }
+    #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+    }
+
+</style>
 <body>
 <!-- /.preloader -->
 <div id="preloader"></div>
+
+
+<!--<div id="floating-panel">-->
+    <!--<input id="address" type="textbox" value="Thunder Bay, ON">-->
+    <!--<input id="submit" type="button" value="Geocode">-->
+<!--</div>-->
+<!--<div id="map" style="height: 100%; width: 50%; margin-left: 50px";></div>-->
+<script>
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 12,
+            center: {lat: 48.39, lng: -89.252}
+        });
+        var geocoder = new google.maps.Geocoder();
+
+        document.getElementById('submit').addEventListener('click', function() {
+            geocodeAddress(geocoder, map);
+        });
+    }
+
+    function geocodeAddress(geocoder, resultsMap) {
+        var address = document.getElementById('address').value;
+        geocoder.geocode({'address': address}, function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                resultsMap.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: resultsMap,
+                    position: results[0].geometry.location
+                });
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATltk2TwkHYYTotz6t0lOs1YDOWNeZjX8&signed_in=true&callback=initMap"
+        async defer></script>
+
+
+
 <div class="theme-layout">
     <!-- Header -->
     <header class="simple-header for-sticky white">
