@@ -92,7 +92,8 @@
                     <div class="col-lg-4">
                         <div class="well">
                             <label for="DriverDeptDate">Departure Date</label>
-                            <input type="text" class="datepicker" id="DriverDeptDate" name="DriverDeptDate"  value="<%=driverroute.dridate%>">
+                            <input type="text" class="datepicker" id="DriverDeptDate" name="DriverDeptDate"
+                                   value="<%=driverroute.dridate%>">
                             <script>
                                 $(function () {
                                     $('#DriverDeptDate').datepicker();
@@ -101,55 +102,82 @@
                         </div>
                         <div class="well">
                             <label for="DriverDeptMin">Departure Time</label>
-                            <input type="number" min="0" max="23" size="15" id="DriverDeptHour" name="DriverDeptHour" value="<%=driverroute.drihour%>"> &#58;
+                            <input type="number" min="0" max="23" size="15" id="DriverDeptHour" name="DriverDeptHour"
+                                   value="<%=driverroute.drihour%>"> &#58;
                             <select id="DriverDeptMin" name="DriverDeptMin">
                                 <option value="15">15</option>
                                 <option value="30">30</option>
                                 <option value="45">45</option>
                             </select>
                             <span type="number" class="plus-minus-label">&plusmn;</span>
+                            <script>
+                                var t1 = document.getElementById("DriverDeptMin");
+                                var min ="<%=driverroute.drimin%>"
+                                for (i = 0; i < t1.length; i++) {//给select赋值
+                                    if (min == t1.options[i].value) {
+                                        t1.options[i].selected = true
+                                    }
+                                }
+                            </script>
                             <select id="TimeTolerance" name="TimeTolerance">
                                 <option value="15" SELECTED>15</option>
                                 <option value="30">30</option>
                                 <option value="45">45</option>
                             </select>
                             <span> mins</span>
+                            <script>
+                                var t1 = document.getElementById("TimeTolerance");
+                                var tlr ="<%=driverroute.timetlr%>"
+                                for (i = 0; i < t1.length; i++) {//给select赋值
+                                    if (tlr == t1.options[i].value) {
+                                        t1.options[i].selected = true
+                                    }
+                                }
+                            </script>
                         </div>
 
                         <div class="well">
                             <label for="From">From</label>
-                            <input type="text" id="from" name="from" size="30px" placeholder="SearchBox" value="<%=driverroute.from%>">
+                            <input type="text" id="from" name="from" size="30px" placeholder="SearchBox"
+                                   value="<%=driverroute.from%>">
                         </div>
 
                         <div class="well">
                             <label for="PostalCode">Departure PostCode</label>
-                            <input type="text" id="PostalCode" name="PostalCode" placeholder="A0AA0A" value="<%=driverroute.pcode%>">
+                            <input type="text" id="PostalCode" name="PostalCode" placeholder="A0AA0A"
+                                   value="<%=driverroute.pcode%>">
                         </div>
                         <div class="well">
                             <label for="deptpcoderange">Departure PostCode Range(km)</label>
-                            <input type="number" min="1" max="5" size="15" id="deptpcoderange" name="deptpcoderange" value="<%=driverroute.pcoderange%>">
+                            <input type="number" min="1" max="5" size="15" id="deptpcoderange" name="deptpcoderange"
+                                   value="<%=driverroute.pcoderange%>">
                         </div>
 
                         <div class="well">
                             <label for="To">To</label>
-                            <input type="text" id="to" name="to" size="30px" placeholder="SearchBox" value="<%=driverroute.to%>">
+                            <input type="text" id="to" name="to" size="30px" placeholder="SearchBox"
+                                   value="<%=driverroute.to%>">
                         </div>
 
                         <div class="well">
                             <label for="PostalCode2">Arrival PostCode</label>
-                            <input type="text" id="PostalCode2" name="PostalCode2" placeholder="A0AA0A" value="<%=driverroute.pcode2%>">
+                            <input type="text" id="PostalCode2" name="PostalCode2" placeholder="A0AA0A"
+                                   value="<%=driverroute.pcode2%>">
                         </div>
                         <div class="well">
                             <label for="arripcoderange">Arrival PostCode Range(km)</label>
-                            <input type="number" min="1" max="5" size="15" id="arripcoderange" name="arripcoderange" value="<%=driverroute.pcoderange2%>">
+                            <input type="number" min="1" max="5" size="15" id="arripcoderange" name="arripcoderange"
+                                   value="<%=driverroute.pcoderange2%>">
                         </div>
                         <div class="well">
                             <label for="Occupancy">Occupancy</label>
-                            <input type="number" min="1" max="10" size="15" id="Occupancy" name="Occupancy" value="<%=driverroute.occupancy%>">
+                            <input type="number" min="1" max="10" size="15" id="Occupancy" name="Occupancy"
+                                   value="<%=driverroute.occupancy%>">
                         </div>
                         <div class="well">
                             <label for="Cost">Cost</label>
-                            <input type="number" min="0" max="100" size="15" id="Cost" name="Cost" value="<%=driverroute.cost%>">
+                            <input type="number" min="0" max="100" size="15" id="Cost" name="Cost"
+                                   value="<%=driverroute.cost%>">
                         </div>
                         <button type="submit" class="btn btn-primary btn-block" id="driverroute">Submit</button>
                     </div>
@@ -187,7 +215,8 @@
 <!-- Project -->
 <script src="js/project.js" type="text/javascript"></script>
 <!-- Google Map Api -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATltk2TwkHYYTotz6t0lOs1YDOWNeZjX8&libraries=places&signed_in=true&callback=initMap" type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATltk2TwkHYYTotz6t0lOs1YDOWNeZjX8&libraries=places&signed_in=true&callback=initMap"
+        type="text/javascript"></script>
 <script type="text/javascript">
     $(function () {
         $("#new-route").submit(function (e) {
@@ -212,14 +241,14 @@
                 "drideptmin": DriverDeptMin,
                 "timetol": TimeTolerance,
                 "postcode": PostalCode,
-                "from":from,
+                "from": from,
                 "deptpcoderange": DeptPcodeRange,
-                "to":to,
+                "to": to,
                 "postcode2": PostalCode2,
                 "arripcoderange": Arripcoderange,
                 "occu": Occupancy,
                 "cost": Cost,
-                "abc":abc ,
+                "abc": abc,
                 // "AreaTolerance": AreaTolerance
                 "mintime": Number(DriverDeptHour) * 3600 + Number(DriverDeptMin) * 60 - Number(TimeTolerance) * 60,
                 "maxtime": Number(DriverDeptHour) * 3600 + Number(DriverDeptMin) * 60 + Number(TimeTolerance) * 60
