@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="53ed094c-eb52-4282-9caa-d3ab9c9a178c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/routes/editRoute.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/createRoute.js" afterPath="$PROJECT_DIR$/controller/createRoute.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/driverroutes.js" afterPath="$PROJECT_DIR$/controller/driverroutes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/project.js" afterPath="$PROJECT_DIR$/public/js/project.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/project-style.css" afterPath="$PROJECT_DIR$/public/stylesheets/project-style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/createRoute.js" afterPath="$PROJECT_DIR$/routes/createRoute.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/driverRoutes.js" afterPath="$PROJECT_DIR$/routes/driverRoutes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/createRoute.html" afterPath="$PROJECT_DIR$/views/createRoute.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/driverRoutes.html" afterPath="$PROJECT_DIR$/views/driverRoutes.html" />
     </list>
     <ignored path="myapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,51 +28,18 @@
       <file leaf-file-name="createRoute.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/createRoute.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.3766234">
-              <caret line="186" column="58" selection-start-line="186" selection-start-column="58" selection-end-line="186" selection-end-column="58" />
+            <state vertical-scroll-proportion="-1.862069">
+              <caret line="174" column="16" selection-start-line="174" selection-start-column="16" selection-end-line="174" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="createRoute.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/controller/createRoute.js">
+      <file leaf-file-name="project.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/js/project.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5018248">
-              <caret line="11" column="39" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="driverRoutes.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/driverRoutes.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.964285">
-              <caret line="368" column="67" selection-start-line="368" selection-start-column="67" selection-end-line="368" selection-end-column="67" />
-              <folding>
-                <element signature="n#style#0;n#td#11;n#driverroutes.length#0;n#tr#0;n#tbody#0;n#table#0;n#section#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#12;n#driverroutes.length#0;n#tr#0;n#tbody#0;n#table#0;n#section#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="driverroutes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller/driverroutes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.62963">
-              <caret line="45" column="47" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="myProfile.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller/myProfile.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.185184">
-              <caret line="69" column="34" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.38745388">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -137,7 +96,6 @@
         <option value="$PROJECT_DIR$/views/searchRoutine.html" />
         <option value="$PROJECT_DIR$/views/map.html" />
         <option value="$PROJECT_DIR$/public/stylesheets/project-style.css" />
-        <option value="$PROJECT_DIR$/public/js/project.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/controller/searchRoutine.js" />
         <option value="$PROJECT_DIR$/routes/createRoute.js" />
@@ -145,9 +103,10 @@
         <option value="$PROJECT_DIR$/routes/driverRoutes.js" />
         <option value="$PROJECT_DIR$/controller/driverroutes.js" />
         <option value="$PROJECT_DIR$/views/driverRoutes.html" />
-        <option value="$PROJECT_DIR$/views/createRoute.html" />
         <option value="internal/util.js" />
         <option value="$PROJECT_DIR$/controller/createRoute.js" />
+        <option value="$PROJECT_DIR$/views/createRoute.html" />
+        <option value="$PROJECT_DIR$/public/js/project.js" />
       </list>
     </option>
   </component>
@@ -590,7 +549,13 @@
       <option name="project" value="LOCAL" />
       <updated>1475034650717</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="done editroute, done two days, 5 left and to do map">
+      <created>1475195496772</created>
+      <option name="number" value="00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1475195496772</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TodoView">
@@ -608,16 +573,16 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20010532" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3738938" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3329646" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3108407" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32853982" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33960176" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33960176" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -677,7 +642,8 @@
     <MESSAGE value="redunctant searchroutine, no comment" />
     <MESSAGE value="redunctant searchroutine, no comment 2" />
     <MESSAGE value="done two days, 5 left and no comment yet" />
-    <option name="LAST_COMMIT_MESSAGE" value="done two days, 5 left and no comment yet" />
+    <MESSAGE value="done editroute, done two days, 5 left and to do map" />
+    <option name="LAST_COMMIT_MESSAGE" value="done editroute, done two days, 5 left and to do map" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -925,14 +891,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/project.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.9259257">
-          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/createRoutine.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1221865">
@@ -1071,18 +1029,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/createRoute.html">
+    <entry file="file://$PROJECT_DIR$/controller/createRoute.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.3766234">
-          <caret line="186" column="58" selection-start-line="186" selection-start-column="58" selection-end-line="186" selection-end-column="58" />
+        <state vertical-scroll-proportion="6.4814816">
+          <caret line="11" column="39" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller/createRoute.js">
+    <entry file="file://$PROJECT_DIR$/views/createRoute.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5018248">
-          <caret line="11" column="39" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
+        <state vertical-scroll-proportion="-1.862069">
+          <caret line="174" column="16" selection-start-line="174" selection-start-column="16" selection-end-line="174" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/project.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38745388">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
         </state>
       </provider>
