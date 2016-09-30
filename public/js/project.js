@@ -65,7 +65,7 @@ function initMap() {
             console.log("place" + place.formatted_address);
 
             var reqResult = place.formatted_address;
-            var getAreaInfo = reqResult.substring(reqResult.indexOf(",") + 1);
+            var getAreaInfo = reqResult.substring(reqResult.lastIndexOf(",") + 1);
             console.log("geuwi" + getAreaInfo);
 
             var ta = document.getElementById('PostalCode');
@@ -124,7 +124,7 @@ function initMap() {
             console.log("place" + place.formatted_address);
 
             var reqResult = place.formatted_address;
-            var getAreaInfo = reqResult.substring(reqResult.indexOf(",") + 1);
+            var getAreaInfo = reqResult.substring(reqResult.lastIndexOf(",") + 1);
             console.log("geuwi" + getAreaInfo);
 
             var ta = document.getElementById('PostalCode2');

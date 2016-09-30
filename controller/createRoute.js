@@ -11,8 +11,10 @@ exports.createRoute = function () {
         var cost = req.body.cost;
         var mintime = req.body.mintime;
         var maxtime = req.body.maxtime;
+        var from = req.body.from;
         var postcode = req.body.postcode;
         var deptpcoderange = req.body.deptpcoderange;
+        var to = req.body.to;
         var postcode2 = req.body.postcode2;
         var arripcoderange = req.body.arripcoderange;
         //var createdate = new Date(drideptdate);
@@ -27,8 +29,10 @@ exports.createRoute = function () {
                 drihour: dridepthour,
                 drimin: drideptmin,
                 timetlr: timetol,
+                from:from,
                 pcode: postcode,
                 pcoderange: deptpcoderange,
+                to:to,
                 pcode2: postcode2,
                 pcoderange2: arripcoderange,
                 occupancy: occu,
@@ -48,7 +52,21 @@ exports.createRoute = function () {
 
         } else {
             console.log("daozheli");
-            Route.update({_id: editId}, {dridate: drideptdate}, function (err, doc) {
+            Route.update({_id: editId}, { dridate: drideptdate,
+                drihour: dridepthour,
+                drimin: drideptmin,
+                timetlr: timetol,
+                from:from,
+                pcode: postcode,
+                pcoderange: deptpcoderange,
+                to:to,
+                pcode2: postcode2,
+                pcoderange2: arripcoderange,
+                occupancy: occu,
+                cost: cost,
+                mintime: mintime,
+                maxtime: maxtime,
+                createdate: createdate}, function (err, doc) {
                 res.send(200);
             })
         }

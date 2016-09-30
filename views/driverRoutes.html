@@ -105,10 +105,10 @@
                 <th>Dept Hour</th>
                 <th>Dept Min</th>
                 <th>Tolerance</th>
+                <th>From</th>
                 <th>PostalCode</th>
-                <th>PostalCodeRange</th>
+                <th>To</th>
                 <th>PostalCode2</th>
-                <th>PostalCodeRange2</th>
                 <th>Occupancy</th>
                 <th>Cost</th>
                 <th>Occupied</th>
@@ -131,17 +131,17 @@
                     <td class="timetlr">
                         <%=driverroutes[i].timetlr%>
                     </td>
+                    <td class="timetlr">
+                        <%=driverroutes[i].from%>
+                    </td>
                     <td class="drivepcode">
                         <%=driverroutes[i].pcode%>
                     </td>
-                    <td class="drivepcode">
-                        <%=driverroutes[i].pcoderange%>
+                    <td class="timetlr">
+                        <%=driverroutes[i].to%>
                     </td>
                     <td class="drivepcode">
                         <%=driverroutes[i].pcode2%>
-                    </td>
-                    <td class="drivepcode">
-                        <%=driverroutes[i].pcoderange2%>
                     </td>
                     <td class="occupancy">
                         <%=driverroutes[i].occupancy%>
@@ -166,84 +166,84 @@
             </tbody>
         </table>
     </section>
-    <section>
-        <div class="modal fade" id="editdialog" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="ModalLabel">Edit Info</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="dridate" class="control-label">Dept Date:</label>
-                                <input type="text" class="datepicker" id="dridate">
-                                <script>
-                                    $(function () {
-                                        $('#dridate').datepicker();
-                                        $('#dridate').on('focus', function (e) {
-                                            console.log(e);
-                                            e.preventDefault();
-                                        });
-                                    });
-                                </script>
-                            </div>
-                            <div class="form-group">
-                                <label for="drihour" class="control-label">Dept Hour:</label>
-                                <!-- <input type="number" class="form-control" id="drihour"> -->
-                                <input type="number" min="0" max="23" size="15" id="drihour" name="DriverDeptHour">
-                                &#58;
-                                <label for="drimin" class="control-label">Dept Min:</label>
-                                <!--  <input type="number" class="form-control" id="drimin"> -->
-                                <select id="drimin" name="DriverDeptMin">
-                                    <option value="15">15</option>
-                                    <option value="30">30</option>
-                                    <option value="45">45</option>
-                                </select>
-                                <label for="timetlr" class="control-label">Tollerance:</label>
-                                <!-- <input type="number" class="form-control" id="timetlr"> -->
-                                <select id="timetlr" name="timetlr">
-                                    <option value="15" SELECTED>15</option>
-                                    <option value="30">30</option>
-                                    <option value="45">45</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="pcode" class="control-label">Postal Code:</label>
-                                <input type="text" class="form-control" id="pcode" placeholder="A0AA0A">
-                            </div>
-                            <div class="form-group">
-                                <label for="pcoderange" class="control-label">Postal Code Range:</label>
-                                <input type="number" class="form-control" min="1" max="5" id="pcoderange">
-                            </div>
-                            <div class="form-group">
-                                <label for="pcode2" class="control-label">Postal Code2:</label>
-                                <input type="text" class="form-control" id="pcode2" placeholder="A0AA0A">
-                            </div>
-                            <div class="form-group">
-                                <label for="pcoderange2" class="control-label">Postal Code Range2:</label>
-                                <input type="number" class="form-control" min="1" max="5" id="pcoderange2">
-                            </div>
-                            <div class="form-group">
-                                <label for="occupancy" class="control-label">Occupancy:</label>
-                                <input type="number" class="form-control" id="occupancy">
-                            </div>
-                            <div class="form-group">
-                                <label for="cost" class="control-label">Cost:</label>
-                                <input type="number" class="form-control" id="cost">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="submit" id="confirm" class="btn btn-primary">Confirm</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!--<section>-->
+        <!--<div class="modal fade" id="editdialog" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">-->
+            <!--<div class="modal-dialog" role="document">-->
+                <!--<div class="modal-content">-->
+                    <!--<div class="modal-header">-->
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span-->
+                                <!--aria-hidden="true">&times;</span></button>-->
+                        <!--<h4 class="modal-title" id="ModalLabel">Edit Info</h4>-->
+                    <!--</div>-->
+                    <!--<div class="modal-body">-->
+                        <!--<form>-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="dridate" class="control-label">Dept Date:</label>-->
+                                <!--<input type="text" class="datepicker" id="dridate">-->
+                                <!--<script>-->
+                                    <!--$(function () {-->
+                                        <!--$('#dridate').datepicker();-->
+                                        <!--$('#dridate').on('focus', function (e) {-->
+                                            <!--console.log(e);-->
+                                            <!--e.preventDefault();-->
+                                        <!--});-->
+                                    <!--});-->
+                                <!--</script>-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="drihour" class="control-label">Dept Hour:</label>-->
+                                <!--&lt;!&ndash; <input type="number" class="form-control" id="drihour"> &ndash;&gt;-->
+                                <!--<input type="number" min="0" max="23" size="15" id="drihour" name="DriverDeptHour">-->
+                                <!--&#58;-->
+                                <!--<label for="drimin" class="control-label">Dept Min:</label>-->
+                                <!--&lt;!&ndash;  <input type="number" class="form-control" id="drimin"> &ndash;&gt;-->
+                                <!--<select id="drimin" name="DriverDeptMin">-->
+                                    <!--<option value="15">15</option>-->
+                                    <!--<option value="30">30</option>-->
+                                    <!--<option value="45">45</option>-->
+                                <!--</select>-->
+                                <!--<label for="timetlr" class="control-label">Tollerance:</label>-->
+                                <!--&lt;!&ndash; <input type="number" class="form-control" id="timetlr"> &ndash;&gt;-->
+                                <!--<select id="timetlr" name="timetlr">-->
+                                    <!--<option value="15" SELECTED>15</option>-->
+                                    <!--<option value="30">30</option>-->
+                                    <!--<option value="45">45</option>-->
+                                <!--</select>-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="pcode" class="control-label">Postal Code:</label>-->
+                                <!--<input type="text" class="form-control" id="pcode" placeholder="A0AA0A">-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="pcoderange" class="control-label">Postal Code Range:</label>-->
+                                <!--<input type="number" class="form-control" min="1" max="5" id="pcoderange">-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="pcode2" class="control-label">Postal Code2:</label>-->
+                                <!--<input type="text" class="form-control" id="pcode2" placeholder="A0AA0A">-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="pcoderange2" class="control-label">Postal Code Range2:</label>-->
+                                <!--<input type="number" class="form-control" min="1" max="5" id="pcoderange2">-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="occupancy" class="control-label">Occupancy:</label>-->
+                                <!--<input type="number" class="form-control" id="occupancy">-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="cost" class="control-label">Cost:</label>-->
+                                <!--<input type="number" class="form-control" id="cost">-->
+                            <!--</div>-->
+                        <!--</form>-->
+                    <!--</div>-->
+                    <!--<div class="modal-footer">-->
+                        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>-->
+                        <!--<button type="submit" id="confirm" class="btn btn-primary">Confirm</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</section>-->
     <section>
         <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">

@@ -118,7 +118,7 @@
 
                         <div class="well">
                             <label for="From">From</label>
-                            <input type="text" id="from" name="from" size="30px" placeholder="SearchBox">
+                            <input type="text" id="from" name="from" size="30px" placeholder="SearchBox" value="<%=driverroute.from%>">
                         </div>
 
                         <div class="well">
@@ -132,7 +132,7 @@
 
                         <div class="well">
                             <label for="To">To</label>
-                            <input type="text" id="to" name="to" size="30px" placeholder="SearchBox">
+                            <input type="text" id="to" name="to" size="30px" placeholder="SearchBox" value="<%=driverroute.to%>">
                         </div>
 
                         <div class="well">
@@ -197,8 +197,10 @@
             var DriverDeptHour = $("#DriverDeptHour").val();
             var DriverDeptMin = $("#DriverDeptMin").val();
             var TimeTolerance = $("#TimeTolerance").val();
+            var from = $("#from").val();
             var PostalCode = $("#PostalCode").val();
             var DeptPcodeRange = $("#deptpcoderange").val();
+            var to = $("#to").val();
             var PostalCode2 = $("#PostalCode2").val();
             var Arripcoderange = $("#arripcoderange").val();
             var Occupancy = $("#Occupancy").val();
@@ -210,7 +212,9 @@
                 "drideptmin": DriverDeptMin,
                 "timetol": TimeTolerance,
                 "postcode": PostalCode,
+                "from":from,
                 "deptpcoderange": DeptPcodeRange,
+                "to":to,
                 "postcode2": PostalCode2,
                 "arripcoderange": Arripcoderange,
                 "occu": Occupancy,
