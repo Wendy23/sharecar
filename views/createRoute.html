@@ -115,6 +115,12 @@
                             </select>
                             <span> mins</span>
                         </div>
+
+                        <div class="well">
+                            <label for="From">From</label>
+                            <input type="text" id="from" name="from" size="30px" placeholder="SearchBox">
+                        </div>
+
                         <div class="well">
                             <label for="PostalCode">Departure PostCode</label>
                             <input type="text" id="PostalCode" name="PostalCode" placeholder="A0AA0A" value="<%=driverroute.pcode%>">
@@ -123,6 +129,12 @@
                             <label for="deptpcoderange">Departure PostCode Range(km)</label>
                             <input type="number" min="1" max="5" size="15" id="deptpcoderange" name="deptpcoderange" value="<%=driverroute.pcoderange%>">
                         </div>
+
+                        <div class="well">
+                            <label for="To">To</label>
+                            <input type="text" id="to" name="to" size="30px" placeholder="SearchBox">
+                        </div>
+
                         <div class="well">
                             <label for="PostalCode2">Arrival PostCode</label>
                             <input type="text" id="PostalCode2" name="PostalCode2" placeholder="A0AA0A" value="<%=driverroute.pcode2%>">
