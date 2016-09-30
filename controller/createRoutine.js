@@ -1,4 +1,4 @@
-exports.createRoutine = function() {
+exports.createRoutine= function() {
     return function(req, res) {
         var Routine = global.dbHandel.getModel('routine');
         // var name = "lk";//req.session.user;这个session取不到，看一下
