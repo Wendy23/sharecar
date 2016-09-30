@@ -4,7 +4,6 @@ body {
 
 .map-canvas {
   height: 700px;
-  background-color: yellow;
 }
 
 .map-canvas #map {

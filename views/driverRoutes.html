@@ -118,47 +118,49 @@
             <tr style="background-color:white">
                 <% for (var i =0; i
                 <driverroutes.length
-                ; i++){%>
-                <td class="drivedate">
-                    <%=driverroutes[i].dridate%>
-                </td>
-                <td class="drivehour">
-                    <%=driverroutes[i].drihour %>
-                </td>
-                <td class="drivemin">
-                    <%=driverroutes[i].drimin%>
-                </td>
-                <td class="timetlr">
-                    <%=driverroutes[i].timetlr%>
-                </td>
-                <td class="drivepcode">
-                    <%=driverroutes[i].pcode%>
-                </td>
-                <td class="drivepcode">
-                    <%=driverroutes[i].pcoderange%>
-                </td>
-                <td class="drivepcode">
-                    <%=driverroutes[i].pcode2%>
-                </td>
-                <td class="drivepcode">
-                    <%=driverroutes[i].pcoderange2%>
-                </td>
-                <td class="occupancy">
-                    <%=driverroutes[i].occupancy%>
-                </td>
-                <td class="cost">
-                    <%=driverroutes[i].cost%>
-                </td>
-                <td class="occupied">
-                    <%=driverroutes[i].occupied%>
-                </td>
-                <td type="submit" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
-                    data-target="#editdialog" data-id="<%= driverroutes[i]._id%>">Edit
-                </td>
-                <td type="delete" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
-                    data-target="#confirm-delete" data-id="<%= driverroutes[i]._id%>">Delete
-                </td>
-                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editdialog">Test</button> -->
+                        ; i++){%>
+                    <td class="drivedate">
+                        <%=driverroutes[i].dridate%>
+                    </td>
+                    <td class="drivehour">
+                        <%=driverroutes[i].drihour %>
+                    </td>
+                    <td class="drivemin">
+                        <%=driverroutes[i].drimin%>
+                    </td>
+                    <td class="timetlr">
+                        <%=driverroutes[i].timetlr%>
+                    </td>
+                    <td class="drivepcode">
+                        <%=driverroutes[i].pcode%>
+                    </td>
+                    <td class="drivepcode">
+                        <%=driverroutes[i].pcoderange%>
+                    </td>
+                    <td class="drivepcode">
+                        <%=driverroutes[i].pcode2%>
+                    </td>
+                    <td class="drivepcode">
+                        <%=driverroutes[i].pcoderange2%>
+                    </td>
+                    <td class="occupancy">
+                        <%=driverroutes[i].occupancy%>
+                    </td>
+                    <td class="cost">
+                        <%=driverroutes[i].cost%>
+                    </td>
+                    <td class="occupied">
+                        <%=driverroutes[i].occupied%>
+                    </td>
+
+                    <td type="submit"  style="width: 70px;" class="btn btn-primary btn-sm editButton" data-id="<%= driverroutes[i]._id%>">Edit
+                    </td>
+
+
+                    <td type="delete" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
+                        data-target="#confirm-delete" data-id="<%= driverroutes[i]._id%>">Delete
+                    </td>
+                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editdialog">Test</button> -->
             </tr>
             <%}%>
             </tbody>
@@ -277,6 +279,7 @@
 <!-- Script -->
 <script type="text/javascript" src="js/modernizr.js"></script>
 <!-- Modernizer -->
+
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <!-- Jquery -->
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -297,63 +300,72 @@
 <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-
+//            var current;
+//            alert($(this).attr("href"));
+//            current=$(this).attr("href");
+//            console("id" + current);
+        $('.editButton').on('click', function (event) {
+            var currentEditingRouteId;
+            currentEditingRouteId = $(this).attr("data-id");
+            window.location.href = "/editRoute?currentEditingRouteId="+currentEditingRouteId;
+           // window.location.href = "/";
+        })
+//        var currentRoute;
+//
+//        function bindShowEvent() {
+//            $('#editdialog').on('show.bs.modal', function (event) {
+//                //$(this).removeClass('modal-backdrop');
+//                //Now set z-index of modal greater than backdrop
+//                var button = $(event.relatedTarget) // Button that triggered the modal
+//                //ajax here
+//                var modal = $(this)
+//                modal.find('.modal-title').text('Edit Info');
+//                setTimeout(function () {
+//                    modal.find('.modal-backdrop').remove();
+//                }, 200);
+//                currentRoute = button.attr("data-id");
+//                $(this).off('show.bs.modal');
+//            });
+//        }
+//
+//        bindShowEvent();
+//
+//        $('#editdialog').on('hide.bs.modal', function (event) {
+//            bindShowEvent();
+//        })
+//
+//        $('#confirm').on('click', function (event) {
+//
+//            $.post("/driverroutes/updateRoute?routeId=" + currentRoute, {
+//                        dridate: $('#dridate').val(),
+//                        drihour: $('#drihour').val(),
+//                        drimin: $('#drimin').val(),
+//                        timetlr: $('#timetlr').val(),
+//                        pcode: $('#pcode').val(),
+//                        pcoderange: $('#pcoderange').val(),
+//                        pcode2: $('#pcode2').val(),
+//                        pcoderange2: $('#pcoderange2').val(),
+//                        occupancy: $('#occupancy').val(),
+//                        cost: $('#cost').val()
+//
+//                    })
+//                    .done(function (res) {
+//                        location.reload();
+//                    });
+//            $('#dridate').html($('#dridate').val());
+//            $('#drihour').html($('#drihour').val());
+//            $('#drimin').html($('#drimin').val());
+//            $('#timetlr').html($('#timetlr').val());
+//            $('#pcode').html($('#pcode').val());
+//            $('#pcoderange').html($('#pcoderange').val());
+//            $('#pcode2').html($('#pcode2').val());
+//            $('#pcoderange2').html($('#pcoderange2').val());
+//            $('#occupancy').html($('#occupancy').val());
+//            $('#cost').html($('#cost').val());
+//
+//
+//        })
         var currentRoute;
-
-        function bindShowEvent() {
-            $('#editdialog').on('show.bs.modal', function (event) {
-                //$(this).removeClass('modal-backdrop');
-                //Now set z-index of modal greater than backdrop
-                var button = $(event.relatedTarget) // Button that triggered the modal
-                //ajax here
-                var modal = $(this)
-                modal.find('.modal-title').text('Edit Info');
-                setTimeout(function () {
-                    modal.find('.modal-backdrop').remove();
-                }, 200);
-                currentRoute = button.attr("data-id");
-                $(this).off('show.bs.modal');
-            });
-        }
-
-        bindShowEvent();
-
-        $('#editdialog').on('hide.bs.modal', function (event) {
-            bindShowEvent();
-        })
-
-        $('#confirm').on('click', function (event) {
-
-            $.post("/driverroutes/updateRoute?routeId=" + currentRoute, {
-                        dridate: $('#dridate').val(),
-                        drihour: $('#drihour').val(),
-                        drimin: $('#drimin').val(),
-                        timetlr: $('#timetlr').val(),
-                        pcode: $('#pcode').val(),
-                        pcoderange: $('#pcoderange').val(),
-                        pcode2: $('#pcode2').val(),
-                        pcoderange2: $('#pcoderange2').val(),
-                        occupancy: $('#occupancy').val(),
-                        cost: $('#cost').val()
-
-                    })
-                    .done(function (res) {
-                        location.reload();
-                    });
-            $('#dridate').html($('#dridate').val());
-            $('#drihour').html($('#drihour').val());
-            $('#drimin').html($('#drimin').val());
-            $('#timetlr').html($('#timetlr').val());
-            $('#pcode').html($('#pcode').val());
-            $('#pcoderange').html($('#pcoderange').val());
-            $('#pcode2').html($('#pcode2').val());
-            $('#pcoderange2').html($('#pcoderange2').val());
-            $('#occupancy').html($('#occupancy').val());
-            $('#cost').html($('#cost').val());
-
-
-        })
-
         $('#confirm-delete').on('show.bs.modal', function (event) {
             //$(this).removeClass('modal-backdrop');
             //Now set z-index of modal greater than backdrop

@@ -8,7 +8,7 @@ router.get("/", function(req, res) { // 到达 /logout 路径则登出， sessio
         req.session.error = "请先登录"
         res.redirect("/login"); //未登录则重定向到 /login 路径
     }
-     res.render("createRoute", { title: 'ShareCar' }); //已登录则渲染home页面
+     res.render("createRoute", {driverroute:{}, title: 'ShareCar' }); //已登录则渲染home页面
      console.log("render createRoute");
 })
 // }).post(function(req, res) {

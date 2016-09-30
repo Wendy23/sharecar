@@ -24,21 +24,22 @@ exports.driverroutes = function() {
     }
 }
 
-exports.updateRoute = function() {
-    return function(req, res) {
-        console.log(req.body, req.query);
-        var Route = global.dbHandel.getModel('driverroute');
-
-        Route.update({ _id: req.query.routeId }, req.body, {}, function(err, raw) {
-            console.log("update message", err, raw);
-            if (err) res.status(500);
-            res.send(raw);
-        });
-    }
-}
+//exports.updateRoute = function() {
+//    return function(req, res) {
+//        console.log(req.body, req.query);
+//        var Route = global.dbHandel.getModel('driverroute');
+//
+//        Route.update({ _id: req.query.routeId }, req.body, {}, function(err, raw) {
+//            console.log("update message", err, raw);
+//            if (err) res.status(500);
+//            res.send(raw);
+//        });
+//    }
+//}
 
 exports.deleteRoute = function() {
     return function(req, res) {
+        console.log("get into deleteroute");
         console.log(req.body, req.query);
         var Route = global.dbHandel.getModel('driverroute');
 
