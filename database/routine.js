@@ -2,7 +2,9 @@ module.exports = {
     routine: {
         name: {type: String, required: true},
         flag: {type: Number, required: true},
+        from: {type: String, required: true},
         departure: {type: String, required: true},
+        to: {type: String, required: true},
         arrive: {type: String, required: true},
         cost:{type:Number,default:0},
         occupancy: { type: Number, default:0},
@@ -77,7 +79,6 @@ module.exports = {
              daycost: { type: Number },
              daymintime: { type: Number },
              daymaxtime: { type: Number }*/
-
         },
         ridername: [{
             username: {type: String, ref: 'user'},

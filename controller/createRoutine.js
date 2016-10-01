@@ -15,7 +15,9 @@ exports.createRoutine= function() {
             var dayhour = req.body.dayhour;
             var daymin = req.body.daymin;
             var daytimetlr = req.body.daytimetlr;
+            var from = req.body.from;
             var departure = req.body.departure;
+            var to = req.body.to;
             var arrive = req.body.arrive;
             var occupancy = req.body.occupancy;
             var cost =  req.body.cost;
@@ -24,7 +26,9 @@ exports.createRoutine= function() {
             Routine.create({ // 创建一组route对象置入model
                 name: name,
                 flag: flag,
+                from:from,
                 departure:departure,
+                to:to,
                 arrive:arrive,
                 occupancy:occupancy,
                 cost:cost,
@@ -35,12 +39,12 @@ exports.createRoutine= function() {
                     daymin: daymin,
                     daytimetlr: daytimetlr
                 },
-                sund: {
-                    weekday: "sund",
-                    dayhour: dayhour,
-                    daymin: daymin,
-                    daytimetlr: daytimetlr
-                },
+                //sund: {
+                //    weekday: "sund",
+                //    dayhour: dayhour,
+                //    daymin: daymin,
+                //    daytimetlr: daytimetlr
+                //},
                 tues: {
                     weekday: "tues",
                     dayhour: dayhour,
@@ -64,13 +68,13 @@ exports.createRoutine= function() {
                     dayhour: dayhour,
                     daymin: daymin,
                     daytimetlr: daytimetlr
-                },
-                satur: {
-                    weekday: "satur",
-                    dayhour: dayhour,
-                    daymin: daymin,
-                    daytimetlr: daytimetlr
                 }
+                //satur: {
+                //    weekday: "satur",
+                //    dayhour: dayhour,
+                //    daymin: daymin,
+                //    daytimetlr: daytimetlr
+                //}
             }, function (err) {
                 if (err) {
                     res.send(500);
@@ -116,7 +120,9 @@ exports.createRoutine= function() {
             var Saturdaymin = req.body.saturdaymin?req.body.saturdaymin:0;
             var Saturdaytimetlr = req.body.saturdaytimetlr?req.body.saturdaytimetlr:0;
 
+            var from = req.body.from;
             var departure = req.body.departure;
+            var to = req.body.to;
             var arrive = req.body.arrive;
             var occupancy = req.body.occupancy;
             var cost = req.body.cost;
@@ -125,7 +131,9 @@ exports.createRoutine= function() {
             Routine.create({ // 创建一组route对象置入model
                 name: name,
                 flag: flag,
+                from:from,
                 departure:departure,
+                to:to,
                 arrive:arrive,
                 occupancy:occupancy,
                 cost:cost,
@@ -191,7 +199,7 @@ exports.createRoutine= function() {
 // }
 exports.queryRoutine = function() {
     return function(req, res) {
-        console.log("get into routine");
+        console.log("get into come routine");
         if (!req.session.user) { //到达/home路径首先判断是否已经登录
             req.session.error = "请先登录"
             res.redirect("/login"); //未登录则重定向到 /login 路径
@@ -204,6 +212,7 @@ exports.queryRoutine = function() {
                 if(doc!=null && doc.length>0) {
                     for(var i=0;i<doc.length;i++){
                         if (doc[i]._doc.comeback == "come") {
+                            console.log("shishenm"+ doc[i]);
                             res.render("createRoutine", {routine: JSON.stringify(doc[0]._doc), title: 'ShareCar'});
                         }
                     }
