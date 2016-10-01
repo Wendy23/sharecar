@@ -212,7 +212,7 @@ exports.queryRoutine = function() {
                 if(doc!=null && doc.length>0) {
                     for(var i=0;i<doc.length;i++){
                         if (doc[i]._doc.comeback == "back") {
-                            res.render("routineBack", { routine: JSON.stringify(doc[1]._doc),title: 'ShareCar' });
+                            return res.render("routineBack", { routine: JSON.stringify(doc[i]._doc),title: 'ShareCar' });
                         }
                     }
                 }

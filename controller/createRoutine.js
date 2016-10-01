@@ -187,6 +187,7 @@ exports.createRoutine= function() {
                 } else {
                     // req.session.error = '用户名创建成功！';
                     res.send(200);
+                    //res.redirect("/routineback");
                 }
             });
         }
@@ -213,7 +214,7 @@ exports.queryRoutine = function() {
                     for(var i=0;i<doc.length;i++){
                         if (doc[i]._doc.comeback == "come") {
                             console.log("shishenm"+ doc[i]);
-                            res.render("createRoutine", {routine: JSON.stringify(doc[0]._doc), title: 'ShareCar'});
+                            return res.render("createRoutine", {routine: JSON.stringify(doc[i]._doc), title: 'ShareCar'});
                         }
                     }
                 }

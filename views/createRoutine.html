@@ -99,7 +99,9 @@
                     </div>
                     <div class="col-lg-5">
                         <input type="hidden" id="radioFlag" value="1"/>
-                        <input type="hidden" id="result" value='<%= routine %>'/>
+                        <script id="result" type="text/rawstring">
+                           <%- routine %>
+                        </script>
                         <div class="well">
                             <label for="from"><span>From:</span></label>
                             <input type="text" id="from"
@@ -424,7 +426,7 @@
                     </div>
 
                     <div class="col-lg-7">
-                        <div class="map-canvas"  style="height: 500px";>
+                        <div class="map-canvas" style="height: 500px" ;>
                             <div id="map"></div>
                         </div>
                     </div>
@@ -525,9 +527,9 @@
                 "dayhour": $('#DriverDeptHourSame').val(),
                 "daymin": $("#DriverDeptMinSame").val(),
                 "daytimetlr": $("#daytimetoleranceSame").val(),
-                "from":$('#from').val(),
+                "from": $('#from').val(),
                 "departure": $('#PostalCode').val(),
-                "to":$('#to').val(),
+                "to": $('#to').val(),
                 "arrive": $('#PostalCode2').val(),
                 "occupancy": $('#occupancy').val(),
                 "cost": $('#cost').val()
@@ -553,9 +555,9 @@
             //如果是自定义时间，取得勾选行的值
             var data = {
                 "flag": $('#radioFlag').val(),
-                "from":$('#from').val(),
+                "from": $('#from').val(),
                 "departure": $('#PostalCode').val(),
-                "to":$('#to').val(),
+                "to": $('#to').val(),
                 "arrive": $('#PostalCode2').val(),
                 "occupancy": $('#occupancy').val(),
                 "cost": $('#cost').val()
@@ -648,8 +650,16 @@
             videoJsPath: "rs-plugin/videojs/",
             fullScreenOffsetContainer: ""
         });
-        var res = $("#result").val();
-        var result = eval("(" + res + ")");
+        var res = $("#result").text();
+        console.log(res);
+        //var result = eval("(" + res + ")");
+        var result = null;
+        try{
+            result = JSON.parse(res);
+        }
+        catch(e){
+            console.log(e)
+        }
         console.log("result" + result);
         if (result != null && result != undefined) {
             $("#radioFlag").val(result.flag);
