@@ -307,7 +307,7 @@
 
         </div>
         <div class="col-md-7">
-            <div class="map-canvas" style="height: 405px">
+            <div class="map-canvas" style="height: 515px">
                 <div id="map"></div>
             </div>
         </div>
@@ -326,10 +326,26 @@
                     <li class="list-group-item list-group-item-success">
                         <div class="row">
                             <div class="col-lg-5 col-md-5 col-sm-5">
+                                From:
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <%=routine[i].from%>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5">
                                 Departure Area:
                             </div>
                             <div class="col-lg-5 col-md-5 col-sm-5">
                                 <%=routine[i].departure%>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                To:
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <%=routine[i].to%>
                             </div>
                         </div>
                         <div class="row">
@@ -571,7 +587,6 @@
 
         var dayhoursatur = $('#DriverDeptHoursatur').val();
         var dayminsatur = $('#DriverDeptMinsatur').val();
-        //var satur = $('#day-satur').is(':checked')?1:0;
 
         var dayhoursund = $('#DriverDeptHoursund').val();
         var dayminsund = $('#DriverDeptMinsund').val();
@@ -666,7 +681,7 @@
                 console.log(searchLink)
             }
             if (dayminsatur != "" && document.getElementById("day-satur").checked) {
-                searchLink = searchLink + "&dayminsatur=" + dayminsatur + "&saturday_status="+ satur;
+                searchLink = searchLink + "&dayminsatur=" + dayminsatur;
                 console.log(searchLink)
             }
 
@@ -677,7 +692,6 @@
 
     $(document).ready(function () {
         var currentRoutine;
-
         function bindShowEvent() {
             $('#checkRoutine').on('show.bs.modal', function (event) {
                 //$(this).removeClass('modal-backdrop');

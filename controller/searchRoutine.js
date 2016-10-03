@@ -7,6 +7,8 @@ exports.routine = function () {
         } else {
             var Routine = global.dbHandel.getModel('routine');
             console.log(req.query);
+            //var occupancy = req.body.occupancy;
+            //var occupied = req.body.occupied;
             var from = req.query.from;
             var departure = req.query.departure;
             var to = req.query.to;
@@ -14,10 +16,18 @@ exports.routine = function () {
             var radio = req.query.radio;
             var dayhoursund = req.query.dayhoursund;
             var dayminsund = req.query.dayminsund;
-            var dayhourtues = req.query.dayhourtues;
             var dayhourmon = req.query.dayhourmon;
             var dayminmon = req.query.dayminmon;
-            var satur = req.query.satur;
+            var dayhourtues = req.query.dayhourtues;
+            var daymintues = req.query.daymintues;
+            var dayhourwednes = req.query.dayhourwednes;
+            var dayminwednes = req.query.dayminwednes;
+            var dayhourthurs = req.query.dayhourthurs;
+            var dayminthurs = req.query.dayminthurs;
+            var dayhourfri = req.query.dayhourfri;
+            var dayminfri = req.query.dayminfri;
+            var dayhoursatur = req.query.dayhoursatur;
+            var dayminsatur = req.query.dayminsatur;
             var query = {};
             if (arrive != null && arrive != undefined && departure != null && departure != undefined) {
                 query['arrive'] = arrive;
@@ -164,28 +174,64 @@ exports.routine = function () {
                     queryMinArrayTemp.push(dayminsund);
                 }
 
+                if(dayhourtues!=null && dayhourtues!= undefined){
+                    queryDayArrayTemp.push("tues");
+                    queryHourArrayTemp.push(dayhourtues);
+                    queryMinArrayTemp.push(daymintues);
+                }
 
-                res.render("searchRoutine", {
-                    routine: doc,
-                    'from': from,
-                    'departure': departure,
-                    'to': to,
-                    'arrive': arrive,
-                    'dayhour': dayhour,
-                    'daymin': daymin,
-                    'radio': radio,
-                    //'dayhoursund': dayhoursund,
-                    //'dayhourmon': dayhourmon,
-                    //'dayhourtues': dayhourtues,
-                    //'dayminsund': dayminsund,
-                    //'dayminmon': dayminmon,
-                    'queryDayArray' : queryDayArrayTemp,
-                    'queryHourArray' : queryHourArrayTemp,
-                    'queryMinArray' : queryMinArrayTemp
-                    //'satur':satur
+                if(dayhourwednes!=null && dayhourwednes!= undefined){
+                    queryDayArrayTemp.push("wednes");
+                    queryHourArrayTemp.push(dayhourwednes);
+                    queryMinArrayTemp.push(dayminwednes);
+                }
 
+                if(dayhourthurs!=null && dayhourthurs!= undefined){
+                    queryDayArrayTemp.push("thurs");
+                    queryHourArrayTemp.push(dayhourthurs);
+                    queryMinArrayTemp.push(dayminthurs);
+                }
+                if(dayhourfri!=null && dayhourfri!= undefined){
+                    queryDayArrayTemp.push("fri");
+                    queryHourArrayTemp.push(dayhourfri);
+                    queryMinArrayTemp.push(dayminfri);
+                }
+                if(dayhourfri!=null && dayhoursatur!= undefined){
+                    queryDayArrayTemp.push("satur");
+                    queryHourArrayTemp.push(dayhoursatur);
+                    queryMinArrayTemp.push(dayminsatur);
+                }
+
+
+
+                Routine.count(query, function (err, count) {
+                    Routine.find(query).$where(function () {
+                        return this.occupancy > this.occupied;
+                    }).exec(function (err, doc) {
+
+
+                        res.render("searchRoutine", {
+                            routine: doc,
+                            'from': from,
+                            'departure': departure,
+                            'to': to,
+                            'arrive': arrive,
+                            'dayhour': dayhour,
+                            'daymin': daymin,
+                            'radio': radio,
+                            //'dayhoursund': dayhoursund,
+                            //'dayhourmon': dayhourmon,
+                            //'dayhourtues': dayhourtues,
+                            //'dayminsund': dayminsund,
+                            //'dayminmon': dayminmon,
+                            'queryDayArray': queryDayArrayTemp,
+                            'queryHourArray': queryHourArrayTemp,
+                            'queryMinArray': queryMinArrayTemp
+                            //'satur':satur
+
+                        });
+                    })
                 });
-
             })
         }
     }
