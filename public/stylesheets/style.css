@@ -3089,7 +3089,7 @@ html.no-scroll {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 9;
+    z-index: 400;
 }
 
 .service:hover > h3::before {

@@ -20,6 +20,8 @@ exports.driverroutes = function () {
             var routedate = condition.routedate;
             var routehour = condition.routehour;
             var routemin = condition.routemin;
+            var from = condition.from;
+            var to = condition.to;
             var routedep = condition.pcode;
             var routearr = condition.pcode2;
             //var s1 = moment().format("YYYY-MM-DD HH:mm:ss");
@@ -57,6 +59,8 @@ exports.driverroutes = function () {
                         'routedate': routedate,
                         'routehour': routehour,
                         'routemin': routemin,
+                        'from': from,
+                        'to': to,
                         'routedep': routedep,
                         'routearr': routearr,
                         'time': time,

@@ -29,6 +29,8 @@
     <link rel='stylesheet' href='/stylesheets/datepicker.css'/>
     <!--Time-->
     <link rel='stylesheet' href='/stylesheets/bootstrap-timepicker.min.css'/>
+    <!--Project-->
+    <link rel='stylesheet' href='/stylesheets/project-style.css'/>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
 </head>
@@ -86,60 +88,105 @@
             </div>
         </div>
     </header>
-    <form style="background:#fbf9f9;border:1px solid #c3c2c2;margin:0 0 20px;padding:15px 20px;"
-          name="RouteAdvancedSearch">
-        <div style="margin:0 auto;position:relative;width:400px;z-index:300;">
-            <div style="padding:0;margin:35px 0 10px;">
-                <label for="DriverDeptDate"
-                       style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Search
-                    Date: </label>
-                <input id="DriverDeptDate" type="text"
-                       style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
-                       value="<%=routedate%>" class="datepicker">
-                <script>
-                    $(function () {
-                        $('#DriverDeptDate').datepicker({});
-                    });
-                </script>
-            </div>
-            <div style="padding:0;margin:35px 0 10px;">
-                <div style="float:left;margin:0 10px 0 0;position:relative;z-index:300;">
-                    <label for="PostalCode"
-                           style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">From: </label>
-                    <input id="PostalCode" type="text"
-                           style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
-                           value="<%=routedep%>">
-                    <div class="hint"><em style="color:#666666;font-size:11px;font-style:italic;">zip (ex:A0AB0B)</em>
+    <section>
+        <form style="background:#fbf9f9;border:1px solid #c3c2c2;margin:0 0 20px;padding:15px 20px;"
+              name="RouteAdvancedSearch">
+            <div class="container">
+                <div class="row">
+                    <!-- Left Section -->
+                    <div class="col-lg-5">
+                        <div style="margin:0 auto;position:relative;width:400px;z-index:300;">
+                            <div style="padding:0;margin:35px 0 10px;">
+                                <label for="DriverDeptDate"
+                                       style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Search
+                                    Date: </label>
+                                <input id="DriverDeptDate" type="text"
+                                       style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
+                                       value="<%=routedate%>" class="datepicker">
+                                <script>
+                                    $(function () {
+                                        $('#DriverDeptDate').datepicker({});
+                                    });
+                                </script>
+                            </div>
+
+
+                            <div style="padding:0;margin:35px 0 10px;">
+                                <label for="from"
+                                       style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">From: </label>
+                                <input id="from" type="text"
+                                       size="50px"
+                                       placeholder="Search Box"  value="<%=from%>">
+                            </div>
+
+                            <div style="padding:0;margin:35px 0 10px;">
+                                <label for="to"
+                                       style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">To: </label>
+                                <input id="to" type="text"
+                                       size="50px"
+                                       placeholder="Search Box"  value="<%=to%>">
+                            </div>
+
+                            <div style="padding:0;margin:35px 0 10px;" class="hidden">
+                                <div style="float:left;margin:0 10px 0 0;position:relative;z-index:300;">
+                                    <label for="PostalCode"
+                                           style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">From: </label>
+                                    <input id="PostalCode" type="text"
+                                           style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
+                                           value="<%=routedep%>">
+                                    <div class="hint"><em style="color:#666666;font-size:11px;font-style:italic;">zip
+                                        (ex:A0AB0B)</em>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="padding:0;margin:35px 0 10px;" class="hidden">
+                                <div style="float:left;margin:0 10px 0 0;position:relative;z-index:300;">
+                                    <label for="PostalCode2"
+                                           style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">To: </label>
+                                    <input id="PostalCode2" type="text"
+                                           style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
+                                           value="<%=routearr%>">
+                                    <div class="hint"><em style="color:#666666;font-size:11px;font-style:italic;">zip
+                                        (ex:A0AB0B)</em>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="padding:0;margin:35px 0 10px;">
+                                <div style="float:left;margin:0 10px 0 0;position:relative;z-index:300;">
+                                    <label for="DriverDeptTime"
+                                           style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Hour: </label>
+                                    <input id="DriverDeptTime" type="number"
+                                           style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
+                                           value="<%=routehour%>"> &#58;
+                                </div>
+                            </div>
+                            <div style="padding:0;margin:35px 0 10px;">
+
+                                <label for="DriverDeptMin"
+                                       style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Min: </label>
+                                <input id="DriverDeptMin" type="number"
+                                       style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
+                                       value="<%=routemin%>">
+
+                            </div>
+
+                            <button type="button" style="width: 100px;" class="btn btn-primary btn-block" id="search">
+                                SEARCH
+                            </button>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="map-canvas" style="height: 360px">
+                            <div id="map"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div style="padding:0;margin:35px 0 10px;">
-                <label for="PostalCode2"
-                       style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">To: </label>
-                <input id="PostalCode2" type="text"
-                       style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
-                       value="<%=routearr%>">
-                <div class="hint"><em style="color:#666666;font-size:11px;font-style:italic;">zip (ex:A0AB0B)</em></div>
-            </div>
-            <div style="padding:0;margin:35px 0 10px;">
-                <div style="float:left;margin:0 10px 0 0;position:relative;z-index:300;">
-                    <label for="DriverDeptTime"
-                           style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Hour: </label>
-                    <input id="DriverDeptTime" type="number"
-                           style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
-                           value="<%=routehour%>"> &#58;
-                </div>
-            </div>
-            <div style="padding:0;margin:35px 0 10px;">
-                <label for="DriverDeptMin"
-                       style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Min: </label>
-                <input id="DriverDeptMin" type="number"
-                       style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
-                       value="<%=routemin%>">
-            </div>
-            <button type="button" style="width: 100px;" class="btn btn-primary btn-block" id="search">SEARCH</button>
-        </div>
-    </form>
+        </form>
+    </section>
     <section>
         <h1>Rider side</h1>
     </section>
@@ -318,11 +365,18 @@
 <!-- Time -->
 <script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
 <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<!-- Project -->
+<script src="js/project.js" type="text/javascript"></script>
+<!-- Google Map Api -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATltk2TwkHYYTotz6t0lOs1YDOWNeZjX8&libraries=places&signed_in=true&callback=initMap"
+        type="text/javascript"></script>
 <script type="text/javascript">
     $(function () {
         $("#search").click(function () {
             console.log("get into search ajax");
             var routedate = $('#DriverDeptDate').val();
+            var from = $('#from').val();
+            var to = $('#to').val();
             var routedeparture = $('#PostalCode').val();
             var routedestination = $('#PostalCode2').val();
             var routehour = $('#DriverDeptTime').val();
@@ -332,6 +386,14 @@
             if (routedate != "") {
                 console.log(routedate);
                 searchLink = searchLink + "&routedate=" + routedate;
+                console.log(searchLink)
+            }
+            if (from != "") {
+                searchLink = searchLink + "&from=" + from;
+                console.log(searchLink)
+            }
+            if (to != "") {
+                searchLink = searchLink + "&to=" + to;
                 console.log(searchLink)
             }
             if (routedeparture != "") {
