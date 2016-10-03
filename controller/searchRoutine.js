@@ -7,7 +7,9 @@ exports.routine = function () {
         } else {
             var Routine = global.dbHandel.getModel('routine');
             console.log(req.query);
+            var from = req.query.from;
             var departure = req.query.departure;
+            var to = req.query.to;
             var arrive = req.query.arrive;
             var radio = req.query.radio;
             var dayhoursund = req.query.dayhoursund;
@@ -165,7 +167,9 @@ exports.routine = function () {
 
                 res.render("searchRoutine", {
                     routine: doc,
+                    'from': from,
                     'departure': departure,
+                    'to': to,
                     'arrive': arrive,
                     'dayhour': dayhour,
                     'daymin': daymin,

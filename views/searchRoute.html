@@ -119,6 +119,17 @@
                                        placeholder="Search Box"  value="<%=from%>">
                             </div>
 
+                            <div style="padding:0;margin:35px 0 10px;" >
+                                    <label for="PostalCode"
+                                           style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Postal Code: </label>
+                                    <input id="PostalCode" type="text"
+                                           size="20px"
+                                           value="<%=routedep%>">
+                                    <div class="hint"><em style="color:#666666;font-size:11px;font-style:italic;">zip
+                                        (ex:A0AB0B)</em>
+                                    </div>
+                            </div>
+
                             <div style="padding:0;margin:35px 0 10px;">
                                 <label for="to"
                                        style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">To: </label>
@@ -127,29 +138,14 @@
                                        placeholder="Search Box"  value="<%=to%>">
                             </div>
 
-                            <div style="padding:0;margin:35px 0 10px;" class="hidden">
-                                <div style="float:left;margin:0 10px 0 0;position:relative;z-index:300;">
-                                    <label for="PostalCode"
-                                           style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">From: </label>
-                                    <input id="PostalCode" type="text"
-                                           style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
-                                           value="<%=routedep%>">
-                                    <div class="hint"><em style="color:#666666;font-size:11px;font-style:italic;">zip
-                                        (ex:A0AB0B)</em>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div style="padding:0;margin:35px 0 10px;" class="hidden">
-                                <div style="float:left;margin:0 10px 0 0;position:relative;z-index:300;">
+                            <div style="padding:0;margin:35px 0 10px;" >
                                     <label for="PostalCode2"
-                                           style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">To: </label>
+                                           style="color:#444444;display:block;font-size:13px;font-weight:600;line-height:normal;">Postal Code: </label>
                                     <input id="PostalCode2" type="text"
-                                           style="background-color:#ffffff;border:1px solid #c3c2c2;-webkit-border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);color:#333333;font-family:&quot;Open Sans&quot;,sans-serif;font-size:14px;height:34px;line-height:16px;margin:0;padding:0 6px;-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;width:150px;"
+                                           size="20px"
                                            value="<%=routearr%>">
                                     <div class="hint"><em style="color:#666666;font-size:11px;font-style:italic;">zip
                                         (ex:A0AB0B)</em>
-                                    </div>
                                 </div>
                             </div>
 
@@ -179,7 +175,7 @@
                         </div>
                     </div>
                     <div class="col-lg-7">
-                        <div class="map-canvas" style="height: 360px">
+                        <div class="map-canvas" style="height: 550px">
                             <div id="map"></div>
                         </div>
                     </div>
@@ -192,12 +188,14 @@
     </section>
     <section>
         <div class="container">
-            <table class="table table-hover" id="rideTable" width="70%">
+            <table class="table table-hover" id="rideTable" width="100%">
                 <thead>
                 <tr>
                     <th>Date</th>
-                    <th>Departure Place</th>
-                    <th>Arrival Place</th>
+                    <th>From</th>
+                    <th>Postal Code</th>
+                    <th>To</th>
+                    <th>Postal Code</th>
                     <th>Time</th>
                     <th>Cost & Seats left</th>
                     <th>Evaluation</th>
@@ -208,8 +206,13 @@
                 <% for (var i =0; i< driverroute.length;i++){%>
                 <tr>
                     <td>
-                        <div class="blueArrow">
+                        <div>
                             <strong><%=driverroute[i].dridate%></strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <strong><%=driverroute[i].from%></strong>
                         </div>
                     </td>
                     <td>
@@ -218,7 +221,11 @@
                             <% for (var k =0; k< 10;k++){%>
                             &nbsp
                             <%}%>
-                            <img src="images/blueArrow.jpg">
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <strong><%=driverroute[i].to%></strong>
                         </div>
                     </td>
                     <td>
@@ -376,7 +383,9 @@
             console.log("get into search ajax");
             var routedate = $('#DriverDeptDate').val();
             var from = $('#from').val();
+//            var from = f1.slice(0, f1.indexOf(","));
             var to = $('#to').val();
+//            var to = t1.slice(0, t1.indexOf(","));
             var routedeparture = $('#PostalCode').val();
             var routedestination = $('#PostalCode2').val();
             var routehour = $('#DriverDeptTime').val();

@@ -29,6 +29,8 @@
     <link rel='stylesheet' href='/stylesheets/datepicker.css'/>
     <!--Time-->
     <link rel='stylesheet' href='/stylesheets/bootstrap-timepicker.min.css'/>
+    <!--Project-->
+    <link rel='stylesheet' href='/stylesheets/project-style.css'/>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
 </head>
@@ -88,18 +90,30 @@
     </header>
 </div>
 <section>
-    <div class="row" style="background:#fbf9f9;border:1px solid #c3c2c2;">
-        <div class="col-md-2 col-md-offset-5">
+    <div class="container">
+    <div class="row">
+        <div class="col-md-5">
             <form id="search-route" name="search-route" class="form-group" role="form"
+                  style="background:#fbf9f9;border:1px solid #c3c2c2;margin:0 0 20px;padding:15px 20px;"
             >
                 <div class="row">
-                    <div class="col-md-6"><label for="departure"><span>Leave from:</span></label>
-                        <input type="text" id="departure"
-                               name="departure" value="<%=departure%>" class="required">
+                    <div class="col-md-6"><label for="from"><span>From:</span></label>
+                        <input type="text" id="from"
+                               name="from" size="30px" placeholder="Search Box" value="<%=from%>" class="required">
                     </div>
-                    <div class="col-md-6" style="margin-right:1px;"><label for="arrive"><span>Arrive at:</span></label>
-                        <input type="text" id="arrive"
-                               name="arrive" value="<%=arrive%>" class="required"></div>
+                    <div class="col-md-6"  style="margin-right:1px;padding: 15px"><label for="PostalCode"><span>Postal Code:</span></label>
+                        <input type="text" id="PostalCode"
+                               name="PostalCode" size="9px" value="<%=departure%>" class="required">
+                    </div>
+                    <div class="col-md-6" style="margin-right:1px;"><label for="to"><span>Arrive at:</span></label>
+                        <input type="text" id="to"
+                               name="to" size="30px" placeholder="Search Box" value="<%=to%>" class="required">
+                    </div>
+
+                    <div class="col-md-6" style="margin-right:1px;padding: 15px"><label for="PostalCode2"><span>Postal Code:</span></label>
+                        <input type="text" id="PostalCode2"
+                               name="PostalCode2" size="9px" value="<%=arrive%>" class="required">
+                    </div>
                 </div>
                 <!-- Fixed time -->
                 <div class="formRow" id="fixedTimeSelectorContainer">
@@ -290,8 +304,16 @@
                     </button>
                 </div>
             </form>
+
+        </div>
+        <div class="col-md-7">
+            <div class="map-canvas" style="height: 405px">
+                <div id="map"></div>
+            </div>
         </div>
     </div>
+
+        </div>
 </section>
 <section>
     <div class="row">
@@ -492,6 +514,11 @@
 <script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
 <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 <script src="js/jquery-validation/1.11.1/jquery.validate.js" type="text/javascript"></script>
+<!-- Project -->
+<script src="js/project.js" type="text/javascript"></script>
+<!-- Google Map Api -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATltk2TwkHYYTotz6t0lOs1YDOWNeZjX8&libraries=places&signed_in=true&callback=initMap"
+        type="text/javascript"></script>
 <script type="text/javascript">
     $(function () {
         $('input[name=timeModeSelector]').change(function () {
@@ -535,8 +562,10 @@
             return false;
         }
         console.log("get into search routine ajax");
-        var departure = $('#departure').val();
-        var arrive = $('#arrive').val();
+        var from = $('#from').val();
+        var departure = $('#PostalCode').val();
+        var to = $('#to').val();
+        var arrive = $('#PostalCode2').val();
         var dayhour = $('#DriverDeptHourSame').val();
         var daymin = $('#DriverDeptMinSame').val();
 
@@ -566,7 +595,7 @@
 //            var time = Number(routehour) * 3600 + Number(routemin) * 60;
         if (document.getElementById("fixedTimeRadio").checked) {
             //alert("fix");
-            searchLink = searchLink + "&departure=" + departure + "&arrive=" + arrive;
+            searchLink = searchLink + "&from=" + from + "&to=" + to + "&departure=" + departure + "&arrive=" + arrive;
             console.log(searchLink)
             if (dayhour != "") {
                 searchLink = searchLink + "&dayhour=" + dayhour + "&daymin=" + daymin;
@@ -575,7 +604,7 @@
             }
         } else if (document.getElementById("flexibleTimeRadio").checked) {
             //alert("flexibleTimeRadio");
-            searchLink = searchLink + "departure=" + departure + "&arrive=" + arrive;
+            searchLink = searchLink + "&from=" + from + "&to=" + to + "&departure=" + departure + "&arrive=" + arrive;
             searchLink = searchLink + "&radio=2";
             console.log(searchLink)
             if (dayhoursund != "") {
