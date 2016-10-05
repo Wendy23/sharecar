@@ -20,6 +20,7 @@ var searchRoute = require('./routes/searchRoute');
 var searchRoutine = require('./routes/searchRoutine');
 var myProfile = require('./routes/myProfile');
 var myMessage = require('./routes/myMessage');
+var myRoutineMessage = require('./routes/myRoutineMessage');
 var routineBack = require('./routes/routineBack');
 
 global.dbHandel = require('./database/dbHandel');
@@ -84,6 +85,7 @@ app.use('/searchRoute',searchRoute); // 即为为路径 /searchRoute 设置路�
 app.use('/searchRoutine',searchRoutine); // 即为为路径 /searchRoute 设置路由
 app.use('/myProfile',myProfile); // 即为为路径 /profile 设置路由
 app.use('/myMessage',myMessage);// 即为为路径 /message 设置路由
+app.use('/myRoutineMessage',myRoutineMessage);// 即为为路径 /myRoutineMessage 设置路由
 app.use('/routineBack',routineBack);// 即为为路径 /routineBack 设置路由
 
 

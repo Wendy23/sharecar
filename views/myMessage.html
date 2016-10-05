@@ -77,7 +77,6 @@
                                 <li><a href="#" title="">Home v2</a></li>
                             </ul>
                         </li>
-                        <li><a href="#" title=""><strong>Welcome, <%- user.name %></strong></a></li>
                         <li>
                             <a href="/myProfile" title="">My profile</a>
                         </li>
@@ -344,6 +343,8 @@
         return myDate;
     }
 
+    var currentRoute;
+
     function bindShowEvent() {
         $('#cancelRoute').on('show.bs.modal', function (event) {
             //$(this).removeClass('modal-backdrop');
@@ -391,8 +392,8 @@
             }
         });
     }
+
     $(document).ready(function () {
-        var currentRoute;
         $("#sendmessage").click(function () {
             console.log("get into remove passengers");
             var passenger = $("#passengernum").val();

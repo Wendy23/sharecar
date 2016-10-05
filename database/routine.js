@@ -82,7 +82,11 @@ module.exports = {
         },
         ridername: [{
             username: {type: String, ref: 'user'},
-            passnum: Number, default: 0
+            passnum: Number, default: 0,
+            email: String,default:0,
+            gender:String,
+            mobile:Number,
+            nametitle:String
         }]
     }
 }

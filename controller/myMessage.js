@@ -9,19 +9,6 @@ exports.myMessage = function () {
             var name = req.session.user;
             var name1 = name._id;
             Message.find({'riderid.userid': req.session.user._id},
-            //Message.aggregate(
-            //    {
-            //        $unwind: '$riderid'
-            //    },
-            //    {
-            //        $match: {'riderid.userid': req.session.user._id}
-            //    },
-            //    //{
-            //    //    $project: {cost: 1, riderid: 1, _id: 0, passnum: 1}
-            //    //},
-            //    //{
-            //    //    "$group": {"_id": "$_id", "riderid": {'$push': "$riderid"}}
-            //    //},
                 function (err, doc) {
                     Message.find(
                         {

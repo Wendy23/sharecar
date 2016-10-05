@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+            ShareCar
+    </title>
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="images/favicon.jpg"/>
+    <!-- Styles -->
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" type="text/css"/>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css" type="text/css"/>
+    <!-- Style -->
+    <!--  <link rel="stylesheet" href="css/responsive.css" type="text/css" /> -->
+    <!-- Responsive -->
+    <link rel="stylesheet" href="/stylesheets/colors.css" type="text/css"/>
+    <!-- color -->
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <!--Slides-->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!--Date-->
+    <link rel='stylesheet' href='/stylesheets/datepicker.css'/>
+    <!--Time-->
+    <link rel='stylesheet' href='/stylesheets/bootstrap-timepicker.min.css'/>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<!-- /.preloader -->
+<div id="preloader"></div>
+<div class="theme-layout">
+    <!-- Header -->
+    <header class="simple-header for-sticky white">
+        <!-- Top bar -->
+        <div class="top-bar">
+            <div class="container">
+                <ul class="contact-item">
+                    <li><i class="fa fa-envelope-o"></i>yourcompnay@email.com</li>
+                    <li><i class="fa fa-mobile"></i>+1 333 44 555 / +1 333 44 500</li>
+                </ul>
+                <div class="choose-language">
+                    <a href="#" title="">EN</a>
+                    <a href="#" title="">CH</a>
+                </div>
+            </div>
+        </div>
+        <div class="menu">
+            <div class="container">
+                <!-- LOGO -->
+                <div class="logo">
+                    <span>ShareCar</span>
+                    <strong>CITY CARPOOL</strong>
+                </div>
+                <span class="menu-toggle"><i class="fa fa-bars"></i></span>
+                <nav>
+                    <h1 class="nocontent outline">--- Main Navigation ---</h1>
+                    <ul>
+                        <li>
+                            <a href="/home" title="">HOME</a>
+                        </li>
+                        <li>
+                            <a href="#" title="">ABOUT</a>
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href="#" title="">SEARCH</a>
+                            <ul>
+                                <li><a href="/searchRoute" title="">Route</a></li>
+                                <li><a href="#" title="">Home v2</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/myProfile" title="">My profile</a>
+                        </li>
+                        <li>
+                            <!--<a href="/myMessage" class="btn btn-default btn-lg btn-link " style="font-size:24px;">-->
+                            <a href="/myMessage" title="">Route message
+                                <!--</span>-->
+                            </a>
+                        </li>
+                        <li>
+                            <!--<a href="/myMessage" class="btn btn-default btn-lg btn-link " style="font-size:24px;">-->
+                            <a href="/myRoutineMessage" title="">Routine message
+                                <!--</span>-->
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/logout" title="">
+                                <span><i class="fa fa-sign-out "></i> logout</span></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <section>
+        <h3>Routine sent</h3>
+        <div class="row" id="routineInfoBody">
+            <% if(routine){%>
+            <%for(var i=0;i
+            <routine.length ;i++){%>
+                <div class="col-md-4">
+                    <div class="col-sm-2"></div>
+                    <div class="list-group col-sm-8" style="padding-top:20px">
+                        <li class="list-group-item list-group-item-success">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    From:
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routine[i].from%>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Departure Area:
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routine[i].departure%>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    To:
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routine[i].to%>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Arrive Area:
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routine[i].arrive%>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Occupancy:
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routine[i].occupancy%>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Occupied:
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <% for (var k =0; k < routine[i].ridername.length ; k++){%>
+                                    <% if(routine[i].ridername[k].username == currentname){%>
+                                    <%=routine[i].ridername[k].passnum%>
+                                    <%}%>
+                                    <%}%>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Cost:
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routine[i].cost%>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Sunday:
+                                </div>
+                                <%if(routine[i].sund.weekday!=""){%>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routine[i].sund.dayhour%>&#58;<%=routine[i].sund.daymin%> &plusmn;
+                                    <%=routine[i].sund.daytimetlr%>
+                                </div>
+                                <%}%>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Monday:
+                                </div>
+                                <%if(routine[i].mon.weekday!=""){%>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routine[i].mon.dayhour%>&#58;<%=routine[i].mon.daymin%> &plusmn;
+                                    <%=routine[i].mon.daytimetlr%>
+                                </div>
+                                <%}%>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Tuesday:
+                                </div>
+                                <%if(routine[i].tues.weekday!=""){%>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routine[i].tues.dayhour%>&#58;<%=routine[i].tues.daymin%> &plusmn;
+                                    <%=routine[i].tues.daytimetlr%>
+                                </div>
+                                <%}%>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Wednesday:
+                                </div>
+                                <%if(routine[i].wednes.weekday!=""){%>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routine[i].wednes.dayhour%>&#58;<%=routine[i].wednes.daymin%> &plusmn;
+                                    <%=routine[i].wednes.daytimetlr%>
+                                </div>
+                                <%}%>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Thursday:
+                                </div>
+                                <%if(routine[i].thurs.weekday!=""){%>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routine[i].thurs.dayhour%>&#58;<%=routine[i].thurs.daymin%> &plusmn;
+                                    <%=routine[i].thurs.daytimetlr%>
+                                </div>
+                                <%}%>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Friday:
+                                </div>
+                                <%if(routine[i].fri.weekday!=""){%>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routine[i].fri.dayhour%>&#58;<%=routine[i].fri.daymin%> &plusmn;
+                                    <%=routine[i].fri.daytimetlr%>
+                                </div>
+                                <%}%>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Saturday:
+                                </div>
+                                <%if(routine[i].satur.weekday!=""){%>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routine[i].satur.dayhour%>&#58;<%=routine[i].satur.daymin%> &plusmn;
+                                    <%=routine[i].satur.daytimetlr%>
+                                </div>
+                                <%}%>
+                            </div>
+                            </br>
+                            <!--<div class="row">-->
+                            <!--<div class="col-lg-5 col-md-5 col-sm-5">-->
+                            <!--<h5>Matching:</h5>-->
+                            <!--</div>-->
+                            <!--<div class="col-lg-5 col-md-5 col-sm-5">-->
+                            <!--<h4><span class="label label-info">85%</span></h4>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5"></div>
+                                <button type="button" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
+                                        data-target="#cancelRoutine" name="cancelRoutine" data-target="#cancelRoutine"
+                                        data-id="<%= routine[i]._id%>"
+                                        data-passnum="<%=routine[i].ridername.passnum%>">Cancel
+                                </button>
+                                <!--<button type="button" class="btn btn-success btn-sm">小型button</button>-->
+                            </div>
+                            <div data-test="123"></div>
+                        </li>
+                    </div>
+                </div>
+                <%}%>
+                <%}%>
+                <!--<div class="col-md-4">.col-md-4</div>-->
+                <!--<div class="col-md-4">.col-md-4</div>-->
+                </routine.length>
+        </div>
+    </section>
+    <div class="modal fade" id="cancelRoutine" data-id="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Passenger Info</h4>
+                </div>
+                <div class="modal-body">
+                    <span id="num"></span>
+                    <br>
+                    <span id="passenger_num"></span>
+                    <h5>Cancel Passenger Number</h5>
+                    <input type="number" min="0" max="10" size="15" id="passengernum" name="passengernum">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="sendmessage" class="btn btn-primary">Send my message</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <h3>Routine I received</h3>
+        <div class="row">
+            <% if(routines){%>
+            <%for(var i=0;i
+            <routines.length ;i++){%>
+                <div class="col-md-4">
+                    <div class="col-sm-2"></div>
+                    <div class="list-group col-sm-8" style="padding-top:20px">
+                        <li class="list-group-item list-group-item-success">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    From:
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routines[i].from%>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Departure Area:
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routines[i].departure%>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    To:
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routines[i].to%>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Arrive Area:
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routines[i].arrive%>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Occupancy:
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routines[i].occupancy%>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Occupied:
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routines[i].occupied%>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Cost:
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routines[i].cost%>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Sunday:
+                                </div>
+                                <%if(routines[i].sund.weekday!=""){%>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routines[i].sund.dayhour%>&#58;<%=routines[i].sund.daymin%> &plusmn;
+                                    <%=routines[i].sund.daytimetlr%>
+                                </div>
+                                <%}%>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Monday:
+                                </div>
+                                <%if(routines[i].mon.weekday!=""){%>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routines[i].mon.dayhour%>&#58;<%=routines[i].mon.daymin%> &plusmn;
+                                    <%=routines[i].mon.daytimetlr%>
+                                </div>
+                                <%}%>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Tuesday:
+                                </div>
+                                <%if(routines[i].tues.weekday!=""){%>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routines[i].tues.dayhour%>&#58;<%=routines[i].tues.daymin%> &plusmn;
+                                    <%=routines[i].tues.daytimetlr%>
+                                </div>
+                                <%}%>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Wednesday:
+                                </div>
+                                <%if(routines[i].wednes.weekday!=""){%>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routines[i].wednes.dayhour%>&#58;<%=routines[i].wednes.daymin%> &plusmn;
+                                    <%=routines[i].wednes.daytimetlr%>
+                                </div>
+                                <%}%>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Thursday:
+                                </div>
+                                <%if(routines[i].thurs.weekday!=""){%>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routines[i].thurs.dayhour%>&#58;<%=routines[i].thurs.daymin%> &plusmn;
+                                    <%=routines[i].thurs.daytimetlr%>
+                                </div>
+                                <%}%>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Friday:
+                                </div>
+                                <%if(routines[i].fri.weekday!=""){%>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routines[i].fri.dayhour%>&#58;<%=routines[i].fri.daymin%> &plusmn;
+                                    <%=routines[i].fri.daytimetlr%>
+                                </div>
+                                <%}%>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    Saturday:
+                                </div>
+                                <%if(routines[i].satur.weekday!=""){%>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <%=routines[i].satur.dayhour%>&#58;<%=routines[i].satur.daymin%> &plusmn;
+                                    <%=routines[i].satur.daytimetlr%>
+                                </div>
+                                <%}%>
+                            </div>
+                            </br>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5"></div>
+                                <button type="button" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
+                                        data-target="#confirm" name="confirm" id="confirmRoutine" data-id="<%= routines[i]._id%>"  data-passnuminfo="<%=user%>">Confirm
+                                </button>
+                                <!--<button type="button" class="btn btn-success btn-sm">小型button</button>-->
+                            </div>
+                            <div data-test="123"></div>
+                        </li>
+                    </div>
+                </div>
+                <%}%>
+                <%}%>
+                <!--<div class="col-md-4">.col-md-4</div>-->
+                <!--<div class="col-md-4">.col-md-4</div>-->
+        </div>
+    </section>
+    <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="receiveModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="receiveModalLabel">Passenger Information</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% if (user != null && user.length >0){%>
+                        <% for (var i =0; i <user.length ; i++){%>
+                            <tr>
+                                <td>
+                                    <%=user[i].nametitle%>
+                                </td>
+                                <td>
+                                    <%=user[i].gender%>
+                                </td>
+                                <td>
+                                    <%=user[i].mobile%>
+                                </td>
+                                <td>
+                                    <%=user[i].email%>
+                                </td>
+                            </tr>
+                            <%}%>
+                            <%}%>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <div class="modal-footer">
+                        <button type="submit" id="respondmessage" class="btn btn-primary">Respond</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<!-- Script -->
+<script type="text/javascript" src="js/modernizr.js"></script>
+<!-- Modernizer -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<!-- Jquery -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<!-- Bootstrap -->
+<script type="text/javascript" src="js/html5lightbox.js"></script>
+<!-- HTML -->
+<script type="text/javascript" src="js/scrolly.js"></script>
+<!-- Parallax -->
+<script type="text/javascript" src="js/price-range.js"></script>
+<!-- Parallax -->
+<script type="text/javascript" src="js/script.js"></script>
+<!-- Script -->
+<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+<!-- Date -->
+<script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
+<!-- Time -->
+<script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script type="text/javascript">
+    var currentRoutine;
+
+    function bindShowEvent() {
+        $('#cancelRoutine').on('show.bs.modal', function (event) {
+            var modal = $(this)
+            modal.find('.modal-title').text('Passenger Info');
+            setTimeout(function () {
+                modal.find('.modal-backdrop').remove();
+            }, 200);
+
+            currentRoutine =modal.data("id");
+            //currentRoutine =$(this).data("id");
+            $(this).off('show.bs.modal');
+        });
+    }
+    function bindShowEvent1() {
+        $('#confirm').on('show.bs.modal', function (event) {
+            //$(this).removeClass('modal-backdrop');
+            //Now set z-index of modal greater than backdrop
+            //ajax herevar button = $(event.relatedTarget)
+            var modal = $(this)
+            modal.find('.modal-title').text('Passenger Information');
+            setTimeout(function () {
+                modal.find('.modal-backdrop').remove();
+            }, 200);
+            // currentMessage = button.attr("data-id");
+//                currentRoute = button.attr("data-id");
+//                console.log(currentRoute);
+            $(this).off('show.bs.modal');
+        });
+    }
+
+
+    $(document).ready(function () {
+        console.log($(this).attr("data-test"));
+        $("#sendmessage").click(function () {
+            console.log("get into remove passengers");
+            var passenger = $("#passengernum").val();
+            var routineId = currentRoutine;
+            var data = {
+                "passenger": passenger,
+                "routineId": routineId
+            }
+            $.ajax({
+                url: '/myRoutineMessage/removeRoutine',
+                // data: $("form").serialize(),
+                type: 'post',
+                data: data,
+                success: function (data, status) {
+                    if (status == 'success') {
+                        //location.href = 'home';
+                        location.reload();
+                    }
+                },
+                error: function (data, status) {
+                    if (status == 'error') {
+                        location.href = 'myRoutineMessage';
+                    }
+                }
+            });
+        })
+
+        bindShowEvent();
+        $('#cancelRoutine').on('hide.bs.modal', function (event) {
+            bindShowEvent();
+        });
+
+        $("#routineInfoBody").click(function (event) {
+            var ev = event || window.event;
+            var target = ev.target || ev.srcElement;
+            if (target.nodeName.toLowerCase() == "button") {
+                if($(target).attr("name")=="cancelRoutine"){
+                    var id=$(target).data("id");
+                    $("#cancelRoutine").data("id",id);
+                }
+            }
+        });
+
+        <!--Confirm-->
+        bindShowEvent1();
+        $('#confirm').on('hide.bs.modal', function (event) {
+            bindShowEvent1();
+        })
+
+        "use strict";
+        jQuery('.tp-banner').show().revolution({
+            dottedOverlay: "none",
+            delay: 16000, //revolution
+            startwidth: 1170,
+            startheight: 700,
+            hideThumbs: 200,
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview1",
+            touchenabled: "on",
+            onHoverStop: "on",
+            swipe_velocity: 0.7,
+            swipe_min_touches: 1,
+            swipe_max_touches: 1,
+            drag_block_vertical: false,
+            parallax: "mouse",
+            parallaxBgFreeze: "on",
+            parallaxLevels: [7, 4, 3, 2, 5, 4, 3, 2, 1, 0],
+            keyboardNavigation: "off",
+            navigationHAlign: "center",
+            navigationVAlign: "bottom",
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+            shadow: 0,
+            fullWidth: "on",
+            fullScreen: "off",
+            spinner: "spinner4",
+            stopLoop: "off",
+            stopAfterLoops: -1,
+            stopAtSlide: -1,
+            shuffle: "off",
+            autoHeight: "off",
+            forceFullWidth: "off",
+            hideThumbsOnMobile: "off",
+            hideNavDelayOnMobile: 1500,
+            hideBulletsOnMobile: "off",
+            hideArrowsOnMobile: "off",
+            hideThumbsUnderResolution: 0,
+            hideSliderAtLimit: 0,
+            hideCaptionAtLimit: 0,
+            hideAllCaptionAtLilmit: 0,
+            startWithSlide: 0,
+            videoJsPath: "rs-plugin/videojs/",
+            fullScreenOffsetContainer: ""
+        });
+    });
+</script>
+</body>
+
+</html>

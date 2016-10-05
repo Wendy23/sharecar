@@ -34,36 +34,36 @@ exports.routine = function () {
                 query['departure'] = departure;
             }
             Routine.find(query, function (err, doc) {
-                if (doc != null && doc.length>0) {
+                if (doc != null && doc.length > 0) {
                     if (radio != null && radio != undefined) {
                         if (radio == "1") {
                             var dayhour = req.query.dayhour;
                             var daymin = req.query.daymin;
                             var inputTime = parseInt(dayhour) * 60 + parseInt(daymin);
-                            for(var i=0;i<doc.length;i++){
+                            for (var i = 0; i < doc.length; i++) {
                                 var document = doc[i]._doc;
                                 doc[i]._doc.sortTop = 0;
-                                var weekdayArray = ['mon','tues','wednes','thurs','fri'];
-                                for(var k=0;k<weekdayArray.length;k++){
+                                var weekdayArray = ['mon', 'tues', 'wednes', 'thurs', 'fri'];
+                                for (var k = 0; k < weekdayArray.length; k++) {
                                     var currentWeekday = document[weekdayArray[k]];
-                                    if(currentWeekday.weekday != ""){
+                                    if (currentWeekday.weekday != "") {
                                         var leftTime = parseInt(currentWeekday.dayhour) * 60 + parseInt(currentWeekday.daymin) - parseInt(currentWeekday.daytimetlr);
                                         var rightTime = parseInt(currentWeekday.dayhour) * 60 + parseInt(currentWeekday.daymin) + parseInt(currentWeekday.daytimetlr);
                                         var leftTimeABS = Math.abs(parseInt(leftTime) - parseInt(inputTime));
                                         var rightTimeABS = Math.abs(parseInt(rightTime) - parseInt(inputTime));
-                                        doc[i]._doc.sortTop = doc[i]._doc.sortTop + (parseInt(leftTimeABS)<parseInt(rightTimeABS) ? leftTimeABS : rightTimeABS);
+                                        doc[i]._doc.sortTop = doc[i]._doc.sortTop + (parseInt(leftTimeABS) < parseInt(rightTimeABS) ? leftTimeABS : rightTimeABS);
                                     }
                                 }
                             }
-                            for(var i=0;i<doc.length;i++) {
-                                if(doc[i]._doc.sortTop==0){
-                                    doc[i]._doc.sortTop==9999999999;
+                            for (var i = 0; i < doc.length; i++) {
+                                if (doc[i]._doc.sortTop == 0) {
+                                    doc[i]._doc.sortTop == 9999999999;
                                 }
                             }
                             var temp;
-                            for(var i=0;i<doc.length;i++) {
-                                for(j = 0; j < doc.length; j++){
-                                    if(doc[i]._doc.sortTop < doc[j]._doc.sortTop){
+                            for (var i = 0; i < doc.length; i++) {
+                                for (j = 0; j < doc.length; j++) {
+                                    if (doc[i]._doc.sortTop < doc[j]._doc.sortTop) {
                                         temp = doc[i];
                                         doc[i] = doc[j];
                                         doc[j] = temp;
@@ -75,79 +75,79 @@ exports.routine = function () {
                             var currhour;
                             var currmin;
                             var inputTime = 0;
-                            for(var i=0;i<doc.length;i++){
+                            for (var i = 0; i < doc.length; i++) {
                                 var document = doc[i]._doc;
                                 doc[i]._doc.sortTop = 0;
-                                var weekdayArray = ['mon','tues','wednes','thurs','fri','satur','sund'];
-                                        for(var k=0;k<weekdayArray.length;k++){
-                                            if(k==0){
-                                                if(req.query.dayhourmon != null && req.query.dayhourmon != undefined) {
-                                                    currhour = req.query.dayhourmon;
-                                                    currmin = req.query.dayminmon;
-                                                    inputTime = parseInt(currhour) * 60 + parseInt(currmin);
-                                                }
-                                            }
-                                            if(k==1){
-                                        if(req.query.dayhourtues != null && req.query.dayhourtues != undefined) {
+                                var weekdayArray = ['mon', 'tues', 'wednes', 'thurs', 'fri', 'satur', 'sund'];
+                                for (var k = 0; k < weekdayArray.length; k++) {
+                                    if (k == 0) {
+                                        if (req.query.dayhourmon != null && req.query.dayhourmon != undefined) {
+                                            currhour = req.query.dayhourmon;
+                                            currmin = req.query.dayminmon;
+                                            inputTime = parseInt(currhour) * 60 + parseInt(currmin);
+                                        }
+                                    }
+                                    if (k == 1) {
+                                        if (req.query.dayhourtues != null && req.query.dayhourtues != undefined) {
                                             currhour = req.query.dayhourtues;
                                             currmin = req.query.daymintues;
                                             inputTime = parseInt(currhour) * 60 + parseInt(currmin);
                                         }
                                     }
-                                    if(k==2){
-                                        if(req.query.dayhourwednes != null && req.query.dayhourwednes != undefined) {
+                                    if (k == 2) {
+                                        if (req.query.dayhourwednes != null && req.query.dayhourwednes != undefined) {
                                             currhour = req.query.dayhourwednes;
                                             currmin = req.query.dayminwednes;
                                             inputTime = parseInt(currhour) * 60 + parseInt(currmin);
                                         }
                                     }
-                                    if(k==3){
-                                        if(req.query.dayhourthurs != null && req.query.dayhourthurs != undefined) {
+                                    if (k == 3) {
+                                        if (req.query.dayhourthurs != null && req.query.dayhourthurs != undefined) {
                                             currhour = req.query.dayhourthurs;
                                             currmin = req.query.dayminthurs;
                                             inputTime = parseInt(currhour) * 60 + parseInt(currmin);
                                         }
                                     }
-                                    if(k==4){
-                                        if(req.query.dayhourfri != null && req.query.dayhourfri != undefined) {
+                                    if (k == 4) {
+                                        if (req.query.dayhourfri != null && req.query.dayhourfri != undefined) {
                                             currhour = req.query.dayhourfri;
                                             currmin = req.query.dayminfri;
                                             inputTime = parseInt(currhour) * 60 + parseInt(currmin);
                                         }
                                     }
-                                    if(k==5){
-                                        if(req.query.dayhoursatur != null && req.query.dayhoursatur != undefined) {
+                                    if (k == 5) {
+                                        if (req.query.dayhoursatur != null && req.query.dayhoursatur != undefined) {
                                             currhour = req.query.dayhoursatur;
                                             currmin = req.query.dayminsatur;
                                             inputTime = parseInt(currhour) * 60 + parseInt(currmin);
                                         }
                                     }
-                                    if(k==6){
-                                        if(req.query.dayhoursund != null && req.query.dayhoursund != undefined) {
+                                    if (k == 6) {
+                                        if (req.query.dayhoursund != null && req.query.dayhoursund != undefined) {
                                             currhour = req.query.dayhoursund;
                                             currmin = req.query.dayminsund;
                                             inputTime = parseInt(currhour) * 60 + parseInt(currmin);
                                         }
                                     }
                                     var currentWeekday = document[weekdayArray[k]];
-                                    if(currentWeekday.weekday != ""){
+                                    if (currentWeekday.weekday != "") {
                                         var leftTime = parseInt(currentWeekday.dayhour) * 60 + parseInt(currentWeekday.daymin) - parseInt(currentWeekday.daytimetlr);
                                         var rightTime = parseInt(currentWeekday.dayhour) * 60 + parseInt(currentWeekday.daymin) + parseInt(currentWeekday.daytimetlr);
                                         var leftTimeABS = Math.abs(parseInt(leftTime) - parseInt(inputTime));
                                         var rightTimeABS = Math.abs(parseInt(rightTime) - parseInt(inputTime));
-                                        doc[i]._doc.sortTop = doc[i]._doc.sortTop + (parseInt(leftTimeABS)<parseInt(rightTimeABS) ? leftTimeABS : rightTimeABS);
+                                        doc[i]._doc.sortTop = doc[i]._doc.sortTop + (parseInt(leftTimeABS) < parseInt(rightTimeABS) ? leftTimeABS : rightTimeABS);
                                     }
                                 }
                             }
-                            for(var i=0;i<doc.length;i++) {
-                                if(doc[i]._doc.sortTop==0){
-                                    doc[i]._doc.sortTop==9999999999;
+                            for (var i = 0; i < doc.length; i++) {
+                                if (doc[i]._doc.sortTop == 0) {
+                                    doc[i]._doc.sortTop == 9999999999;
                                 }
                             }
                             var temp;
-                            for(var i=0;i<doc.length;i++) {
-                                for(j = 0; j < doc.length; j++){
-                                    if(doc[i]._doc.sortTop < doc[j]._doc.sortTop){
+                            for (var i = 0; i < doc.length; i++) {
+                                for (j = 0; j < doc.length; j++) {
+                                    if (doc[i]._doc.sortTop < doc[j]._doc.sortTop) {
                                         temp = doc[i];
                                         doc[i] = doc[j];
                                         doc[j] = temp;
@@ -159,49 +159,48 @@ exports.routine = function () {
                     }
                 }
                 console.log(doc);
-                var queryDayArrayTemp =[];
+                var queryDayArrayTemp = [];
                 var queryHourArrayTemp = [];
                 var queryMinArrayTemp = [];
-                if(dayhourmon!=null && dayhourmon != undefined){
+                if (dayhourmon != null && dayhourmon != undefined) {
                     queryDayArrayTemp.push("mon");
                     queryHourArrayTemp.push(dayhourmon);
                     queryMinArrayTemp.push(dayminmon);
                 }
 
-                if(dayhoursund!=null && dayhoursund != undefined){
+                if (dayhoursund != null && dayhoursund != undefined) {
                     queryDayArrayTemp.push("sund");
                     queryHourArrayTemp.push(dayhoursund);
                     queryMinArrayTemp.push(dayminsund);
                 }
 
-                if(dayhourtues!=null && dayhourtues!= undefined){
+                if (dayhourtues != null && dayhourtues != undefined) {
                     queryDayArrayTemp.push("tues");
                     queryHourArrayTemp.push(dayhourtues);
                     queryMinArrayTemp.push(daymintues);
                 }
 
-                if(dayhourwednes!=null && dayhourwednes!= undefined){
+                if (dayhourwednes != null && dayhourwednes != undefined) {
                     queryDayArrayTemp.push("wednes");
                     queryHourArrayTemp.push(dayhourwednes);
                     queryMinArrayTemp.push(dayminwednes);
                 }
 
-                if(dayhourthurs!=null && dayhourthurs!= undefined){
+                if (dayhourthurs != null && dayhourthurs != undefined) {
                     queryDayArrayTemp.push("thurs");
                     queryHourArrayTemp.push(dayhourthurs);
                     queryMinArrayTemp.push(dayminthurs);
                 }
-                if(dayhourfri!=null && dayhourfri!= undefined){
+                if (dayhourfri != null && dayhourfri != undefined) {
                     queryDayArrayTemp.push("fri");
                     queryHourArrayTemp.push(dayhourfri);
                     queryMinArrayTemp.push(dayminfri);
                 }
-                if(dayhourfri!=null && dayhoursatur!= undefined){
+                if (dayhourfri != null && dayhoursatur != undefined) {
                     queryDayArrayTemp.push("satur");
                     queryHourArrayTemp.push(dayhoursatur);
                     queryMinArrayTemp.push(dayminsatur);
                 }
-
 
 
                 Routine.count(query, function (err, count) {
@@ -246,9 +245,20 @@ exports.updateRoutine = function () {
         } else {
             console.log(req.body, req.query);
             var Routine = global.dbHandel.getModel('routine');
+            var User = global.dbHandel.getModel('user');
             var username = req.session.user.name;
             var currentId = req.body.routineId;
             var passnum = req.body.passenger;
+            var email;
+            var nametitle;
+            var gender;
+            var mobile;
+            User.find({name: username}, {}, function (err, doc) {
+                email=doc[0]._doc.email;
+                nametitle=doc[0]._doc.nametitle;
+                gender=doc[0]._doc.gender;
+                mobile=doc[0]._doc.mobile;
+            })
             Routine.update(
                 {
                     "_id": currentId,
@@ -268,7 +278,11 @@ exports.updateRoutine = function () {
                                 $push: {
                                     ridername: {
                                         username: username,
-                                        passnum: passnum
+                                        passnum: passnum,
+                                        email:email,
+                                        gender:gender,
+                                        mobile:mobile,
+                                        nametitle:nametitle
                                     }
                                 },
                                 $inc: {
@@ -279,10 +293,14 @@ exports.updateRoutine = function () {
                                 //res.send(raw);
                             }
                         )
+                        //})
                     }
                     if (err) res.status(500);
                     res.send(raw);
-                })
+                }
+            )
+
+
         }
     }
 }
