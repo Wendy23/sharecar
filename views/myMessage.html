@@ -100,7 +100,9 @@
                 <th>Dept Date</th>
                 <th>Dept Hour</th>
                 <th>Dept Min</th>
+                <th>From</th>
                 <th>PostalCode</th>
+                <th>To</th>
                 <th>PostalCode2</th>
                 <th>Cost</th>
                 <th>Number of Passengers</th>
@@ -119,8 +121,14 @@
                     <td class="drivemin">
                         <%=driverroutes[i].drimin%>
                     </td>
+                    <td class="from">
+                        <%=driverroutes[i].from%>
+                    </td>
                     <td class="drivepcode">
                         <%=driverroutes[i].pcode%>
+                    </td>
+                    <td class="to">
+                        <%=driverroutes[i].to%>
                     </td>
                     <td class="drivepcode">
                         <%=driverroutes[i].pcode2%>
@@ -141,8 +149,9 @@
                                 data-id="<%= driverroutes[i]._id%>"
                                 data-passnum="<%=driverroutes[i].riderid.passnum%>">Cancel
                         </button>
-                        <button type="button" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
-                                data-target="#feedback" name="commentRoute"  data-id="<%= driverroutes[i]._id%>">Comment
+                        <button type="button" style="width: 70px;" class="btn btn-primary btn-sm commentButton"
+                                data-toggle="modal"
+                                data-target="#feedback" name="commentRoute" data-id="<%= driverroutes[i]._id%>">Comment
                         </button>
                     </td>
                     <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editdialog">Test</button> -->
@@ -182,14 +191,16 @@
                 <th>Dept Date</th>
                 <th>Dept Hour</th>
                 <th>Dept Min</th>
+                <th>From</th>
                 <th>PostalCode</th>
+                <th>To</th>
                 <th>PostalCode2</th>
                 <th>Cost</th>
                 <th>Total Occupancy</th>
                 <th>Number of Passengers</th>
             </tr>
             </thead>
-            <tbody id="receiveInfoBody" >
+            <tbody id="receiveInfoBody">
             <tr style="background-color:white">
                 <% for (var i =0; i
                 <routes.length ; i++){%>
@@ -202,8 +213,14 @@
                     <td class="drivemin">
                         <%=routes[i].drimin%>
                     </td>
+                    <td class="from">
+                        <%=routes[i].from%>
+                    </td>
                     <td class="drivepcode">
                         <%=routes[i].pcode%>
+                    </td>
+                    <td class="to">
+                        <%=routes[i].to%>
                     </td>
                     <td class="drivepcode">
                         <%=routes[i].pcode2%>
@@ -222,7 +239,8 @@
                         <!--data-target="#cancelRoute"  name="cancelRoute" id="cancel" data-target="#cancelRoute" data-id="<%= routes[i]._id%>"-->
                         <!--data-passnum="<%=routes[i].riderid.passnum%>">Cancel</button>-->
                         <button type="button" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
-                                data-target="#confirm" name="confirm" id="confirmRoute" data-id="<%= routes[i]._id%>"  data-passnuminfo="<%=user%>">Confirm
+                                data-target="#confirm" name="confirm" id="confirmRoute" data-id="<%= routes[i]._id%>"
+                                data-passnuminfo="<%=user%>">Confirm
                         </button>
                     </td>
                     <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editdialog">Test</button> -->
@@ -233,27 +251,28 @@
     </section>
     <section>
         <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="receiveModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="receiveModalLabel">Passenger Information</h4>
-                </div>
-                <div class="modal-body">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Gender</th>
-                            <th>Mobile</th>
-                            <th>Email</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="receiveModalLabel">Passenger Information</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Gender</th>
+                                <th>Mobile</th>
+                                <th>Email</th>
+                            </tr>
+                            </thead>
+                            <tbody>
                             <% if (user != null && user.length >0){%>
-                                <% for (var i =0; i <user.length ; i++){%>
-                                    <tr>
+                            <% for (var i =0; i
+                            <user.length ; i++){%>
+                                <tr>
                                     <td>
                                         <%=user[i].userid.nametitle%>
                                     </td>
@@ -266,26 +285,59 @@
                                     <td>
                                         <%=user[i].userid.email%>
                                     </td>
-                                    </tr>
+                                </tr>
                                 <%}%>
-                            <%}%>
-                        </tbody>
-                    </table>
-                </div>
-                <div>
-                    <div class="modal-footer">
-                        <button type="submit" id="respondmessage" class="btn btn-primary">Respond</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <%}%>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <div class="modal-footer">
+                            <button type="submit" id="respondmessage" class="btn btn-primary">Respond</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
     <section>
         <h3>Comment</h3>
-        <body>
-        <div id="currenttime"></div>
-        </body>
+        <div class="container">
+            <div class="row">
+                <% if (comment != null && comment.length >0){%>
+                <% for (var i =0; i
+                <comment.length ; i++){%>
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <div class="address">
+                                <h4 class="from"><%=comment[i].from%></h4>
+                                <img src="images/blueArrow.jpg" alt="Blue Arrow" class="blueArrow">
+                                <h4 class="to"><%=comment[i].to%></h4>
+                            </div>
+                            <div class="text">
+                                <p><%=comment[i].text%></p>
+                                </div>
+                            <div class="date">
+                                <h4 class="pull-right"><span><%=comment[i].dridate%></span></h4>
+                            </div>
+                            <div class="ratings">
+                                <p>
+                                    <% for (var j =0; j< comment[i].star;j++){%>
+                                    <span class="glyphicon glyphicon-star" style="color:red"></span>
+                                    <%}%>
+                                    <% for (var j =0; j< (5 - comment[i].star);j++){%>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <%}%>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <%}%>
+                    <%}%>
+                </comment.length>
+            </div>
+        </div>
+
     </section>
 
     <!--End of form_row div-->
@@ -312,33 +364,38 @@
 <script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
 <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 <script type="text/javascript">
-    Date.prototype.dateDiff = function(strInterval, dtEnd) {
+    Date.prototype.dateDiff = function (strInterval, dtEnd) {
         var dtStart = this;
-        if (typeof dtEnd == 'string' )//如果是字符串转换为日期型
+        if (typeof dtEnd == 'string')//如果是字符串转换为日期型
         {
             dtEnd = StringToDate(dtEnd);
         }
         switch (strInterval) {
-            case 's' :return parseInt((dtEnd - dtStart) / 1000);
-            case 'n' :return parseInt((dtEnd - dtStart) / 60000);
-            case 'h' :return parseInt((dtEnd - dtStart) / 3600000);
-            case 'd' :return parseInt((dtEnd - dtStart) / 86400000);
-            case 'w' :return parseInt((dtEnd - dtStart) / (86400000 * 7));
-            case 'm' :return (dtEnd.getMonth()+1)+((dtEnd.getFullYear()-dtStart.getFullYear())*12) - (dtStart.getMonth()+1);
-            case 'y' :return dtEnd.getFullYear() - dtStart.getFullYear();
+            case 's' :
+                return parseInt((dtEnd - dtStart) / 1000);
+            case 'n' :
+                return parseInt((dtEnd - dtStart) / 60000);
+            case 'h' :
+                return parseInt((dtEnd - dtStart) / 3600000);
+            case 'd' :
+                return parseInt((dtEnd - dtStart) / 86400000);
+            case 'w' :
+                return parseInt((dtEnd - dtStart) / (86400000 * 7));
+            case 'm' :
+                return (dtEnd.getMonth() + 1) + ((dtEnd.getFullYear() - dtStart.getFullYear()) * 12) - (dtStart.getMonth() + 1);
+            case 'y' :
+                return dtEnd.getFullYear() - dtStart.getFullYear();
         }
     }
 
-    function StringToDate(DateStr)
-    {
+    function StringToDate(DateStr) {
 
         var converted = Date.parse(DateStr);
         var myDate = new Date(converted);
-        if (isNaN(myDate))
-        {
+        if (isNaN(myDate)) {
             //var delimCahar = DateStr.indexOf('/')!=-1?'/':'-';
-            var arys= DateStr.split('-');
-            myDate = new Date(arys[0],--arys[1],arys[2]);
+            var arys = DateStr.split('-');
+            myDate = new Date(arys[0], --arys[1], arys[2]);
         }
         return myDate;
     }
@@ -356,7 +413,7 @@
                 modal.find('.modal-backdrop').remove();
             }, 200);
             // currentMessage = button.attr("data-id");
-            currentRoute =modal.data("id");
+            currentRoute = modal.data("id");
             $(this).off('show.bs.modal');
         });
     }
@@ -379,21 +436,30 @@
     }
 
     //passedCal();
-    function passedCal(){
-        $("#routeInfoBody").find("tr").each(function(){
-            var d=$.trim($(this).find("[name='datadate']").text());
-                d = new Date(d).getTime();
-            var current=new Date(new Date().toLocaleDateString()).getTime();
-            if(d-current>=0){
-               $(this).find("[name='cancelRoute']").prop("disabled",true);
+    function passedCal() {
+        $("#routeInfoBody").find("tr").each(function () {
+            var d = $.trim($(this).find("[name='datadate']").text());
+            d = new Date(d).getTime();
+            var current = new Date(new Date().toLocaleDateString()).getTime();
+            if (d - current >= 0) {
+                $(this).find("[name='cancelRoute']").prop("disabled", true);
             }
-            if((d-current)>=86400000){
-               $(this).find("[name='commentRoute']").prop("disabled",false);
+            if ((d - current) >= 86400000) {
+                $(this).find("[name='commentRoute']").prop("disabled", false);
             }
         });
     }
 
     $(document).ready(function () {
+
+        $('.commentButton').on('click', function (event) {
+            var currentCommentRouteId;
+            currentCommentRouteId = $(this).attr("data-id");
+            window.location.href = "/createRouteComment?currentCommentRouteId=" + currentCommentRouteId;
+            // window.location.href = "/";
+        })
+
+
         $("#sendmessage").click(function () {
             console.log("get into remove passengers");
             var passenger = $("#passengernum").val();
@@ -429,11 +495,11 @@
             var ev = event || window.event;
             var target = ev.target || ev.srcElement;
             if (target.nodeName.toLowerCase() == "button") {
-                if($(target).attr("name")=="cancelRoute"){//取消
-                    var num=$(target).parent().prev().html();
-                    var id=$(target).data("id");
-                    $("#cancelRoute").data("id",id);
-                    $("#num").html("Reserved Seat(s)" + "<br>" +num);
+                if ($(target).attr("name") == "cancelRoute") {//取消
+                    var num = $(target).parent().prev().html();
+                    var id = $(target).data("id");
+                    $("#cancelRoute").data("id", id);
+                    $("#num").html("Reserved Seat(s)" + "<br>" + num);
                 }
             }
         });

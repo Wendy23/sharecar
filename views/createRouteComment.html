@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="images/favicon.jpg"/>
+    <!-- Styles -->
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" type="text/css"/>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css" type="text/css"/>
+    <!-- Style -->
+    <!--  <link rel="stylesheet" href="css/responsive.css" type="text/css" /> -->
+    <!-- Responsive -->
+    <link rel="stylesheet" href="/stylesheets/colors.css" type="text/css"/>
+    <!-- color -->
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <!--Slides-->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!--Date-->
+    <link rel='stylesheet' href='/stylesheets/datepicker.css'/>
+    <!--Time-->
+    <link rel='stylesheet' href='/stylesheets/bootstrap-timepicker.min.css'/>
+    <link rel='stylesheet' href='/stylesheets/star-rating.min.css'/>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<!-- /.preloader -->
+<div id="preloader"></div>
+<div class="theme-layout">
+    <!-- Header -->
+    <header class="simple-header for-sticky white">
+        <!-- Top bar -->
+        <div class="top-bar">
+            <div class="container">
+                <ul class="contact-item">
+                    <li><i class="fa fa-envelope-o"></i>yourcompnay@email.com</li>
+                    <li><i class="fa fa-mobile"></i>+1 333 44 555 / +1 333 44 500</li>
+                </ul>
+                <div class="choose-language">
+                    <a href="#" title="">EN</a>
+                    <a href="#" title="">CH</a>
+                </div>
+            </div>
+        </div>
+        <div class="menu">
+            <div class="container">
+                <!-- LOGO -->
+                <div class="logo">
+                    <span><%= title %></span>
+                    <strong>CITY CARPOOL</strong>
+                </div>
+                <span class="menu-toggle"><i class="fa fa-bars"></i></span>
+                <nav>
+                    <h1 class="nocontent outline">--- Main Navigation ---</h1>
+                    <ul>
+                        <li>
+                            <a href="/home" title="">HOME</a>
+                        </li>
+                        <li>
+                            <a href="#" title="">ABOUT</a>
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href="#" title="">SEARCH</a>
+                            <ul>
+                                <li><a href="/searchRoute" title="">Route</a></li>
+                                <li><a href="#" title="">Home v2</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#" title=""><strong>Welcome, <%- user.name %></strong></a></li>
+                        <li>
+                            <a href="/myProfile" title="">My profile</a>
+                        </li>
+                        <li>
+                            <!--<a href="/myMessage" class="btn btn-default btn-lg btn-link " style="font-size:24px;">-->
+                            <a href="/myMessage" title="">Route message
+                                <!--<span class="glyphicon glyphicon-envelope" style="top:-15px;font-size:20px;">-->
+                                <!-- status 为未读，有几个就有几个提示数量 -->
+                                <span class="fa fa-circle"></span>
+                                <!--</span>-->
+                            </a>
+                        </li>
+                        <li>
+                            <!--<a href="/myMessage" class="btn btn-default btn-lg btn-link " style="font-size:24px;">-->
+                            <a href="/myRoutineMessage" title="">Routine message
+                                <!--<span class="glyphicon glyphicon-envelope" style="top:-15px;font-size:20px;">-->
+                                <!-- status 为未读，有几个就有几个提示数量 -->
+                                <span class="fa fa-circle"></span>
+                                <!--</span>-->
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/logout" title="">
+                                <span><i class="fa fa-sign-out "></i> logout</span></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <section>
+        <form id="new-comment" class="form-group" role="form" method="post" action="/createComment">
+            <div class="container">
+                <div class="form-group row">
+                    <label for="dridate" class="col-lg-2 col-form-label">Date</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" type="text" value="<%=comment.dridate%>" id="dridate"
+                               disabled="disabled">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="from" class="col-lg-2 col-form-label">From</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" type="text" value="<%=comment.from%>" id="from" disabled="disabled">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="to" class="col-lg-2 col-form-label">To</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" type="text" value="<%=comment.to%>" id="to" disabled="disabled">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="star" class="col-lg-2 col-form-label">Rank this</label>
+                    <div class="col-lg-10">
+                        <input id="star" name="star" class="rating rating-loading" data-min="0" data-max="5"
+                               data-step="1">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="comment" class="col-lg-2 col-form-label">Comment</label>
+                    <div class="col-lg-10">
+                        <textarea class="form-control" rows="5" id="comment"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-lg-10 col-lg-offset-6">
+                        <button type="submit" class="btn btn-default" id="submit" data-id="<%= routeId%>">Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+    <!--End of form_row div-->
+</div>
+<!-- Script -->
+<script type="text/javascript" src="js/modernizr.js"></script>
+<!-- Modernizer -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<!-- Jquery -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<!-- Bootstrap -->
+<script type="text/javascript" src="js/html5lightbox.js"></script>
+<!-- HTML -->
+<script type="text/javascript" src="js/scrolly.js"></script>
+<!-- Parallax -->
+<script type="text/javascript" src="js/price-range.js"></script>
+<!-- Parallax -->
+<script type="text/javascript" src="js/script.js"></script>
+<!-- Script -->
+<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+<!-- Date -->
+<script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
+<!-- Time -->
+<script type="text/javascript" src="js/star-rating.js"></script>
+<!-- Star -->
+<script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#new-comment").submit(function (e) {
+            var url = window.location.href;
+            var routeId = url.substring(url.lastIndexOf('=') + 1);
+            var star = $("#star").val();
+            var comment = $("#comment").val();
+            var dridate = $("#dridate").val();
+            var from = $("#from").val();
+            var to = $("#to").val();
+            var data = {
+                "routeId": routeId,
+                "star": star,
+                "comment": comment,
+                "dridate": dridate,
+                "from": from,
+                "to": to
+            };
+            $.ajax({
+                url: '/createRouteComment',
+                // data: $("form").serialize(),
+                type: 'post',
+                data: data,
+                success: function (data, status) {
+                    if (status == 'success') {
+                        //location.href = 'home';
+                        location.href = 'myMessage';
+                    }
+                },
+                error: function (data, status) {
+                    if (status == 'error') {
+                        location.href = 'myMessage';
+                    }
+                }
+            });
+
+            e.preventDefault();
+        });
+    });
+    $(document).ready(function () {
+        "use strict";
+        jQuery('.tp-banner').show().revolution({
+            dottedOverlay: "none",
+            delay: 16000, //revolution
+            startwidth: 1170,
+            startheight: 700,
+            hideThumbs: 200,
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview1",
+            touchenabled: "on",
+            onHoverStop: "on",
+            swipe_velocity: 0.7,
+            swipe_min_touches: 1,
+            swipe_max_touches: 1,
+            drag_block_vertical: false,
+            parallax: "mouse",
+            parallaxBgFreeze: "on",
+            parallaxLevels: [7, 4, 3, 2, 5, 4, 3, 2, 1, 0],
+            keyboardNavigation: "off",
+            navigationHAlign: "center",
+            navigationVAlign: "bottom",
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+            shadow: 0,
+            fullWidth: "on",
+            fullScreen: "off",
+            spinner: "spinner4",
+            stopLoop: "off",
+            stopAfterLoops: -1,
+            stopAtSlide: -1,
+            shuffle: "off",
+            autoHeight: "off",
+            forceFullWidth: "off",
+            hideThumbsOnMobile: "off",
+            hideNavDelayOnMobile: 1500,
+            hideBulletsOnMobile: "off",
+            hideArrowsOnMobile: "off",
+            hideThumbsUnderResolution: 0,
+            hideSliderAtLimit: 0,
+            hideCaptionAtLimit: 0,
+            hideAllCaptionAtLilmit: 0,
+            startWithSlide: 0,
+            videoJsPath: "rs-plugin/videojs/",
+            fullScreenOffsetContainer: ""
+        });
+    });
+</script>
+</body>
+
+</html>

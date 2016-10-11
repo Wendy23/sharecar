@@ -6,26 +6,37 @@ exports.myMessage = function () {
             res.redirect("/login"); //未登录则重定向到 /login 路径
         } else {
             var Message = global.dbHandel.getModel('driverroute');
+            var Comment = global.dbHandel.getModel('comment');
             var name = req.session.user;
             var name1 = name._id;
-            Message.find({'riderid.userid': req.session.user._id},
-                function (err, doc) {
-                    Message.find(
-                        {
-                            name: name1,
-                            "riderid.passnum": {$exists: true}
-                        }, function (err, docs) {
-                            Message.find({name:req.session.user._id}).populate('riderid.userid', null).exec(function (err, docc) {
-                                console.log("sent:" + doc);
-                                console.log("user:" + docc);
-                                res.render("myMessage", {driverroutes: doc, currentId:name1,routes: docs, user: (docc!=null && docc.length>0?docc[0]._doc.riderid:{})});
-                            })
+            Comment.find({riderId: req.session.user._id},
+                function (err, comment) {
+                    Message.find({'riderid.userid': req.session.user._id},
+                        function (err, doc) {
+                            Message.find(
+                                {
+                                    name: name1,
+                                    "riderid.passnum": {$exists: true}
+                                }, function (err, docs) {
+                                    Message.find({name: req.session.user._id}).populate('riderid.userid', null).exec(function (err, docc) {
+                                        //console.log("sent:" + doc);
+                                        //console.log("user:" + docc);
+                                        console.log("comment:" + comment);
+                                        res.render("myMessage", {
+                                            driverroutes: doc,
+                                            currentId: name1,
+                                            routes: docs,
+                                            comment:comment,
+                                            user: (docc != null && docc.length > 0 ? docc[0]._doc.riderid : {})
+                                        });
+                                    })
 
-                            //console.log("docs:" + docs);
-                            //res.render("myMessage", {driverroutes: doc, title: 'ShareCar'});
-                            //res.render("myProfile", { user: JSON.stringify(doc), title: 'ShareCar' });
-                        }
-                    );
+                                    //console.log("docs:" + docs);
+                                    //res.render("myMessage", {driverroutes: doc, title: 'ShareCar'});
+                                    //res.render("myProfile", { user: JSON.stringify(doc), title: 'ShareCar' });
+                                }
+                            );
+                        })
                 })
         }
     }
