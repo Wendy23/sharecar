@@ -7,14 +7,10 @@ exports.driverroutes = function () {
             req.session.error = "请先登录"
             res.redirect("/login"); //未登录则重定向到 /login 路径
         } else {
-            //var Route = global.dbHandel.getModel('driverroute');
-            //Route.find(function(err, docs) {
-            //    console.log("doc:" + docs);
-            //    res.render("searchRoute", { 'driverroute': docs });
-            //});
             var pageNum = parseInt(req.query.pageNum) ? parseInt(req.query.pageNum) : 1;
             var pageSize = parseInt(req.query.pageSize) ? parseInt(req.query.pageSize) : 2;
             var Route = global.dbHandel.getModel('driverroute');
+            var Comment = global.dbHandel.getModel('comment');
             console.log(req.query);
             var condition = req.query;
             var routedate = condition.routedate;
@@ -47,29 +43,36 @@ exports.driverroutes = function () {
                 query['pcode2'] = routearr;
             }
             console.log(query);
-            Route.count(query, function (err, count) {
-                Route.find(query).$where(function () {
-                    return this.occupancy > this.occupied;
-                }).
-                //where('occupancy').gt(where('occupied')).
-                skip((pageNum - 1) * pageSize).limit(pageSize).sort({dridate: -1}).exec(function (err, docs) {
-                    res.render("searchRoute", {
-                        'driverroute': docs,
-                        'pageNum': pageNum,
-                        'routedate': routedate,
-                        'routehour': routehour,
-                        'routemin': routemin,
-                        'from': from,
-                        'to': to,
-                        'routedep': routedep,
-                        'routearr': routearr,
-                        'time': time,
-                        'pageSize': pageSize,
-                        'totalPage': Math.ceil(count / pageSize)
-                    })
+            Comment.aggregate([{$group : {_id : "$driverId", count: { $sum: 1},avgstar: { $avg: "$star" }}}],function(err,rating){
+                console.log(rating);
+                    Route.count(query, function (err, count) {
+                        Route.find(query).$where(function () {
+                            return this.occupancy > this.occupied;
+                        }).
+                        //where('occupancy').gt(where('occupied')).
+                        skip((pageNum - 1) * pageSize).limit(pageSize).sort({dridate: -1}).exec(function (err, docs) {
+                            res.render("searchRoute", {
+                                'comment': rating,
+                                'driverroute': docs,
+                                'pageNum': pageNum,
+                                'routedate': routedate,
+                                'routehour': routehour,
+                                'routemin': routemin,
+                                'from': from,
+                                'to': to,
+                                'routedep': routedep,
+                                'routearr': routearr,
+                                'time': time,
+                                'pageSize': pageSize,
+                                'totalPage': Math.ceil(count / pageSize)
+                            })
 
-                });
-            });
+                        });
+                    });
+
+            })
+
+
         }
     }
 }
@@ -108,10 +111,10 @@ exports.updateRoute = function () {
                                         passnum: passnum
                                     }
                                 },
-                                $inc:{
-                                    'occupied':passnum
+                                $inc: {
+                                    'occupied': passnum
                                 }
-                            },{},function(err,raw){
+                            }, {}, function (err, raw) {
                                 //if (err) res.status(500);
                                 //res.send(raw);
                             }
