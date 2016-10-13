@@ -23,6 +23,7 @@ var myMessage = require('./routes/myMessage');
 var myRoutineMessage = require('./routes/myRoutineMessage');
 var routineBack = require('./routes/routineBack');
 var createRouteComment = require('./routes/createRouteComment');
+var viewComments = require('./routes/viewComments');
 
 global.dbHandel = require('./database/dbHandel');
 //global.db = mongoose.connect("mongodb://localhost:27017/nodedb");
@@ -89,6 +90,7 @@ app.use('/myMessage',myMessage);// 即为为路径 /message 设置路由
 app.use('/myRoutineMessage',myRoutineMessage);// 即为为路径 /myRoutineMessage 设置路由
 app.use('/routineBack',routineBack);// 即为为路径 /routineBack 设置路由
 app.use('/createRouteComment',createRouteComment);// 即为为路径 /createRouteComment 设置路由
+app.use('/viewComments',viewComments);// 即为为路径 /createRouteComment 设置路由
 
 
 // catch 404 and forward to error handler

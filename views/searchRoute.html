@@ -264,15 +264,15 @@
                             <%}%>
                         </strong></div>
 
-                        <div class="count"><strong id="count" name="star" size="40px">
+                        <div class="count"><strong id="count" name="star">
                             <% for (var j =0; j< comment.length;j++){%>
                             <% if(driverroute[i].name == comment[j]._id){%>
-                            <%=comment[j].count%>
+                            <%=comment[j].count%>&nbspcomment(s)
                             <%}%>
                             <%}%>
                         </strong></div>
 
-                        <a class="viewcomment" href="/view/driverId=<%=driverroute[i].name%>" target="_blank" >view</a>
+                       <a href="#" class="viewcomment" id="viewcomment" data-id="<%= driverroute[i].name%>">view</a>
 
                     </td>
                     <td>
@@ -398,7 +398,7 @@
         type="text/javascript"></script>
 <script type="text/javascript">
     $(function () {
-        $("#search").click(function () {
+            $("#search").click(function () {
             console.log("get into search ajax");
             var routedate = $('#DriverDeptDate').val();
             var from = $('#from').val();
@@ -450,6 +450,11 @@
     });
 
     $(document).ready(function () {
+
+        $('.viewcomment').on('click', function(event){
+            var viewId = $(this).attr("data-id");
+            window.location.href = "/viewComments?driverId="+viewId;
+        })
 
         var currentRoute;
 
