@@ -44,8 +44,8 @@
         <div class="top-bar">
             <div class="container">
                 <ul class="contact-item">
-                    <li><i class="fa fa-envelope-o"></i>yourcompnay@email.com</li>
-                    <li><i class="fa fa-mobile"></i>+1 333 44 555 / +1 333 44 500</li>
+                    <li><i class="fa fa-envelope-o"></i>yhuang10@lakeheadu.ca</li>
+                    <li><i class="fa fa-mobile"></i>18071234567</li>
                 </ul>
                 <div class="choose-language">
                     <a href="#" title="">EN</a>
@@ -67,14 +67,11 @@
                         <li>
                             <a href="/home" title="">HOME</a>
                         </li>
-                        <li>
-                            <a href="#" title="">ABOUT</a>
-                        </li>
                         <li class="menu-item-has-children">
                             <a href="#" title="">SEARCH</a>
                             <ul>
                                 <li><a href="/searchRoute" title="">Route</a></li>
-                                <li><a href="#" title="">Home v2</a></li>
+                                <li><a href="/searchRoutine" title="">Routine</a></li>
                             </ul>
                         </li>
                         <li><a href="#" title=""><strong>Welcome, <%- user.name %></strong></a></li>
@@ -85,9 +82,9 @@
                             <!--<a href="/myMessage" class="btn btn-default btn-lg btn-link " style="font-size:24px;">-->
                             <a href="/myMessage" title="">Route message
                                 <!--<span class="glyphicon glyphicon-envelope" style="top:-15px;font-size:20px;">-->
-                                    <!-- status 为未读，有几个就有几个提示数量 -->
-                                   <span class="fa fa-circle"></span>
-                            <!--</span>-->
+                                <!-- status 为未读，有几个就有几个提示数量 -->
+                                <span class="fa fa-circle"></span>
+                                <!--</span>-->
                             </a>
                         </li>
                         <li>
@@ -108,20 +105,88 @@
             </div>
         </div>
     </header>
-    <section>
-        <h3>Driver</h3>
-        <ul id="markdown-toc">
-            <li><a href="/createRoute">Create Specific Route</a></li>
-            <li><a href="/createRoutine" id="createRoutine">Create Routine</a></li>
-            <li><a href="/driverRoutes" id="driverRoutes">Manage Routes & Routines</a></li>
-        </ul>
-        <h3>Rider</h3>
-        <ul id="markdown-toc2">
-            <!-- <a href="/searchRoute" class="btn btn-link" role="button">Rider</a> -->
-            <li><a href="/searchRoute" id="searchRoute">Search</a></li>
-            <li><a href="/searchRoutine" id="searchRoutine">Search Routine</a></li>
-        </ul>
-    </section>
+
+
+    <!-- Header -->
+    <a name="about"></a>
+    <div class="intro-header">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>ShareCar</h1>
+                        <i>An idea from city carpool</i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.intro-header -->
+
+    <!-- Page Content -->
+
+    <a  name="services"></a>
+    <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6 ">
+                    <img class="img-responsive" src="/images/driverside.jpg" alt="">
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2>Driver</h2>
+                    <ul id="markdown-toc">
+                        <li><a href="/createRoute">Create Specific Route</a></li>
+                        <li><a href="/createRoutine" id="createRoutine">Create Routine</a></li>
+                        <li><a href="/driverRoutes" id="driverRoutes">Manage Routes & Routines</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                    <img class="img-responsive" src="/images/riderside.jpg" alt="">
+                </div>
+                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2>Rider</h2>
+                    <ul id="markdown-toc2">
+                        <!-- <a href="/searchRoute" class="btn btn-link" role="button">Rider</a> -->
+                        <li><a href="/searchRoute" id="searchRoute">Search</a></li>
+                        <li><a href="/searchRoutine" id="searchRoutine">Search Routine</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-b -->
+
+
+
+
+
     <!--End of form_row div-->
 </div>
 <!-- Script -->

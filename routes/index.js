@@ -98,29 +98,29 @@ router.get("/logout", function(req, res) { // 到达 /logout 路径则登出， 
 
 
 /* GET test page. localhost:3000/test?user=57226903bb3cdd801fb60132*/
-router.get("/test", function(req, res) {	// only for testing
-	{
-		var Route = global.dbHandel.getModel('driverroute');
-		// name as '57226903bb3cdd801fb60132'
-		Route.find({ name : req.query.user }, function(err, doc) {
-			console.log(doc);
-			res.json(doc);
-		});
-	}
-
-	/*
-	res.render("testweb", function(req, res) {
-        console.log("get into my routes router");
-        
-    });
-/*
-	console.log(req.params);
-	console.log(req.query);
-	console.log(req.body);
-//	res.send('id: ' + req.query.id);
-	res.send(req.query.key);
-*/	
-});
+//router.get("/test", function(req, res) {	// only for testing
+//	{
+//		var Route = global.dbHandel.getModel('driverroute');
+//		// name as '57226903bb3cdd801fb60132'
+//		Route.find({ name : req.query.user }, function(err, doc) {
+//			console.log(doc);
+//			res.json(doc);
+//		});
+//	}
+//
+//	/*
+//	res.render("testweb", function(req, res) {
+//        console.log("get into my routes router");
+//
+//    });
+///*
+//	console.log(req.params);
+//	console.log(req.query);
+//	console.log(req.body);
+////	res.send('id: ' + req.query.id);
+//	res.send(req.query.key);
+//*/
+//});
 
 // router.get("/getroute", function(req, res) {	// only for testing
 // 	var Route = global.dbHandel.getModel('driverroute');
