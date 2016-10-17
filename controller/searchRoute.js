@@ -43,32 +43,38 @@ exports.driverroutes = function () {
                 query['pcode2'] = routearr;
             }
             console.log(query);
-            Comment.aggregate([{$group : {_id : "$driverId", count: { $sum: 1},avgstar: { $avg: "$star" }}}],function(err,rating){
+            Comment.aggregate([{
+                $group: {
+                    _id: "$driverId",
+                    count: {$sum: 1},
+                    avgstar: {$avg: "$star"}
+                }
+            }], function (err, rating) {
                 console.log(rating);
-                    Route.count(query, function (err, count) {
-                        Route.find(query).$where(function () {
-                            return this.occupancy > this.occupied;
-                        }).
-                        //where('occupancy').gt(where('occupied')).
-                        skip((pageNum - 1) * pageSize).limit(pageSize).sort({dridate: -1}).exec(function (err, docs) {
-                            res.render("searchRoute", {
-                                'comment': rating,
-                                'driverroute': docs,
-                                'pageNum': pageNum,
-                                'routedate': routedate,
-                                'routehour': routehour,
-                                'routemin': routemin,
-                                'from': from,
-                                'to': to,
-                                'routedep': routedep,
-                                'routearr': routearr,
-                                'time': time,
-                                'pageSize': pageSize,
-                                'totalPage': Math.ceil(count / pageSize)
-                            })
+                Route.count(query, function (err, count) {
+                    Route.find(query).$where(function () {
+                        return this.occupancy > this.occupied;
+                    }).
+                    //where('occupancy').gt(where('occupied')).
+                    skip((pageNum - 1) * pageSize).limit(pageSize).sort({dridate: -1}).exec(function (err, docs) {
+                        res.render("searchRoute", {
+                            'comment': rating,
+                            'driverroute': docs,
+                            'pageNum': pageNum,
+                            'routedate': routedate,
+                            'routehour': routehour,
+                            'routemin': routemin,
+                            'from': from,
+                            'to': to,
+                            'routedep': routedep,
+                            'routearr': routearr,
+                            'time': time,
+                            'pageSize': pageSize,
+                            'totalPage': Math.ceil(count / pageSize)
+                        })
 
-                        });
                     });
+                });
 
             })
 
@@ -92,14 +98,19 @@ exports.updateRoute = function () {
             Route.update(
                 {
                     "_id": currentId,
-                    "riderid.userid": userid
+                    "riderid.userid": userid,
+                    "riderstatus": 0
                 },
                 {
                     "$inc": {
                         'riderid.$.passnum': passnum,
                         'occupied': passnum
                     }
-                }, {}, function (err, raw) {
+                }, {
+                    $set: {
+                        'driverstatus': 1
+                    }
+                }, function (err, raw) {
                     console.log("raw: ", raw);
                     if (raw.nModified == '0') {
                         console.log("modify==0");
@@ -108,13 +119,18 @@ exports.updateRoute = function () {
                                 $push: {
                                     riderid: {
                                         userid: userid,
-                                        passnum: passnum
+                                        passnum: passnum,
+                                        riderstatus: 0
                                     }
                                 },
                                 $inc: {
                                     'occupied': passnum
+                                },
+                            }, {
+                                $set: {
+                                    'driverstatus': 1
                                 }
-                            }, {}, function (err, raw) {
+                            }, function (err, raw) {
                                 //if (err) res.status(500);
                                 //res.send(raw);
                             }

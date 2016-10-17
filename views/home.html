@@ -80,10 +80,18 @@
                         </li>
                         <li>
                             <!--<a href="/myMessage" class="btn btn-default btn-lg btn-link " style="font-size:24px;">-->
-                            <a href="/myMessage" title="">Route message
+                            <a onclick="removered()" href="/myMessage" title="">Route message
                                 <!--<span class="glyphicon glyphicon-envelope" style="top:-15px;font-size:20px;">-->
                                 <!-- status 为未读，有几个就有几个提示数量 -->
-                                <span class="fa fa-circle"></span>
+                                <% if(circle){%>
+                                <%for(var i=0;i
+                                <circle.length ;i++){%>
+                                    <%if(circle[i].driverstatus == "1"){%>
+                                    <span id="redcircle" class="fa fa-circle"></span>
+                                    <%}%>
+                                    <%}%>
+                                    <%}%>
+                                </circle.length>
                                 <!--</span>-->
                             </a>
                         </li>
@@ -129,7 +137,7 @@
 
     <!-- Page Content -->
 
-    <a  name="services"></a>
+    <a name="services"></a>
     <div class="content-section-a">
 
         <div class="container">
@@ -184,9 +192,6 @@
     <!-- /.content-section-b -->
 
 
-
-
-
     <!--End of form_row div-->
 </div>
 <!-- Script -->
@@ -211,6 +216,30 @@
 <script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
 <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 <script type="text/javascript">
+    function removered(e) {
+        console.log("heheh");
+        var element = document.getElementById("redcircle");
+        var data = {
+        };
+//        element.parentNode.removeChild(element);
+        $.ajax({
+            url: '/home',
+            // data: $("form").serialize(),
+            type: 'post',
+            data: data,
+            success: function (data, status) {
+                if (status == 'success') {
+                    //location.href = 'home';
+                    location.href = 'myMessage';
+                }
+            },
+            error: function (data, status) {
+                if (status == 'error') {
+                    location.href = 'home';
+                }
+            }
+        });
+    }
     $(document).ready(function () {
         "use strict";
         jQuery('.tp-banner').show().revolution({
