@@ -87,10 +87,14 @@ router.get("/home", function (req, res) {
         res.redirect("/login"); //未登录则重定向到 /login 路径
     } else {
         var Route = global.dbHandel.getModel('driverroute');
+        var Routine = global.dbHandel.getModel('routine');
         var id = req.session.user._id;
         Route.find({name: id}, function (err, doc) {
-            //console.log(doc);
-            res.render("home", {circle: doc, title: 'ShareCar'}); //已登录则渲染home页面
+            Routine.find({name: id}, function (err, docc) {
+                //console.log(doc);
+                console.log(docc);
+                res.render("home", {circle: doc,circle2:docc, title: 'ShareCar'}); //已登录则渲染home页面
+            })
         })
     }
 })
@@ -107,6 +111,16 @@ router.route("/home")
         var Route = global.dbHandel.getModel('driverroute');
         var id = req.session.user._id;
         Route.update({name: id}, { $set: { driverstatus: '0' }}, {multi: true},function (err, doc) {
+            if (err) return handleError(err);
+            res.send(doc);
+        })
+    });
+
+router.route("/home2")
+    .post(function (req, res) { // 从此路径检测到post方式则进行post数据的处理操作
+        var Routine = global.dbHandel.getModel('routine');
+        var id = req.session.user._id;
+        Routine.update({name: id}, { $set: { driverstatus: '0' }}, {multi: true},function (err, doc) {
             if (err) return handleError(err);
             res.send(doc);
         })

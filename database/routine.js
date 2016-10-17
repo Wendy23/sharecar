@@ -10,6 +10,7 @@ module.exports = {
         occupancy: { type: Number, default:0},
         occupied: {type: Number, default:0},
         comeback:{type:String},
+        driverstatus:{type:Number,default:0},
         mon: {
             weekday: {type: String},
             dayhour: {type: Number},

@@ -254,10 +254,10 @@ exports.updateRoutine = function () {
             var gender;
             var mobile;
             User.find({name: username}, {}, function (err, doc) {
-                email=doc[0]._doc.email;
-                nametitle=doc[0]._doc.nametitle;
-                gender=doc[0]._doc.gender;
-                mobile=doc[0]._doc.mobile;
+                email = doc[0]._doc.email;
+                nametitle = doc[0]._doc.nametitle;
+                gender = doc[0]._doc.gender;
+                mobile = doc[0]._doc.mobile;
             })
             Routine.update(
                 {
@@ -268,6 +268,9 @@ exports.updateRoutine = function () {
                     "$inc": {
                         'ridername.$.passnum': passnum,
                         'occupied': passnum
+                    },
+                    $set:{
+                        'driverstatus':1
                     }
                 }, {}, function (err, raw) {
                     console.log("raw: ", raw);
@@ -279,14 +282,17 @@ exports.updateRoutine = function () {
                                     ridername: {
                                         username: username,
                                         passnum: passnum,
-                                        email:email,
-                                        gender:gender,
-                                        mobile:mobile,
-                                        nametitle:nametitle
+                                        email: email,
+                                        gender: gender,
+                                        mobile: mobile,
+                                        nametitle: nametitle
                                     }
                                 },
                                 $inc: {
                                     'occupied': passnum
+                                },
+                                $set:{
+                                    'driverstatus':1
                                 }
                             }, {}, function (err, raw) {
                                 //if (err) res.status(500);

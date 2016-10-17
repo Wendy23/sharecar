@@ -98,19 +98,17 @@ exports.updateRoute = function () {
             Route.update(
                 {
                     "_id": currentId,
-                    "riderid.userid": userid,
-                    "riderstatus": 0
+                    "riderid.userid": userid
                 },
                 {
                     "$inc": {
                         'riderid.$.passnum': passnum,
                         'occupied': passnum
-                    }
-                }, {
+                    },
                     $set: {
                         'driverstatus': 1
                     }
-                }, function (err, raw) {
+                }, {}, function (err, raw) {
                     console.log("raw: ", raw);
                     if (raw.nModified == '0') {
                         console.log("modify==0");
@@ -126,11 +124,10 @@ exports.updateRoute = function () {
                                 $inc: {
                                     'occupied': passnum
                                 },
-                            }, {
                                 $set: {
                                     'driverstatus': 1
                                 }
-                            }, function (err, raw) {
+                            }, {}, function (err, raw) {
                                 //if (err) res.status(500);
                                 //res.send(raw);
                             }

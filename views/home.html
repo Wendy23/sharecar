@@ -97,10 +97,18 @@
                         </li>
                         <li>
                             <!--<a href="/myMessage" class="btn btn-default btn-lg btn-link " style="font-size:24px;">-->
-                            <a href="/myRoutineMessage" title="">Routine message
+                            <a onclick="removered2()" href="/myRoutineMessage" title="">Routine message
                                 <!--<span class="glyphicon glyphicon-envelope" style="top:-15px;font-size:20px;">-->
                                 <!-- status 为未读，有几个就有几个提示数量 -->
-                                <span class="fa fa-circle"></span>
+                                <% if(circle2){%>
+                                <%for(var i=0;i
+                                <circle2.length ;i++){%>
+                                    <%if(circle2[i].driverstatus == "1"){%>
+                                    <span id="redcircle2" class="fa fa-circle"></span>
+                                    <%}%>
+                                    <%}%>
+                                    <%}%>
+                                </circle2.length>
                                 <!--</span>-->
                             </a>
                         </li>
@@ -240,6 +248,32 @@
             }
         });
     }
+
+    function removered2(e) {
+        console.log("hahah");
+        var element = document.getElementById("redcircle2");
+        var data = {
+        };
+//        element.parentNode.removeChild(element);
+        $.ajax({
+            url: '/home2',
+            // data: $("form").serialize(),
+            type: 'post',
+            data: data,
+            success: function (data, status) {
+                if (status == 'success') {
+                    //location.href = 'home';
+                    location.href = 'myRoutineMessage';
+                }
+            },
+            error: function (data, status) {
+                if (status == 'error') {
+                    location.href = 'home';
+                }
+            }
+        });
+    }
+
     $(document).ready(function () {
         "use strict";
         jQuery('.tp-banner').show().revolution({
