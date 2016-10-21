@@ -17,19 +17,31 @@ exports.myMessage = function () {
                                 {
                                     name: name1,
                                     "riderid.passnum": {$exists: true}
-                                }, function (err, docs) {
-                                    Message.find({name: req.session.user._id}).populate('riderid.userid', null).exec(function (err, docc) {
+                                }).populate('riderid.userid', null).exec(function (err, docs) {
                                         //console.log("sent:" + doc);
-                                        //console.log("user:" + docc);
+                                        console.log("user:" + docs);
                                         console.log("comment:" + comment);
-                                        res.render("myMessage", {
-                                            driverroutes: doc,
-                                            currentId: name1,
-                                            routes: docs,
-                                            comment:comment,
-                                            user: (docc != null && docc.length > 0 ? docc[0]._doc.riderid : {})
-                                        });
-                                    })
+                                        //console.log("info" + docc);
+                                        if (docs != null && docs.length > 0) {
+                                            // for (var j = 0; j < docc[i]._doc.riderid.length;j++){
+                                            //var currentuserinfo = docc[i]._doc.riderid[j];
+                                            res.render("myMessage", {
+                                                driverroutes: doc,
+                                                currentId: name1,
+                                                routes: docs,
+                                                comment: comment,
+                                                //orderinfos: docc
+                                            });
+                                        }
+                                        else if (docs.length == 0) {
+                                            res.render("myMessage", {
+                                                driverroutes: doc,
+                                                currentId: name1,
+                                                routes: docs,
+                                                comment: comment,
+                                                user: {}
+                                            });
+                                        }
 
                                     //console.log("docs:" + docs);
                                     //res.render("myMessage", {driverroutes: doc, title: 'ShareCar'});

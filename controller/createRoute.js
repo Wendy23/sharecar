@@ -25,7 +25,7 @@ exports.createRoute = function () {
         var result = editId.indexOf("createRoute") > -1;
         console.log(req.body);
         if (result) {
-            Route.create({ // 创建一组route对象置入model
+            Route.create({ 
                 name: name,
                 dridate: drideptdate,
                 drihour: dridepthour,

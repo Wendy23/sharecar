@@ -66,7 +66,6 @@ function initMap() {
 
             var reqResult = place.formatted_address;
             var getAreaInfo = reqResult.substring(reqResult.lastIndexOf(",") + 1);
-            console.log("geuwi" + getAreaInfo);
 
             var ta = document.getElementById('PostalCode');
             ta.value = getAreaInfo;

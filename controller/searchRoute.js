@@ -8,7 +8,7 @@ exports.driverroutes = function () {
             res.redirect("/login"); //未登录则重定向到 /login 路径
         } else {
             var pageNum = parseInt(req.query.pageNum) ? parseInt(req.query.pageNum) : 1;
-            var pageSize = parseInt(req.query.pageSize) ? parseInt(req.query.pageSize) : 2;
+            var pageSize = parseInt(req.query.pageSize) ? parseInt(req.query.pageSize) : 5;
             var Route = global.dbHandel.getModel('driverroute');
             var Comment = global.dbHandel.getModel('comment');
             console.log(req.query);
@@ -60,7 +60,6 @@ exports.driverroutes = function () {
                         res.render("searchRoute", {
                             'comment': rating,
                             'driverroute': docs,
-                            'pageNum': pageNum,
                             'routedate': routedate,
                             'routehour': routehour,
                             'routemin': routemin,
@@ -69,6 +68,7 @@ exports.driverroutes = function () {
                             'routedep': routedep,
                             'routearr': routearr,
                             'time': time,
+                            'pageNum': pageNum,
                             'pageSize': pageSize,
                             'totalPage': Math.ceil(count / pageSize)
                         })
