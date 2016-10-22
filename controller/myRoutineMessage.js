@@ -16,41 +16,33 @@ exports.myRoutineMessage = function () {
                         //"rideranme.passnum": {$exists: true}
                         "occupied": {$gt: 0}
                     }, function (err, docs) {
-                        Message.find({name: req.session.user._id}).exec(function (err, docc) {
-                            //console.log("sent:" + doc);
-                            //console.log("received:" + docs);
-                            console.log("passenger info:" + docc);
-                            if (docc != null && docc.length > 0) {
-                                for (var i = 0; i < docc.length; i++) {
-                                    if (docc[i]._doc.ridername != "") {
-                                        //console.log("zhide" + docc[i]);
-                                        res.render("myRoutineMessage", {
-                                            routine: doc,
-                                            currentname: name1,
-                                            routines: docs,
-                                            user: (docc != null && docc.length > 0 ? docc[i].ridername : {})
-                                        });
-                                        //return res.render("myRoutineMessage", {title: 'ShareCar'});
-                                    }
-                                    //else if(docc[i]._doc.ridername == ""){
-                                    //    res.render("myRoutineMessage", {
-                                    //        routine: doc,
-                                    //        currentname: name1,
-                                    //        routines: docs,
-                                    //        user: (docc != null && docc.length > 0 ? docc[i].ridername : {})
-                                    //    });
-                                    //}
-                                }
-                            }
-                            else if(docc.length == 0){
-                                res.render("myRoutineMessage", {
-                                    routine: doc,
-                                    currentname: name1,
-                                    routines: docs,
-                                    user: {}
-                                });
-                            }
-                        })
+                        // Message.find({name: req.session.user._id}).exec(function (err, docc) {
+                        //console.log("sent:" + doc);
+                        //console.log("received:" + docs);
+                        //console.log("passenger info:" + docc);
+                        if (docs != null && docs.length > 0) {
+                            //for (var i = 0; i < docc.length; i++) {
+                            // if (docc[i]._doc.ridername != "") {
+                            //console.log("zhide" + docc[i]);
+                            res.render("myRoutineMessage", {
+                                routine: doc,
+                                currentname: name1,
+                                routines: docs,
+                                // user: docc
+                            });
+                            //return res.render("myRoutineMessage", {title: 'ShareCar'});
+                            // }
+                            //}
+                        }
+                        else if (docs.length == 0) {
+                            res.render("myRoutineMessage", {
+                                routine: doc,
+                                currentname: name1,
+                                routines: docs,
+                                //user: {}
+                            });
+                        }
+                        // })
                     }
                 );
             })

@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-            ShareCar
+        ShareCar
     </title>
     <!-- Mobile Specific Metas
     ================================================== -->
@@ -265,7 +265,8 @@
                             <!--</div>-->
                             <div class="row">
                                 <div class="col-lg-5 col-md-5 col-sm-5"></div>
-                                <button type="button" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
+                                <button type="button" style="width: 70px;" class="btn btn-primary btn-sm"
+                                        data-toggle="modal"
                                         data-target="#cancelRoutine" name="cancelRoutine" data-target="#cancelRoutine"
                                         data-id="<%= routine[i]._id%>"
                                         data-passnum="<%=routine[i].ridername.passnum%>">Cancel
@@ -280,7 +281,7 @@
                 <%}%>
                 <!--<div class="col-md-4">.col-md-4</div>-->
                 <!--<div class="col-md-4">.col-md-4</div>-->
-                </routine.length>
+            </routine.length>
         </div>
     </section>
     <div class="modal fade" id="cancelRoutine" data-id="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -458,8 +459,10 @@
                             </br>
                             <div class="row">
                                 <div class="col-lg-5 col-md-5 col-sm-5"></div>
-                                <button type="button" style="width: 70px;" class="btn btn-primary btn-sm" data-toggle="modal"
-                                        data-target="#confirm" name="confirm" id="confirmRoutine" data-id="<%= routines[i]._id%>"  data-passnuminfo="<%=user%>">Confirm
+                                <button type="button" style="width: 70px;" class="btn btn-primary btn-sm"
+                                        data-toggle="modal"
+                                        data-target="#confirm<%= routines[i]._id%>" name="confirm" id="confirmRoutine"
+                                        data-id="<%= routines[i]._id%>" data-info="<%= routines[i].ridername%>">Confirm
                                 </button>
                                 <!--<button type="button" class="btn btn-success btn-sm">小型button</button>-->
                             </div>
@@ -471,221 +474,230 @@
                 <%}%>
                 <!--<div class="col-md-4">.col-md-4</div>-->
                 <!--<div class="col-md-4">.col-md-4</div>-->
+            </routines.length>
         </div>
     </section>
-    <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="receiveModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="receiveModalLabel">Passenger Information</h4>
-                </div>
-                <div class="modal-body">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Gender</th>
-                            <th>Mobile</th>
-                            <th>Email</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <% if (user != null && user.length >0){%>
-                        <% for (var i =0; i <user.length ; i++){%>
+    <% for (var i =0; i
+    <routines.length ; i++){%>
+        <div class="modal fade confirm" id="confirm<%= routines[i]._id%>" tabindex="-1" role="dialog"
+             aria-labelledby="receiveModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="receiveModalLabel">Passenger Information</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
                             <tr>
-                                <td>
-                                    <%=user[i].nametitle%>
-                                </td>
-                                <td>
-                                    <%=user[i].gender%>
-                                </td>
-                                <td>
-                                    <%=user[i].mobile%>
-                                </td>
-                                <td>
-                                    <%=user[i].email%>
-                                </td>
+                                <th>Name</th>
+                                <th>Gender</th>
+                                <th>Mobile</th>
+                                <th>Email</th>
                             </tr>
-                            <%}%>
-                            <%}%>
-                        </tbody>
-                    </table>
-                </div>
-                <div>
-                    <div class="modal-footer">
-                        <button type="submit" id="respondmessage" class="btn btn-primary">Respond</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </thead>
+                            <tbody>
+                            <% if (routines[i].ridername != null && routines[i].ridername.length >0){%>
+                            <% for (var j =0; j
+                            <routines
+                                    [i].ridername.length ; j++){%>
+                                <tr>
+                                    <td>
+                                        <%=routines[i]._doc.ridername[j]._doc.nametitle%>
+                                    </td>
+                                    <td>
+                                        <%=routines[i]._doc.ridername[j]._doc.gender%>
+                                    </td>
+                                    <td>
+                                        <%=routines[i]._doc.ridername[j]._doc.mobile%>
+                                    </td>
+                                    <td>
+                                        <%=routines[i]._doc.ridername[j]._doc.email%>
+                                    </td>
+                                </tr>
+                                <%}%>
+                                <%}%>
+                            </routines>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <div class="modal-footer">
+                            <button type="submit" id="respondmessage" class="btn btn-primary">Respond</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-</div>
-<!-- Script -->
-<script type="text/javascript" src="js/modernizr.js"></script>
-<!-- Modernizer -->
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<!-- Jquery -->
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<!-- Bootstrap -->
-<script type="text/javascript" src="js/html5lightbox.js"></script>
-<!-- HTML -->
-<script type="text/javascript" src="js/scrolly.js"></script>
-<!-- Parallax -->
-<script type="text/javascript" src="js/price-range.js"></script>
-<!-- Parallax -->
-<script type="text/javascript" src="js/script.js"></script>
-<!-- Script -->
-<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
-<!-- Date -->
-<script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
-<!-- Time -->
-<script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-<script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-<script type="text/javascript">
-    var currentRoutine;
+        <%}%>
+    </routines.length>
+    <!-- Script -->
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <!-- Modernizer -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <!-- Jquery -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="js/html5lightbox.js"></script>
+    <!-- HTML -->
+    <script type="text/javascript" src="js/scrolly.js"></script>
+    <!-- Parallax -->
+    <script type="text/javascript" src="js/price-range.js"></script>
+    <!-- Parallax -->
+    <script type="text/javascript" src="js/script.js"></script>
+    <!-- Script -->
+    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+    <!-- Date -->
+    <script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
+    <!-- Time -->
+    <script src="js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+    <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        var currentRoutine;
 
-    function bindShowEvent() {
-        $('#cancelRoutine').on('show.bs.modal', function (event) {
-            var modal = $(this)
-            modal.find('.modal-title').text('Passenger Info');
-            setTimeout(function () {
-                modal.find('.modal-backdrop').remove();
-            }, 200);
+        function bindShowEvent() {
+            $('#cancelRoutine').on('show.bs.modal', function (event) {
+                var modal = $(this)
+                modal.find('.modal-title').text('Passenger Info');
+                setTimeout(function () {
+                    modal.find('.modal-backdrop').remove();
+                }, 200);
 
-            currentRoutine =modal.data("id");
-            //currentRoutine =$(this).data("id");
-            $(this).off('show.bs.modal');
-        });
-    }
-    function bindShowEvent1() {
-        $('#confirm').on('show.bs.modal', function (event) {
-            //$(this).removeClass('modal-backdrop');
-            //Now set z-index of modal greater than backdrop
-            //ajax herevar button = $(event.relatedTarget)
-            var modal = $(this)
-            modal.find('.modal-title').text('Passenger Information');
-            setTimeout(function () {
-                modal.find('.modal-backdrop').remove();
-            }, 200);
-            // currentMessage = button.attr("data-id");
+                currentRoutine = modal.data("id");
+                //currentRoutine =$(this).data("id");
+                $(this).off('show.bs.modal');
+            });
+        }
+        function bindShowEvent1() {
+            $('.confirm').on('show.bs.modal', function (event) {
+                //$(this).removeClass('modal-backdrop');
+                //Now set z-index of modal greater than backdrop
+                //ajax herevar button = $(event.relatedTarget)
+                var modal = $(this)
+                modal.find('.modal-title').text('Passenger Information');
+                setTimeout(function () {
+                    modal.find('.modal-backdrop').remove();
+                }, 200);
+                // currentMessage = button.attr("data-id");
 //                currentRoute = button.attr("data-id");
 //                console.log(currentRoute);
-            $(this).off('show.bs.modal');
-        });
-    }
+                $(this).off('show.bs.modal');
+            });
+        }
 
 
-    $(document).ready(function () {
-        $("#sendmessage").click(function () {
-            console.log("get into remove passengers");
-            var passenger = $("#passengernum").val();
-            var routineId = currentRoutine;
-            var data = {
-                "passenger": passenger,
-                "routineId": routineId
-            }
-            $.ajax({
-                url: '/myRoutineMessage/removeRoutine',
-                // data: $("form").serialize(),
-                type: 'post',
-                data: data,
-                success: function (data, status) {
-                    if (status == 'success') {
-                        //location.href = 'home';
-                        location.reload();
+        $(document).ready(function () {
+            $("#sendmessage").click(function () {
+                console.log("get into remove passengers");
+                var passenger = $("#passengernum").val();
+                var routineId = currentRoutine;
+                var data = {
+                    "passenger": passenger,
+                    "routineId": routineId
+                }
+                $.ajax({
+                    url: '/myRoutineMessage/removeRoutine',
+                    // data: $("form").serialize(),
+                    type: 'post',
+                    data: data,
+                    success: function (data, status) {
+                        if (status == 'success') {
+                            //location.href = 'home';
+                            location.reload();
+                        }
+                    },
+                    error: function (data, status) {
+                        if (status == 'error') {
+                            location.href = 'myRoutineMessage';
+                        }
                     }
-                },
-                error: function (data, status) {
-                    if (status == 'error') {
-                        location.href = 'myRoutineMessage';
+                });
+            })
+
+            bindShowEvent();
+            $('#cancelRoutine').on('hide.bs.modal', function (event) {
+                bindShowEvent();
+            });
+
+            $("#routineInfoBody").click(function (event) {
+                var ev = event || window.event;
+                var target = ev.target || ev.srcElement;
+                if (target.nodeName.toLowerCase() == "button") {
+                    if ($(target).attr("name") == "cancelRoutine") {
+                        var id = $(target).data("id");
+                        $("#cancelRoutine").data("id", id);
                     }
                 }
             });
-        })
 
-        bindShowEvent();
-        $('#cancelRoutine').on('hide.bs.modal', function (event) {
-            bindShowEvent();
-        });
-
-        $("#routineInfoBody").click(function (event) {
-            var ev = event || window.event;
-            var target = ev.target || ev.srcElement;
-            if (target.nodeName.toLowerCase() == "button") {
-                if($(target).attr("name")=="cancelRoutine"){
-                    var id=$(target).data("id");
-                    $("#cancelRoutine").data("id",id);
-                }
-            }
-        });
-
-        <!--Confirm-->
-        bindShowEvent1();
-        $('#confirm').on('hide.bs.modal', function (event) {
+            <!--Confirm-->
             bindShowEvent1();
-        })
+            $('#confirm').on('hide.bs.modal', function (event) {
+                bindShowEvent1();
+            })
 
-        "use strict";
-        jQuery('.tp-banner').show().revolution({
-            dottedOverlay: "none",
-            delay: 16000, //revolution
-            startwidth: 1170,
-            startheight: 700,
-            hideThumbs: 200,
-            thumbWidth: 100,
-            thumbHeight: 50,
-            thumbAmount: 5,
-            navigationType: "bullet",
-            navigationArrows: "solo",
-            navigationStyle: "preview1",
-            touchenabled: "on",
-            onHoverStop: "on",
-            swipe_velocity: 0.7,
-            swipe_min_touches: 1,
-            swipe_max_touches: 1,
-            drag_block_vertical: false,
-            parallax: "mouse",
-            parallaxBgFreeze: "on",
-            parallaxLevels: [7, 4, 3, 2, 5, 4, 3, 2, 1, 0],
-            keyboardNavigation: "off",
-            navigationHAlign: "center",
-            navigationVAlign: "bottom",
-            navigationHOffset: 0,
-            navigationVOffset: 20,
-            soloArrowLeftHalign: "left",
-            soloArrowLeftValign: "center",
-            soloArrowLeftHOffset: 20,
-            soloArrowLeftVOffset: 0,
-            soloArrowRightHalign: "right",
-            soloArrowRightValign: "center",
-            soloArrowRightHOffset: 20,
-            soloArrowRightVOffset: 0,
-            shadow: 0,
-            fullWidth: "on",
-            fullScreen: "off",
-            spinner: "spinner4",
-            stopLoop: "off",
-            stopAfterLoops: -1,
-            stopAtSlide: -1,
-            shuffle: "off",
-            autoHeight: "off",
-            forceFullWidth: "off",
-            hideThumbsOnMobile: "off",
-            hideNavDelayOnMobile: 1500,
-            hideBulletsOnMobile: "off",
-            hideArrowsOnMobile: "off",
-            hideThumbsUnderResolution: 0,
-            hideSliderAtLimit: 0,
-            hideCaptionAtLimit: 0,
-            hideAllCaptionAtLilmit: 0,
-            startWithSlide: 0,
-            videoJsPath: "rs-plugin/videojs/",
-            fullScreenOffsetContainer: ""
+            "use strict";
+            jQuery('.tp-banner').show().revolution({
+                dottedOverlay: "none",
+                delay: 16000, //revolution
+                startwidth: 1170,
+                startheight: 700,
+                hideThumbs: 200,
+                thumbWidth: 100,
+                thumbHeight: 50,
+                thumbAmount: 5,
+                navigationType: "bullet",
+                navigationArrows: "solo",
+                navigationStyle: "preview1",
+                touchenabled: "on",
+                onHoverStop: "on",
+                swipe_velocity: 0.7,
+                swipe_min_touches: 1,
+                swipe_max_touches: 1,
+                drag_block_vertical: false,
+                parallax: "mouse",
+                parallaxBgFreeze: "on",
+                parallaxLevels: [7, 4, 3, 2, 5, 4, 3, 2, 1, 0],
+                keyboardNavigation: "off",
+                navigationHAlign: "center",
+                navigationVAlign: "bottom",
+                navigationHOffset: 0,
+                navigationVOffset: 20,
+                soloArrowLeftHalign: "left",
+                soloArrowLeftValign: "center",
+                soloArrowLeftHOffset: 20,
+                soloArrowLeftVOffset: 0,
+                soloArrowRightHalign: "right",
+                soloArrowRightValign: "center",
+                soloArrowRightHOffset: 20,
+                soloArrowRightVOffset: 0,
+                shadow: 0,
+                fullWidth: "on",
+                fullScreen: "off",
+                spinner: "spinner4",
+                stopLoop: "off",
+                stopAfterLoops: -1,
+                stopAtSlide: -1,
+                shuffle: "off",
+                autoHeight: "off",
+                forceFullWidth: "off",
+                hideThumbsOnMobile: "off",
+                hideNavDelayOnMobile: 1500,
+                hideBulletsOnMobile: "off",
+                hideArrowsOnMobile: "off",
+                hideThumbsUnderResolution: 0,
+                hideSliderAtLimit: 0,
+                hideCaptionAtLimit: 0,
+                hideAllCaptionAtLilmit: 0,
+                startWithSlide: 0,
+                videoJsPath: "rs-plugin/videojs/",
+                fullScreenOffsetContainer: ""
+            });
         });
-    });
-</script>
+    </script>
 </body>
 
 </html>
